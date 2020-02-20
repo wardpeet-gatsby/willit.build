@@ -1,9 +1,9 @@
 import React from "react"
 
-const APIPlayground = () => (
+const ApiPlayground = () => (
   <header>
     <h1>Willit.build API Playground page</h1>
   </header>
 )
 
-export default APIPlayground
+export default ApiPlayground

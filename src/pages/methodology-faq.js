@@ -1,11 +1,11 @@
 import React from "react"
 
 import Layout from "../components/layout"
-import App from "../app"
+import Docs from "../modules/docs/components/Docs"
 
 const Default = () => (
   <Layout>
-    <App />
+    <Docs />
   </Layout>
 )
 
