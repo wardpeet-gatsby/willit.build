@@ -6,16 +6,27 @@
   "contributors": [
     "Dustin Schau <dustin@gatsbyjs.com>"
   ],
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "ENABLE_GATSBY_REFRESH_ENDPOINT=true LOCAL_DEV=1 gatsby develop",
+    "refresh-content": "curl -X POST http://localhost:8000/__refresh",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "LOCAL_DEV=1 npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
   "dependencies": {
     "gatsby": "^2.19.7",
-    "gatsby-image": "^2.2.39",
     "gatsby-plugin-create-client-paths": "^2.1.22",
+    "gatsby-image": "^2.2.41",
     "gatsby-plugin-manifest": "^2.2.39",
     "gatsby-plugin-offline": "^3.0.32",
     "gatsby-plugin-react-helmet": "^3.1.21",
-    "gatsby-plugin-sharp": "^2.4.3",
+    "gatsby-plugin-sharp": "^2.4.5",
+    "gatsby-source-contentful": "^2.1.86",
     "gatsby-source-filesystem": "^2.1.46",
-    "gatsby-transformer-sharp": "^2.3.13",
+    "gatsby-transformer-sharp": "^2.3.14",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -28,15 +39,6 @@
     "gatsby"
   ],
   "license": "MIT",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/gatsby-inc/willit.build"

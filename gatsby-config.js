@@ -1,3 +1,27 @@
+const activeEnv =
+  process.env.ACTIVE_ENV || process.env.NODE_ENV || `development`
+
+console.info(`Using environment config: '${activeEnv}'`)
+
+if (process.env.LOCAL_DEV) {
+  console.info(`Loading dot env config: '${activeEnv}'`)
+  require(`dotenv`).config({
+    path: `.env.${activeEnv}`,
+  })
+}
+
+const contentfulConfig = {
+  spaceId: process.env.CONTENTFUL_SPACE_ID,
+  accessToken:
+    (process.env.GATSBY_ENV || process.env.NODE_ENV) === `production`
+      ? process.env.CONTENTFUL_LIVE_ACCESS_TOKEN
+      : process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
+  host:
+    (process.env.GATSBY_ENV || process.env.NODE_ENV) === `production`
+      ? undefined
+      : process.env.CONTENTFUL_HOST,
+}
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -5,6 +29,10 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    {
+      resolve: `gatsby-source-contentful`,
+      options: contentfulConfig,
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -27,6 +55,7 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
