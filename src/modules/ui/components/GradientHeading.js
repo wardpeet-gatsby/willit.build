@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-// Tempoarary until theme-ui is set up, these can be added to theme-ui instead
+// Temporary until theme-ui is set up, these can be added to theme-ui instead
 const sizeStyles = {
   S: {
     fontSize: `1.5rem`,
