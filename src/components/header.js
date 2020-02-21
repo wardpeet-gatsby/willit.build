@@ -14,7 +14,8 @@ const wrapperCss = {
   display: `flex`,
   justifyContent: `space-between`,
   // TODO: replace with design tokens
-  padding: 32,
+  paddingTop: 32,
+  paddingBottom: 32,
 }
 
 const logoWrapperCss = {

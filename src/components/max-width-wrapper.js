@@ -10,6 +10,12 @@ const wrapperCss = {
   paddingRight: 32,
   marginLeft: "auto",
   marginRight: "auto",
+
+  // TODO: use small breakpoint with ThemeUI
+  "@media (max-width: 540px)": {
+    paddingLeft: 16,
+    paddingRight: 16,
+  },
 }
 
 const MaxWidthWrapper = ({ children }) => {
