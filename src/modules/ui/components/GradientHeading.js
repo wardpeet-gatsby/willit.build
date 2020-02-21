@@ -9,11 +9,11 @@ const sizeStyles = {
   },
   M: {
     fontSize: `3rem`,
-    lineHeight: `3rem`,
+    lineHeight: `3.5rem`,
   },
   L: {
     fontSize: `3.5rem`,
-    lineHeight: `4rem`,
+    lineHeight: `4.15rem`,
   },
 }
 
