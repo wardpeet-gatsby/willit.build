@@ -1,9 +1,14 @@
 import React from "react"
+import Methodology from "./Methodology"
+import Testimonials from "./Testimonials"
+import FAQs from "./FAQs"
 
 const Docs = () => (
-  <header>
-    <h1>Willit.build Methodology + FAQ page</h1>
-  </header>
+  <div>
+    <Methodology />
+    <Testimonials />
+    <FAQs />
+  </div>
 )
 
 export default Docs

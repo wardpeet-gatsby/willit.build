@@ -8,7 +8,7 @@ import GlobalStyles from "./GlobalStyles"
 import ThemeProvider from "./ThemeProvider"
 import "typeface-inter"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, className }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -35,6 +35,7 @@ const Layout = ({ children }) => {
             paddingRight: theme.space[8],
           },
         })}
+        className={className}
       >
         <main>{children}</main>
       </div>
