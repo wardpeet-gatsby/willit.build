@@ -8,6 +8,11 @@ import MaxWidthWrapper from "./MaxWidthWrapper"
 
 export const mobileMediaQuery = `@media (max-width: 850px)`
 
+const outerWrapperCss = theme => ({
+  position: `relative`,
+  zIndex: theme.zIndices.dropdowns,
+})
+
 const wrapperCss = theme => ({
   display: `flex`,
   justifyContent: `space-between`,
@@ -45,23 +50,25 @@ const Header = () => {
   `)
 
   return (
-    <MaxWidthWrapper>
-      <header css={wrapperCss}>
-        <Link to="/" css={logoWrapperCss}>
-          <img src={logoSrc} css={logoCss} alt="" />
-          Will it Build?
-        </Link>
-        <div>
-          <Interface.Navigation
-            items={data.contentfulHeaderNavigation.contentfulchildren}
-          >
-            <Interface.Navigation.Button to="https://gatsbyjs.com">
-              Build with Cloud
-            </Interface.Navigation.Button>
-          </Interface.Navigation>
-        </div>
-      </header>
-    </MaxWidthWrapper>
+    <div css={outerWrapperCss}>
+      <MaxWidthWrapper>
+        <header css={wrapperCss}>
+          <Link to="/" css={logoWrapperCss}>
+            <img src={logoSrc} css={logoCss} alt="" />
+            Will it Build?
+          </Link>
+          <div>
+            <Interface.Navigation
+              items={data.contentfulHeaderNavigation.contentfulchildren}
+            >
+              <Interface.Navigation.Button to="https://gatsbyjs.com">
+                Build with Cloud
+              </Interface.Navigation.Button>
+            </Interface.Navigation>
+          </div>
+        </header>
+      </MaxWidthWrapper>
+    </div>
   )
 }
 

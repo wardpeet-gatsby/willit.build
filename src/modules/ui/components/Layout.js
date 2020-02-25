@@ -1,29 +1,17 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
 
-import Header from "../../../components/header"
-import "../../../components/layout.css"
+import Header from "@modules/ui/components/Header"
 import GlobalStyles from "./GlobalStyles"
 import ThemeProvider from "./ThemeProvider"
 import "typeface-inter"
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return (
     <ThemeProvider>
       <GlobalStyles />
       <Header />
-      <div css={styles}>{children}</div>
+      <div>{children}</div>
     </ThemeProvider>
   )
 }
