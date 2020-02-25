@@ -1,5 +1,10 @@
 import React from "react"
+import Hero from "./Hero"
 
-const Landing = () => <h1>Willit.build Landing page</h1>
+const Landing = () => (
+  <div>
+    <Hero />
+  </div>
+)
 
 export default Landing
