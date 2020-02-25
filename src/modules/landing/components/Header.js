@@ -1,12 +1,29 @@
 import React from "react"
 import { Button } from "gatsby-interface"
 import { MdArrowDownward } from "react-icons/md"
+import { useStaticQuery, graphql } from "gatsby"
 
 import GradientHeading from "../../ui/components/GradientHeading"
 import DecorativeBackground from "../assets/DecorativeBackground"
 import { useTheme } from "@modules/ui/components/ThemeProvider"
 
 const Header = () => {
+  const { contentfulHomepage } = useStaticQuery(graphql`
+    {
+      contentfulHomepage {
+        description {
+          description
+        }
+        button
+        header
+      }
+    }
+  `)
+
+  const title = contentfulHomepage.header
+  const description = contentfulHomepage.description.description
+  const buttonText = contentfulHomepage.button
+
   const { colors } = useTheme()
   return (
     <header>
@@ -27,7 +44,7 @@ const Header = () => {
             },
           })}
         >
-          Making your build process lightning fast, just like your website
+          {title}
         </GradientHeading>
         <p
           css={theme => ({
@@ -42,10 +59,7 @@ const Header = () => {
             },
           })}
         >
-          Will it Build provides build times of open-source example Gatsby
-          websites and applications built with various Continuous Deployment
-          solutions, including Gatsby Builds, and using a variety of Content
-          Sources.
+          {description}
         </p>
         <Button
           rightIcon={<MdArrowDownward />}
@@ -56,7 +70,7 @@ const Header = () => {
           })}
           onClick={() => console.log(`TODO: scroll to next section`)}
         >
-          View benchmark sites
+          {buttonText}
         </Button>
       </div>
       <div
