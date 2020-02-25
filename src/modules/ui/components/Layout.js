@@ -11,6 +11,8 @@ import GlobalStyles from "./GlobalStyles"
 import ThemeProvider from "./ThemeProvider"
 import "typeface-inter"
 
+import Header from "./Header"
+
 const styles = {
   margin: `0 auto`,
   maxWidth: `60rem`,
@@ -20,6 +22,7 @@ const Layout = ({ children }) => {
   return (
     <ThemeProvider>
       <GlobalStyles />
+      <Header />
       <div css={styles}>{children}</div>
     </ThemeProvider>
   )

@@ -1,6 +1,6 @@
 import React from "react"
 
-import Layout from "../components/layout"
+import Layout from "@modules/ui/components/Layout"
 import ApiPlayground from "../modules/apiPlayground/components/APIPlayground"
 
 const ApiPlaygroundPage = () => (

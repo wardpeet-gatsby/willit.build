@@ -1,12 +1,10 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/core"
+import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import PropTypes from "prop-types"
 import * as Interface from "gatsby-interface"
 
-import logoSrc from "../images/logo.svg"
+import logoSrc from "../../../images/logo.svg"
 
-import MaxWidthWrapper from "./max-width-wrapper"
+import MaxWidthWrapper from "./MaxWidthWrapper"
 
 export const mobileMediaQuery = `@media (max-width: 1065px)`
 
@@ -33,7 +31,7 @@ const logoCss = {
   marginRight: 8,
 }
 
-const Header = ({ siteTitle }) => {
+const Header = () => {
   const data = useStaticQuery(graphql`
     query getHeaderNav {
       contentfulHeaderNavigation(name: { eq: "Main Header" }) {
@@ -58,19 +56,15 @@ const Header = ({ siteTitle }) => {
         <div>
           <Interface.Navigation
             items={data.contentfulHeaderNavigation.contentfulchildren}
-          />
+          >
+            <Interface.Navigation.Button to="https://gatsbyjs.com">
+              Build with Cloud
+            </Interface.Navigation.Button>
+          </Interface.Navigation>
         </div>
       </header>
     </MaxWidthWrapper>
   )
-}
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
 }
 
 export default Header
