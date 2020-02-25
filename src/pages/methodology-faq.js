@@ -1,7 +1,7 @@
 import React from "react"
 
-import Layout from "../components/layout"
-import Docs from "../modules/docs/components/Docs"
+import Layout from "@modules/ui/components/Layout"
+import Docs from "@modules/docs/components/Docs"
 
 const Default = () => (
   <Layout>
