@@ -6,7 +6,7 @@ import logoSrc from "../../../images/logo.svg"
 
 import MaxWidthWrapper from "./MaxWidthWrapper"
 
-export const mobileMediaQuery = `@media (max-width: 1065px)`
+export const mobileMediaQuery = `@media (max-width: 850px)`
 
 const wrapperCss = theme => ({
   display: `flex`,

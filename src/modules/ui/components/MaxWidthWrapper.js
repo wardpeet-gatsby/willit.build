@@ -1,22 +1,19 @@
-/** @jsx jsx */
-import { jsx } from "@emotion/core"
+import React from "react"
 
-// TODO: Theme UI, add this max width?
 const MAX_WIDTH = 1280
 
-const wrapperCss = {
+const wrapperCss = theme => ({
   maxWidth: MAX_WIDTH,
-  paddingLeft: 32,
-  paddingRight: 32,
+  paddingLeft: theme.space[5],
+  paddingRight: theme.space[5],
   marginLeft: "auto",
   marginRight: "auto",
 
-  // TODO: use small breakpoint with ThemeUI
-  "@media (max-width: 540px)": {
-    paddingLeft: 16,
-    paddingRight: 16,
+  [theme.mediaQueries.phablet]: {
+    paddingLeft: theme.space[8],
+    paddingRight: theme.space[8],
   },
-}
+})
 
 const MaxWidthWrapper = ({ children }) => {
   return <div css={wrapperCss}>{children}</div>
