@@ -3,11 +3,11 @@ import { Button } from "gatsby-interface"
 import { MdArrowDownward } from "react-icons/md"
 import { useStaticQuery, graphql } from "gatsby"
 
-import GradientHeading from "../../ui/components/GradientHeading"
 import DecorativeBackground from "../assets/DecorativeBackground"
 import { useTheme } from "@modules/ui/components/ThemeProvider"
+import { getTextGradientStyle } from "../utils"
 
-const Header = () => {
+const Hero = () => {
   const { contentfulHomepage } = useStaticQuery(graphql`
     {
       contentfulHomepage {
@@ -33,19 +33,26 @@ const Header = () => {
           position: `relative`,
         }}
       >
-        <GradientHeading
-          leftColor={`${colors.gatsby} 32.5%`}
-          rightColor={`${colors.teal[50]} 92.5%`}
-          css={theme => ({
-            maxWidth: `100%`,
-            marginBottom: theme.space[8],
-            [theme.mediaQueries.tablet]: {
-              maxWidth: `90%`,
+        <h1
+          css={theme => [
+            getTextGradientStyle(
+              theme,
+              `${colors.gatsby} 32.5%`,
+              `${colors.teal[50]} 92.5%`
+            ),
+            {
+              maxWidth: `100%`,
+              marginBottom: theme.space[8],
+              [theme.mediaQueries.tablet]: {
+                maxWidth: `90%`,
+                fontSize: theme.fontSizes[10],
+                lineHeight: theme.lineHeights.dense,
+              },
             },
-          })}
+          ]}
         >
           {title}
-        </GradientHeading>
+        </h1>
         <p
           css={theme => ({
             color: theme.colors.blackFade[70],
@@ -74,14 +81,14 @@ const Header = () => {
         </Button>
       </div>
       <div
-        css={{
+        css={theme => ({
           zIndex: `-1`,
-          marginTop: `-1.5rem`,
+          marginTop: `-${theme.space[7]}`,
           position: `absolute`,
           left: `0`,
           width: `100%`,
           overflow: `hidden`,
-        }}
+        })}
       >
         <DecorativeBackground
           css={{
@@ -94,4 +101,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Hero
