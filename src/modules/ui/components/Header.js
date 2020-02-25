@@ -1,5 +1,5 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 import * as Interface from "gatsby-interface"
 
 import logoSrc from "../../../images/logo.svg"
@@ -8,28 +8,26 @@ import MaxWidthWrapper from "./MaxWidthWrapper"
 
 export const mobileMediaQuery = `@media (max-width: 1065px)`
 
-const wrapperCss = {
+const wrapperCss = theme => ({
   display: `flex`,
   justifyContent: `space-between`,
-  // TODO: replace with design tokens
-  paddingTop: 32,
-  paddingBottom: 32,
-}
+  paddingTop: theme.space[8],
+  paddingBottom: theme.space[8],
+})
 
-const logoWrapperCss = {
-  // TODO: replace with design tokens
-  fontSize: 18,
-  fontWeight: 600,
-  flex: 1,
+const logoWrapperCss = theme => ({
+  textDecoration: `none`,
+  fontSize: theme.fontSizes[3],
+  fontWeight: theme.fontWeights.heading,
+  color: theme.colors.grey[90],
   display: `flex`,
   alignItems: `center`,
-}
+})
 
-const logoCss = {
+const logoCss = theme => ({
   display: `block`,
-  // TODO: replace with design tokens
-  marginRight: 8,
-}
+  marginRight: console.log(theme) || theme.space[3],
+})
 
 const Header = () => {
   const data = useStaticQuery(graphql`
@@ -49,10 +47,10 @@ const Header = () => {
   return (
     <MaxWidthWrapper>
       <header css={wrapperCss}>
-        <div css={logoWrapperCss}>
+        <Link to="/" css={logoWrapperCss}>
           <img src={logoSrc} css={logoCss} alt="" />
           Will it Build?
-        </div>
+        </Link>
         <div>
           <Interface.Navigation
             items={data.contentfulHeaderNavigation.contentfulchildren}
