@@ -75,7 +75,7 @@ const Hero = () => {
             fontWeight: `500`,
             fontFamily: theme.fonts.body,
           })}
-          onClick={() => console.log(`TODO: scroll to next section`)}
+          onClick={() => console.info(`TODO: scroll to next section`)}
         >
           {buttonText}
         </Button>

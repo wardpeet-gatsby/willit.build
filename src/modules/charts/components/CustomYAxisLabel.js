@@ -1,7 +1,7 @@
 import React from "react"
 import { DetailsChartDimensions } from "../constants"
 
-function CustomYAxisLabel(props) {
+function CustomYAxisLabel() {
   const { ChartMinHeight } = DetailsChartDimensions
 
   const y = ChartMinHeight / 2
