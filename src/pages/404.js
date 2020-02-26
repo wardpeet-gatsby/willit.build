@@ -1,12 +1,14 @@
 import React from "react"
 
-import Layout from "@modules/ui/components/Layout"
 import NotFound from "@modules/serviceRoutes/components/NotFound"
 
-const NotFoundPage = () => (
-  <Layout>
-    <NotFound />
-  </Layout>
-)
+const NotFoundPage = () => {
+  return (
+    <React.Fragment>
+      <h1>NOT FOUND</h1>
+      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+    </React.Fragment>
+  )
+}
 
 export default NotFoundPage
