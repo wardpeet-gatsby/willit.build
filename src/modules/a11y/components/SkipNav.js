@@ -17,10 +17,10 @@ export const SkipNavTrigger = ({ children = `Skip to content` }) => {
   React.useLayoutEffect(() => {
     const target = document.querySelector(`#${SKIP_TARGET_ID}`)
 
-    if (!!target !== hasAValidTarget) {
-      setHasAValidTarget(!!target)
+    if (!!target && !hasAValidTarget) {
+      setHasAValidTarget(true)
     }
-  })
+  }, [hasAValidTarget, setHasAValidTarget])
 
   // If we've rendered the trigger, but there is no target available, we don't
   // want to show the trigger. Doing so would just be frustrating, since it
