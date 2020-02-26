@@ -1,7 +1,5 @@
 import React from "react"
 
-import NotFound from "@modules/serviceRoutes/components/NotFound"
-
 const NotFoundPage = () => {
   return (
     <React.Fragment>
