@@ -4,32 +4,21 @@ const moduleAliases = require(`./module-aliases`)
 exports.createPages = ({ actions }) => {
   const { createPage } = actions
 
-  const pages = [
-    {
-      path: ``,
-      componentPath: `./src/templates/landing.js`,
-    },
-    {
-      path: `details`,
-      matchPath: `details/*`,
-      componentPath: `./src/templates/site-details.js`,
-    },
-    {
-      path: `calculator`,
-      componentPath: `./src/templates/calculator.js`,
-    },
-    {
-      path: `api-playground`,
-      componentPath: `./src/templates/api-playground.js`,
-    },
-  ]
+  // TODO: Real numbers for this stuff :D
+  const PAGE_COUNTS = [512, 1024, 2048, 4096]
+  const CONTENT_SOURCES = [`contentful`, `drupal`]
+  const SITE_TYPES = [`blog`]
 
-  pages.forEach(page => {
-    createPage({
-      path: `/${page.path}`,
-      component: require.resolve(page.componentPath),
-      ...(page.matchPath && { matchPath: page.matchPath }),
-      context: { page },
+  PAGE_COUNTS.forEach(pageCount => {
+    CONTENT_SOURCES.forEach(contentSource => {
+      SITE_TYPES.forEach(siteType => {
+        createPage({
+          path: `/details/type/${siteType}/source/${contentSource}/page-count/${pageCount}`,
+          component: require.resolve(
+            `./src/modules/siteDetails/components/SiteDetails.js`
+          ),
+        })
+      })
     })
   })
 }
