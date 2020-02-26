@@ -1,8 +1,6 @@
 import React from "react"
 import { Global, css } from "@emotion/core"
 
-import "../styles.css"
-
 const GlobalStyles = () => (
   <Global
     styles={theme => css`

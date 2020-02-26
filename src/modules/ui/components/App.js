@@ -6,6 +6,8 @@ import Header from "./Header"
 import GlobalStyles from "./GlobalStyles"
 import ThemeProvider from "./ThemeProvider"
 
+import "../fonts.css"
+
 const App = ({ children }) => {
   return (
     <ThemeProvider>
