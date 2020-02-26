@@ -2,7 +2,7 @@ import React from "react"
 import { useTheme } from "@modules/ui/components/ThemeProvider"
 import { DetailsChartDimensions, BuildServices } from "../constants"
 
-function CustomLegend({ payload, meta, onClick, activeLines }) {
+function CustomLegend({ payload, onClick }) {
   const { colors } = useTheme()
   const { LegendMinHeight, YAxisWidth } = DetailsChartDimensions
 
@@ -17,7 +17,7 @@ function CustomLegend({ payload, meta, onClick, activeLines }) {
         alignItems: `flex-end`,
       })}
     >
-      {payload.map(({ dataKey }, index) => (
+      {payload.map(({ dataKey }) => (
         <button
           key={`${dataKey}LegendBtn`}
           onClick={() => onClick({ dataKey: dataKey })} // todo: add functionality to show/hide coresponding line on the chart

@@ -106,7 +106,7 @@ function DetailsChart({
             content={
               <CustomLegend
                 onClick={() => {
-                  console.log("asdfasd") // todo: add functionality to hide/show particlar data line
+                  console.info("asdfasd") // todo: add functionality to hide/show particlar data line
                 }}
               />
             }
@@ -144,20 +144,18 @@ function DetailsChart({
             />
           ))}
 
-          {Object.entries(BuildServices).map(
-            ([key, { title, color, icon }]) => (
-              <Area
-                key={`${key}ChartArea`}
-                type="linear"
-                dataKey={key}
-                strokeWidth={1}
-                stroke={colors.services[key]}
-                fillOpacity={1}
-                fill={`url(#${key}Fill)`}
-                activeDot={<CustomActiveDot />}
-              />
-            )
-          )}
+          {Object.entries(BuildServices).map(([key]) => (
+            <Area
+              key={`${key}ChartArea`}
+              type="linear"
+              dataKey={key}
+              strokeWidth={1}
+              stroke={colors.services[key]}
+              fillOpacity={1}
+              fill={`url(#${key}Fill)`}
+              activeDot={<CustomActiveDot />}
+            />
+          ))}
 
           <Brush
             dataKey="date"
