@@ -1,7 +1,7 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/ssr-apis/
- */
+import React from "react"
 
-// You can delete this file if you're not using it
+import App from "@modules/ui/components/App"
+
+export const wrapRootElement = ({ element }) => {
+  return <App>{element}</App>
+}
