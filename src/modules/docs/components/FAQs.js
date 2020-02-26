@@ -2,6 +2,7 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { MdAdd, MdRemove, MdArrowForward } from "react-icons/md"
 import { Link } from "gatsby-interface"
+import marked from "marked"
 
 import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
 import {
@@ -32,7 +33,10 @@ const Question = ({ title, answer, isExpanded, handleToggle }) => {
           )}
         </div>
       </button>
-      <div css={[answerStyles, !isExpanded && visuallyHiddenCss]}>{answer}</div>
+      <div
+        css={theme => [answerStyles(theme), !isExpanded && visuallyHiddenCss]}
+        dangerouslySetInnerHTML={{ __html: marked(answer) }}
+      />
     </div>
   )
 }
@@ -40,7 +44,7 @@ const Question = ({ title, answer, isExpanded, handleToggle }) => {
 const FAQs = () => {
   const { allContentfulFaq } = useStaticQuery(graphql`
     {
-      allContentfulFaq(sort: {order: ASC, fields: updatedAt}) {
+      allContentfulFaq(sort: { order: ASC, fields: createdAt }) {
         edges {
           node {
             id

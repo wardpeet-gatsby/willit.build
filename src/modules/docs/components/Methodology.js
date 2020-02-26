@@ -1,5 +1,6 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import marked from "marked"
 
 import { useTheme } from "@modules/ui/components/ThemeProvider"
 import { getTextGradientStyle } from "@modules/ui/utils"
@@ -65,16 +66,16 @@ const Methodology = () => {
         {subheading}
       </h3>
       <p
-        dangerouslySetInnerHTML={{ __html: description.replace(/\n/g,"<br />") }}
+        dangerouslySetInnerHTML={{ __html: marked(description) }}
         css={theme => ({
           color: theme.colors.blackFade[80],
-          fontSize: theme.fontSizes[3],
-          lineHeight: theme.lineHeights.default,
           fontFamily: theme.fonts.body,
           maxWidth: `100%`,
           marginBottom: theme.space[10],
           [theme.mediaQueries.tablet]: {
             maxWidth: `75%`,
+            fontSize: theme.fontSizes[3],
+            lineHeight: theme.lineHeights.default,
           },
         })}
       />

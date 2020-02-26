@@ -1,5 +1,3 @@
-import { getTextGradientStyle } from "@modules/ui/utils"
-
 export const wrapperStyles = theme => ({
   display: `grid`,
   gridTemplateColumns: `100%`,
@@ -9,17 +7,20 @@ export const wrapperStyles = theme => ({
 
   [theme.mediaQueries.phablet]: {
     gridTemplateColumns: `repeat(auto-fit, minmax(400px, 1fr))`,
+    gridTemplateRows: `repeat(6,  auto)`,
+    gridAutoFlow: `column`,
   },
 })
 
 export const questionWrapper = theme => ({
   position: `relative`,
   borderBottom: `1px solid ${theme.colors.blackFade[10]}`,
+  fontFamily: theme.fonts.body,
   paddingBottom: theme.space[4],
 })
 
 export const questionRowStyles = theme => ({
-  width: "100%",
+  width: `100%`,
   display: `flex`,
   justifyContent: `space-between`,
   background: `transparent`,
@@ -39,8 +40,17 @@ export const questionRowStyles = theme => ({
 })
 
 export const answerStyles = theme => ({
-  paddingTop: theme.space[6],
+  paddingTop: theme.space[4],
   fontSize: theme.fontSizes[1],
+  marginBottom: `0`,
+
+  p: {
+    marginBottom: `0`,
+  },
+
+  a: {
+    color: theme.colors.purple[40],
+  },
 })
 
 export const expandCollapseButtonStyles = theme => ({
@@ -92,19 +102,12 @@ export const expandCollapseRowStyles = theme => ({
   },
 })
 
-export const headerTextStyles = theme => [
-  getTextGradientStyle(
-    theme,
-    `${theme.colors.orange[60]} 32.5%`,
-    `${theme.colors.purple[60]} 92.5%`
-  ),
-  {
-    maxWidth: `100%`,
-    marginBottom: theme.space[6],
-    [theme.mediaQueries.tablet]: {
-      maxWidth: `90%`,
-      fontSize: theme.fontSizes[7],
-      lineHeight: theme.lineHeights.dense,
-    },
+export const headerTextStyles = theme => ({
+  maxWidth: `100%`,
+  marginBottom: theme.space[6],
+  [theme.mediaQueries.tablet]: {
+    maxWidth: `90%`,
+    fontSize: theme.fontSizes[7],
+    lineHeight: theme.lineHeights.dense,
   },
-]
+})

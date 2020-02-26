@@ -27,12 +27,10 @@ const Layout = ({ children, className }) => {
         css={theme => ({
           margin: `0 auto`,
           maxWidth: `64rem`,
-          paddingLeft: theme.space[7],
-          paddingRight: theme.space[7],
+          padding: theme.space[7],
 
           [theme.mediaQueries.tablet]: {
-            paddingLeft: theme.space[8],
-            paddingRight: theme.space[8],
+            padding: theme.space[8],
           },
         })}
         className={className}

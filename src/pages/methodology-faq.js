@@ -1,16 +1,24 @@
 import React from "react"
 
 import Layout from "@modules/ui/components/Layout"
-import Docs from "@modules/docs/components/Docs"
+import Methodology from "@modules/docs/components/Methodology"
+import Testimonials from "@modules/docs/components/Testimonials"
+import FAQs from "@modules/docs/components/FAQs"
+
+const GREY_BACKGROUND = "#f0f0f2"
 
 const MethodologyFAQ = () => {
   return (
     <Layout
       css={{
-        background: "#f0f0f2",
+        background: GREY_BACKGROUND,
       }}
     >
-      <Docs />
+      <div>
+        <Methodology />
+        <Testimonials />
+        <FAQs />
+      </div>
     </Layout>
   )
 }

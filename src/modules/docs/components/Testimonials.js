@@ -25,29 +25,25 @@ const Testimonials = () => {
         <p
           css={theme => ({
             color: theme.colors.blackFade[80],
-            fontSize: theme.fontSizes[4],
-            lineHeight: theme.lineHeights.default,
             fontFamily: theme.fonts.body,
             maxWidth: `100%`,
             marginBottom: theme.space[10],
             [theme.mediaQueries.tablet]: {
               maxWidth: `75%`,
+              fontSize: theme.fontSizes[4],
+              lineHeight: theme.lineHeights.default,
             },
           })}
         >
-          <span
-            css={{
-              fontStyle: `italic`,
-            }}
-          >
-            {testimonial.node.quote.quote}
-          </span>
+          <span>{testimonial.node.quote.quote}</span>
           <span
             css={theme => ({
               display: `block`,
               paddingTop: theme.space[6],
-              fontSize: theme.fontSizes[3],
               color: theme.colors.blackFade[70],
+              [theme.mediaQueries.tablet]: {
+                fontSize: theme.fontSizes[3],
+              }
             })}
           >
             {testimonial.node.author}
