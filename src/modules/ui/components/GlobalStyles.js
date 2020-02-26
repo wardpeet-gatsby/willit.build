@@ -6,6 +6,7 @@ const GlobalStyles = () => (
     styles={theme => css`
       html {
         box-sizing: border-box;
+        font-family: ${theme.fonts.body};
       }
       *,
       *:after,
