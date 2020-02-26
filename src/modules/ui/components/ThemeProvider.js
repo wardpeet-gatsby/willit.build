@@ -8,7 +8,7 @@ export default function ThemeProvider({ children }) {
     ...theme,
     fonts: {
       ...theme.fonts,
-      body: `Inter, ${theme.fonts.system}`,
+      body: `'Inter', ${theme.fonts.system}`,
     },
     colors: {
       ...theme.colors,

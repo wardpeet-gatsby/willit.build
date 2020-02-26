@@ -39,7 +39,7 @@ const Methodology = () => {
               maxWidth: `100%`,
               marginBottom: theme.space[8],
               [theme.mediaQueries.tablet]: {
-                maxWidth: `90%`,
+                maxWidth: `80%`,
                 fontSize: theme.fontSizes[10],
                 lineHeight: theme.lineHeights.dense,
               },
@@ -57,7 +57,7 @@ const Methodology = () => {
           maxWidth: `100%`,
           marginBottom: theme.space[10],
           [theme.mediaQueries.tablet]: {
-            maxWidth: `75%`,
+            maxWidth: `65%`,
             fontSize: theme.fontSizes[5],
             lineHeight: theme.lineHeights.default,
           },
@@ -65,15 +65,18 @@ const Methodology = () => {
       >
         {subheading}
       </h3>
-      <p
+      <div
         dangerouslySetInnerHTML={{ __html: marked(description) }}
         css={theme => ({
           color: theme.colors.blackFade[80],
           fontFamily: theme.fonts.body,
           maxWidth: `100%`,
           marginBottom: theme.space[10],
+          p: {
+            paddingTop: theme.space[4],
+          },  
           [theme.mediaQueries.tablet]: {
-            maxWidth: `75%`,
+            maxWidth: `65%`,
             fontSize: theme.fontSizes[3],
             lineHeight: theme.lineHeights.default,
           },

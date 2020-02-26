@@ -4,21 +4,26 @@ import Layout from "@modules/ui/components/Layout"
 import Methodology from "@modules/docs/components/Methodology"
 import Testimonials from "@modules/docs/components/Testimonials"
 import FAQs from "@modules/docs/components/FAQs"
-
-const GREY_BACKGROUND = "#f0f0f2"
+import MaxWidthWrapper from "@modules/ui/components/MaxWidthWrapper"
 
 const MethodologyFAQ = () => {
   return (
-    <Layout
-      css={{
-        background: GREY_BACKGROUND,
-      }}
-    >
-      <div>
-        <Methodology />
-        <Testimonials />
-        <FAQs />
-      </div>
+    <Layout>
+      <MaxWidthWrapper>
+        <div
+          css={theme => ({
+            background: theme.colors.grey[20],
+            padding: theme.space[5],
+            [theme.mediaQueries.phablet]: {
+              padding: theme.space[10],
+            },
+          })}
+        >
+          <Methodology />
+          <Testimonials />
+          <FAQs />
+        </div>
+      </MaxWidthWrapper>
     </Layout>
   )
 }

@@ -6,7 +6,7 @@ export const wrapperStyles = theme => ({
   marginBottom: theme.space[8],
 
   [theme.mediaQueries.phablet]: {
-    gridTemplateColumns: `repeat(auto-fit, minmax(400px, 1fr))`,
+    gridTemplateColumns: `repeat(auto-fit, minmax(40px, 1fr))`,
     gridTemplateRows: `repeat(6,  auto)`,
     gridAutoFlow: `column`,
   },
@@ -25,7 +25,7 @@ export const questionRowStyles = theme => ({
   justifyContent: `space-between`,
   background: `transparent`,
   border: `none`,
-  fontSize: theme.fontSizes[2],
+  fontSize: theme.fontSizes[3],
   fontWeight: `bold`,
   textAlign: `left`,
   padding: 0,
@@ -41,8 +41,13 @@ export const questionRowStyles = theme => ({
 
 export const answerStyles = theme => ({
   paddingTop: theme.space[4],
-  fontSize: theme.fontSizes[1],
+  fontSize: theme.fontSizes[2],
   marginBottom: `0`,
+
+  ol: {
+    paddingInlineStart: theme.space[6],
+    paddingTop: theme.space[4],
+  },
 
   p: {
     marginBottom: `0`,
@@ -58,6 +63,7 @@ export const expandCollapseButtonStyles = theme => ({
   background: `transparent`,
   border: `none`,
   color: theme.colors.grey[60],
+  fontSize: theme.fontSizes[2],
 
   [theme.mediaQueries.phablet]: {
     ":last-of-type": {

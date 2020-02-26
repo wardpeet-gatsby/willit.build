@@ -29,7 +29,7 @@ const Testimonials = () => {
             maxWidth: `100%`,
             marginBottom: theme.space[10],
             [theme.mediaQueries.tablet]: {
-              maxWidth: `75%`,
+              maxWidth: `65%`,
               fontSize: theme.fontSizes[4],
               lineHeight: theme.lineHeights.default,
             },
