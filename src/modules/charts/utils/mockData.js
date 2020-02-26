@@ -8,7 +8,7 @@ function randomizeValue(val) {
   return Math.round(val * ((100 + factor) / 100))
 }
 
-export function getMockData(days, options = {}) {
+export function getMockData(days) {
   const baseValues = {
     gatsby: 50,
     netlify: 340,

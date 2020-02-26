@@ -51,7 +51,7 @@ export default props => (
         stroke="#F6EDFA"
         strokeWidth="1.5"
       />
-    </g> 
+    </g>
     <defs>
       <linearGradient
         id="paint0_linear"
