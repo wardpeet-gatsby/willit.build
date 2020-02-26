@@ -1,11 +1,23 @@
 import React from "react"
 
 import Layout from "@modules/ui/components/Layout"
-import Landing from "@modules/landing/components/Landing"
+import Hero from "@modules/landing/components/Hero"
+import MaxWidthWrapper from "@modules/ui/components/MaxWidthWrapper"
 
 const LandingPage = () => (
   <Layout>
-    <Landing />
+    <MaxWidthWrapper>
+      <div
+        css={theme => ({
+          padding: theme.space[5],
+          [theme.mediaQueries.phablet]: {
+            padding: theme.space[10],
+          },
+        })}
+      >
+        <Hero />
+      </div>
+    </MaxWidthWrapper>
   </Layout>
 )
 

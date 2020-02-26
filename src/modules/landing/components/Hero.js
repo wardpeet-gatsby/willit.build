@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import DecorativeBackground from "../assets/DecorativeBackground"
 import { useTheme } from "@modules/ui/components/ThemeProvider"
-import { getTextGradientStyle } from "../utils"
+import { getTextGradientStyle } from "@modules/ui/utils"
 
 const Hero = () => {
   const { contentfulHomepage } = useStaticQuery(graphql`
