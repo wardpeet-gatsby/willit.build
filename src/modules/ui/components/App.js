@@ -5,15 +5,20 @@ import React from "react"
 import Header from "./Header"
 import GlobalStyles from "./GlobalStyles"
 import ThemeProvider from "./ThemeProvider"
+import { SkipNavTrigger, SkipNavTarget } from "@modules/a11y/components/SkipNav"
 
 import "../fonts.css"
 
 const App = ({ children }) => {
   return (
     <ThemeProvider>
+      <SkipNavTrigger />
       <GlobalStyles />
       <Header />
-      <main>{children}</main>
+      <main>
+        <SkipNavTarget />
+        {children}
+      </main>
     </ThemeProvider>
   )
 }
