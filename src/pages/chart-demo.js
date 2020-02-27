@@ -1,5 +1,4 @@
 import React from "react"
-import Layout from "@modules/ui/components/Layout"
 import DetailsChart from "@modules/charts/components/DetailsChart"
 import { getMockData, getMockAnnotations } from "@modules/charts/utils/mockData"
 
@@ -9,7 +8,7 @@ const ChartDemoPage = () => {
   const INITIAL_CHART_SCOPE = 14
 
   return (
-    <Layout>
+    <>
       <DetailsChart
         data={data}
         annotations={annotations}
@@ -18,7 +17,7 @@ const ChartDemoPage = () => {
           margin: `60px 0`,
         }}
       />
-    </Layout>
+    </>
   )
 }
 

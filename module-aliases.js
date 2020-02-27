@@ -3,4 +3,8 @@ module.exports = {
     alias: `@modules`,
     destination: `src/modules`,
   },
+  images: {
+    alias: `@images`,
+    destination: `src/images`,
+  },
 }

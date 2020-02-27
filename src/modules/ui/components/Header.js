@@ -31,12 +31,17 @@ const logoWrapperCss = theme => ({
 
 const logoCss = theme => ({
   display: `block`,
-  marginRight: console.info(theme) || theme.space[3],
+  marginRight: theme.space[3],
 })
 
 const Header = () => {
   const data = useStaticQuery(graphql`
-    query getHeaderNav {
+    query getHeaderData {
+      site {
+        siteMetadata {
+          title
+        }
+      }
       contentfulHeaderNavigation(name: { eq: "Main Header" }) {
         contentfulchildren {
           ... on ContentfulNavigationItem {
@@ -55,7 +60,7 @@ const Header = () => {
         <header css={wrapperCss}>
           <Link to="/" css={logoWrapperCss}>
             <img src={logoSrc} css={logoCss} alt="" />
-            Will it Build?
+            {data.site.siteMetadata.title}
           </Link>
           <div>
             <Interface.Navigation
