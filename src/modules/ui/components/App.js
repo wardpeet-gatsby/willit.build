@@ -3,6 +3,7 @@
 import React from "react"
 
 import Header from "./Header"
+import Footer from "./Footer"
 import GlobalStyles from "./GlobalStyles"
 import ThemeProvider from "./ThemeProvider"
 import { SkipNavTrigger, SkipNavTarget } from "@modules/a11y/components/SkipNav"
@@ -18,6 +19,7 @@ const App = ({ children }) => {
       <main>
         <SkipNavTarget />
         {children}
+        <Footer />
       </main>
     </ThemeProvider>
   )
