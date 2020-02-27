@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import DecorativeBackground from "../assets/DecorativeBackground"
 import { useTheme } from "@modules/ui/components/ThemeProvider"
-import { getTextGradientStyle } from "../utils"
+import { getTextGradientStyle } from "@modules/ui/utils"
 
 const Hero = () => {
   const { contentfulHomepage } = useStaticQuery(graphql`
@@ -75,7 +75,7 @@ const Hero = () => {
             fontWeight: `500`,
             fontFamily: theme.fonts.body,
           })}
-          onClick={() => console.log(`TODO: scroll to next section`)}
+          onClick={() => console.info(`TODO: scroll to next section`)}
         >
           {buttonText}
         </Button>

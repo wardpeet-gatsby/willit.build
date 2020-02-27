@@ -1,56 +1,67 @@
 import React from "react"
-import { useTheme } from "@modules/ui/components/ThemeProvider"
 import { DetailsChartDimensions, BuildServices } from "../constants"
+import { Button } from "gatsby-interface"
 
 function CustomLegend({ payload, meta, onClick, activeLines }) {
-  const { colors } = useTheme()
   const { LegendMinHeight, YAxisWidth } = DetailsChartDimensions
-
-  const ICON_WIDTH = 8
+  const ICON_WIDTH = 10
 
   return (
     <div
       css={theme => ({
         display: `flex`,
-        paddingLeft: `calc(${YAxisWidth}px - ${theme.space[3]})`,
+        flexWrap: `wrap`,
+        justifyContent: `center`,
         minHeight: `${LegendMinHeight}px`,
         alignItems: `flex-end`,
+
+        [theme.mediaQueries.desktop]: {
+          paddingLeft: `calc(${YAxisWidth}px - ${theme.space[3]})`,
+          justifyContent: `flex-start`,
+        },
       })}
     >
-      {payload.map(({ dataKey }, index) => (
-        <button
-          key={`${dataKey}LegendBtn`}
-          onClick={() => onClick({ dataKey: dataKey })} // todo: add functionality to show/hide coresponding line on the chart
-          css={theme => ({
-            background: `none`,
-            border: 0,
-            display: `flex`,
-            alignItems: `center`,
-            fontFamily: theme.fonts.body,
-            color: theme.colors.grey[50],
-            fontSize: theme.fontSizes[2],
-            padding: theme.space[3],
-          })}
-        >
-          <svg
-            viewBox={`0 0 ${ICON_WIDTH} ${ICON_WIDTH}`}
-            width={ICON_WIDTH}
-            height={ICON_WIDTH}
-            xmlns="http://www.w3.org/2000/svg"
+      {payload.map(({ dataKey }, index) => {
+        const isActive = activeLines[dataKey]
+
+        return (
+          <Button
+            key={`${dataKey}LegendBtn`}
+            onClick={() => onClick(dataKey)}
+            variant="GHOST"
             css={theme => ({
-              marginRight: theme.space[3],
+              flexShrink: 0,
+              fontFamily: theme.fonts.body,
+              color: theme.colors.grey[isActive ? 50 : 40],
+              fontSize: theme.fontSizes[2],
+              padding: theme.space[3],
             })}
           >
-            <circle
-              cx={ICON_WIDTH / 2}
-              cy={ICON_WIDTH / 2}
-              r={ICON_WIDTH / 2}
-              fill={colors.services[dataKey]}
-            />
-          </svg>
-          {BuildServices[dataKey].title}
-        </button>
-      ))}
+            <svg
+              viewBox={`0 0 ${ICON_WIDTH} ${ICON_WIDTH}`}
+              width={ICON_WIDTH}
+              height={ICON_WIDTH}
+              xmlns="http://www.w3.org/2000/svg"
+              css={theme => ({
+                marginRight: theme.space[3],
+              })}
+            >
+              <circle
+                cx={ICON_WIDTH / 2}
+                cy={ICON_WIDTH / 2}
+                r={ICON_WIDTH / 2 - 1}
+                css={theme => ({
+                  fill: isActive
+                    ? theme.colors.services[dataKey]
+                    : theme.colors.white,
+                  stroke: theme.colors.services[dataKey],
+                })}
+              />
+            </svg>
+            {BuildServices[dataKey].title}
+          </Button>
+        )
+      })}
     </div>
   )
 }

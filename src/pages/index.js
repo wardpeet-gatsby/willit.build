@@ -6,7 +6,16 @@ import MaxWidthWrapper from "@modules/ui/components/MaxWidthWrapper"
 const Index = () => {
   return (
     <MaxWidthWrapper>
-      <Hero />
+      <div
+        css={theme => ({
+          padding: theme.space[5],
+          [theme.mediaQueries.phablet]: {
+            padding: theme.space[10],
+          },
+        })}
+      >
+        <Hero />
+      </div>
     </MaxWidthWrapper>
   )
 }
