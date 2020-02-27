@@ -72,6 +72,13 @@ function DetailsChart({
   annotations = [],
   ...rest
 }) {
+  const [activeLines, setActiveLines] = React.useState(
+    Object.keys(BuildServices).reduce((acc, key) => {
+      acc[key] = true
+      return acc
+    }, {})
+  )
+
   const { colors } = useTheme()
   const { length: dataLength } = data
 
@@ -85,6 +92,10 @@ function DetailsChart({
     dataLength > initialTimelineScope ? dataLength - initialTimelineScope : 0
 
   const yAxisTicks = getYAxisTicks(data)
+
+  const toggleChartLine = dataKey => {
+    setActiveLines({ ...activeLines, [dataKey]: !activeLines[dataKey] })
+  }
 
   return (
     <div css={wrapperCss} {...rest}>
@@ -105,9 +116,8 @@ function DetailsChart({
           <Legend
             content={
               <CustomLegend
-                onClick={() => {
-                  console.info("asdfasd") // todo: add functionality to hide/show particlar data line
-                }}
+                activeLines={activeLines}
+                onClick={toggleChartLine}
               />
             }
           />
@@ -144,18 +154,21 @@ function DetailsChart({
             />
           ))}
 
-          {Object.entries(BuildServices).map(([key]) => (
-            <Area
-              key={`${key}ChartArea`}
-              type="linear"
-              dataKey={key}
-              strokeWidth={1}
-              stroke={colors.services[key]}
-              fillOpacity={1}
-              fill={`url(#${key}Fill)`}
-              activeDot={<CustomActiveDot />}
-            />
-          ))}
+          {Object.entries(BuildServices).map(
+            ([key, { title, color, icon }]) => (
+              <Area
+                key={`${key}ChartArea`}
+                type="linear"
+                dataKey={key}
+                strokeWidth={1}
+                stroke={colors.services[key]}
+                fillOpacity={1}
+                fill={`url(#${key}Fill)`}
+                activeDot={<CustomActiveDot />}
+                style={{ display: !activeLines[key] ? `none` : undefined }}
+              />
+            )
+          )}
 
           <Brush
             dataKey="date"
