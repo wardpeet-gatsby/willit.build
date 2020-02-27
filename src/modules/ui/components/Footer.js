@@ -34,29 +34,32 @@ const navLinkCss = theme => ({
   color: theme.colors.lilac,
 
   [mobileMediaQuery]: {
-    paddingTop: theme.space[3],
-    paddingBottom: theme.space[3],
+    paddingTop: theme.space[4],
+    paddingBottom: theme.space[4],
   },
 })
 
 const footerNoteCss = theme => ({
   paddingTop: theme.space[10],
   paddingBottom: theme.space[10],
+  paddingRight: theme.space[10],
   color: theme.colors.grey[60],
   fontSize: theme.fontSizes[1],
   lineHeight: 1.6,
-  maxWidth: 535,
+  maxWidth: 560,
 })
 
 const externalNavLinkCss = theme => ({
+  display: `block`,
+  boxSizing: `border-box`,
   textDecoration: `none`,
   marginRight: theme.space[8],
   color: theme.colors.grey[70],
   fontSize: theme.fontSizes[1],
 
   [mobileMediaQuery]: {
-    paddingTop: theme.space[2],
-    paddingBottom: theme.space[2],
+    paddingTop: theme.space[3],
+    paddingBottom: theme.space[3],
   },
 })
 
@@ -106,45 +109,47 @@ const Footer = () => {
           <nav>
             <ul css={navCss}>
               <li>
-                <a href="https://www.gatsbyjs.com/" css={externalNavLinkCss}>
+                <SecondaryNavLink href="https://www.gatsbyjs.com/">
                   <img
                     src={wordmarkSrc}
                     alt="Gatsby wordmark"
                     style={{ width: 76 }}
                   />
-                </a>
+                </SecondaryNavLink>
               </li>
               <li>
-                <a
-                  href="https://www.gatsbyjs.com/get-started"
-                  css={externalNavLinkCss}
-                >
+                <SecondaryNavLink href="https://www.gatsbyjs.com/get-started">
                   Gatsby Cloud
-                </a>
+                </SecondaryNavLink>
               </li>
               <li>
-                <a href="https://github.com/gatsbyjs" css={externalNavLinkCss}>
+                <SecondaryNavLink href="https://github.com/gatsbyjs/gatsby">
                   Gatsby on Github
-                </a>
+                </SecondaryNavLink>
               </li>
               <li>
-                <a href="https://twitter.com/gatsbyjs" css={externalNavLinkCss}>
+                <SecondaryNavLink href="https://twitter.com/gatsbyjs">
                   Follow us on Twitter
-                </a>
+                </SecondaryNavLink>
               </li>
               <li>
-                <a
-                  href="https://www.gatsbyjs.com/contact-us/"
-                  css={externalNavLinkCss}
-                >
+                <SecondaryNavLink href="https://www.gatsbyjs.com/contact-us/">
                   Contact us
-                </a>
+                </SecondaryNavLink>
               </li>
             </ul>
           </nav>
         </footer>
       </MaxWidthWrapper>
     </div>
+  )
+}
+
+const SecondaryNavLink = ({ href, children }) => {
+  return (
+    <a href={href} css={externalNavLinkCss}>
+      {children}
+    </a>
   )
 }
 
