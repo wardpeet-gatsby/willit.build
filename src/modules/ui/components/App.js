@@ -6,7 +6,7 @@ import Header from "./Header"
 import GlobalStyles from "./GlobalStyles"
 import ThemeProvider from "./ThemeProvider"
 
-import "typeface-inter"
+import "../fonts.css"
 
 const App = ({ children }) => {
   return (
