@@ -40,7 +40,6 @@
     "react-icons": "^3.9.0",
     "recharts": "1.8.5",
     "theme-ui": "0.2.49",
-    "typeface-inter": "^3.12.0",
     "typescript": "^3.8.2"
   },
   "devDependencies": {
