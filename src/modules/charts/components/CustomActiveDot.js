@@ -1,30 +1,34 @@
 import React from "react"
 import { useTheme } from "@modules/ui/components/ThemeProvider"
+import { DetailsChartDimensions } from "../constants"
 
 function CustomActiveDot({ cx, cy, dataKey }) {
+  const {
+    ActiveDotRadius,
+    ActiveDotDiam,
+    ActiveDotInnerRadius,
+  } = DetailsChartDimensions
   const { colors } = useTheme()
-  const DOT_RADIUS = 12
-  const DOT_DIAM = DOT_RADIUS * 2
 
   return (
     <svg
-      x={cx - DOT_RADIUS}
-      y={cy - DOT_RADIUS}
-      width={DOT_DIAM}
-      height={DOT_DIAM}
-      viewBox="0 0 24 24"
+      x={cx - ActiveDotRadius}
+      y={cy - ActiveDotRadius}
+      width={ActiveDotDiam}
+      height={ActiveDotDiam}
+      viewBox={`0 0 ${ActiveDotDiam} ${ActiveDotDiam}`}
     >
       <circle
-        cx={DOT_RADIUS}
-        cy={DOT_RADIUS}
-        r={DOT_RADIUS}
+        cx={ActiveDotRadius}
+        cy={ActiveDotRadius}
+        r={ActiveDotRadius}
         fill={colors.services[dataKey]}
         opacity="0.2"
       />
       <circle
-        cx={DOT_RADIUS}
-        cy={DOT_RADIUS}
-        r={DOT_RADIUS / 3}
+        cx={ActiveDotRadius}
+        cy={ActiveDotRadius}
+        r={ActiveDotInnerRadius}
         fill={colors.services[dataKey]}
       />
     </svg>

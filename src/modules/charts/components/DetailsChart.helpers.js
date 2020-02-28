@@ -1,5 +1,12 @@
 import React from "react"
 import formatDuration from "../utils/formatDuration"
+import { DetailsChartDimensions } from "../constants"
+
+const {
+  YAxisWidth,
+  ActiveDotRadius,
+  ChartDesktopHorizontalPadding,
+} = DetailsChartDimensions
 
 export function xAxisTickFormater(value) {
   return value.slice(0, -5)
@@ -56,3 +63,46 @@ export function getLinearGradientDefs(colors) {
     </defs>
   )
 }
+
+export const wrapperCss = theme => ({
+  background: theme.colors.grey[5],
+  paddingLeft: 0,
+  paddingRight: 0,
+
+  [theme.mediaQueries.desktop]: {
+    paddingLeft: `${ChartDesktopHorizontalPadding - YAxisWidth}px`, // we need this to make chart right edge aligned
+    paddingRight: `${ChartDesktopHorizontalPadding - ActiveDotRadius}px`, // with other content wrapped in MaxWidthWrapper
+  },
+
+  ".recharts-cartesian-axis-tick-value": {
+    fontSize: theme.fontSizes[0],
+    fontFamily: theme.fonts.body,
+  },
+
+  ".recharts-brush": {},
+
+  ".recharts-brush-slide": {
+    fill: `#aaa`,
+  },
+
+  ".recharts-brush-texts": {
+    fontFamily: theme.fonts.body,
+    fill: "#666",
+    fontSize: theme.fontSizes[0],
+  },
+
+  ".recharts-brush-traveller": {
+    rect: {
+      fill: `#999`,
+    },
+  },
+
+  ".recharts-brush > rect:not(.recharts-brush-slide)": {
+    fill: `#fbfbfb`,
+    stroke: `#fbfbfb`,
+  },
+
+  ".recharts-cartesian-axis-line, .recharts-cartesian-axis-tick-line": {
+    stroke: theme.colors.blackFade[10],
+  },
+})

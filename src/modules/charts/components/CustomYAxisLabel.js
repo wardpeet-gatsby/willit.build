@@ -1,10 +1,16 @@
 import React from "react"
 import { DetailsChartDimensions } from "../constants"
 
-function CustomYAxisLabel() {
+function CustomYAxisLabel({ isMobile }) {
   const { ChartMinHeight } = DetailsChartDimensions
-
   const y = ChartMinHeight / 2
+
+  /* 
+    the positioning 'magic' numbers was manually set
+    through trial and error, they will have to be 
+    manually update whenever chart content or dimmensions change
+  */
+
   return (
     <text
       y={y}
@@ -18,6 +24,8 @@ function CustomYAxisLabel() {
     >
       <tspan
         x="0"
+        dx={isMobile ? -25 : 0}
+        dy={10}
         css={theme => ({
           letterSpacing: theme.letterSpacings.tracked,
           fontWeight: theme.fontWeights.bold,
@@ -25,8 +33,8 @@ function CustomYAxisLabel() {
       >
         BUILD TIME
       </tspan>
-      <tspan x="12" dy="14">
-        MINUTES
+      <tspan x={isMobile ? 65 : 10} dy={isMobile ? 0 : 14}>
+        {isMobile ? `(MINUTES)` : `MINUTES`}
       </tspan>
     </text>
   )

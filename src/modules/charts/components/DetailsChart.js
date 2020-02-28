@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useTheme } from "@modules/ui/components/ThemeProvider"
+
 import {
   ResponsiveContainer,
   AreaChart,
@@ -18,57 +19,40 @@ import CustomYAxisLabel from "./CustomYAxisLabel"
 import CustomTooltip from "./CustomTooltip"
 import CustomActiveDot from "./CustomActiveDot"
 import CustomReferenceLineLabel from "./CustomReferenceLineLabel"
+import MobileScopeNav from "./MobileScopeNav"
 import {
   xAxisTickFormater,
   yAxisTickFormater,
   getYAxisTicks,
   getLinearGradientDefs,
+  wrapperCss,
 } from "./DetailsChart.helpers"
-import { DetailsChartDimensions, BuildServices } from "../constants"
+import {
+  DetailsChartDimensions,
+  BuildServices,
+  ChartDefaultProps,
+} from "../constants"
+import useMatchMedia from "../hooks/useMatchMedia"
 
-const wrapperCss = theme => ({
-  ".recharts-cartesian-axis-tick-value": {
-    fontSize: theme.fontSizes[0],
-    fontFamily: theme.fonts.body,
-  },
-
-  ".recharts-brush": {},
-
-  ".recharts-brush-slide": {
-    fill: `#aaa`,
-  },
-
-  ".recharts-brush-texts": {
-    fontFamily: theme.fonts.body,
-    fill: "#666",
-    fontSize: theme.fontSizes[0],
-  },
-
-  ".recharts-brush-traveller": {
-    rect: {
-      fill: `#999`,
-    },
-  },
-
-  ".recharts-brush > rect:not(.recharts-brush-slide)": {
-    fill: `#fbfbfb`,
-    stroke: `#fbfbfb`,
-  },
-
-  ".recharts-cartesian-axis-line, .recharts-cartesian-axis-tick-line": {
-    stroke: theme.colors.blackFade[10],
-  },
-})
+const { ChartMinHeight, YAxisWidth, ActiveDotRadius } = DetailsChartDimensions
 
 export const propTypes = {
   data: PropTypes.array,
   annotations: PropTypes.array,
-  initialTimelineScope: PropTypes.number, // in days
+  initialScopeDesktop: PropTypes.number, // in days
+  initialScopeMobile: PropTypes.number, // in days
+}
+
+function initialDataForMobile(data, scope) {
+  const startIndex = data.length > scope ? data.length - scope : 0
+
+  return data.filter((_, idx) => idx >= startIndex)
 }
 
 function DetailsChart({
   data = [],
-  initialTimelineScope = 14,
+  initialDataScopeDesktop = ChartDefaultProps.InitialDataScopeDesktop,
+  initialDataScopeMobile = ChartDefaultProps.InitialDataScopeMobile,
   annotations = [],
   ...rest
 }) {
@@ -79,17 +63,28 @@ function DetailsChart({
     }, {})
   )
 
-  const { colors } = useTheme()
-  const { length: dataLength } = data
+  const { colors, mediaQueries } = useTheme()
 
-  if (dataLength === 0) {
+  const isMobile = !useMatchMedia(mediaQueries.desktop)
+
+  const [filteredData, setFilteredData] = React.useState()
+
+  React.useEffect(initiateFilteredData, [isMobile])
+
+  function initiateFilteredData() {
+    setFilteredData(
+      isMobile ? initialDataForMobile(data, initialDataScopeMobile) : data
+    )
+  }
+
+  if (!filteredData) {
     return null
   }
 
-  const { ChartMinHeight, YAxisWidth } = DetailsChartDimensions
-
-  const initialTimelineIndex =
-    dataLength > initialTimelineScope ? dataLength - initialTimelineScope : 0
+  const startIndex =
+    filteredData.length > initialDataScopeDesktop
+      ? filteredData.length - initialDataScopeDesktop
+      : 0
 
   const yAxisTicks = getYAxisTicks(data)
 
@@ -99,10 +94,23 @@ function DetailsChart({
 
   return (
     <div css={wrapperCss} {...rest}>
+      {isMobile && filteredData && (
+        <MobileScopeNav
+          data={data}
+          filteredData={filteredData}
+          setFilteredData={setFilteredData}
+        />
+      )}
+
       <ResponsiveContainer width="100%" minHeight={ChartMinHeight}>
         <AreaChart
-          data={data}
-          margin={{ top: 30, right: 0, left: 0, bottom: 0 }}
+          data={filteredData}
+          margin={{
+            top: 30,
+            right: isMobile ? 0 : ActiveDotRadius, // we need this to make active dots fully visible on the right edge of the chart, otherewise there are cut by svg viewport
+            left: 0,
+            bottom: 0,
+          }}
         >
           {getLinearGradientDefs(colors.services)}
 
@@ -132,16 +140,20 @@ function DetailsChart({
             tickMargin={14}
             tickLine={false}
             tickFormatter={xAxisTickFormater}
+            padding={{ right: isMobile ? 40 : 0 }}
           />
 
           <YAxis
-            label={props => <CustomYAxisLabel {...props} />}
+            label={props => <CustomYAxisLabel isMobile={isMobile} {...props} />}
             stroke={colors.grey[50]}
             domain={[0, "dataMax"]}
             padding={{ top: 0 }}
             width={YAxisWidth}
+            x={10}
             ticks={yAxisTicks}
             tickFormatter={yAxisTickFormater}
+            orientation={isMobile ? `right` : `left`}
+            mirror={isMobile}
           />
 
           {annotations.map(({ date, label }) => (
@@ -166,16 +178,18 @@ function DetailsChart({
                 fill={`url(#${key}Fill)`}
                 activeDot={<CustomActiveDot />}
                 style={{ display: !activeLines[key] ? `none` : undefined }}
+                animationDuration={1000}
               />
             )
           )}
-
-          <Brush
-            dataKey="date"
-            startIndex={initialTimelineIndex}
-            data={data}
-            height={25}
-          />
+          {!isMobile && (
+            <Brush
+              dataKey="date"
+              startIndex={startIndex}
+              data={data}
+              height={25}
+            />
+          )}
         </AreaChart>
       </ResponsiveContainer>
     </div>

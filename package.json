@@ -12,6 +12,7 @@
     "refresh-content": "curl -X POST http://localhost:8000/__refresh",
     "lint": "prettier --write \"**/*.{js,jsx,json,md}\" && eslint -c .eslintrc src --fix --color --ext .js,.jsx,.ts,.tsx --report-unused-disable-directives --max-warnings=0",
     "start": "LOCAL_DEV=1 npm run develop",
+    "start:build": "LOCAL_DEV=1 npm run build",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
