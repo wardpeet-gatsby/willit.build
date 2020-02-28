@@ -17,7 +17,7 @@ import SiteTypeImage from "./SiteTypeImage"
 import { formatText } from "../utils"
 
 const propTypes = {
-  Icon: PropTypes.node,
+  Icon: PropTypes.func,
   coverImage: PropTypes.string,
   source: PropTypes.string,
   siteType: PropTypes.string,
@@ -39,7 +39,7 @@ const Card = ({
   const formattedSource = formatText(source)
   const formattedSiteType = formatText(siteType)
   const allBenchmarksLink = `/details/${siteType.toLowerCase()}/${source.toLowerCase()}/subsequent/${numberOfPages}`
-  
+
   return (
     <div css={wrapperStyles}>
       <div css={gridStyles}>

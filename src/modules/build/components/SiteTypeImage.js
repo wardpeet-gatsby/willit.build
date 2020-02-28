@@ -24,11 +24,11 @@ const SiteTypeImage = ({ image }) => {
         backgroundImage: `url(${image})`,
         boxShadow: `0px 4px 8px rgba(46, 41, 51, 0.08), 0px 8px 16px rgba(71, 63, 79, 0.16)`,
         [theme.mediaQueries.desktop]: {
-            left: `-${IMAGE_OFFSET}px`,
-            boxShadow: `0px 2px 4px rgba(46, 41, 51, 0.08), 0px 4px 8px rgba(71, 63, 79, 0.16)`,
-            top: `0`,
-            width: `100%`,
-        }
+          left: `-${IMAGE_OFFSET}px`,
+          boxShadow: `0px 2px 4px rgba(46, 41, 51, 0.08), 0px 4px 8px rgba(71, 63, 79, 0.16)`,
+          top: `0`,
+          width: `100%`,
+        },
       })}
     />
   )

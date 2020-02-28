@@ -2,24 +2,29 @@
 // all existing pages.
 import React from "react"
 
+import { ApolloProvider } from "@apollo/react-hooks"
 import Header from "./Header"
 import GlobalStyles from "./GlobalStyles"
 import ThemeProvider from "./ThemeProvider"
 import { SkipNavTrigger, SkipNavTarget } from "@modules/a11y/components/SkipNav"
-
+import createApolloClient from "../../../graphql"
 import "../fonts.css"
+
+const apolloClient = typeof window !== `undefined` ? createApolloClient() : null
 
 const App = ({ children }) => {
   return (
-    <ThemeProvider>
-      <SkipNavTrigger />
-      <GlobalStyles />
-      <Header />
-      <main>
-        <SkipNavTarget />
-        {children}
-      </main>
-    </ThemeProvider>
+    <ApolloProvider client={apolloClient}>
+      <ThemeProvider>
+        <SkipNavTrigger />
+        <GlobalStyles />
+        <Header />
+        <main>
+          <SkipNavTarget />
+          {children}
+        </main>
+      </ThemeProvider>
+    </ApolloProvider>
   )
 }
 
