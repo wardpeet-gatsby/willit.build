@@ -65,8 +65,9 @@ const Header = () => {
           <div>
             <Interface.Navigation
               items={data.contentfulHeaderNavigation.contentfulchildren}
+              css={{ nav: { paddingRight: 0 } }}
             >
-              <Interface.Navigation.Button to="https://gatsbyjs.com">
+              <Interface.Navigation.Button linkTo="https://gatsbyjs.com">
                 Build with Cloud
               </Interface.Navigation.Button>
             </Interface.Navigation>

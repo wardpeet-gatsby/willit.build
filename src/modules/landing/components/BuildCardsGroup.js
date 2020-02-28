@@ -5,19 +5,19 @@ import { useBenchmarkVendors } from "@modules/build/hooks/useBenchmarkVendors"
 import Card from "@modules/build/components/Card"
 import { SiteTypeThumbnail, SourceIcon } from "@modules/build/constants"
 
+const wrapperStyles = {
+  marginTop: `12rem`,
+}
+
 const BuildCardsGroup = () => {
   const [benchmarkVendors, { loading, error }] = useBenchmarkVendors()
 
   // TODO: determine loading and error states
-  if (loading) return <p>`loading`</p>
-  if (error) return <p>`error`</p>
+  if (loading) return <div css={wrapperStyles}>Loading...</div>
+  if (error) return <div css={wrapperStyles}>Error: {error.message}</div>
 
   return (
-    <div
-      css={{
-        marginTop: `12rem`,
-      }}
-    >
+    <div css={wrapperStyles}>
       <Link
         to="/methodology-faq"
         css={theme => ({

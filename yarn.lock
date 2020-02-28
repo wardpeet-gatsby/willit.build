@@ -5945,10 +5945,10 @@ gatsby-image@^2.2.41:
     object-fit-images "^3.2.4"
     prop-types "^15.7.2"
 
-gatsby-interface@^0.0.74:
-  version "0.0.74"
-  resolved "https://registry.yarnpkg.com/gatsby-interface/-/gatsby-interface-0.0.74.tgz#182b13673ebf092eb436a67a1cb01080be4760bf"
-  integrity sha512-CkQ40U1BxEx8tBbPXq6nf0J9bUl1FXbRRXE7yShF3ptMQOi7OU9XWc6Cw2uqXyrxcYNGcpTWla2CNda7cF2wmQ==
+gatsby-interface@0.0.82:
+  version "0.0.82"
+  resolved "https://registry.yarnpkg.com/gatsby-interface/-/gatsby-interface-0.0.82.tgz#a33cfc5e2e284e8373708ce5cbe219aab50d2746"
+  integrity sha512-nFKRUmWW72hFZfsAhdqXIw82Nd3JNf6gMdP+OzcOxMRgN9DCKxlvDjGivg9QTgVVwOsajimgqIu+WoP/EIG9DQ==
   dependencies:
     "@loadable/component" "^5.10.2"
     "@mdx-js/react" "^1.5.2"

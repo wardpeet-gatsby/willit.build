@@ -24,20 +24,22 @@ export function getMockData(days) {
   const data = []
 
   for (let i = 0; i < period; i++) {
-    if (i === 45) {
+    const itemDate = format(add(startDate, { days: i }), "M/d/yyyy")
+
+    if (itemDate === `12/27/2019`) {
       baseValues.gatsby -= 8
       baseValues.netlify -= 36
       baseValues.circleCi -= 39
     }
 
-    if (i === 65) {
+    if (itemDate === `1/16/2020`) {
       baseValues.gatsby -= 5
       baseValues.netlify -= 20
       baseValues.circleCi -= 22
     }
 
     data[i] = {
-      date: format(add(startDate, { days: i }), "M/d/yyy"),
+      date: itemDate,
       gatsby: randomizeValue(baseValues.gatsby),
       netlify: randomizeValue(baseValues.netlify),
       circleCi: randomizeValue(baseValues.circleCi),

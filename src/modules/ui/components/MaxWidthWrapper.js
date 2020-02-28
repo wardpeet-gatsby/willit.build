@@ -15,8 +15,12 @@ const wrapperCss = theme => ({
   },
 })
 
-const MaxWidthWrapper = ({ children }) => {
-  return <div css={wrapperCss}>{children}</div>
+const MaxWidthWrapper = ({ children, ...rest }) => {
+  return (
+    <div css={wrapperCss} {...rest}>
+      {children}
+    </div>
+  )
 }
 
 export default MaxWidthWrapper
