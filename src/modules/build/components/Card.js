@@ -45,8 +45,8 @@ const Card = ({
       <div css={gridStyles}>
         <SiteTypeImage image={coverImage} />
         <div>
-          <p css={titleStyles}>Source &amp; Site Type</p>
-          <p css={contentStyles}>
+          <h2 css={titleStyles}>Source &amp; Site Type</h2>
+          <h3 css={contentStyles}>
             <Icon />{" "}
             <span
               css={{
@@ -55,19 +55,19 @@ const Card = ({
             >
               {formattedSource}
             </span>
-          </p>
+          </h3>
           <p css={subtextStyles}>{formattedSiteType}</p>
         </div>
         <div>
-          <p css={titleStyles}>Pages</p>
-          <p css={contentStyles}>{numberOfPages}</p>
+          <h2 css={titleStyles}>Pages</h2>
+          <h3 css={contentStyles}>{numberOfPages}</h3>
         </div>
         <div>
-          <p css={titleStyles}>Subsequent/ initial build time</p>
-          <p css={contentStyles}>
+          <h2 css={titleStyles}>Subsequent/ initial build time</h2>
+          <h3 css={contentStyles}>
             {subsequentBuildTime}
             <span css={spanStyles}>/ {initialBuildTime}</span>
-          </p>
+          </h3>
           <p css={subtextStyles}>
             <GatsbyIcon /> Gatsby Cloud
           </p>
