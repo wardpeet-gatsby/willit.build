@@ -15,6 +15,7 @@ import {
 } from "./Card.styles"
 import SiteTypeImage from "./SiteTypeImage"
 import { formatText } from "../utils"
+import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
 
 const propTypes = {
   Icon: PropTypes.func,
@@ -38,15 +39,16 @@ const Card = ({
   const GatsbyIcon = SourceIcon[Source.Gatsby]
   const formattedSource = formatText(source)
   const formattedSiteType = formatText(siteType)
-  const allBenchmarksLink = `/details/${siteType.toLowerCase()}/${source.toLowerCase()}/subsequent/${numberOfPages}`
+  const allBenchmarksLink = `/details/type/${siteType.toLowerCase()}/source/${source.toLowerCase()}/page-count/${numberOfPages}`
 
   return (
     <div css={wrapperStyles}>
+      <h2 css={visuallyHiddenCss}>Build card</h2>
       <div css={gridStyles}>
         <SiteTypeImage image={coverImage} />
         <div>
-          <h2 css={titleStyles}>Source &amp; Site Type</h2>
-          <h3 css={contentStyles}>
+          <h3 css={titleStyles}>Source &amp; Site Type</h3>
+          <h4 css={contentStyles}>
             <Icon />{" "}
             <span
               css={{
@@ -55,28 +57,25 @@ const Card = ({
             >
               {formattedSource}
             </span>
-          </h3>
+          </h4>
           <p css={subtextStyles}>{formattedSiteType}</p>
         </div>
         <div>
-          <h2 css={titleStyles}>Pages</h2>
-          <h3 css={contentStyles}>{numberOfPages}</h3>
+          <h3 css={titleStyles}>Pages</h3>
+          <h4 css={contentStyles}>{numberOfPages}</h4>
         </div>
         <div>
-          <h2 css={titleStyles}>Subsequent/ initial build time</h2>
-          <h3 css={contentStyles}>
+          <h3 css={titleStyles}>Subsequent/ initial build time</h3>
+          <h4 css={contentStyles}>
             {subsequentBuildTime}
             <span css={spanStyles}>/ {initialBuildTime}</span>
-          </h3>
+          </h4>
           <p css={subtextStyles}>
             <GatsbyIcon /> Gatsby Cloud
           </p>
         </div>
 
         <div
-          css={{
-            display: `flex`,
-          }}
         >
           <Link to={allBenchmarksLink} css={linkStyles}>
             All benchmarks <MdArrowForward />
