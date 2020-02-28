@@ -5,19 +5,18 @@ import wordmarkSrc from "@images/wordmark.svg"
 
 import MaxWidthWrapper from "./MaxWidthWrapper"
 
-const mobileMediaQuery = `@media (max-width: 720px)`
-
 const outerWrapperCss = theme => ({
   paddingTop: theme.space[15],
   paddingBottom: theme.space[15],
 })
 
-const navCss = () => ({
+const navCss = theme => ({
   display: `flex`,
   listStyleType: `none`,
+  flexDirection: `column`,
 
-  [mobileMediaQuery]: {
-    flexDirection: `column`,
+  [theme.mediaQueries.desktop]: {
+    flexDirection: `row`,
   },
 })
 
@@ -32,10 +31,13 @@ const navLinkCss = theme => ({
   marginRight: theme.space[10],
   textDecoration: `none`,
   color: theme.colors.lilac,
+  // Add padding to increase tap target size
+  paddingTop: theme.space[4],
+  paddingBottom: theme.space[4],
 
-  [mobileMediaQuery]: {
-    paddingTop: theme.space[4],
-    paddingBottom: theme.space[4],
+  [theme.mediaQueries.desktop]: {
+    paddingTop: 0,
+    paddingBottom: 0,
   },
 })
 
@@ -56,10 +58,13 @@ const externalNavLinkCss = theme => ({
   marginRight: theme.space[8],
   color: theme.colors.grey[70],
   fontSize: theme.fontSizes[1],
+  // Add padding to increase tap target size
+  paddingTop: theme.space[3],
+  paddingBottom: theme.space[3],
 
-  [mobileMediaQuery]: {
-    paddingTop: theme.space[3],
-    paddingBottom: theme.space[3],
+  [theme.mediaQueries.desktop]: {
+    paddingLeft: 0,
+    paddingRight: 0,
   },
 })
 
@@ -67,17 +72,22 @@ const Footer = () => {
   const data = useStaticQuery(graphql`
     query getFooterData {
       contentfulFooterNavigation(name: { eq: "Main Footer" }) {
+        blurb {
+          blurb
+        }
         contentfulchildren {
-          ... on ContentfulNavigationItem {
-            id
-            name
-            linkTo
-            icon {
-              file {
-                url
-              }
+          id
+          name
+          linkTo
+          icon {
+            file {
+              url
             }
           }
+        }
+        bottomChildren {
+          name
+          linkTo
         }
       }
     }
@@ -102,54 +112,33 @@ const Footer = () => {
             </ul>
           </nav>
           <p css={footerNoteCss}>
-            willit.build is created by Gatsby, the company behind Gatsby, the
-            free and open source framework that helps developers build blazing
-            fast websites and app, and maintained by our amazing ♡ community.
+            {data.contentfulFooterNavigation.blurb.blurb}
           </p>
           <nav>
             <ul css={navCss}>
               <li>
-                <SecondaryNavLink href="https://www.gatsbyjs.com/">
+                <a href="https://www.gatsbyjs.com/" css={externalNavLinkCss}>
                   <img
                     src={wordmarkSrc}
                     alt="Gatsby wordmark"
                     style={{ width: 76 }}
                   />
-                </SecondaryNavLink>
+                </a>
               </li>
-              <li>
-                <SecondaryNavLink href="https://www.gatsbyjs.com/get-started">
-                  Gatsby Cloud
-                </SecondaryNavLink>
-              </li>
-              <li>
-                <SecondaryNavLink href="https://github.com/gatsbyjs/gatsby">
-                  Gatsby on Github
-                </SecondaryNavLink>
-              </li>
-              <li>
-                <SecondaryNavLink href="https://twitter.com/gatsbyjs">
-                  Follow us on Twitter
-                </SecondaryNavLink>
-              </li>
-              <li>
-                <SecondaryNavLink href="https://www.gatsbyjs.com/contact-us/">
-                  Contact us
-                </SecondaryNavLink>
-              </li>
+              {data.contentfulFooterNavigation.bottomChildren.map(
+                ({ id, name, linkTo }) => (
+                  <li key={id}>
+                    <a href={linkTo} css={externalNavLinkCss}>
+                      {name}
+                    </a>
+                  </li>
+                )
+              )}
             </ul>
           </nav>
         </footer>
       </MaxWidthWrapper>
     </div>
-  )
-}
-
-const SecondaryNavLink = ({ href, children }) => {
-  return (
-    <a href={href} css={externalNavLinkCss}>
-      {children}
-    </a>
   )
 }
 
