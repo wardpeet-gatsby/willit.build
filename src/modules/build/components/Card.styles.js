@@ -26,6 +26,7 @@ export const titleStyles = theme => ({
   letterSpacing: `0.05em`,
   color: theme.colors.blackFade[50],
   textTransform: `uppercase`,
+  fontWeight: `normal`,
 })
 
 export const contentStyles = theme => ({
@@ -55,6 +56,8 @@ export const spanStyles = theme => ({
 
 export const linkStyles = theme => ({
   color: theme.colors.lilac,
+  verticalAlign: `middle`,
+  height: `100%`,
   svg: {
     marginLeft: `0.25rem`,
   },

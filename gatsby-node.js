@@ -6,7 +6,7 @@ exports.createPages = ({ actions }) => {
 
   // TODO: Real numbers for this stuff :D
   const PAGE_COUNTS = [512, 1024, 2048, 4096]
-  const CONTENT_SOURCES = [`contentful`, `drupal`]
+  const CONTENT_SOURCES = [`contentful`, `drupal`, `cosmicjs`, `datocms`, `mdx`, `wordpress`]
   const SITE_TYPES = [`blog`]
 
   PAGE_COUNTS.forEach(pageCount => {
