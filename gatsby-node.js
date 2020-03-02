@@ -4,7 +4,7 @@ exports.createPages = ({ actions }) => {
   const { createPage } = actions
 
   // TODO: Real numbers for this stuff :D
-  const PAGE_COUNTS = [512, 1024, 2048, 4096]
+  const PAGE_COUNTS = ["512", "1024", "2048", "4096"]
   const CONTENT_SOURCES = [
     `contentful`,
     `drupal`,
@@ -23,6 +23,11 @@ exports.createPages = ({ actions }) => {
           component: require.resolve(
             `./src/modules/siteDetails/components/SiteDetails.js`
           ),
+          context: {
+            pageCount,
+            contentSource,
+            siteType,
+          },
         })
       })
     })
