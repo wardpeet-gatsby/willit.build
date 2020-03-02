@@ -6,7 +6,7 @@ import logoSrc from "../../../images/logo.svg"
 
 import MaxWidthWrapper from "./MaxWidthWrapper"
 
-export const mobileMediaQuery = `@media (max-width: 850px)`
+export const mobileNavMediaQuery = `@media (max-width: 1000px)`
 
 const outerWrapperCss = theme => ({
   position: `relative`,
@@ -66,6 +66,7 @@ const Header = () => {
             <Interface.Navigation
               items={data.contentfulHeaderNavigation.contentfulchildren}
               css={{ nav: { paddingRight: 0 } }}
+              mobileNavMediaQuery={mobileNavMediaQuery}
             >
               <Interface.Navigation.Button linkTo="https://gatsbyjs.com">
                 Build with Cloud
