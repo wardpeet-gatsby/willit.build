@@ -1,4 +1,3 @@
-const path = require(`path`)
 const moduleAliases = require(`./module-aliases`)
 
 exports.createPages = ({ actions }) => {
@@ -6,7 +5,14 @@ exports.createPages = ({ actions }) => {
 
   // TODO: Real numbers for this stuff :D
   const PAGE_COUNTS = [512, 1024, 2048, 4096]
-  const CONTENT_SOURCES = [`contentful`, `drupal`, `cosmicjs`, `datocms`, `mdx`, `wordpress`]
+  const CONTENT_SOURCES = [
+    `contentful`,
+    `drupal`,
+    `cosmicjs`,
+    `datocms`,
+    `mdx`,
+    `wordpress`,
+  ]
   const SITE_TYPES = [`blog`]
 
   PAGE_COUNTS.forEach(pageCount => {
@@ -24,19 +30,9 @@ exports.createPages = ({ actions }) => {
 }
 
 exports.onCreateWebpackConfig = ({ actions }) => {
-  const webpackAliases = Object.values(moduleAliases).reduce(
-    (acc, { alias, destination }) => {
-      return {
-        ...acc,
-        [alias]: path.resolve(destination),
-      }
-    },
-    {}
-  )
-
   actions.setWebpackConfig({
     resolve: {
-      alias: webpackAliases,
+      alias: moduleAliases,
     },
   })
 }
