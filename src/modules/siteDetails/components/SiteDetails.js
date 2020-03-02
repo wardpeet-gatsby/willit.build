@@ -4,6 +4,7 @@ import { navigate } from "gatsby"
 import SelectControl, {
   SelectControlOption,
 } from "@modules/ui/components/SelectControl"
+import { PAGE_COUNTS } from "../../../constants"
 
 const SiteDetails = ({ pageContext }) => {
   const { siteType, contentSource, pageCount } = pageContext
@@ -20,24 +21,15 @@ const SiteDetails = ({ pageContext }) => {
         initialValue={pageCount}
         onChange={handleChange}
       >
-        <SelectControlOption
-          id="512"
-          path={`/details/type/${siteType}/source/${contentSource}/page-count/512`}
-        >
-          512
-        </SelectControlOption>
-        <SelectControlOption
-          id="1024"
-          path={`/details/type/${siteType}/source/${contentSource}/page-count/1024`}
-        >
-          1024
-        </SelectControlOption>
-        <SelectControlOption
-          id="2048"
-          path={`/details/type/${siteType}/source/${contentSource}/page-count/2048`}
-        >
-          2048
-        </SelectControlOption>
+        {PAGE_COUNTS.map(pageCount => (
+          <SelectControlOption
+            key={pageCount}
+            id={pageCount}
+            path={`/details/type/${siteType}/source/${contentSource}/page-count/${pageCount}`}
+          >
+            {pageCount}
+          </SelectControlOption>
+        ))}
       </SelectControl>
 
       <SelectControl
@@ -45,6 +37,7 @@ const SiteDetails = ({ pageContext }) => {
         initialValue={contentSource}
         onChange={handleChange}
       >
+        {/* TODO: map over an imported array */}
         <SelectControlOption
           id="contentful"
           path={`/details/type/${siteType}/source/contentful/page-count/${pageCount}`}
