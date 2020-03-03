@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "gatsby-interface"
+import { graphql, useStaticQuery } from "gatsby"
 
-import { useBenchmarkVendors } from "@modules/build/hooks/useBenchmarkVendors"
 import Card from "@modules/build/components/Card"
 import { SiteTypeThumbnail, SourceIcon } from "@modules/build/constants"
 
@@ -10,11 +10,24 @@ const wrapperStyles = {
 }
 
 const BuildCardsGroup = () => {
-  const [benchmarkVendors, { loading, error }] = useBenchmarkVendors()
+  const data = useStaticQuery(graphql`
+    {
+      benchmarkVendors {
+        benchmarkVendors {
+          id
+          topStats {
+            coldStartTime
+            platform
+            warmStartTime
+          }
+          contentSource
+          siteType
+        }
+      }
+    }
+  `)
 
-  // TODO: determine loading and error states
-  if (loading) return <div css={wrapperStyles}>Loading...</div>
-  if (error) return <div css={wrapperStyles}>Error: {error.message}</div>
+  const benchmarkVendors = data.benchmarkVendors.benchmarkVendors
 
   return (
     <div css={wrapperStyles}>
