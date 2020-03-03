@@ -51,7 +51,7 @@ const BuildCardsGroup = () => {
           },
         })}
       >
-        <h2 css={visuallyHiddenCss} id="benchmarks">Benchmarks</h2>
+        <h2 css={visuallyHiddenCss} id="benchmark-sites">Benchmarks</h2>
         {benchmarkVendors.map(({ id, contentSource, siteType, topStats }) => {
           // currently, this is showing the top stats. this could change if we decide to show latest benchmark, median of benchmarks, etc
           // we also probably need to add numberOfPages to topStats on the backend if we decide to go this route. this is hard coded for now

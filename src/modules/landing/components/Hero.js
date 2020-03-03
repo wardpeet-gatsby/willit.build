@@ -75,7 +75,7 @@ const Hero = () => {
             fontWeight: `500`,
             fontFamily: theme.fonts.body,
           })}
-          to="#benchmarks"
+          to="#benchmark-sites"
         >
           {buttonText}
         </LinkButton>
