@@ -1,5 +1,5 @@
 import React from "react"
-import { Button } from "gatsby-interface"
+import { LinkButton } from "gatsby-interface"
 import { MdArrowDownward } from "react-icons/md"
 import { useStaticQuery, graphql } from "gatsby"
 
@@ -68,17 +68,17 @@ const Hero = () => {
         >
           {description}
         </p>
-        <Button
+        <LinkButton
           rightIcon={<MdArrowDownward />}
           size="M"
           css={theme => ({
             fontWeight: `500`,
             fontFamily: theme.fonts.body,
           })}
-          onClick={() => console.info(`TODO: scroll to next section`)}
+          to="#benchmarks"
         >
           {buttonText}
-        </Button>
+        </LinkButton>
       </div>
       <div
         css={theme => ({
