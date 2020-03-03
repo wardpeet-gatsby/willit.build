@@ -22,12 +22,6 @@ export const numPages512 = () => (
       4096
     </SelectControlOption>
     <SelectControlOption
-      url="http://localhost:6006/?path=/story/selectcontrol--numPages32768"
-      id="32768"
-    >
-      32,768
-    </SelectControlOption>
-    <SelectControlOption
       url="http://localhost:6006/?path=/story/selectcontrol--numPages65535"
       id="65535"
     >
