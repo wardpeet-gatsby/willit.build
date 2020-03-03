@@ -18,7 +18,7 @@ import { formatText } from "../utils"
 import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
 
 const propTypes = {
-  Icon: PropTypes.node,
+  Icon: PropTypes.func,
   coverImage: PropTypes.string,
   source: PropTypes.string,
   siteType: PropTypes.string,

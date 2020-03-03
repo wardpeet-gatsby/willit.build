@@ -23,6 +23,7 @@ const Testimonials = () => {
     <div>
       {testimonials.map(testimonial => (
         <p
+          key={testimonial.node.id}
           css={theme => ({
             color: theme.colors.blackFade[80],
             fontFamily: theme.fonts.body,
@@ -43,7 +44,7 @@ const Testimonials = () => {
               color: theme.colors.blackFade[70],
               [theme.mediaQueries.tablet]: {
                 fontSize: theme.fontSizes[3],
-              }
+              },
             })}
           >
             {testimonial.node.author}

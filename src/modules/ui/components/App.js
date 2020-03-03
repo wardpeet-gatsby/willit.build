@@ -7,7 +7,6 @@ import Footer from "./Footer"
 import GlobalStyles from "./GlobalStyles"
 import ThemeProvider from "./ThemeProvider"
 import { SkipNavTrigger, SkipNavTarget } from "@modules/a11y/components/SkipNav"
-
 import "../fonts.css"
 
 const App = ({ children }) => {

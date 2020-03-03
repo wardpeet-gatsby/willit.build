@@ -74,7 +74,7 @@ const Methodology = () => {
           marginBottom: theme.space[10],
           p: {
             paddingTop: theme.space[4],
-          },  
+          },
           [theme.mediaQueries.tablet]: {
             maxWidth: `65%`,
             fontSize: theme.fontSizes[3],
