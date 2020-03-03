@@ -9,6 +9,10 @@ const moduleAliases = {
     alias: `@images`,
     destination: `src/images`,
   },
+  utils: {
+    alias: `@utils`,
+    destination: `src/utils.js`,
+  },
 }
 
 module.exports = Object.values(moduleAliases).reduce(

@@ -1,19 +1,8 @@
 const moduleAliases = require(`./module-aliases`)
+const { PAGE_COUNTS, CONTENT_SOURCES, SITE_TYPES } = require("./src/constants")
 
 exports.createPages = ({ actions }) => {
   const { createPage } = actions
-
-  // TODO: Real numbers for this stuff :D
-  const PAGE_COUNTS = [512, 1024, 2048, 4096]
-  const CONTENT_SOURCES = [
-    `contentful`,
-    `drupal`,
-    `cosmicjs`,
-    `datocms`,
-    `mdx`,
-    `wordpress`,
-  ]
-  const SITE_TYPES = [`blog`]
 
   PAGE_COUNTS.forEach(pageCount => {
     CONTENT_SOURCES.forEach(contentSource => {
@@ -23,6 +12,11 @@ exports.createPages = ({ actions }) => {
           component: require.resolve(
             `./src/modules/siteDetails/components/SiteDetails.js`
           ),
+          context: {
+            pageCount,
+            contentSource,
+            siteType,
+          },
         })
       })
     })
