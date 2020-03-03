@@ -4,6 +4,7 @@ import { graphql, useStaticQuery } from "gatsby"
 
 import Card from "@modules/build/components/Card"
 import { SiteTypeThumbnail, SourceIcon } from "@modules/build/constants"
+import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
 
 const wrapperStyles = {
   marginTop: `12rem`,
@@ -50,6 +51,7 @@ const BuildCardsGroup = () => {
           },
         })}
       >
+        <h2 css={visuallyHiddenCss} id="benchmark-sites">Benchmark sites</h2>
         {benchmarkVendors.map(({ id, contentSource, siteType, topStats }) => {
           // currently, this is showing the top stats. this could change if we decide to show latest benchmark, median of benchmarks, etc
           // we also probably need to add numberOfPages to topStats on the backend if we decide to go this route. this is hard coded for now
