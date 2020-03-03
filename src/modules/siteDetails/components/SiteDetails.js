@@ -4,7 +4,38 @@ import { navigate } from "gatsby"
 import SelectControl, {
   SelectControlOption,
 } from "@modules/ui/components/SelectControl"
-import { PAGE_COUNTS } from "../../../constants"
+import { PageCount, ContentSource } from "@modules/data/constants"
+
+const getEntityIds = entityMap =>
+  Object.values(entityMap).map(entity => entity.id)
+
+const allPageCounts = getEntityIds(PageCount)
+const allContentSources = getEntityIds(ContentSource)
+
+const ContentSourceSelectControl = ({
+  siteType,
+  contentSource,
+  pageCount,
+  handleChange,
+}) => {
+  return (
+    <SelectControl
+      label="Source"
+      initialValue={contentSource}
+      onChange={handleChange}
+    >
+      {allContentSources.map(source => (
+        <SelectControlOption
+          key={source}
+          value={source}
+          path={`/details/type/${siteType}/source/contentful/page-count/${pageCount}`}
+        >
+          Contentful
+        </SelectControlOption>
+      ))}
+    </SelectControl>
+  )
+}
 
 const SiteDetails = ({ pageContext }) => {
   const { siteType, contentSource, pageCount } = pageContext
@@ -21,10 +52,10 @@ const SiteDetails = ({ pageContext }) => {
         initialValue={pageCount}
         onChange={handleChange}
       >
-        {PAGE_COUNTS.map(pageCount => (
+        {allPageCounts.map(pageCount => (
           <SelectControlOption
             key={pageCount}
-            id={pageCount}
+            value={pageCount}
             path={`/details/type/${siteType}/source/${contentSource}/page-count/${pageCount}`}
           >
             {pageCount}
@@ -32,31 +63,12 @@ const SiteDetails = ({ pageContext }) => {
         ))}
       </SelectControl>
 
-      <SelectControl
-        label="Source"
-        initialValue={contentSource}
-        onChange={handleChange}
-      >
-        {/* TODO: map over an imported array */}
-        <SelectControlOption
-          id="contentful"
-          path={`/details/type/${siteType}/source/contentful/page-count/${pageCount}`}
-        >
-          Contentful
-        </SelectControlOption>
-        <SelectControlOption
-          id="wordpress"
-          path={`/details/type/${siteType}/source/wordpress/page-count/${pageCount}`}
-        >
-          Wordpress
-        </SelectControlOption>
-        <SelectControlOption
-          id="drupal"
-          path={`/details/type/${siteType}/source/drupal/page-count/${pageCount}`}
-        >
-          Drupal
-        </SelectControlOption>
-      </SelectControl>
+      <ContentSourceSelectControl
+        siteType={siteType}
+        contentSource={contentSource}
+        pageCount={pageCount}
+        handleChange={handleChange}
+      />
 
       <h1>{pageCount}</h1>
     </>

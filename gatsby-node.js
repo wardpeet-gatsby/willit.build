@@ -1,5 +1,17 @@
 const moduleAliases = require(`./module-aliases`)
-const { PAGE_COUNTS, CONTENT_SOURCES, SITE_TYPES } = require("./src/constants")
+
+// NOTE: This data is duplicated with the constants defined in
+// `src/modules/api/constants.js`. Be sure to update both places at once!
+const PAGE_COUNTS = ["512", "4096", "32768", "65535"]
+const CONTENT_SOURCES = [
+  `contentful`,
+  `cosmicjs`,
+  `datocms`,
+  `drupal`,
+  `mdx`,
+  `wordpress`,
+]
+const SITE_TYPES = [`blog`]
 
 exports.createPages = ({ actions }) => {
   const { createPage } = actions
