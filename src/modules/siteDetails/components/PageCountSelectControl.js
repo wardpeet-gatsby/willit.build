@@ -30,7 +30,7 @@ const PageCountSelectControl = ({
 
           navigate(newPath)
         }}
-        footer="~20k images"
+        footer="1 image per page"
       >
         {allPageCounts.map(countNum => (
           <SelectControlOption
