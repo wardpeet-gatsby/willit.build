@@ -166,22 +166,20 @@ function DetailsChart({
             />
           ))}
 
-          {Object.entries(BuildServices).map(
-            ([key, { title, color, icon }]) => (
-              <Area
-                key={`${key}ChartArea`}
-                type="linear"
-                dataKey={key}
-                strokeWidth={1}
-                stroke={colors.services[key]}
-                fillOpacity={1}
-                fill={`url(#${key}Fill)`}
-                activeDot={<CustomActiveDot />}
-                style={{ display: !activeLines[key] ? `none` : undefined }}
-                animationDuration={1000}
-              />
-            )
-          )}
+          {Object.entries(BuildServices).map(([key]) => (
+            <Area
+              key={`${key}ChartArea`}
+              type="linear"
+              dataKey={key}
+              strokeWidth={1}
+              stroke={colors.services[key]}
+              fillOpacity={1}
+              fill={`url(#${key}Fill)`}
+              activeDot={<CustomActiveDot />}
+              style={{ display: !activeLines[key] ? `none` : undefined }}
+              animationDuration={1000}
+            />
+          ))}
           {!isMobile && (
             <Brush
               dataKey="date"

@@ -75,8 +75,7 @@ const Card = ({
           </p>
         </div>
 
-        <div
-        >
+        <div>
           <Link to={allBenchmarksLink} css={linkStyles}>
             All benchmarks <MdArrowForward />
           </Link>
