@@ -62,6 +62,9 @@ module.exports = {
         typeName: "BenchmarkVendors",
         fieldName: "benchmarkVendors",
         url: `${process.env.GATSBY_GRAPHQL_URL}`,
+        headers: {
+          mock: process.env.MOCK_MODE,
+        },
       },
     },
 

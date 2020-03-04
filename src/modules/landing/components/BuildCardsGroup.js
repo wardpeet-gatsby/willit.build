@@ -16,7 +16,7 @@ const BuildCardsGroup = () => {
       benchmarkVendors {
         benchmarkVendors {
           id
-          topStats {
+          latestStats {
             coldStartTime
             platform
             warmStartTime
@@ -51,23 +51,27 @@ const BuildCardsGroup = () => {
           },
         })}
       >
-        <h2 css={visuallyHiddenCss} id="benchmark-sites">Benchmark sites</h2>
-        {benchmarkVendors.map(({ id, contentSource, siteType, topStats }) => {
-          // currently, this is showing the top stats. this could change if we decide to show latest benchmark, median of benchmarks, etc
-          // we also probably need to add numberOfPages to topStats on the backend if we decide to go this route. this is hard coded for now
-          return (
-            <Card
-              key={id}
-              Icon={SourceIcon[contentSource]}
-              coverImage={SiteTypeThumbnail[siteType]}
-              source={contentSource}
-              siteType={siteType}
-              numberOfPages={512}
-              subsequentBuildTime={topStats.warmStartTime}
-              initialBuildTime={topStats.coldStartTime}
-            />
-          )
-        })}
+        <h2 css={visuallyHiddenCss} id="benchmark-sites">
+          Benchmark sites
+        </h2>
+        {benchmarkVendors.map(
+          ({ id, contentSource, siteType, latestStats }) => {
+            // currently, this is showing the top stats. this could change if we decide to show latest benchmark, median of benchmarks, etc
+            // we also probably need to add numberOfPages to topStats on the backend if we decide to go this route. this is hard coded for now
+            return (
+              <Card
+                key={id}
+                Icon={SourceIcon[contentSource]}
+                coverImage={SiteTypeThumbnail[siteType]}
+                source={contentSource}
+                siteType={siteType}
+                numberOfPages={512}
+                subsequentBuildTime={latestStats[0].warmStartTime}
+                initialBuildTime={latestStats[0].coldStartTime}
+              />
+            )
+          }
+        )}
       </div>
     </div>
   )
