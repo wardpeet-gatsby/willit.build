@@ -7,65 +7,44 @@ import WordpressIcon from "./assets/icons/WordpressIcon"
 
 import BlogThumbnail from "./assets/thumbnails/BlogThumbnail.png"
 
-// TODO: Real numbers!
-// NOTE: This data is duplicated with the data in `gatsby-node.js`.
-// If you change something here, be sure ot change it there as well.
-export const PageCount = {
-  "512": {
-    id: `512`,
-    displayedAs: `512`,
-  },
-  "4096": {
-    id: `4096`,
-    displayedAs: `4096`,
-  },
-  "32768": {
-    id: `32768`,
-    displayedAs: `32,768`,
-  },
-  "65535": {
-    id: `65535`,
-    displayedAs: `65,535`,
-  },
-}
+import {
+  BasePageCount,
+  BaseSiteType,
+  BaseContentSource,
+} from "../../../base-constants"
+
+export const PageCount = BasePageCount
 
 export const SiteType = {
-  blog: {
-    id: `blog`,
-    displayedAs: `Blog`,
+  [BaseSiteType.blog.id]: {
+    ...BaseSiteType.blog,
     thumbnail: BlogThumbnail,
   },
 }
 
 export const ContentSource = {
-  contentful: {
-    id: `contentful`,
-    displayedAs: `Contentful`,
+  [BaseContentSource.contentful.id]: {
+    ...BaseContentSource.contentful,
     icon: ContentfulIcon,
   },
-  cosmicjs: {
-    id: `cosmicjs`,
-    displayedAs: `CosmicJS`,
+  [BaseContentSource.cosmicjs.id]: {
+    ...BaseContentSource.cosmicjs,
     icon: CosmicjsIcon,
   },
-  datocms: {
-    id: `datocms`,
-    displayedAs: `DatoCMS`,
+  [BaseContentSource.datocms.id]: {
+    ...BaseContentSource.datocms,
     icon: DatocmsIcon,
   },
-  drupal: {
-    id: `drupal`,
-    displayedAs: `Drupal`,
+  [BaseContentSource.drupal.id]: {
+    ...BaseContentSource.drupal,
     icon: DrupalIcon,
   },
-  mdx: {
-    id: `mdx`,
-    displayedAs: `MDX`,
+  [BaseContentSource.mdx.id]: {
+    ...BaseContentSource.mdx,
     icon: MarkdownIcon,
   },
-  wordpress: {
-    id: `wordpress`,
-    displayedAs: `Wordpress`,
+  [BaseContentSource.wordpress.id]: {
+    ...BaseContentSource.wordpress,
     icon: WordpressIcon,
   },
 }
