@@ -30,6 +30,8 @@ const BuildCardsGroup = () => {
 
   const benchmarkVendors = data.benchmarkVendors.benchmarkVendors
 
+  console.log(data)
+
   return (
     <div css={wrapperStyles}>
       <Link
