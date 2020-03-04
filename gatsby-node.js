@@ -18,6 +18,17 @@ exports.createPages = ({ actions }) => {
             siteType,
           },
         })
+        createPage({
+          path: `/calculator/type/${siteType}/source/${contentSource}/page-count/${pageCount}`,
+          component: require.resolve(
+            `./src/modules/calculator/components/Calculator.js`
+          ),
+          context: {
+            pageCount,
+            contentSource,
+            siteType,
+          },
+        })
       })
     })
   })

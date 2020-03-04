@@ -104,7 +104,7 @@ function MobileScopeNav({ data, filteredData, setFilteredData }) {
       })}
     >
       <ScopeButton
-        onClick={e =>
+        onClick={() =>
           shiftChartScope({
             data,
             offset: -OFFSET,
@@ -121,7 +121,7 @@ function MobileScopeNav({ data, filteredData, setFilteredData }) {
       </ScopeButton>
       <span>{getScopeFormatted(filteredStartDate, filteredEndDate)}</span>
       <ScopeButton
-        onClick={e =>
+        onClick={() =>
           shiftChartScope({
             data,
             offset: OFFSET,

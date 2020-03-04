@@ -2,7 +2,7 @@ import React from "react"
 import { DetailsChartDimensions, BuildServices } from "../constants"
 import { Button } from "gatsby-interface"
 
-function CustomLegend({ payload, meta, onClick, activeLines }) {
+function CustomLegend({ payload, onClick, activeLines }) {
   const { LegendMinHeight, YAxisWidth } = DetailsChartDimensions
   const ICON_WIDTH = 10
 
@@ -21,7 +21,7 @@ function CustomLegend({ payload, meta, onClick, activeLines }) {
         },
       })}
     >
-      {payload.map(({ dataKey }, index) => {
+      {payload.map(({ dataKey }) => {
         const isActive = activeLines[dataKey]
 
         return (
