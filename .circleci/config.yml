@@ -1,0 +1,39 @@
+version: 2.1 # use CircleCI 2.1
+jobs: # a collection of steps
+  build: # runs not using Workflows must have a `build` job as entry point
+    working_directory: ~/willit-build # directory where steps will run
+    docker: # run the steps with Docker
+      - image: circleci/node:10.16.3 # ...with this image as the primary container; this is where all `steps` will run
+    steps: # a collection of executable commands
+      - checkout # special step to check out source code to working directory
+      - run:
+          name: install yarn
+          command: "curl -o- -L https://yarnpkg.com/install.sh | bash"
+      - restore_cache: # special step to restore the dependency cache
+          # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+      - run:
+          name: install node dependencies
+          command: yarn
+      - save_cache: # special step to save the dependency cache
+          key: dependency-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
+      - run: # run lint
+          name: linting
+          command: yarn lint
+      # no unit tests in willit build
+      # - run: # run unit testing
+      #     name: unit testing
+      #     command: yarn test
+      # The following steps could be run when we'll have the graphql server in prod
+      # - run: # build the project
+      #     name: build project
+      #     command: yarn start:build
+      # - run: # serve in background
+      #     name: serve
+      #     command: yarn serve
+      #     background: true
+      # - run: # audit
+      #     name: audit
+      #     command: yarn audit:ci
