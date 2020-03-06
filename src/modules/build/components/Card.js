@@ -35,7 +35,7 @@ const Card = ({
   initialBuildTime,
 }) => {
   const formattedSource = ContentSource[contentSource].displayedAs
-  const Icon = ContentSource[contentSource].icon
+  const Icon = ContentSource[contentSource].Icon
   const formattedSiteType = SiteType[siteType].displayedAs
   const coverImage = SiteType[siteType].thumbnail
 

@@ -1,11 +1,27 @@
 import React from "react"
-import MaxWidthWrapper from "@modules/ui/components/MaxWidthWrapper"
 
-const Calculator = () => {
+import ContentSourceControl from "./ContentSourceControl"
+
+const wrapperCss = () => ({
+  display: `grid`,
+  gridTemplateAreas: `
+    "controls fastest fastest fastest"
+    "controls initial initial initial"
+    "controls code    code    code"
+  `,
+})
+
+const Calculator = ({ contentSource, siteType, pageCount }) => {
   return (
-    <MaxWidthWrapper>
-      <h1>Willit.build Calculator page</h1>
-    </MaxWidthWrapper>
+    <article css={wrapperCss}>
+      <div css={{ gridArea: `controls` }}>
+        <ContentSourceControl
+          siteType={siteType}
+          pageCount={pageCount}
+          initialContentSource={contentSource}
+        />
+      </div>
+    </article>
   )
 }
 

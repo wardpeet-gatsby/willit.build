@@ -3,7 +3,7 @@ import React from "react"
 import PageCountSelectControl from "./PageCountSelectControl"
 import MaxWidthWrapper from "@modules/ui/components/MaxWidthWrapper"
 
-const SiteDetails = ({ pageContext }) => {
+const SiteDetailsPage = ({ pageContext }) => {
   const { siteType, contentSource, pageCount } = pageContext
 
   return (
@@ -23,4 +23,4 @@ const SiteDetails = ({ pageContext }) => {
   )
 }
 
-export default SiteDetails
+export default SiteDetailsPage

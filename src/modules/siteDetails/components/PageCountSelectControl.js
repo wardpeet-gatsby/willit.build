@@ -1,14 +1,12 @@
 import React from "react"
 import { navigate } from "gatsby"
 
-import { PageCount } from "@modules/data/constants"
+import { PageCount, pageCountIds } from "@modules/data/constants"
 import SelectControl, {
   SelectControlOption,
 } from "@modules/ui/components/SelectControl"
 
 import transformName from "@modules/data/utils/transformName"
-
-const allPageCounts = Object.values(PageCount).map(pageCount => pageCount.id)
 
 const PageCountSelectControl = ({
   siteType,
@@ -38,7 +36,7 @@ const PageCountSelectControl = ({
       }}
       footer="1 image per page"
     >
-      {allPageCounts.map(countNum => (
+      {pageCountIds.map(countNum => (
         <SelectControlOption
           key={countNum}
           value={countNum}

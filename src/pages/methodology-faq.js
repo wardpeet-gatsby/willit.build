@@ -4,23 +4,16 @@ import Methodology from "@modules/docs/components/Methodology"
 import Testimonials from "@modules/docs/components/Testimonials"
 import FAQs from "@modules/docs/components/FAQs"
 import MaxWidthWrapper from "@modules/ui/components/MaxWidthWrapper"
+import GreyBox from "@modules/ui/components/GreyBox"
 
 const MethodologyFAQ = () => {
   return (
     <MaxWidthWrapper>
-      <div
-        css={theme => ({
-          background: theme.colors.grey[20],
-          padding: theme.space[5],
-          [theme.mediaQueries.phablet]: {
-            padding: theme.space[10],
-          },
-        })}
-      >
+      <GreyBox>
         <Methodology />
         <Testimonials />
         <FAQs />
-      </div>
+      </GreyBox>
     </MaxWidthWrapper>
   )
 }

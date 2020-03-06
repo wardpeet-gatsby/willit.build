@@ -14,3 +14,6 @@ export const generateId = (len = 12) => {
 
   return sample(characters, len).join("")
 }
+
+export const convertToPathFriendlySlug = str =>
+  str.replace("_", "-").toLowerCase()

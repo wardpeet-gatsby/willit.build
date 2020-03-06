@@ -15,45 +15,53 @@ import {
   BaseContentSource,
 } from "../../../base-constants"
 
+export { pageCountIds } from "../../../base-constants"
+
 export const PageCount = BasePageCount
 
 export const SiteType = {
   BLOG: {
-    id: `blog`,
+    id: `BLOG`,
     displayedAs: `Blog`,
     thumbnail: BlogThumbnail,
   },
 }
 
+export const siteTypeIds = Object.values(SiteType).map(type => type.id)
+
 export const ContentSource = {
   CONTENTFUL: {
-    id: `contentful`,
+    id: `CONTENTFUL`,
     displayedAs: `Contentful`,
-    icon: ContentfulIcon,
+    Icon: ContentfulIcon,
   },
   COSMICJS: {
-    id: `cosmicjs`,
+    id: `COSMICJS`,
     displayedAs: `CosmicJS`,
-    icon: CosmicjsIcon,
+    Icon: CosmicjsIcon,
   },
   DATOCMS: {
-    id: `datocms`,
+    id: `DATOCMS`,
     displayedAs: `DatoCMS`,
-    icon: DatocmsIcon,
+    Icon: DatocmsIcon,
   },
   DRUPAL: {
-    id: `drupal`,
+    id: `DRUPAL`,
     displayedAs: `Drupal`,
-    icon: DrupalIcon,
+    Icon: DrupalIcon,
   },
   MDX: {
-    id: `mdx`,
+    id: `MDX`,
     displayedAs: `MDX`,
-    icon: MarkdownIcon,
+    Icon: MarkdownIcon,
   },
   WORDPRESS: {
-    id: `wordpress`,
+    id: `WORDPRESS`,
     displayedAs: `Wordpress`,
-    icon: WordpressIcon,
+    Icon: WordpressIcon,
   },
 }
+
+export const contentSourceIds = Object.values(ContentSource).map(
+  source => source.id
+)

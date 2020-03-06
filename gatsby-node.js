@@ -20,20 +20,33 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
 
   result.data.benchmarkApi.benchmarkVendors.forEach(
     ({ id, contentSource, siteType }) => {
-      const template = require.resolve(
-        `./src/modules/siteDetails/components/SiteDetails.js`
-      )
-
-      pageCountIds.forEach(pageCount => {
-        const path = `/details/type/${transformName(
+      const template = pageCountIds.forEach(pageCount => {
+        const dynamicPath = `type/${transformName(
           siteType
         )}/source/${transformName(contentSource)}/page-count/${pageCount}`
 
+        const detailsPath = `/details/${dynamicPath}`
+        const calculatorPath = `/calculator/${dynamicPath}`
+
         createPage({
-          path,
-          component: template,
+          path: detailsPath,
+          component: require.resolve(
+            `./src/modules/siteDetails/components/SiteDetailsPage.js`
+          ),
           context: {
             id,
+            pageCount,
+            contentSource,
+            siteType,
+          },
+        })
+
+        createPage({
+          path: calculatorPath,
+          component: require.resolve(
+            `./src/modules/calculator/components/CalculatorPage.js`
+          ),
+          context: {
             pageCount,
             contentSource,
             siteType,
@@ -42,6 +55,23 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       })
     }
   )
+
+  const defaultCalculatorContentSource =
+    result.data.benchmarkApi.benchmarkVendors[0].contentSource
+  const defaultCalculatorSiteType =
+    result.data.benchmarkApi.benchmarkVendors[0].siteType
+
+  createPage({
+    path: `/calculator`,
+    component: require.resolve(
+      `./src/modules/calculator/components/CalculatorPage.js`
+    ),
+    context: {
+      pageCount: pageCountIds[0],
+      contentSource: defaultCalculatorContentSource,
+      siteType: defaultCalculatorSiteType,
+    },
+  })
 }
 
 exports.onCreateWebpackConfig = ({ actions }) => {
