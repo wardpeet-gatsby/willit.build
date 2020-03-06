@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { Link } from "gatsby-interface"
 import { MdArrowForward } from "react-icons/md"
 
-import { SourceIcon, Source, SiteType } from "../constants"
+import { ContentSource, SiteType } from "@modules/data/constants"
 import {
   wrapperStyles,
   gridStyles,
@@ -14,8 +14,8 @@ import {
   linkStyles,
 } from "./Card.styles"
 import SiteTypeImage from "./SiteTypeImage"
-import { formatText } from "../utils"
 import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
+import GatsbyIcon from "@modules/data/assets/icons/GatsbyIcon"
 
 const propTypes = {
   Icon: PropTypes.func,
@@ -28,18 +28,18 @@ const propTypes = {
 }
 
 const Card = ({
-  Icon,
-  coverImage,
-  source,
+  contentSource,
   siteType = SiteType.Blog,
   numberOfPages,
   subsequentBuildTime,
   initialBuildTime,
 }) => {
-  const GatsbyIcon = SourceIcon[Source.Gatsby]
-  const formattedSource = formatText(source)
-  const formattedSiteType = formatText(siteType)
-  const allBenchmarksLink = `/details/type/${siteType.toLowerCase()}/source/${source.toLowerCase()}/page-count/${numberOfPages}`
+  const formattedSource = ContentSource[contentSource].displayedAs
+  const Icon = ContentSource[contentSource].icon
+  const formattedSiteType = SiteType[siteType].displayedAs
+  const coverImage = SiteType[siteType].thumbnail
+
+  const allBenchmarksLink = `/details/type/${siteType}/source/${contentSource}/page-count/${numberOfPages}`
 
   return (
     <div css={wrapperStyles}>

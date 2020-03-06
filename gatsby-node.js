@@ -1,12 +1,16 @@
 const moduleAliases = require(`./module-aliases`)
-const { PAGE_COUNTS, CONTENT_SOURCES, SITE_TYPES } = require("./src/constants")
+const {
+  pageCountIds,
+  contentSourceIds,
+  siteTypeIds,
+} = require("./base-constants")
 
 exports.createPages = ({ actions }) => {
   const { createPage } = actions
 
-  PAGE_COUNTS.forEach(pageCount => {
-    CONTENT_SOURCES.forEach(contentSource => {
-      SITE_TYPES.forEach(siteType => {
+  pageCountIds.forEach(pageCount => {
+    contentSourceIds.forEach(contentSource => {
+      siteTypeIds.forEach(siteType => {
         createPage({
           path: `/details/type/${siteType}/source/${contentSource}/page-count/${pageCount}`,
           component: require.resolve(

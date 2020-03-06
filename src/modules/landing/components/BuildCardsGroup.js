@@ -3,8 +3,8 @@ import { Link } from "gatsby-interface"
 import { graphql, useStaticQuery } from "gatsby"
 
 import Card from "@modules/build/components/Card"
-import { SiteTypeThumbnail, SourceIcon } from "@modules/build/constants"
 import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
+import transformName from "@modules/data/utils/transform-name"
 
 const wrapperStyles = {
   marginTop: `12rem`,
@@ -54,24 +54,25 @@ const BuildCardsGroup = () => {
         <h2 css={visuallyHiddenCss} id="benchmark-sites">
           Benchmark sites
         </h2>
-        {benchmarkVendors.map(
-          ({ id, contentSource, siteType, latestStats }) => {
-            // currently, this is showing the top stats. this could change if we decide to show latest benchmark, median of benchmarks, etc
-            // we also probably need to add numberOfPages to topStats on the backend if we decide to go this route. this is hard coded for now
-            return (
-              <Card
-                key={id}
-                Icon={SourceIcon[contentSource]}
-                coverImage={SiteTypeThumbnail[siteType]}
-                source={contentSource}
-                siteType={siteType}
-                numberOfPages={512}
-                subsequentBuildTime={latestStats[0].warmStartTime}
-                initialBuildTime={latestStats[0].coldStartTime}
-              />
-            )
-          }
-        )}
+        {benchmarkVendors.map((data, ...rest) => {
+          // The GraphQL API returns names in UPPER_SNAKE_CASE.
+          // We want to transform this to lower-dash-cash, to match pathnames.
+          const contentSource = transformName(data.contentSource)
+          const siteType = transformName(data.siteType)
+
+          // currently, this is showing the top stats. this could change if we decide to show latest benchmark, median of benchmarks, etc
+          // we also probably need to add numberOfPages to topStats on the backend if we decide to go this route. this is hard coded for now
+          return (
+            <Card
+              key={data.id}
+              contentSource={contentSource}
+              siteType={siteType}
+              numberOfPages={512}
+              subsequentBuildTime={data.latestStats[0].warmStartTime}
+              initialBuildTime={data.latestStats[0].coldStartTime}
+            />
+          )
+        })}
       </div>
     </div>
   )
