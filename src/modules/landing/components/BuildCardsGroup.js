@@ -67,6 +67,7 @@ const BuildCardsGroup = () => {
               numberOfPages={512}
               subsequentBuildTime={data.latestStats[0].warmStartTime}
               initialBuildTime={data.latestStats[0].coldStartTime}
+              {...rest}
             />
           )
         })}
