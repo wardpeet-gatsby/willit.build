@@ -1,4 +1,4 @@
-/* exported PageCount, SiteType, ContentSource  */
+/* eslint-disable no-unused-vars, @typescript-eslint/no-unused-vars */
 
 import ContentfulIcon from "./assets/icons/ContentfulIcon"
 import CosmicjsIcon from "./assets/icons/CosmicjsIcon"
