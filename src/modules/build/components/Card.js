@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby-interface"
 import { MdArrowForward } from "react-icons/md"
-
+import transformName from "@modules/data/utils/transformName"
 import { ContentSource, SiteType } from "@modules/data/constants"
 import {
   wrapperStyles,
@@ -39,7 +39,11 @@ const Card = ({
   const formattedSiteType = SiteType[siteType].displayedAs
   const coverImage = SiteType[siteType].thumbnail
 
-  const allBenchmarksLink = `/details/type/${siteType}/source/${contentSource}/page-count/${numberOfPages}`
+  // The GraphQL API returns names in UPPER_SNAKE_CASE.
+  // We want to transform this to lower-dash-cash, to match pathnames.
+  const transformedSource = transformName(contentSource)
+  const transformedType = transformName(siteType)
+  const allBenchmarksLink = `/details/type/${transformedType}/source/${transformedSource}/page-count/${numberOfPages}`
 
   return (
     <div css={wrapperStyles}>

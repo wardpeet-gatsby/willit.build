@@ -1,41 +1,47 @@
 const moduleAliases = require(`./module-aliases`)
-const {
-  pageCountIds,
-  contentSourceIds,
-  siteTypeIds,
-} = require("./base-constants")
 
-exports.createPages = ({ actions }) => {
-  const { createPage } = actions
+const { pageCountIds } = require("./base-constants")
+const transformName = require("./src/modules/data/utils/transformNameForNode")
 
-  pageCountIds.forEach(pageCount => {
-    contentSourceIds.forEach(contentSource => {
-      siteTypeIds.forEach(siteType => {
+exports.createPages = async ({ graphql, actions: { createPage } }) => {
+  const result = await graphql(
+    `
+      {
+        benchmarkApi {
+          benchmarkVendors {
+            id
+            contentSource
+            siteType
+          }
+        }
+      }
+    `
+  )
+
+  result.data.benchmarkApi.benchmarkVendors.forEach(
+    ({ id, contentSource, siteType }) => {
+      const template = require.resolve(
+        `./src/modules/siteDetails/components/SiteDetails.js`
+      )
+
+      pageCountIds.forEach(pageCount => {
+        const path = `/details/type/${transformName(
+          siteType
+        )}/source/${transformName(contentSource)}/page-count/${pageCount}`
+
         createPage({
-          path: `/details/type/${siteType}/source/${contentSource}/page-count/${pageCount}`,
-          component: require.resolve(
-            `./src/modules/siteDetails/components/SiteDetails.js`
-          ),
+          path,
+          component: template,
           context: {
-            pageCount,
-            contentSource,
-            siteType,
-          },
-        })
-        createPage({
-          path: `/calculator/type/${siteType}/source/${contentSource}/page-count/${pageCount}`,
-          component: require.resolve(
-            `./src/modules/calculator/components/Calculator.js`
-          ),
-          context: {
+            id,
             pageCount,
             contentSource,
             siteType,
           },
         })
       })
-    })
-  })
+    }
+  )
 }
 
 exports.onCreateWebpackConfig = ({ actions }) => {
