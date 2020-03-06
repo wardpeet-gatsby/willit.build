@@ -1,3 +1,3 @@
-export default function transformName(name) {
+module.exports = name => {
   return name.toLowerCase().replace("_", "-")
 }

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars, @typescript-eslint/no-unused-vars */
+
 import ContentfulIcon from "./assets/icons/ContentfulIcon"
 import CosmicjsIcon from "./assets/icons/CosmicjsIcon"
 import DatocmsIcon from "./assets/icons/DatocmsIcon"
@@ -16,35 +18,42 @@ import {
 export const PageCount = BasePageCount
 
 export const SiteType = {
-  [BaseSiteType.blog.id]: {
-    ...BaseSiteType.blog,
+  BLOG: {
+    id: `blog`,
+    displayedAs: `Blog`,
     thumbnail: BlogThumbnail,
   },
 }
 
 export const ContentSource = {
-  [BaseContentSource.contentful.id]: {
-    ...BaseContentSource.contentful,
+  CONTENTFUL: {
+    id: `contentful`,
+    displayedAs: `Contentful`,
     icon: ContentfulIcon,
   },
-  [BaseContentSource.cosmicjs.id]: {
-    ...BaseContentSource.cosmicjs,
+  COSMICJS: {
+    id: `cosmicjs`,
+    displayedAs: `CosmicJS`,
     icon: CosmicjsIcon,
   },
-  [BaseContentSource.datocms.id]: {
-    ...BaseContentSource.datocms,
+  DATOCMS: {
+    id: `datocms`,
+    displayedAs: `DatoCMS`,
     icon: DatocmsIcon,
   },
-  [BaseContentSource.drupal.id]: {
-    ...BaseContentSource.drupal,
+  DRUPAL: {
+    id: `drupal`,
+    displayedAs: `Drupal`,
     icon: DrupalIcon,
   },
-  [BaseContentSource.mdx.id]: {
-    ...BaseContentSource.mdx,
+  MDX: {
+    id: `mdx`,
+    displayedAs: `MDX`,
     icon: MarkdownIcon,
   },
-  [BaseContentSource.wordpress.id]: {
-    ...BaseContentSource.wordpress,
+  WORDPRESS: {
+    id: `wordpress`,
+    displayedAs: `Wordpress`,
     icon: WordpressIcon,
   },
 }

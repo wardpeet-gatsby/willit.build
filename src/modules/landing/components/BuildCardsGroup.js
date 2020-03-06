@@ -4,7 +4,6 @@ import { graphql, useStaticQuery } from "gatsby"
 
 import Card from "@modules/build/components/Card"
 import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
-import transformName from "@modules/data/utils/transform-name"
 
 const wrapperStyles = {
   marginTop: `12rem`,
@@ -13,7 +12,7 @@ const wrapperStyles = {
 const BuildCardsGroup = () => {
   const data = useStaticQuery(graphql`
     {
-      benchmarkVendors {
+      benchmarkApi {
         benchmarkVendors {
           id
           latestStats {
@@ -28,7 +27,7 @@ const BuildCardsGroup = () => {
     }
   `)
 
-  const benchmarkVendors = data.benchmarkVendors.benchmarkVendors
+  const benchmarkVendors = data.benchmarkApi.benchmarkVendors
 
   return (
     <div css={wrapperStyles}>
@@ -55,10 +54,8 @@ const BuildCardsGroup = () => {
           Benchmark sites
         </h2>
         {benchmarkVendors.map((data, ...rest) => {
-          // The GraphQL API returns names in UPPER_SNAKE_CASE.
-          // We want to transform this to lower-dash-cash, to match pathnames.
-          const contentSource = transformName(data.contentSource)
-          const siteType = transformName(data.siteType)
+          const contentSource = data.contentSource
+          const siteType = data.siteType
 
           // currently, this is showing the top stats. this could change if we decide to show latest benchmark, median of benchmarks, etc
           // we also probably need to add numberOfPages to topStats on the backend if we decide to go this route. this is hard coded for now
@@ -70,6 +67,7 @@ const BuildCardsGroup = () => {
               numberOfPages={512}
               subsequentBuildTime={data.latestStats[0].warmStartTime}
               initialBuildTime={data.latestStats[0].coldStartTime}
+              {...rest}
             />
           )
         })}

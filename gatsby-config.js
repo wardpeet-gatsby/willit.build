@@ -60,7 +60,7 @@ module.exports = {
       resolve: "gatsby-source-graphql",
       options: {
         typeName: "BenchmarkVendors",
-        fieldName: "benchmarkVendors",
+        fieldName: "benchmarkApi",
         url: `${process.env.GATSBY_GRAPHQL_URL}`,
         headers: {
           mock: process.env.MOCK_MODE,

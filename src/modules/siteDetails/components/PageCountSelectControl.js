@@ -6,6 +6,8 @@ import SelectControl, {
   SelectControlOption,
 } from "@modules/ui/components/SelectControl"
 
+import transformName from "@modules/data/utils/transformName"
+
 const allPageCounts = Object.values(PageCount).map(pageCount => pageCount.id)
 
 const PageCountSelectControl = ({
@@ -19,30 +21,33 @@ const PageCountSelectControl = ({
 
   const { displayedAs } = PageCount[currentPageCount]
 
-  return (
-    <>
-      <SelectControl
-        label="Pages"
-        value={currentPageCount}
-        displayedValue={displayedAs}
-        onChange={(ev, newPath) => {
-          setCurrentPageCount(ev.target.value)
+  // The GraphQL API returns names in UPPER_SNAKE_CASE.
+  // We want to transform this to lower-dash-cash, to match pathnames.
+  const transformedSource = transformName(contentSource)
+  const transformedType = transformName(siteType)
 
-          navigate(newPath)
-        }}
-        footer="1 image per page"
-      >
-        {allPageCounts.map(countNum => (
-          <SelectControlOption
-            key={countNum}
-            value={countNum}
-            path={`/details/type/${siteType}/source/${contentSource}/page-count/${countNum}`}
-          >
-            {PageCount[countNum].displayedAs}
-          </SelectControlOption>
-        ))}
-      </SelectControl>
-    </>
+  return (
+    <SelectControl
+      label="Pages"
+      value={currentPageCount}
+      displayedValue={displayedAs}
+      onChange={(ev, newPath) => {
+        setCurrentPageCount(ev.target.value)
+
+        navigate(newPath)
+      }}
+      footer="1 image per page"
+    >
+      {allPageCounts.map(countNum => (
+        <SelectControlOption
+          key={countNum}
+          value={countNum}
+          path={`/details/type/${transformedType}/source/${transformedSource}/page-count/${countNum}`}
+        >
+          {PageCount[countNum].displayedAs}
+        </SelectControlOption>
+      ))}
+    </SelectControl>
   )
 }
 
