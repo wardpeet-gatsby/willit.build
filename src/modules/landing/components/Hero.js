@@ -34,6 +34,7 @@ const Hero = () => {
         }}
       >
         <h1
+          data-cy="main-title"
           css={theme => [
             getTextGradientStyle(
               theme,

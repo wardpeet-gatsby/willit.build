@@ -9,6 +9,9 @@ extends:
   - prettier/react
   - react-app
 
+plugins:
+  - cypress
+
 rules:
   no-unused-expressions: warn
   no-unused-vars:
@@ -45,3 +48,5 @@ rules:
   no-invalid-this: off
   react/display-name: off
   react/prop-types: off
+env:
+  cypress/globals: true

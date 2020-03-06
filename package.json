@@ -16,7 +16,12 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "e2e:console": "cypress run",
+    "e2e:ui": "cypress open",
+    "audit:console": "yarn start:build && concurrently \"serve public -l 9000\" \"sleep 1 && cypress run --project audit --headless --browser chrome\"",
+    "audit:ui": "yarn start:build && concurrently \"serve public -l 9000\" \"sleep 1 && cypress open --project audit\"",
+    "audit:ci": "cypress run --project audit --headless --browser chrome"
   },
   "dependencies": {
     "@emotion/core": "^10.0.27",
@@ -55,14 +60,19 @@
     "@typescript-eslint/eslint-plugin": "^2.21.0",
     "@typescript-eslint/parser": "^2.21.0",
     "babel-loader": "^8.0.6",
+    "concurrently": "^5.1.0",
+    "cypress": "^4.1.0",
+    "cypress-audit": "^0.0.4",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-config-react-app": "^5.2.0",
+    "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^2.5.0",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "serve": "^11.3.0"
   },
   "keywords": [
     "gatsby"
