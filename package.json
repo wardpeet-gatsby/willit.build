@@ -19,6 +19,7 @@
     "build-storybook": "build-storybook",
     "e2e:console": "cypress run",
     "e2e:ui": "cypress open",
+    "e2e:ci":"cypress run --config baseUrl=http://localhost:9000",
     "audit:console": "yarn start:build && concurrently \"serve public -l 9000\" \"sleep 1 && cypress run --project audit --headless --browser chrome\"",
     "audit:ui": "yarn start:build && concurrently \"serve public -l 9000\" \"sleep 1 && cypress open --project audit\"",
     "audit:ci": "cypress run --project audit --headless --browser chrome"

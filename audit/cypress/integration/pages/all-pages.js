@@ -5,7 +5,7 @@ context("All pages", () => {
       performance: 95,
       accessibility: 65,
       "best-practices": 78,
-      seo: 78,
+      seo: 70,
       pwa: 50,
     })
   })
@@ -16,7 +16,7 @@ context("All pages", () => {
       performance: 91,
       accessibility: 69,
       "best-practices": 79,
-      seo: 82,
+      seo: 70,
       pwa: 50,
     })
   })
@@ -27,7 +27,7 @@ context("All pages", () => {
       performance: 97,
       accessibility: 69,
       "best-practices": 78,
-      seo: 82,
+      seo: 70,
       pwa: 59,
     })
   })
@@ -38,7 +38,7 @@ context("All pages", () => {
       performance: 97,
       accessibility: 69,
       "best-practices": 78,
-      seo: 82,
+      seo: 70,
       pwa: 59,
     })
   })
@@ -49,7 +49,7 @@ context("All pages", () => {
       performance: 97,
       accessibility: 69,
       "best-practices": 78,
-      seo: 82,
+      seo: 70,
       pwa: 59,
     })
   })
@@ -60,7 +60,7 @@ context("All pages", () => {
       performance: 95,
       accessibility: 69,
       "best-practices": 78,
-      seo: 82,
+      seo: 70,
       pwa: 40,
     })
   })
