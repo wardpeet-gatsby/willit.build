@@ -1,6 +1,6 @@
 import React from "react"
 
-import PageCountSelectControl from "./PageCountSelectControl"
+import PageCountSelectControl from "@modules/ui/components/PageCountSelectControl"
 import MaxWidthWrapper from "@modules/ui/components/MaxWidthWrapper"
 
 const SiteDetailsPage = ({ pageContext }) => {
@@ -18,6 +18,8 @@ const SiteDetailsPage = ({ pageContext }) => {
         siteType={siteType}
         initialPageCount={pageCount}
         contentSource={contentSource}
+        footer="1 image per page"
+        pathPrefix="details"
       />
     </MaxWidthWrapper>
   )

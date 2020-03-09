@@ -2,27 +2,21 @@ import React from "react"
 import { navigate } from "gatsby"
 
 import { PageCount, pageCountIds } from "@modules/data/constants"
-import SelectControl, {
-  SelectControlOption,
-} from "@modules/ui/components/SelectControl"
-
-import transformName from "@modules/data/utils/transformName"
+import SelectControl, { SelectControlOption } from "./SelectControl"
+import formatPath from "@modules/data/utils/formatPath"
 
 const PageCountSelectControl = ({
   siteType,
   initialPageCount,
   contentSource,
+  footer,
+  pathPrefix,
 }) => {
   const [currentPageCount, setCurrentPageCount] = React.useState(
     initialPageCount
   )
 
   const { displayedAs } = PageCount[currentPageCount]
-
-  // The GraphQL API returns names in UPPER_SNAKE_CASE.
-  // We want to transform this to lower-dash-cash, to match pathnames.
-  const transformedSource = transformName(contentSource)
-  const transformedType = transformName(siteType)
 
   return (
     <SelectControl
@@ -34,13 +28,13 @@ const PageCountSelectControl = ({
 
         navigate(newPath)
       }}
-      footer="1 image per page"
+      footer={footer}
     >
       {pageCountIds.map(countNum => (
         <SelectControlOption
           key={countNum}
           value={countNum}
-          path={`/details/type/${transformedType}/source/${transformedSource}/page-count/${countNum}`}
+          path={formatPath(pathPrefix, siteType, contentSource, countNum)}
         >
           {PageCount[countNum].displayedAs}
         </SelectControlOption>

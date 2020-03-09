@@ -1,7 +1,7 @@
 const moduleAliases = require(`./module-aliases`)
 
 const { pageCountIds } = require("./base-constants")
-const transformName = require("./src/modules/data/utils/transformNameForNode")
+const formatPath = require("./src/modules/data/utils/formatPath")
 
 exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const result = await graphql(
@@ -21,15 +21,8 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   result.data.benchmarkApi.benchmarkVendors.forEach(
     ({ id, contentSource, siteType }) => {
       const template = pageCountIds.forEach(pageCount => {
-        const dynamicPath = `type/${transformName(
-          siteType
-        )}/source/${transformName(contentSource)}/page-count/${pageCount}`
-
-        const detailsPath = `/details/${dynamicPath}`
-        const calculatorPath = `/calculator/${dynamicPath}`
-
-        createPage({
-          path: detailsPath,
+        const detailsPath = createPage({
+          path: formatPath(`details`, siteType, contentSource, pageCount),
           component: require.resolve(
             `./src/modules/siteDetails/components/SiteDetailsPage.js`
           ),
@@ -42,7 +35,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
         })
 
         createPage({
-          path: calculatorPath,
+          path: formatPath(`calculator`, siteType, contentSource, pageCount),
           component: require.resolve(
             `./src/modules/calculator/components/CalculatorPage.js`
           ),

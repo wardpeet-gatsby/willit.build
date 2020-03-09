@@ -5,7 +5,7 @@ import { ContentSource, contentSourceIds } from "@modules/data/constants"
 import SelectControl, {
   SelectControlOption,
 } from "@modules/ui/components/SelectControl"
-import { convertToPathFriendlySlug } from "@utils"
+import formatPath from "@modules/data/utils/formatPath"
 
 const ContentSourceControl = ({
   siteType,
@@ -40,11 +40,12 @@ const ContentSourceControl = ({
             <SelectControlOption
               key={contentSourceId}
               value={contentSourceId}
-              path={`/calculator/type/${convertToPathFriendlySlug(
-                siteType
-              )}/source/${convertToPathFriendlySlug(
-                contentSourceId
-              )}/page-count/${pageCount}`}
+              path={formatPath(
+                `calculator`,
+                siteType,
+                contentSourceId,
+                pageCount
+              )}
             >
               {ContentSource[contentSourceId].displayedAs}
             </SelectControlOption>
