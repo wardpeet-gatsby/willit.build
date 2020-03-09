@@ -6,13 +6,13 @@ import GreyBox from "@modules/ui/components/GreyBox"
 import Header from "./Header"
 import Calculator from "./Calculator"
 
-const CalculatorPage = ({ pageContext, data }) => {
+const CalculatorPage = ({ pageContext, location, data }) => {
   const { siteType, contentSource, pageCount } = pageContext
 
   return (
     <MaxWidthWrapper>
       <GreyBox>
-        <Header />
+        <Header location={location} />
         <Calculator
           siteType={siteType}
           contentSource={contentSource}
