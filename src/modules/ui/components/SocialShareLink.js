@@ -9,7 +9,7 @@ const propTypes = {
 
 export const SocialShareIcon = ({ Icon, url, label }) => {
   return (
-    <a href={url} aria-label={label} target="_blank">
+    <a href={url} aria-label={label} target="_blank" rel="noopener noreferrer">
       <Icon />
     </a>
   )

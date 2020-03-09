@@ -1,14 +1,13 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 
-// import { ScreenReaderText } from "./feedback-widget/styled-elements"
-import { Button, shadows, colors } from "gatsby-interface"
+import { Button, shadows } from "gatsby-interface"
 import LinkIcon from "../assets/Link"
 import copyToClipboard from "../utils/copy-to-clipboard"
 
 const delay = duration => new Promise(resolve => setTimeout(resolve, duration))
 
-function Copy({ content, duration, fileName, trim = false }) {
+function Copy({ content, duration, trim = false }) {
   const [copied, setCopied] = useState(false)
 
   const label = copied ? `URL copied to clipboard` : `Copy URL to clipboard`
