@@ -49,7 +49,7 @@ const SocialLinks = ({ location }) => {
   )}`
 
   // LinkedIn has apparently all but killed their query param share function
-  const linkedinShareUrl = `https://www.linkedin.com/shareArticle?url=https://build-9622a0e6-d640-473b-9db0-b76165ee8ecb.gtsb.io/calculator/type/blog/source/drupal/page-count/512`
+  const linkedinShareUrl = `https://www.linkedin.com/shareArticle?url=${href}/calculator/type/blog/source/drupal/page-count/512`
 
   return (
     <div css={wrapperCss}>
