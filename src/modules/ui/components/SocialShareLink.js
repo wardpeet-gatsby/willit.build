@@ -1,11 +1,3 @@
-/* The goal of this file is to take in:
-	- An icon
-	- A link
-	- Button text
-
-	If it's not provided a link, make it the copy button?
-
- */
 import React from "react"
 import PropTypes from "prop-types"
 

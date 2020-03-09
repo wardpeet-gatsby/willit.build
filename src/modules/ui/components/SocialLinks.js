@@ -1,10 +1,9 @@
 import React from "react"
 
 import SocialShareLink from "./SocialShareLink"
-// import SocialCopyLink from "./SocialCopyLink"
+import CopyUrlButton from "./CopyUrlButton"
 import TwitterIcon from "../assets/Twitter"
 import LinkedInIcon from "../assets/LinkedIn"
-import LinkIcon from "../assets/Link"
 
 const wrapperCss = () => ({
   display: `flex`,
@@ -66,7 +65,7 @@ const SocialLinks = ({ location }) => {
         label="Share Gatsby Cloud benchmarks on LinkedIn"
       />
       <div css={spacerCss} />
-      <LinkIcon />
+      <CopyUrlButton content={href} />
     </div>
   )
 }
