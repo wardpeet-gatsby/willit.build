@@ -1,8 +1,7 @@
 import React from "react"
 
-// import SocialLink component instead, and pass the icons
 import SocialShareLink from "./SocialShareLink"
-import SocialCopyLink from "./SocialCopyLink"
+// import SocialCopyLink from "./SocialCopyLink"
 import TwitterIcon from "../assets/Twitter"
 import LinkedInIcon from "../assets/LinkedIn"
 import LinkIcon from "../assets/Link"
@@ -46,20 +45,25 @@ const SocialLinks = ({ location }) => {
     ? `Check out the benchmarks for building a ${pageCount} page @${cmsTwitterMap[cms]} site on @gatsbyjs Cloud.`
     : genericShareText
 
+  const twitterShareUrl = `https://twitter.com/intent/tweet?url=${href}/&text=${encodeURIComponent(
+    twitterShareText
+  )}`
+
+  // LinkedIn has apparently all but killed their query param share function
+  const linkedinShareUrl = `https://www.linkedin.com/shareArticle?url=https://build-9622a0e6-d640-473b-9db0-b76165ee8ecb.gtsb.io/calculator/type/blog/source/drupal/page-count/512`
+
   return (
     <div css={wrapperCss}>
       <SocialShareLink
         Icon={TwitterIcon}
-        url={`https://twitter.com/intent/tweet?url=${href}/&text=${encodeURIComponent(
-          twitterShareText
-        )}`}
-        label="Share on Twitter"
+        url={twitterShareUrl}
+        label="Share Gatsby Cloud benchmarks on Twitter"
       />
       <div css={spacerCss} />
       <SocialShareLink
         Icon={LinkedInIcon}
-        url="https://www.google.com"
-        label="Share on LinkedIn"
+        url={linkedinShareUrl}
+        label="Share Gatsby Cloud benchmarks on LinkedIn"
       />
       <div css={spacerCss} />
       <LinkIcon />
