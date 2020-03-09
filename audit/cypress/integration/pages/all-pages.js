@@ -3,7 +3,7 @@ context("All pages", () => {
     cy.visit("/")
     cy.audit({
       performance: 95,
-      accessibility: 65,
+      accessibility: 100,
       "best-practices": 78,
       seo: 70,
       pwa: 50,
@@ -14,7 +14,7 @@ context("All pages", () => {
     cy.visit("/chart-demo")
     cy.audit({
       performance: 91,
-      accessibility: 69,
+      accessibility: 76,
       "best-practices": 79,
       seo: 70,
       pwa: 50,

@@ -86,6 +86,7 @@ const Footer = () => {
           }
         }
         bottomChildren {
+          id
           name
           linkTo
         }

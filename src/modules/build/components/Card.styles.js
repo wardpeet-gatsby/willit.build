@@ -24,7 +24,7 @@ export const titleStyles = theme => ({
   fontSize: theme.fontSizes[0],
   lineHeight: 1.67,
   letterSpacing: `0.05em`,
-  color: theme.colors.blackFade[50],
+  color: theme.colors.blackFade[70],
   textTransform: `uppercase`,
   fontWeight: `normal`,
 })
@@ -50,7 +50,7 @@ export const subtextStyles = theme => ({
 export const spanStyles = theme => ({
   fontSize: theme.fontSizes[3],
   fontWeight: `normal`,
-  color: theme.colors.blackFade[50],
+  color: theme.colors.blackFade[70],
   paddingLeft: theme.space[2],
 })
 

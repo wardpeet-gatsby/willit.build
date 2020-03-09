@@ -34,7 +34,7 @@ const BuildCardsGroup = () => {
       <Link
         to="/methodology-faq"
         css={theme => ({
-          color: theme.colors.purple[40],
+          color: theme.colors.purple[60],
         })}
       >
         Methodology + FAQ
