@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 
-import { Button, shadows, colors } from "gatsby-interface"
+import { Button, colors } from "gatsby-interface"
 import LinkIcon from "../assets/Link"
 import copyToClipboard from "../utils/copy-to-clipboard"
 
