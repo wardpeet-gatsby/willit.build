@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import PropTypes from "prop-types"
 
-import { Button, shadows } from "gatsby-interface"
+import { Button, shadows, colors } from "gatsby-interface"
 import LinkIcon from "../assets/Link"
 import copyToClipboard from "../utils/copy-to-clipboard"
 
@@ -19,6 +19,7 @@ function Copy({ content, duration, trim = false }) {
       name={label}
       disabled={copied}
       css={{
+        color: colors.grey[40],
         backgroundColor: `transparent`,
         border: `none`,
         padding: 0,
@@ -28,12 +29,15 @@ function Copy({ content, duration, trim = false }) {
           padding: 0,
           border: `none`,
         },
-        ":not([disabled]):hover": {
+        ":hover": {
+          background: `transparent`,
           border: `none`,
+          color: colors.grey[40],
           padding: 0,
         },
         ":active": {
-          boxShadow: shadows.floating,
+          background: `transparent`,
+          color: colors.grey[40],
           padding: 0,
         },
       }}
@@ -47,7 +51,8 @@ function Copy({ content, duration, trim = false }) {
         setCopied(false)
       }}
     >
-      <LinkIcon ariaLabel={label} />
+      {copied ? `Copied` : `Copy`}
+      <LinkIcon />
     </Button>
   )
 }
