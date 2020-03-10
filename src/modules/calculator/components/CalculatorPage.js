@@ -12,7 +12,11 @@ const CalculatorPage = ({ pageContext, location, data }) => {
   return (
     <MaxWidthWrapper>
       <GreyBox>
-        <Header location={location} />
+        <Header
+          benchmarkInfo={{ siteType, contentSource, pageCount }}
+          pageType={`calculator`}
+          location={location}
+        />
         <Calculator
           siteType={siteType}
           contentSource={contentSource}
