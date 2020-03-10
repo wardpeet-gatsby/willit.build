@@ -1,11 +1,12 @@
 import React from "react"
 
-export default ({ height = 25, width = 25 }) => (
+export default ({ height = 25, width = 25, ...rest }) => (
   <svg
     width={width}
     height={height}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 94.652 95.261"
+    {...rest}
   >
     <defs>
       <linearGradient

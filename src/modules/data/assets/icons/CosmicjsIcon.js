@@ -1,12 +1,13 @@
 import React from "react"
 
-export default ({ height = 25, width = 25 }) => (
+export default ({ height = 25, width = 25, ...rest }) => (
   <svg
     width={width}
     height={height}
     viewBox="0 0 25 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...rest}
   >
     <g clipPath="url(#clip0)">
       <path

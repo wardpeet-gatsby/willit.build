@@ -1,17 +1,19 @@
 import React from "react"
 
-const MAX_WIDTH = 1280
+export const MAX_WIDTH = 1280
+export const HORIZONTAL_PADDING_MOBILE = `1.5rem`
+export const HORIZONTAL_PADDING_DESKTOP = `2rem`
 
 const wrapperCss = theme => ({
   maxWidth: MAX_WIDTH,
-  paddingLeft: theme.space[5],
-  paddingRight: theme.space[5],
+  paddingLeft: HORIZONTAL_PADDING_MOBILE,
+  paddingRight: HORIZONTAL_PADDING_MOBILE,
   marginLeft: "auto",
   marginRight: "auto",
 
   [theme.mediaQueries.phablet]: {
-    paddingLeft: theme.space[8],
-    paddingRight: theme.space[8],
+    paddingLeft: HORIZONTAL_PADDING_DESKTOP,
+    paddingRight: HORIZONTAL_PADDING_DESKTOP,
   },
 })
 

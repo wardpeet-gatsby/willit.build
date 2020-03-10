@@ -17,6 +17,11 @@ export default function ThemeProvider({ children }) {
         netlify: theme.colors.teal[50],
         circleCi: theme.colors.orange[50],
       },
+      platforms: {
+        GATSBY_CLOUD: theme.colors.purple[40],
+        NETLIFY: theme.colors.teal[50],
+        CIRCLECI: theme.colors.orange[50],
+      },
     },
   }
 

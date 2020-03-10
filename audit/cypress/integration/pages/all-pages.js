@@ -13,7 +13,7 @@ context("All pages", () => {
   it("audits the chart-demo page", () => {
     cy.visit("/chart-demo")
     cy.audit({
-      performance: 91,
+      performance: 85,
       accessibility: 76,
       "best-practices": 79,
       seo: 70,
@@ -57,7 +57,7 @@ context("All pages", () => {
   it("audits the calculator", () => {
     cy.visit("/details/type/blog/source/contentful/page-count/512")
     cy.audit({
-      performance: 95,
+      performance: 90,
       accessibility: 69,
       "best-practices": 78,
       seo: 70,

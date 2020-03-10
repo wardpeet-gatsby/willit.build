@@ -1,12 +1,13 @@
 import React from "react"
 
-export default ({ height = 25, width = 25 }) => (
+export default ({ height = 25, width = 25, ...rest }) => (
   <svg
     width={width}
     height={height}
     viewBox="0 0 25 25"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    {...rest}
   >
     <path
       d="M1.99609 12.712C1.99609 16.7867 4.36403 20.3081 7.79772 21.9768L2.88733 8.52246C2.31615 9.80274 1.99609 11.2196 1.99609 12.712Z"

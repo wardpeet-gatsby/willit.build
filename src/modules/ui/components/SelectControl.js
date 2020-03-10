@@ -23,7 +23,7 @@ const realSelectCss = () => ({
 })
 
 const fakeSelectCss = theme => ({
-  fontSize: theme.fontSizes[5],
+  fontSize: theme.fontSizes[3],
   color: theme.colors.grey[90],
   fontWeight: theme.fontWeights.heading,
 
@@ -31,6 +31,10 @@ const fakeSelectCss = theme => ({
   // focus ring to the visible sibling.
   "select:focus + &": {
     outline: `5px auto -webkit-focus-ring-color`,
+  },
+
+  [theme.mediaQueries.desktop]: {
+    fontSize: theme.fontSizes[5],
   },
 })
 

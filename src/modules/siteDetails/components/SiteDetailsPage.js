@@ -1,28 +1,104 @@
 import React from "react"
+import { graphql } from "gatsby"
+import DetailsChart from "@modules/charts/components/DetailsChart"
+import { getMockData, getMockAnnotations } from "@modules/charts/utils/mockData"
+import MaxWidthWrapper, {
+  HORIZONTAL_PADDING_DESKTOP as wrapperPaddingDesktop,
+} from "@modules/ui/components/MaxWidthWrapper"
+import DetailsHeader from "./DetailsHeader"
+import DetailsOverview from "./DetailsOverview"
+import convertStringTimeToSeconds from "@modules/build/utils/convertStringTimeToSeconds"
 
-import PageCountSelectControl from "@modules/ui/components/PageCountSelectControl"
-import MaxWidthWrapper from "@modules/ui/components/MaxWidthWrapper"
+const SiteDetails = ({ data, pageContext }) => {
+  const {
+    benchmarkApi: { benchmarkVendor },
+  } = data
 
-const SiteDetailsPage = ({ pageContext }) => {
-  const { siteType, contentSource, pageCount } = pageContext
+  const contentSource = benchmarkVendor.contentSource
+  const siteType = benchmarkVendor.siteType
+  const { pageCount } = pageContext
+  const { latestStats } = benchmarkVendor
+
+  const graphData = getMockData()
+  const graphAnnotations = getMockAnnotations()
+
+  const latestStatsOrdered = [...latestStats].sort(
+    (a, b) =>
+      convertStringTimeToSeconds(a.warmStartTime) -
+      convertStringTimeToSeconds(b.warmStartTime)
+  )
 
   return (
-    <MaxWidthWrapper>
-      <h1>Willit.build Site Details page</h1>
+    <MaxWidthWrapper
+      css={theme => ({
+        paddingLeft: 0,
+        paddingRight: 0,
 
-      <br />
-      <br />
+        [theme.mediaQueries.desktop]: {
+          paddingLeft: wrapperPaddingDesktop,
+          paddingRight: wrapperPaddingDesktop,
+        },
+      })}
+    >
+      <div
+        css={theme => ({
+          background: theme.colors.grey[5],
 
-      {/* TEMP: Put me in the right place once this page is built! */}
-      <PageCountSelectControl
-        siteType={siteType}
-        initialPageCount={pageCount}
-        contentSource={contentSource}
-        footer="1 image per page"
-        pathPrefix="details"
-      />
+          [theme.mediaQueries.desktop]: {
+            padding: `${theme.space[10]} ${theme.space[15]} ${theme.space[8]}`,
+          },
+        })}
+      >
+        <DetailsHeader
+          siteType={siteType}
+          contentSource={contentSource}
+          pageCount={pageCount}
+        />
+
+        <DetailsOverview
+          siteType={siteType}
+          contentSource={contentSource}
+          pageCount={pageCount}
+          stats={latestStatsOrdered}
+        />
+      </div>
+      <section>
+        <DetailsChart data={graphData} annotations={graphAnnotations} />
+      </section>
     </MaxWidthWrapper>
   )
 }
 
-export default SiteDetailsPage
+export default SiteDetails
+
+export const query = graphql`
+  query SiteDetailsQuery($contentSource: BenchmarkVendors_CmsVendor) {
+    site {
+      siteMetadata {
+        url
+      }
+    }
+    benchmarkApi {
+      benchmarkVendors {
+        id
+        latestStats {
+          coldStartTime
+          platform
+          warmStartTime
+        }
+        contentSource
+        siteType
+      }
+      benchmarkVendor(contentSource: $contentSource) {
+        id
+        latestStats {
+          coldStartTime
+          platform
+          warmStartTime
+        }
+        contentSource
+        siteType
+      }
+    }
+  }
+`

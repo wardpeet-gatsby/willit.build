@@ -11,6 +11,7 @@ import GatsbyIcon from "./assets/icons/GatsbyIcon"
 import NetlifyIcon from "./assets/icons/NetlifyIcon"
 import CircleCiIcon from "./assets/icons/CircleCiIcon"
 
+import BlogIcon from "./assets/icons/BlogIcon"
 import BlogThumbnail from "./assets/thumbnails/BlogThumbnail.png"
 
 import {
@@ -28,6 +29,7 @@ export const SiteType = {
     id: `BLOG`,
     displayedAs: `Blog`,
     thumbnail: BlogThumbnail,
+    Icon: BlogIcon,
   },
 }
 
@@ -38,37 +40,62 @@ export const ContentSource = {
     id: `CONTENTFUL`,
     displayedAs: `Contentful`,
     Icon: ContentfulIcon,
+    gradient: {
+      start: `#159BF3`,
+      end: `#B17ACC`,
+    },
   },
   COSMICJS: {
     id: `COSMICJS`,
     displayedAs: `CosmicJS`,
     Icon: CosmicjsIcon,
+    gradient: {
+      start: `#29ABE2`,
+      end: `#2DE3DA`,
+    },
   },
   DATOCMS: {
     id: `DATOCMS`,
     displayedAs: `DatoCMS`,
     Icon: DatocmsIcon,
+    gradient: {
+      start: `#FF684F`,
+      end: `#FFB238`,
+    },
   },
   DRUPAL: {
     id: `DRUPAL`,
     displayedAs: `Drupal`,
     Icon: DrupalIcon,
+    gradient: {
+      start: `#2BA9E0`,
+      end: `#35B637`,
+    },
   },
   MDX: {
     id: `MDX`,
     displayedAs: `MDX`,
     Icon: MarkdownIcon,
+    gradient: {
+      start: `#000000`,
+      end: `#BF9141`,
+    },
   },
   WORDPRESS: {
     id: `WORDPRESS`,
     displayedAs: `Wordpress`,
     Icon: WordpressIcon,
+    gradient: {
+      start: `#21759B`,
+      end: `#BC027F`,
+    },
   },
 }
 
 export const contentSourceIds = Object.values(ContentSource).map(
   source => source.id
 )
+
 export const Platforms = {
   GATSBY_CLOUD: {
     id: `GATSBY_CLOUD`,

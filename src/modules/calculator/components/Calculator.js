@@ -2,6 +2,7 @@ import React from "react"
 
 import ContentSourceControl from "@modules/ui/components/ContentSourceControl"
 import PageCountSelectControl from "@modules/ui/components/PageCountSelectControl"
+import convertStringTimeToSeconds from "@modules/build/utils/convertStringTimeToSeconds"
 
 import Stat from "./Stat"
 
@@ -154,18 +155,11 @@ const Calculator = ({ siteType, contentSource, pageCount, data }) => {
   )
 }
 
-const convertTimeToSeconds = timestamp => {
-  // timestamps are in the form "3m 10s".
-  // Convert this into # of seconds (190)
-  const [, minutes, seconds] = timestamp.match(/([\d]+)m\s+([\d]+)s/)
-  return Number(seconds) + Number(minutes) * 60
-}
-
 const sortStatsForSet = (stats, key) => {
   return [...stats]
     .sort((a, b) => {
-      const aTime = convertTimeToSeconds(a[key])
-      const bTime = convertTimeToSeconds(b[key])
+      const aTime = convertStringTimeToSeconds(a[key])
+      const bTime = convertStringTimeToSeconds(b[key])
 
       if (aTime > bTime) {
         return 1
