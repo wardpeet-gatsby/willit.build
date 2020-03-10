@@ -1,14 +1,26 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 
 import { Button, colors } from "gatsby-interface"
 import LinkIcon from "../assets/Link"
 import copyToClipboard from "../utils/copy-to-clipboard"
 
-const delay = duration => new Promise(resolve => setTimeout(resolve, duration))
-
 function Copy({ content, duration, trim = false }) {
   const [copied, setCopied] = useState(false)
+
+  useEffect(() => {
+    let timeoutId
+
+    if (copied) {
+      timeoutId = setTimeout(() => {
+        setCopied(false)
+      }, duration)
+    }
+
+    return () => {
+      window.clearTimeout(timeoutId)
+    }
+  }, [duration, copied, setCopied])
 
   const label = copied ? `URL copied to clipboard` : `Copy URL to clipboard`
 
@@ -43,12 +55,7 @@ function Copy({ content, duration, trim = false }) {
       }}
       onClick={async () => {
         await copyToClipboard(trim ? content.trim() : content)
-
         setCopied(true)
-
-        await delay(duration)
-
-        setCopied(false)
       }}
     >
       {copied ? `Copied` : `Copy`}
