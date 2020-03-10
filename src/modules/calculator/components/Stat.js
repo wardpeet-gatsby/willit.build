@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 
 import { Platforms } from "@modules/data/constants"
 import { controlLabelCss } from "@modules/ui/styles"
+import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
 
 const PlatformKeys = Object.keys(Platforms)
 
@@ -19,16 +20,34 @@ const propTypes = {
   isLabelVisible: PropTypes.bool.isRequired,
 }
 
-const warmTimeWrapper = {
-  height: 60,
+const wrapper = theme => ({
+  marginBottom: theme.space[9],
+  display: `flex`,
+  flexDirection: `column`,
+  alignItems: `center`,
+
+  [theme.mediaQueries.phablet]: {
+    alignItems: `flex-start`,
+  },
+  [theme.mediaQueries.tablet]: {
+    marginBottom: 0,
+  },
+})
+
+const warmTimeWrapper = theme => ({
   display: `flex`,
   alignItems: `center`,
-}
+
+  [theme.mediaQueries.tablet]: {
+    height: 60,
+  },
+})
+
 const coldTimeWrapper = {}
 
 const winnerWarmTimeCss = theme => ({
-  fontSize: theme.fontSizes[12],
-  fontWeight: theme.fontWeights.bold,
+  fontSize: theme.fontSizes[11],
+  fontWeight: theme.fontWeights.heading,
 })
 
 const runnerUpWarmTimeCss = theme => ({
@@ -66,11 +85,6 @@ const runnerUpPlatform = theme => ({
   color: theme.colors.grey[60],
 })
 
-const invisibleCss = {
-  opacity: 0,
-  pointerEvents: `none`,
-}
-
 const getStylesForType = type => {
   switch (type) {
     case "warm-winner": {
@@ -107,22 +121,18 @@ const getStylesForType = type => {
   }
 }
 
-const Stat = ({
-  time,
-  platform,
-  type,
-  label,
-  isLabelVisible,
-  ...delegated
-}) => {
+const Stat = ({ time, platform, type, label, isLabelVisible, css }) => {
   const { displayName, Icon } = Platforms[platform]
 
   const { timeWrapperCss, timeCss, platformCss } = getStylesForType(type)
 
   return (
-    <div {...delegated}>
+    <div css={theme => [wrapper(theme), css]}>
       <h2
-        css={theme => [controlLabelCss(theme), !isLabelVisible && invisibleCss]}
+        css={theme => [
+          controlLabelCss(theme),
+          !isLabelVisible && visuallyHiddenCss,
+        ]}
       >
         {label}
       </h2>

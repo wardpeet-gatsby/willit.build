@@ -5,29 +5,71 @@ import PageCountSelectControl from "@modules/ui/components/PageCountSelectContro
 
 import Stat from "./Stat"
 
-const wrapperCss = () => ({
+const wrapperCss = theme => ({
   display: `grid`,
-  gridTemplateColumns: `1fr 3fr`,
+  gridTemplateColumns: `1fr`,
   gridTemplateAreas: `
-    "controls warm warm warm"
-    "controls cold cold cold"
+    "controls"
+    "warm"
+    "cold"
   `,
+
+  [theme.mediaQueries.desktop]: {
+    gridTemplateColumns: `1fr 3fr`,
+    gridTemplateAreas: `
+      "controls warm warm warm"
+      "controls cold cold cold"
+    `,
+  },
 })
 
-const rowCss = {
+const controlsWrapperCss = theme => ({
+  gridArea: `controls`,
   display: `flex`,
-  justifyContent: `space-between`,
-}
+  justifyContent: `center`,
+  paddingBottom: theme.space[7],
+  marginBottom: theme.space[7],
+  borderBottom: `1px solid ${theme.colors.blackFade[10]}`,
+
+  [theme.mediaQueries.phablet]: {
+    justifyContent: `flex-start`,
+  },
+  [theme.mediaQueries.desktop]: {
+    paddingBottom: 0,
+    marginBottom: 0,
+    borderBottom: `none`,
+    flexDirection: `column`,
+  },
+})
+const firstControlWrapperCss = theme => ({
+  marginRight: theme.space[7],
+
+  [theme.mediaQueries.desktop]: {
+    marginRight: 0,
+    marginBottom: theme.space[7],
+  },
+})
+
+const rowCss = theme => ({
+  display: `flex`,
+  flexDirection: `column`,
+
+  [theme.mediaQueries.tablet]: {
+    flexDirection: `row`,
+    justifyContent: `space-between`,
+    alignItems: `flex-end`,
+  },
+})
 
 const topRowCss = theme => ({
-  ...rowCss,
+  ...rowCss(theme),
   gridArea: `warm`,
   paddingBottom: theme.space[7],
   borderBottom: `1px solid ${theme.colors.blackFade[10]}`,
 })
 
 const bottomRowCss = theme => ({
-  ...rowCss,
+  ...rowCss(theme),
   gridArea: `cold`,
   paddingTop: theme.space[7],
 })
@@ -40,8 +82,8 @@ const Calculator = ({ siteType, contentSource, pageCount, data }) => {
 
   return (
     <article css={wrapperCss}>
-      <div css={{ gridArea: `controls` }}>
-        <div css={theme => ({ marginBottom: theme.space[7] })}>
+      <div css={controlsWrapperCss}>
+        <div css={firstControlWrapperCss}>
           <ContentSourceControl
             siteType={siteType}
             pageCount={pageCount}
@@ -63,7 +105,7 @@ const Calculator = ({ siteType, contentSource, pageCount, data }) => {
           time={sortedWarmTimeStats[0].time}
           label="Fastest Content Build"
           isLabelVisible={true}
-          css={{ flex: 1 }}
+          css={{ flex: 1.5 }}
         />
         <Stat
           type="warm-runner-up"
@@ -89,7 +131,7 @@ const Calculator = ({ siteType, contentSource, pageCount, data }) => {
           time={sortedColdTimeStats[0].time}
           label="Initial Build"
           isLabelVisible={true}
-          css={{ flex: 1 }}
+          css={{ flex: 1.5 }}
         />
         <Stat
           type="cold-runner-up"
