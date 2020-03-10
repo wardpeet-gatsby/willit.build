@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import { Button, shadows } from "gatsby-interface"
+import { Button, shadows, colors } from "gatsby-interface"
 
 const propTypes = {
   Icon: PropTypes.func.isRequired,
@@ -14,7 +14,7 @@ export const SocialShareIcon = ({ Icon, url, label }) => {
     <Button
       tone={`NEUTRAL`}
       size={`S`}
-      name={label}
+      aria-label={label}
       css={{
         backgroundColor: `transparent`,
         border: `none`,
@@ -41,7 +41,7 @@ export const SocialShareIcon = ({ Icon, url, label }) => {
         }
       }}
     >
-      <Icon />
+      <Icon fill={colors.grey[60]} />
     </Button>
   )
 }

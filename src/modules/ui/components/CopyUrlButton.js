@@ -31,7 +31,7 @@ function Copy({ content, duration, trim = false }) {
       name={label}
       disabled={copied}
       css={{
-        color: colors.grey[40],
+        color: colors.grey[60],
         backgroundColor: `transparent`,
         border: `none`,
         padding: 0,
@@ -59,7 +59,7 @@ function Copy({ content, duration, trim = false }) {
       }}
     >
       {copied ? `Copied` : `Copy`}
-      <LinkIcon />
+      <LinkIcon fill={colors.grey[60]} />
     </Button>
   )
 }
