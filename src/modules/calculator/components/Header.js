@@ -55,7 +55,7 @@ const blurbCss = theme => ({
   lineHeight: theme.lineHeights.default,
 })
 
-const Header = () => {
+const Header = ({ location, benchmarkInfo = {}, pageType = `` }) => {
   return (
     <header>
       <div css={topRowCss}>
@@ -63,7 +63,11 @@ const Header = () => {
           <CalculatorIcon />
         </div>
         <h1 css={headerStyles}>Build time calculator</h1>
-        <SocialLinks />
+        <SocialLinks
+          pageType={pageType}
+          benchmarkInfo={benchmarkInfo}
+          location={location}
+        />
       </div>
       <div css={blurbWrapperCss}>
         <p css={blurbCss}>
