@@ -21,12 +21,15 @@ const PageCountSelectControl = ({
   return (
     <SelectControl
       label="Pages"
+      id="page-count-control"
       value={currentPageCount}
       displayedValue={displayedAs}
       onChange={(ev, newPath) => {
         setCurrentPageCount(ev.target.value)
 
-        navigate(newPath)
+        navigate(newPath, {
+          state: { refocusId: ev.target.id, disableScrollUpdate: true },
+        })
       }}
       footer={footer}
     >

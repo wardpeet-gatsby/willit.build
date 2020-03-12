@@ -46,16 +46,17 @@ const caretWrapper = theme => ({
 const SelectControl = ({
   label,
   value,
+  id: providedId,
   displayedValue,
   onChange,
   footer,
   children,
 }) => {
-  const randomId = useRandomId("select-control")
+  const id = providedId || useRandomId("select-control")
 
   return (
     <div>
-      <label htmlFor={`${randomId}`} css={controlLabelCss}>
+      <label htmlFor={`${id}`} css={controlLabelCss}>
         {label}
       </label>
       <div css={selectWrapperCss}>
@@ -66,7 +67,7 @@ const SelectControl = ({
         */}
         {/* eslint-disable-next-line jsx-a11y/no-onchange */}
         <select
-          id={randomId}
+          id={id}
           onChange={ev => {
             const selectedOption = ev.target.options[ev.target.selectedIndex]
             const newPath = selectedOption.getAttribute("data-path")

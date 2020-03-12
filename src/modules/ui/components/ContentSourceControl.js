@@ -22,6 +22,7 @@ const ContentSourceControl = ({
     <>
       <SelectControl
         label="Content Source"
+        id="content-source-control"
         value={currentContentSource}
         displayedValue={
           <>
@@ -32,7 +33,9 @@ const ContentSourceControl = ({
         onChange={(ev, newPath) => {
           setCurrentContentSource(ev.target.value)
 
-          navigate(newPath)
+          navigate(newPath, {
+            state: { refocusId: ev.target.id, disableScrollUpdate: true },
+          })
         }}
       >
         {contentSourceIds.map(contentSourceId => {
