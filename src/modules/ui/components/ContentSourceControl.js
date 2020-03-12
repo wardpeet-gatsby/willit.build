@@ -26,7 +26,11 @@ const ContentSourceControl = ({
         value={currentContentSource}
         displayedValue={
           <>
-            <Icon />
+            <Icon
+              css={theme => ({
+                marginRight: theme.space[2],
+              })}
+            />
             {displayedAs}
           </>
         }

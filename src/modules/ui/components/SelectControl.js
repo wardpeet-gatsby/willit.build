@@ -23,6 +23,8 @@ const realSelectCss = () => ({
 })
 
 const fakeSelectCss = theme => ({
+  alignItems: `center`,
+  display: `flex`,
   fontSize: theme.fontSizes[3],
   color: theme.colors.grey[90],
   fontWeight: theme.fontWeights.heading,
