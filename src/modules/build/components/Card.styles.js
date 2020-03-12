@@ -30,6 +30,7 @@ export const titleStyles = theme => ({
 })
 
 export const contentStyles = theme => ({
+  display: `block`,
   fontSize: theme.fontSizes[5],
   lineHeight: theme.lineHeights.solid,
   color: theme.colors.blackFade[90],
@@ -38,12 +39,15 @@ export const contentStyles = theme => ({
 })
 
 export const subtextStyles = theme => ({
+  alignItems: `center`,
+  display: `flex`,
   fontSize: theme.fontSizes[1],
   lineHeight: 1.43,
   letterSpacing: ` 0.025em`,
   color: theme.colors.blackFade[70],
+
   svg: {
-    verticalAlign: `text-top`,
+    marginRight: theme.space[2],
   },
 })
 

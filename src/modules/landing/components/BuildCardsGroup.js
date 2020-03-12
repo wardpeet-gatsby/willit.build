@@ -57,8 +57,6 @@ const BuildCardsGroup = () => {
           const contentSource = data.contentSource
           const siteType = data.siteType
 
-          // currently, this is showing the top stats. this could change if we decide to show latest benchmark, median of benchmarks, etc
-          // we also probably need to add numberOfPages to topStats on the backend if we decide to go this route. this is hard coded for now
           return (
             <Card
               key={data.id}

@@ -51,12 +51,12 @@ const Card = ({
 
   return (
     <div css={wrapperStyles}>
-      <h2 css={visuallyHiddenCss}>Build card</h2>
+      <h3 css={visuallyHiddenCss}>{formattedSource} Site Benchmarks</h3>
       <div css={gridStyles}>
         <SiteTypeImage image={coverImage} />
         <div>
-          <h3 css={titleStyles}>Source &amp; Site Type</h3>
-          <h4 css={contentStyles}>
+          <h4 css={titleStyles}>Source &amp; Site Type</h4>
+          <span css={contentStyles}>
             <Icon />{" "}
             <span
               css={{
@@ -65,22 +65,22 @@ const Card = ({
             >
               {formattedSource}
             </span>
-          </h4>
-          <p css={subtextStyles}>{formattedSiteType}</p>
+          </span>
+          <span css={subtextStyles}>{formattedSiteType}</span>
         </div>
         <div>
-          <h3 css={titleStyles}>Pages</h3>
-          <h4 css={contentStyles}>{numberOfPages}</h4>
+          <h4 css={titleStyles}>Pages</h4>
+          <span css={contentStyles}>{numberOfPages}</span>
         </div>
         <div>
-          <h3 css={titleStyles}>Subsequent/ initial build time</h3>
-          <h4 css={contentStyles}>
+          <h4 css={titleStyles}>Subsequent/ initial build time</h4>
+          <span css={contentStyles}>
             {subsequentBuildTime}
             <span css={spanStyles}>/ {initialBuildTime}</span>
-          </h4>
-          <p css={subtextStyles}>
+          </span>
+          <span css={subtextStyles}>
             <GatsbyIcon /> Gatsby Cloud
-          </p>
+          </span>
         </div>
 
         <div>
