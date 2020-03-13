@@ -130,7 +130,7 @@ const Calculator = ({ siteType, contentSource, pageCount, data }) => {
           type="cold-winner"
           platform={sortedColdTimeStats[0].platform}
           time={sortedColdTimeStats[0].time}
-          label="Initial Build"
+          label="Uncached Build"
           isLabelVisible={true}
           css={{ flex: 1.5 }}
         />

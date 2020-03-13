@@ -15,14 +15,14 @@ const BuildTypeSelectControl = ({ siteType, contentSource, ...rest }) => {
     <OverviewItem {...rest}>
       <SelectControl
         label="Build type"
-        value={`Subsequent`}
-        displayedValue={`Subsequent`}
+        value={`Cached`}
+        displayedValue={`Cached`}
         footer="Indicates a code or data update"
         onChange={() =>
           alert(`This component, for now,  is just a visual mock`)
         }
       >
-        {[`Subsequent`, `Initial`].map(item => (
+        {[`Cached`, `Uncached`].map(item => (
           <SelectControlOption
             key={item}
             value={item}

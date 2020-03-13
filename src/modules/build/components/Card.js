@@ -23,16 +23,16 @@ const propTypes = {
   source: PropTypes.string,
   siteType: PropTypes.string,
   numberOfPages: PropTypes.number,
-  subsequentBuildTime: PropTypes.string,
-  initialBuildTime: PropTypes.string,
+  cachedBuildTime: PropTypes.string,
+  uncachedBuildTime: PropTypes.string,
 }
 
 const Card = ({
   contentSource,
   siteType = SiteType.Blog,
   numberOfPages,
-  subsequentBuildTime,
-  initialBuildTime,
+  cachedBuildTime,
+  uncachedBuildTime,
 }) => {
   const formattedSource = ContentSource[contentSource].displayedAs
   const Icon = ContentSource[contentSource].Icon
@@ -73,10 +73,10 @@ const Card = ({
           <span css={contentStyles}>{numberOfPages}</span>
         </div>
         <div>
-          <h4 css={titleStyles}>Subsequent/ initial build time</h4>
+          <h4 css={titleStyles}>Cached/ uncached build time</h4>
           <span css={contentStyles}>
-            {subsequentBuildTime}
-            <span css={spanStyles}>/ {initialBuildTime}</span>
+            {cachedBuildTime}
+            <span css={spanStyles}>/ {uncachedBuildTime}</span>
           </span>
           <span css={subtextStyles}>
             <GatsbyIcon /> Gatsby Cloud

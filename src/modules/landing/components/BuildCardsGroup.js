@@ -63,8 +63,8 @@ const BuildCardsGroup = () => {
               contentSource={contentSource}
               siteType={siteType}
               numberOfPages={512}
-              subsequentBuildTime={data.latestStats[0].warmStartTime}
-              initialBuildTime={data.latestStats[0].coldStartTime}
+              cachedBuildTime={data.latestStats[0].warmStartTime}
+              uncachedBuildTime={data.latestStats[0].coldStartTime}
               {...rest}
             />
           )
