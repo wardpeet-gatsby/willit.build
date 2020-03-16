@@ -20,6 +20,7 @@ import CustomTooltip from "./CustomTooltip"
 import CustomActiveDot from "./CustomActiveDot"
 import CustomReferenceLineLabel from "./CustomReferenceLineLabel"
 import MobileScopeNav from "./MobileScopeNav"
+import AnnotationTip from "./AnnotationTip"
 import {
   xAxisTickFormater,
   yAxisTickFormater,
@@ -32,7 +33,7 @@ import {
   BuildServices,
   ChartDefaultProps,
 } from "../constants"
-import useMatchMedia from "../hooks/useMatchMedia"
+import useMatchMedia from "@modules/ui/hooks/useMatchMedia"
 
 const { ChartMinHeight, YAxisWidth, ActiveDotRadius } = DetailsChartDimensions
 
@@ -63,6 +64,8 @@ function DetailsChart({
     }, {})
   )
 
+  const [activeAnnotation, setActiveAnnotation] = React.useState()
+
   const { colors, mediaQueries } = useTheme()
 
   const isMobile = !useMatchMedia(mediaQueries.desktop)
@@ -90,6 +93,10 @@ function DetailsChart({
 
   const toggleChartLine = dataKey => {
     setActiveLines({ ...activeLines, [dataKey]: !activeLines[dataKey] })
+  }
+
+  function annotationClickHandler(annotation, ref) {
+    setActiveAnnotation({ annotation, ref })
   }
 
   return (
@@ -156,15 +163,24 @@ function DetailsChart({
             mirror={isMobile}
           />
 
-          {annotations.map(({ date, label }) => (
-            <ReferenceLine
-              key={`refLine${date}`}
-              x={date}
-              stroke={colors.blackFade[30]}
-              label={<CustomReferenceLineLabel label={label} />}
-              strokeDasharray="3 3"
-            />
-          ))}
+          {annotations.map(annotation => {
+            const { date } = annotation
+
+            return (
+              <ReferenceLine
+                key={`refLine${date}`}
+                x={date}
+                stroke={colors.blackFade[30]}
+                label={
+                  <CustomReferenceLineLabel
+                    annotation={annotation}
+                    onClick={annotationClickHandler}
+                  />
+                }
+                strokeDasharray="3 3"
+              />
+            )
+          })}
 
           {Object.entries(BuildServices).map(([key]) => (
             <Area
@@ -190,6 +206,10 @@ function DetailsChart({
           )}
         </AreaChart>
       </ResponsiveContainer>
+      <AnnotationTip
+        activeAnnotation={activeAnnotation}
+        setActiveAnnotation={setActiveAnnotation}
+      />
     </div>
   )
 }

@@ -10,6 +10,11 @@ export const DetailsChartDimensions = {
   ActiveDotRadius: 10,
   ActiveDotDiam: 20,
   ActiveDotInnerRadius: 4,
+  AnnotationTipWidth: 200,
+  AnnotationTipWindowMargin: 15,
+  AnnotationIconSize: 30, // used also to set its height
+  AnnotationSpoutWidth: 20,
+  AnnotationSpoutHeight: 10,
 }
 
 export const BuildServices = {
