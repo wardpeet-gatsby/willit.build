@@ -100,56 +100,62 @@ const Calculator = ({ siteType, contentSource, pageCount, data }) => {
         />
       </div>
       <div css={topRowCss}>
-        <Stat
-          type="warm-winner"
-          platform={sortedWarmTimeStats[0].platform}
-          time={sortedWarmTimeStats[0].time}
-          label="Fastest Content Build"
-          isLabelVisible={true}
-          css={{ flex: 1.5 }}
-        />
-        <Stat
-          type="warm-runner-up"
-          platform={sortedWarmTimeStats[1].platform}
-          time={sortedWarmTimeStats[1].time}
-          label="Runner-Up"
-          isLabelVisible={true}
-          css={{ flex: 1 }}
-        />
-        <Stat
-          type="warm-runner-up"
-          platform={sortedWarmTimeStats[2].platform}
-          time={sortedWarmTimeStats[2].time}
-          label="Second Runner-Up"
-          isLabelVisible={false}
-          css={{ flex: 1 }}
-        />
+        <div css={{ flex: 1.5 }}>
+          <Stat
+            type="warm-winner"
+            platform={sortedWarmTimeStats[0].platform}
+            time={sortedWarmTimeStats[0].time}
+            label="Fastest Content Build"
+            isLabelVisible={true}
+          />
+        </div>
+        <div css={{ flex: 1 }}>
+          <Stat
+            type="warm-runner-up"
+            platform={sortedWarmTimeStats[1].platform}
+            time={sortedWarmTimeStats[1].time}
+            label="Runner-Up"
+            isLabelVisible={true}
+          />
+        </div>
+        <div css={{ flex: 1 }}>
+          <Stat
+            type="warm-runner-up"
+            platform={sortedWarmTimeStats[2].platform}
+            time={sortedWarmTimeStats[2].time}
+            label="Second Runner-Up"
+            isLabelVisible={false}
+          />
+        </div>
       </div>
       <div css={bottomRowCss}>
-        <Stat
-          type="cold-winner"
-          platform={sortedColdTimeStats[0].platform}
-          time={sortedColdTimeStats[0].time}
-          label="Uncached Build"
-          isLabelVisible={true}
-          css={{ flex: 1.5 }}
-        />
-        <Stat
-          type="cold-runner-up"
-          platform={sortedColdTimeStats[1].platform}
-          time={sortedColdTimeStats[1].time}
-          label="Runner-Up"
-          isLabelVisible={false}
-          css={{ flex: 1 }}
-        />
-        <Stat
-          type="cold-runner-up"
-          platform={sortedColdTimeStats[2].platform}
-          time={sortedColdTimeStats[2].time}
-          label="Second Runner-Up"
-          isLabelVisible={false}
-          css={{ flex: 1 }}
-        />
+        <div css={{ flex: 1.5 }}>
+          <Stat
+            type="cold-winner"
+            platform={sortedColdTimeStats[0].platform}
+            time={sortedColdTimeStats[0].time}
+            label="Uncached Build"
+            isLabelVisible={true}
+          />
+        </div>
+        <div css={{ flex: 1 }}>
+          <Stat
+            type="cold-runner-up"
+            platform={sortedColdTimeStats[1].platform}
+            time={sortedColdTimeStats[1].time}
+            label="Runner-Up"
+            isLabelVisible={false}
+          />
+        </div>
+        <div css={{ flex: 1 }}>
+          <Stat
+            type="cold-runner-up"
+            platform={sortedColdTimeStats[2].platform}
+            time={sortedColdTimeStats[2].time}
+            label="Second Runner-Up"
+            isLabelVisible={false}
+          />
+        </div>
       </div>
     </article>
   )

@@ -121,13 +121,13 @@ const getStylesForType = type => {
   }
 }
 
-const Stat = ({ time, platform, type, label, isLabelVisible, css }) => {
+const Stat = ({ time, platform, type, label, isLabelVisible }) => {
   const { displayName, Icon } = Platforms[platform]
 
   const { timeWrapperCss, timeCss, platformCss } = getStylesForType(type)
 
   return (
-    <div css={theme => [wrapper(theme), css]}>
+    <div css={wrapper}>
       <h2
         css={theme => [
           controlLabelCss(theme),

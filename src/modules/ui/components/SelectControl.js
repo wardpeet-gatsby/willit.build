@@ -20,6 +20,10 @@ const realSelectCss = () => ({
   opacity: 0,
   width: `100%`,
   height: `100%`,
+  // This is needed to allow the `<select>` element to have a
+  // dynamic height on Safari. The actual appearance doesn't matter
+  // since it's invisible.
+  WebkitAppearance: `none`,
 })
 
 const fakeSelectCss = theme => ({
@@ -32,7 +36,9 @@ const fakeSelectCss = theme => ({
   // Because we're hiding the actual <select>, we need to transfer the
   // focus ring to the visible sibling.
   "select:focus + &": {
-    outline: `5px auto -webkit-focus-ring-color`,
+    // Firefox doesn't support -webkit-focus-ring-color.
+    // Add a Firefox-style outline as a fallback.
+    outline: [`1px dotted black`, `5px auto -webkit-focus-ring-color`],
   },
 
   [theme.mediaQueries.desktop]: {
@@ -87,8 +93,8 @@ const SelectControl = ({
             <CaretDown />
           </div>
         </div>
-        <div css={controlFooterCss}>{footer}</div>
       </div>
+      <div css={controlFooterCss}>{footer}</div>
     </div>
   )
 }
