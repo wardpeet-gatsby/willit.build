@@ -4,7 +4,7 @@ import { navigate } from "gatsby"
 import {
   ContentSource,
   contentSourceIds,
-  BaseBuildType,
+  BuildType,
 } from "@modules/data/constants"
 import SelectControl, {
   SelectControlOption,
@@ -58,7 +58,7 @@ const ContentSourceControl = ({
                 contentSource: contentSourceId,
                 pageCount,
                 buildType: buildType
-                  ? BaseBuildType[buildType].displayedAs
+                  ? BuildType[buildType].displayedAs
                   : undefined,
               })}
             >
