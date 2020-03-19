@@ -45,6 +45,7 @@ export const contextOverviewItemCss = ({
   [theme.mediaQueries.desktop]: {
     flexBasis: `auto`,
     justifyContent: `flex-end`,
+    paddingTop: theme.space[7],
   },
 })
 

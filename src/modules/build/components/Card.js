@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { Link } from "gatsby-interface"
 import { MdArrowForward } from "react-icons/md"
 import formatPath from "@modules/data/utils/formatPath"
-import { ContentSource, SiteType } from "@modules/data/constants"
+import { ContentSource, SiteType, BuildType } from "@modules/data/constants"
 import {
   wrapperStyles,
   gridStyles,
@@ -42,12 +42,13 @@ const Card = ({
   // The GraphQL API returns names in UPPER_SNAKE_CASE.
   // We want to transform this to lower-dash-cash, to match pathnames.
 
-  const allBenchmarksLink = formatPath(
-    `details`,
+  const allBenchmarksLink = formatPath({
+    prefix: `details`,
     siteType,
     contentSource,
-    numberOfPages
-  )
+    pageCount: numberOfPages,
+    buildType: BuildType[`WARM_START`].displayedAs,
+  })
 
   return (
     <div css={wrapperStyles}>

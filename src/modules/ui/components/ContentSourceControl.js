@@ -1,7 +1,11 @@
 import React from "react"
 import { navigate } from "gatsby"
 
-import { ContentSource, contentSourceIds } from "@modules/data/constants"
+import {
+  ContentSource,
+  contentSourceIds,
+  BaseBuildType,
+} from "@modules/data/constants"
 import SelectControl, {
   SelectControlOption,
 } from "@modules/ui/components/SelectControl"
@@ -11,6 +15,7 @@ const ContentSourceControl = ({
   siteType,
   pageCount,
   initialContentSource,
+  buildType,
 }) => {
   const [currentContentSource, setCurrentContentSource] = React.useState(
     initialContentSource
@@ -47,12 +52,15 @@ const ContentSourceControl = ({
             <SelectControlOption
               key={contentSourceId}
               value={contentSourceId}
-              path={formatPath(
-                `calculator`,
+              path={formatPath({
+                prefix: `calculator`,
                 siteType,
-                contentSourceId,
-                pageCount
-              )}
+                contentSource: contentSourceId,
+                pageCount,
+                buildType: buildType
+                  ? BaseBuildType[buildType].displayedAs
+                  : undefined,
+              })}
             >
               {ContentSource[contentSourceId].displayedAs}
             </SelectControlOption>

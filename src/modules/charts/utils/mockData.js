@@ -63,13 +63,13 @@ export function getMockAnnotations() {
       label: `Feature release 1.2`,
     },
     {
-      date: `2/29/2020`,
+      date: `3/6/2020`,
       label: `Feature release 1.3`,
       description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.`,
       link: `http://gatsbyjs.com`,
     },
     {
-      date: `3/2/2020`,
+      date: `3/13/2020`,
       label: `Feature release 1.4`,
     },
   ]

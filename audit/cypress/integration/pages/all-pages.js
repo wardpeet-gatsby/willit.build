@@ -10,17 +10,6 @@ context("All pages", () => {
     })
   })
 
-  it("audits the chart-demo page", () => {
-    cy.visit("/chart-demo")
-    cy.audit({
-      performance: 85,
-      accessibility: 76,
-      "best-practices": 79,
-      seo: 70,
-      pwa: 50,
-    })
-  })
-
   it("audits the methodology-faq", () => {
     cy.visit("/methodology-faq")
     cy.audit({
@@ -55,7 +44,7 @@ context("All pages", () => {
   })
 
   it("audits the calculator", () => {
-    cy.visit("/details/type/blog/source/contentful/page-count/512")
+    cy.visit("/calculator/type/blog/source/drupal/page-count/512")
     cy.audit({
       performance: 90,
       accessibility: 69,

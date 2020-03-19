@@ -27,3 +27,16 @@ const BasePageCount = {
 }
 module.exports.BasePageCount = BasePageCount
 module.exports.pageCountIds = extractIds(BasePageCount)
+
+const BaseBuildType = {
+  COLD_START: {
+    displayedAs: `Uncached`,
+    description: `Lorem ipsum dolor uncached`,
+  },
+  WARM_START: {
+    displayedAs: `Cached`,
+    description: `Lorem ipsum dolor cached`,
+  },
+}
+module.exports.BaseBuildType = BaseBuildType
+module.exports.buildTypeKeys = Object.keys(BaseBuildType)

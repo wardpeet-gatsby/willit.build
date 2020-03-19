@@ -4,13 +4,16 @@
  */
 const { toLowerDashCase } = require("./transformName")
 
-module.exports = function formatPath(
+module.exports = function formatPath({
   prefix,
   siteType,
   contentSource,
-  pageCount
-) {
+  pageCount,
+  buildType,
+}) {
   return `/${prefix}/type/${toLowerDashCase(siteType)}/source/${toLowerDashCase(
     contentSource
-  )}/page-count/${pageCount}`
+  )}/page-count/${pageCount}${
+    buildType ? `/build-type/${toLowerDashCase(buildType)}` : ``
+  }`
 }

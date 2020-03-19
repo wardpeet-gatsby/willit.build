@@ -18,11 +18,14 @@ import {
   BasePageCount,
   BaseSiteType,
   BaseContentSource,
+  BaseBuildType,
 } from "../../../base-constants"
 
 export { pageCountIds } from "../../../base-constants"
 
 export const PageCount = BasePageCount
+
+export const BuildType = BaseBuildType
 
 export const SiteType = {
   BLOG: {

@@ -14,10 +14,8 @@ const SiteDetails = ({ data, pageContext }) => {
     benchmarkApi: { benchmarkVendor },
   } = data
 
-  const contentSource = benchmarkVendor.contentSource
-  const siteType = benchmarkVendor.siteType
-  const { pageCount } = pageContext
-  const { latestStats } = benchmarkVendor
+  const { pageCount, buildType } = pageContext
+  const { latestStats, contentSource, siteType } = benchmarkVendor
 
   const graphData = getMockData()
   const graphAnnotations = getMockAnnotations()
@@ -59,6 +57,7 @@ const SiteDetails = ({ data, pageContext }) => {
           siteType={siteType}
           contentSource={contentSource}
           pageCount={pageCount}
+          buildType={buildType}
           stats={latestStatsOrdered}
         />
       </div>
@@ -72,14 +71,17 @@ const SiteDetails = ({ data, pageContext }) => {
 export default SiteDetails
 
 export const query = graphql`
-  query SiteDetailsQuery($contentSource: BenchmarkVendors_CmsVendor) {
+  query SiteDetailsQuery(
+    $contentSource: BenchmarkVendors_CmsVendor!
+    $siteType: BenchmarkVendors_BenchmarkSiteType!
+  ) {
     site {
       siteMetadata {
         url
       }
     }
     benchmarkApi {
-      benchmarkVendors {
+      benchmarkVendor(siteType: $siteType, contentSource: $contentSource) {
         id
         latestStats {
           coldStartTime
@@ -88,16 +90,18 @@ export const query = graphql`
         }
         contentSource
         siteType
-      }
-      benchmarkVendor(contentSource: $contentSource) {
-        id
-        latestStats {
-          coldStartTime
-          platform
-          warmStartTime
+        benchmarks {
+          id
+          numberOfPages
+          numberOfImages
+          buildType
+          createdAt
+          buildTimes {
+            NETLIFY
+            GATSBY_CLOUD
+            CIRCLECI
+          }
         }
-        contentSource
-        siteType
       }
     }
   }

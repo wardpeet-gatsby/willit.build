@@ -11,7 +11,13 @@ import {
 } from "./DetailsOverview.parts"
 import { HORIZONTAL_PADDING_MOBILE as wrapperPaddingMobile } from "@modules/ui/components/MaxWidthWrapper"
 
-function DetailsOverview({ siteType, pageCount, contentSource, stats }) {
+function DetailsOverview({
+  siteType,
+  pageCount,
+  contentSource,
+  buildType,
+  stats,
+}) {
   return (
     <div
       css={theme => ({
@@ -49,19 +55,25 @@ function DetailsOverview({ siteType, pageCount, contentSource, stats }) {
             siteType={siteType}
             initialPageCount={pageCount}
             contentSource={contentSource}
+            buildType={buildType}
             footer="1 image per page"
             pathPrefix="details"
           />
         </OverviewItem>
 
-        <BuildTypeSelectControl
-          siteType={siteType}
-          initialPageCount={pageCount}
-          contentSource={contentSource}
+        <OverviewItem
           css={theme =>
             contextOverviewItemCss({ theme, basis: `60%`, type: `control` })
           }
-        />
+        >
+          <BuildTypeSelectControl
+            siteType={siteType}
+            pageCount={pageCount}
+            contentSource={contentSource}
+            initialBuildType={buildType}
+            pathPrefix="details"
+          />
+        </OverviewItem>
 
         <Border />
 
