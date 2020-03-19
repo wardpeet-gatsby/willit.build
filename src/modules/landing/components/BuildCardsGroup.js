@@ -4,10 +4,15 @@ import { graphql, useStaticQuery } from "gatsby"
 
 import Card from "@modules/build/components/Card"
 import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
+import { HERO_PADDING_DESKTOP } from "../constants"
 
-const wrapperStyles = {
+const wrapperStyles = theme => ({
   marginTop: `12rem`,
-}
+
+  [theme.mediaQueries.desktop]: {
+    paddingLeft: HERO_PADDING_DESKTOP,
+  },
+})
 
 const BuildCardsGroup = () => {
   const data = useStaticQuery(graphql`

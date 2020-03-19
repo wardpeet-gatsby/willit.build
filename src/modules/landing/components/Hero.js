@@ -6,6 +6,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import DecorativeBackground from "../assets/DecorativeBackground"
 import { useTheme } from "@modules/ui/components/ThemeProvider"
 import { getTextGradientStyle } from "@modules/ui/utils"
+import { HERO_PADDING_DESKTOP } from "../constants"
 
 const Hero = () => {
   const { contentfulHomepage } = useStaticQuery(graphql`
@@ -28,10 +29,15 @@ const Hero = () => {
   return (
     <header>
       <div
-        css={{
+        css={theme => ({
           zIndex: `1`,
           position: `relative`,
-        }}
+          padding: theme.space[5],
+
+          [theme.mediaQueries.phablet]: {
+            padding: HERO_PADDING_DESKTOP,
+          },
+        })}
       >
         <h1
           data-cy="main-title"

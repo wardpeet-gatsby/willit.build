@@ -2,7 +2,6 @@ export const wrapperStyles = theme => ({
   background: theme.colors.grey[5],
   border: `1px solid ${theme.colors.grey[20]}`,
   borderRadius: theme.radii[2],
-  width: `100%`,
   fontFamily: theme.fonts.body,
 })
 
@@ -13,7 +12,7 @@ export const gridStyles = theme => ({
   gridGap: theme.space[5],
   margin: `0 ${theme.space[8]} ${theme.space[5]} ${theme.space[8]}`,
   [theme.mediaQueries.desktop]: {
-    gridTemplateColumns: `200px repeat(4, auto)`,
+    gridTemplateColumns: `200px 4fr 2fr 4fr 3fr`,
     gridTemplateRows: `auto`,
     margin: `${theme.space[8]} 0 ${theme.space[9]} 0`,
     gridGap: theme.space[3],

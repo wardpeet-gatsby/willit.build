@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { HERO_PADDING_DESKTOP } from "@modules/landing/constants"
 
 const IMAGE_HEIGHT = 144
 const IMAGE_WIDTH = 200
@@ -23,9 +24,9 @@ const SiteTypeImage = ({ image }) => {
         backgroundImage: `url(${image})`,
         boxShadow: `0px 4px 8px rgba(46, 41, 51, 0.08), 0px 8px 16px rgba(71, 63, 79, 0.16)`,
         [theme.mediaQueries.desktop]: {
-          left: `-${IMAGE_OFFSET}px`,
+          left: `-${HERO_PADDING_DESKTOP}`,
           boxShadow: `0px 2px 4px rgba(46, 41, 51, 0.08), 0px 4px 8px rgba(71, 63, 79, 0.16)`,
-          top: `0`,
+          top: `auto`,
           width: `100%`,
         },
       })}
