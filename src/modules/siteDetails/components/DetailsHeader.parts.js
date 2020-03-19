@@ -158,7 +158,7 @@ export function HeaderLinks({ siteType, contentSource }) {
         },
       })}
     >
-      <Link href="https://github.com">View source on github</Link>
+      <Link href="https://github.com">View source on GitHub</Link>
       <Link href="https://github.com">
         <TwitterIcon />
       </Link>
