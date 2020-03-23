@@ -1,4 +1,6 @@
 import React from "react"
+import { useLocation } from "@reach/router"
+import { BaseAnchor } from "gatsby-interface"
 
 import SocialShareLink from "./SocialShareLink"
 import CopyUrlButton from "./CopyUrlButton"
@@ -7,7 +9,7 @@ import LinkedInIcon from "../assets/LinkedIn"
 
 const wrapperCss = () => ({
   display: `flex`,
-  alignItems: `flex-end`,
+  alignItems: `center`,
 })
 
 const spacerCss = theme => ({
@@ -15,7 +17,11 @@ const spacerCss = theme => ({
   height: theme.space[4],
 })
 
-const genericShareText = `Check out Will It Build, a Gatsby.js project.`
+const githubLinkCss = theme => ({
+  color: theme.colors.grey[60],
+  fontSize: theme.fontSizes[1],
+  textDecoration: "none",
+})
 
 const cmsTwitterMap = {
   DATOCMS: `datocms`,
@@ -26,17 +32,17 @@ const cmsTwitterMap = {
   WORDPRESS: `WordPress`,
 }
 
-const SocialLinks = ({ location, pageType, benchmarkInfo }) => {
-  const { href } = location
-  const { siteType = ``, contentSource = ``, pageCount = `` } = benchmarkInfo
+const SocialLinks = ({
+  includeGithubLink,
+  siteType = ``,
+  contentSource = ``,
+  pageCount = ``,
+}) => {
+  const { href } = useLocation()
 
-  const isCalculatorPage = pageType === `calculator`
-
-  const twitterShareText = isCalculatorPage
-    ? `Check out the benchmarks for building a ${pageCount} page @${
-        cmsTwitterMap[contentSource]
-      } ${siteType.toLowerCase()} site on @gatsbyjs Cloud.`
-    : genericShareText
+  const twitterShareText = `Check out the benchmarks for building a ${pageCount} page @${
+    cmsTwitterMap[contentSource]
+  } ${siteType.toLowerCase()} site on @gatsbyjs Cloud.`
 
   const twitterShareUrl = `https://twitter.com/intent/tweet?url=${href}/&text=${encodeURIComponent(
     twitterShareText
@@ -47,7 +53,15 @@ const SocialLinks = ({ location, pageType, benchmarkInfo }) => {
 
   return (
     <div css={wrapperCss}>
-      <CopyUrlButton content={href} />
+      {includeGithubLink && (
+        <BaseAnchor
+          href="https://github.com/gatsby-inc/willit.build"
+          css={githubLinkCss}
+        >
+          View source on Github
+        </BaseAnchor>
+      )}
+      <div css={spacerCss} />
       <div css={spacerCss} />
       <SocialShareLink
         Icon={TwitterIcon}
@@ -60,6 +74,8 @@ const SocialLinks = ({ location, pageType, benchmarkInfo }) => {
         url={linkedinShareUrl}
         label="Share Gatsby Cloud benchmarks on LinkedIn"
       />
+      <div css={spacerCss} />
+      <CopyUrlButton content={href} />
     </div>
   )
 }

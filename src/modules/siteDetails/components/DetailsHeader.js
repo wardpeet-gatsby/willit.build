@@ -1,12 +1,8 @@
 import React from "react"
 import { HORIZONTAL_PADDING_MOBILE as wrapperPaddingMobile } from "@modules/ui/components/MaxWidthWrapper"
 
-import {
-  HeaderTitle,
-  HeaderSiteType,
-  HeaderLinks,
-  BackLink,
-} from "./DetailsHeader.parts"
+import { HeaderTitle, HeaderSiteType, BackLink } from "./DetailsHeader.parts"
+import SocialLinks from "@modules/ui/components/SocialLinks"
 
 function DetailsHeader({ siteType, contentSource, pageCount }) {
   return (
@@ -35,7 +31,7 @@ function DetailsHeader({ siteType, contentSource, pageCount }) {
           marginTop: theme.space[5],
 
           [theme.mediaQueries.desktop]: {
-            alignItems: `flex-end`,
+            alignItems: `baseline`,
             flexDirection: `row`,
             marginTop: theme.space[7],
           },
@@ -43,11 +39,25 @@ function DetailsHeader({ siteType, contentSource, pageCount }) {
       >
         <HeaderTitle contentSource={contentSource} />
         <HeaderSiteType siteType={siteType} />
-        <HeaderLinks
-          contentSource={contentSource}
-          siteType={siteType}
-          pageCount={pageCount}
-        />
+        <div
+          css={theme => ({
+            marginLeft: `auto`,
+            // Slight tweak for baseline alignment with non-button icon
+            transform: `translateY(3px)`,
+            paddingTop: theme.space[6],
+
+            [theme.mediaQueries.tablet]: {
+              paddingTop: 0,
+            },
+          })}
+        >
+          <SocialLinks
+            includeGithubLink={true}
+            contentSource={contentSource}
+            siteType={siteType}
+            pageCount={pageCount}
+          />
+        </div>
       </div>
     </header>
   )

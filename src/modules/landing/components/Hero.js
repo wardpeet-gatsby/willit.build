@@ -45,7 +45,7 @@ const Hero = () => {
             getTextGradientStyle(
               theme,
               `${colors.gatsby} 32.5%`,
-              `${colors.teal[50]} 92.5%`
+              `${colors.teal[70]} 92.5%`
             ),
             {
               maxWidth: `100%`,

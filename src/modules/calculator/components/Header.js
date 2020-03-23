@@ -22,11 +22,23 @@ const headerStyles = theme => [
 
 const topRowCss = theme => ({
   display: `flex`,
-  justifyContent: `space-between`,
-  alignItems: `baseline`,
+  flexDirection: "column",
   position: `relative`,
   paddingBottom: theme.space[5],
   borderBottom: `1px solid ${theme.colors.blackFade[10]}`,
+
+  [theme.mediaQueries.tablet]: {
+    flexDirection: `row`,
+    justifyContent: `space-between`,
+    alignItems: `baseline`,
+  },
+})
+
+const socialLinksWrapperCss = theme => ({
+  [theme.mediaQueries.mobile]: {
+    paddingTop: theme.space[6],
+    alignSelf: `flex-end`,
+  },
 })
 
 const iconWrapperCss = theme => ({
@@ -55,7 +67,7 @@ const blurbCss = theme => ({
   lineHeight: theme.lineHeights.default,
 })
 
-const Header = ({ location, benchmarkInfo = {}, pageType = `` }) => {
+const Header = ({ siteType, contentSource, pageCount }) => {
   return (
     <header>
       <div css={topRowCss}>
@@ -63,11 +75,13 @@ const Header = ({ location, benchmarkInfo = {}, pageType = `` }) => {
           <CalculatorIcon />
         </div>
         <h1 css={headerStyles}>Build time calculator</h1>
-        <SocialLinks
-          pageType={pageType}
-          benchmarkInfo={benchmarkInfo}
-          location={location}
-        />
+        <div css={socialLinksWrapperCss}>
+          <SocialLinks
+            siteType={siteType}
+            contentSource={contentSource}
+            pageCount={pageCount}
+          />
+        </div>
       </div>
       <div css={blurbWrapperCss}>
         <p css={blurbCss}>

@@ -1,16 +1,14 @@
 import React from "react"
 import { Link as BaseLink } from "gatsby-interface"
 import { getTextGradientStyle } from "@modules/ui/utils"
-import { MdArrowBack, MdLink } from "react-icons/md"
-import LinkedInIcon from "@modules/ui/assets/LinkedInIcon"
-import TwitterIcon from "@modules/ui/assets/TwitterIcon"
+import { MdArrowBack } from "react-icons/md"
 import { SiteType, ContentSource } from "@modules/data/constants"
 
 const SOURCE_ICON_WIDTH = `22px`
 const SOURCE_ICON_HORIZONTAL_OFFSET = `30px`
 
 export const smallTextCss = theme => ({
-  color: theme.colors.grey[50],
+  color: theme.colors.grey[60],
   fontSize: theme.fontSizes[1],
 })
 
@@ -125,51 +123,5 @@ export function HeaderSiteType({ siteType }) {
       )}
       {displayedAs ? displayedAs : siteType}
     </div>
-  )
-}
-
-export function HeaderLinks({ siteType, contentSource }) {
-  return (
-    <nav
-      css={theme => ({
-        alignItems: `center`,
-        display: `flex`,
-        marginTop: theme.space[3],
-
-        "a:not(:first-of-type)": {
-          marginLeft: theme.space[7],
-
-          "&:hover": {
-            svg: {
-              fill: theme.colors.purple[40],
-            },
-          },
-        },
-
-        svg: {
-          fill: theme.colors.grey[40],
-          height: `24px`,
-          width: `24px`,
-        },
-
-        [theme.mediaQueries.desktop]: {
-          marginLeft: `auto`,
-          marginTop: 0,
-        },
-      })}
-    >
-      <Link href="https://github.com">View source on GitHub</Link>
-      <Link href="https://github.com">
-        <TwitterIcon />
-      </Link>
-      <Link href="https://github.com">
-        <LinkedInIcon />
-      </Link>
-      <Link
-        href={`https://willit.build/details/type/${siteType}/source/${contentSource}/page-count/512`}
-      >
-        <MdLink />
-      </Link>
-    </nav>
   )
 }
