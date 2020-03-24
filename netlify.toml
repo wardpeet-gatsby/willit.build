@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/api-playground"
+  to = "/new-path"
+  status = 301
+  force = true
