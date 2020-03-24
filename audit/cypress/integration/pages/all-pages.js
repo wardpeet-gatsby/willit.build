@@ -36,7 +36,7 @@ context("All pages", () => {
     cy.visit("/calculator/type/blog/source/drupal/page-count/512")
     cy.audit({
       performance: 90,
-      accessibility: 95,
+      accessibility: 100,
       "best-practices": 78,
       seo: 70,
       pwa: 40,

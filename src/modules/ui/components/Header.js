@@ -68,11 +68,9 @@ const Header = () => {
               css={{ nav: { paddingRight: 0 } }}
               mobileNavMediaQuery={mobileNavMediaQuery}
             >
-              <li>
-                <Interface.Navigation.Button linkTo="https://gatsbyjs.com">
-                  Build with Cloud
-                </Interface.Navigation.Button>
-              </li>
+              <Interface.Navigation.Button linkTo="https://gatsbyjs.com">
+                Build with Cloud
+              </Interface.Navigation.Button>
             </Interface.Navigation>
           </div>
         </header>
