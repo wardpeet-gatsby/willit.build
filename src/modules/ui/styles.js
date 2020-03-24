@@ -34,7 +34,7 @@ export const platformMarkerCss = ({ theme, platform }) => ({
     display: `inline-block`,
     width: `8px`,
     height: `8px`,
-    background: theme.colors.platforms[platform],
+    background: theme.tones[platform].medium,
     borderRadius: theme.radii[2],
     marginLeft: theme.space[3],
   },

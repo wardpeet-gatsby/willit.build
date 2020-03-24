@@ -1,7 +1,7 @@
 import React from "react"
 import format from "date-fns/format"
 import formatDuration from "../utils/formatDuration"
-import { BuildServices } from "../constants"
+import { Platforms } from "@modules/data/constants"
 
 function CustomTooltip({ active, payload }) {
   if (!active) {
@@ -18,7 +18,7 @@ function CustomTooltip({ active, payload }) {
     })
 
   const valuesDate =
-    payload && payload[0] && payload[0].payload && payload[0].payload.date
+    payload && payload[0] && payload[0].payload && payload[0].payload.createdAt
   const formattedDate =
     valuesDate && format(new Date(`${valuesDate}`), `MMMM d, yyyy`)
 
@@ -35,54 +35,57 @@ function CustomTooltip({ active, payload }) {
         margin: `0 ${theme.space[3]}`,
       })}
     >
-      {values.map(({ name, value }) => (
-        <span
-          key={`${name}TooltipSec`}
-          css={theme => ({
-            display: `flex`,
-            flexDirection: `column`,
-            marginBottom: theme.space[4],
-          })}
-        >
+      {values.map(({ name, value }) => {
+        const Icon = Platforms[name].IconOnDark
+          ? Platforms[name].IconOnDark
+          : Platforms[name].Icon
+
+        return (
           <span
+            key={`${name}TooltipSec`}
             css={theme => ({
               display: `flex`,
-              fontWeight: `bold`,
-              color: theme.colors.services[name],
-              fontSize: theme.fontSizes[5],
+              flexDirection: `column`,
+              marginBottom: theme.space[4],
             })}
           >
-            {formatDuration(value)}
-          </span>
-          <span
-            css={{
-              display: `flex`,
-              alignItems: `center`,
-            }}
-          >
-            <img
-              src={BuildServices[name].icon}
-              alt=""
-              css={theme => ({
-                margin: 0,
-                padding: 0,
-                flexShrink: 0,
-                marginRight: theme.space[2],
-                width: theme.space[5],
-                height: theme.space[5],
-              })}
-            />
             <span
               css={theme => ({
-                whiteSpace: `nowrap`,
-                fontSize: theme.fontSizes[1],
+                display: `flex`,
+                fontWeight: `bold`,
+                color: theme.tones[name].medium,
+                fontSize: theme.fontSizes[5],
               })}
             >
-              {BuildServices[name].title}
+              {formatDuration(value)}
+            </span>
+            <span
+              css={{
+                display: `flex`,
+                alignItems: `center`,
+              }}
+            >
+              <Icon
+                css={theme => ({
+                  margin: 0,
+                  padding: 0,
+                  marginRight: theme.space[2],
+                  width: theme.space[5],
+                  height: theme.space[5],
+                })}
+              />
+              <span
+                css={theme => ({
+                  whiteSpace: `nowrap`,
+                  fontSize: theme.fontSizes[1],
+                })}
+              >
+                {Platforms[name].displayedAs}
+              </span>
             </span>
           </span>
-        </span>
-      ))}
+        )
+      })}
       <span
         css={theme => ({
           fontSize: theme.fontSizes[0],

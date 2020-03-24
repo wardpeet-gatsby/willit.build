@@ -8,7 +8,7 @@ function CustomActiveDot({ cx, cy, dataKey }) {
     ActiveDotDiam,
     ActiveDotInnerRadius,
   } = DetailsChartDimensions
-  const { colors } = useTheme()
+  const { tones } = useTheme()
 
   return (
     <svg
@@ -22,14 +22,14 @@ function CustomActiveDot({ cx, cy, dataKey }) {
         cx={ActiveDotRadius}
         cy={ActiveDotRadius}
         r={ActiveDotRadius}
-        fill={colors.services[dataKey]}
+        fill={tones[dataKey].medium}
         opacity="0.2"
       />
       <circle
         cx={ActiveDotRadius}
         cy={ActiveDotRadius}
         r={ActiveDotInnerRadius}
-        fill={colors.services[dataKey]}
+        fill={tones[dataKey].medium}
       />
     </svg>
   )

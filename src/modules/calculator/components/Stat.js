@@ -122,7 +122,7 @@ const getStylesForType = type => {
 }
 
 const Stat = ({ time, platform, type, label, isLabelVisible }) => {
-  const { displayName, Icon } = Platforms[platform]
+  const { displayedAs, Icon } = Platforms[platform]
 
   const { timeWrapperCss, timeCss, platformCss } = getStylesForType(type)
 
@@ -140,7 +140,7 @@ const Stat = ({ time, platform, type, label, isLabelVisible }) => {
         <h3 css={timeCss}>{time}</h3>
       </div>
       <h4 css={platformCss}>
-        {displayName} <Icon />
+        {displayedAs} <Icon />
       </h4>
     </div>
   )

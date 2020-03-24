@@ -10,6 +10,7 @@ import WordpressIcon from "./assets/icons/WordpressIcon"
 import GatsbyIcon from "./assets/icons/GatsbyIcon"
 import NetlifyIcon from "./assets/icons/NetlifyIcon"
 import CircleCiIcon from "./assets/icons/CircleCiIcon"
+import CircleCiBrightIcon from "./assets/icons/CircleCiBrightIcon"
 
 import BlogIcon from "./assets/icons/BlogIcon"
 import BlogThumbnail from "./assets/thumbnails/BlogThumbnail.png"
@@ -102,17 +103,18 @@ export const contentSourceIds = Object.values(ContentSource).map(
 export const Platforms = {
   GATSBY_CLOUD: {
     id: `GATSBY_CLOUD`,
-    displayName: "Gatsby Cloud",
+    displayedAs: "Gatsby Cloud",
     Icon: GatsbyIcon,
   },
   NETLIFY: {
     id: `NETLIFY`,
-    displayName: "Netlify",
+    displayedAs: "Netlify",
     Icon: NetlifyIcon,
   },
   CIRCLECI: {
     id: `CIRCLECI`,
-    displayName: "Circle CI",
+    displayedAs: "Circle CI",
     Icon: CircleCiIcon,
+    IconOnDark: CircleCiBrightIcon,
   },
 }

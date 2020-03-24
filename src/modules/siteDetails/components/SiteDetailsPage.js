@@ -1,24 +1,28 @@
 import React from "react"
 import { graphql } from "gatsby"
 import DetailsChart from "@modules/charts/components/DetailsChart"
-import { getMockData, getMockAnnotations } from "@modules/charts/utils/mockData"
 import MaxWidthWrapper, {
   HORIZONTAL_PADDING_DESKTOP as wrapperPaddingDesktop,
 } from "@modules/ui/components/MaxWidthWrapper"
 import DetailsHeader from "./DetailsHeader"
 import DetailsOverview from "./DetailsOverview"
 import convertStringTimeToSeconds from "@modules/build/utils/convertStringTimeToSeconds"
+import { filterDataForChart } from "./SiteDetailsPage.helpers"
 
-const SiteDetails = ({ data, pageContext }) => {
+const SiteDetailsPage = ({ data, pageContext }) => {
   const {
+    allAnnotationsJson: { nodes: graphAnnotations },
     benchmarkApi: { benchmarkVendor },
   } = data
 
   const { pageCount, buildType } = pageContext
-  const { latestStats, contentSource, siteType } = benchmarkVendor
+  const { latestStats, contentSource, siteType, benchmarks } = benchmarkVendor
 
-  const graphData = getMockData()
-  const graphAnnotations = getMockAnnotations()
+  const graphData = filterDataForChart({
+    benchmarks,
+    buildType,
+    pageCount,
+  })
 
   const latestStatsOrdered = [...latestStats].sort(
     (a, b) =>
@@ -68,16 +72,20 @@ const SiteDetails = ({ data, pageContext }) => {
   )
 }
 
-export default SiteDetails
+export default SiteDetailsPage
 
 export const query = graphql`
-  query SiteDetailsQuery(
+  query SiteDetailsPageQuery(
     $contentSource: BenchmarkVendors_CmsVendor!
     $siteType: BenchmarkVendors_BenchmarkSiteType!
   ) {
-    site {
-      siteMetadata {
-        url
+    allAnnotationsJson {
+      nodes {
+        date
+        label
+        description
+        link
+        linkText
       }
     }
     benchmarkApi {

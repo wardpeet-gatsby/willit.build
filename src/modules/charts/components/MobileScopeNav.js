@@ -77,7 +77,7 @@ function shiftChartScope({
   }
 
   const newFilteredData = data.filter(item => {
-    const itemDate = new Date(item.date)
+    const itemDate = new Date(item.createdAt)
 
     return itemDate >= newFilteredStartDate && itemDate <= newFilteredEndDate
   })
@@ -86,10 +86,12 @@ function shiftChartScope({
 }
 
 function MobileScopeNav({ data, filteredData, setFilteredData }) {
-  const startDate = new Date(data[0].date)
-  const endDate = new Date(data[data.length - 1].date)
-  const filteredStartDate = new Date(filteredData[0].date)
-  const filteredEndDate = new Date(filteredData[filteredData.length - 1].date)
+  const startDate = new Date(data[0].createdAt)
+  const endDate = new Date(data[data.length - 1].createdAt)
+  const filteredStartDate = new Date(filteredData[0].createdAt)
+  const filteredEndDate = new Date(
+    filteredData[filteredData.length - 1].createdAt
+  )
 
   return (
     <div

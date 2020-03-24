@@ -45,20 +45,36 @@ export function getYAxisTicks(data) {
   return [0, midTick, maxTick]
 }
 
-export function getLinearGradientDefs(colors) {
+export function getLinearGradientDefs(tones) {
   return (
     <defs>
-      <linearGradient id="gatsbyFill" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor={colors.gatsby} stopOpacity={0.15} />
-        <stop offset="60%" stopColor={colors.gatsby} stopOpacity={0.01} />
+      <linearGradient id="GATSBY_CLOUD-fill" x1="0" y1="0" x2="0" y2="1">
+        <stop
+          offset="0%"
+          stopColor={tones.GATSBY_CLOUD.medium}
+          stopOpacity={0.15}
+        />
+        <stop
+          offset="60%"
+          stopColor={tones.GATSBY_CLOUD.medium}
+          stopOpacity={0.01}
+        />
       </linearGradient>
-      <linearGradient id="netlifyFill" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor={colors.netlify} stopOpacity={0.15} />
-        <stop offset="60%" stopColor={colors.netlify} stopOpacity={0.0} />
+      <linearGradient id="NETLIFY-fill" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor={tones.NETLIFY.medium} stopOpacity={0.15} />
+        <stop offset="60%" stopColor={tones.NETLIFY.medium} stopOpacity={0.0} />
       </linearGradient>
-      <linearGradient id="circleCiFill" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor={colors.circleCi} stopOpacity={0.15} />
-        <stop offset="60%" stopColor={colors.circleCi} stopOpacity={0.0} />
+      <linearGradient id="CIRCLECI-fill" x1="0" y1="0" x2="0" y2="1">
+        <stop
+          offset="0%"
+          stopColor={tones.CIRCLECI.medium}
+          stopOpacity={0.15}
+        />
+        <stop
+          offset="60%"
+          stopColor={tones.CIRCLECI.medium}
+          stopOpacity={0.0}
+        />
       </linearGradient>
     </defs>
   )
@@ -68,10 +84,12 @@ export const wrapperCss = theme => ({
   background: theme.colors.grey[5],
   paddingLeft: 0,
   paddingRight: 0,
+  paddingBottom: theme.space[8],
 
   [theme.mediaQueries.desktop]: {
     paddingLeft: `${ChartDesktopHorizontalPadding - YAxisWidth}px`, // we need this to make chart right edge aligned
     paddingRight: `${ChartDesktopHorizontalPadding - ActiveDotRadius}px`, // with other content wrapped in MaxWidthWrapper
+    paddingBottom: theme.space[12],
   },
 
   ".recharts-cartesian-axis-tick-value": {

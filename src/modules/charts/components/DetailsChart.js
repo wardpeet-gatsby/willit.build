@@ -28,11 +28,9 @@ import {
   getLinearGradientDefs,
   wrapperCss,
 } from "./DetailsChart.helpers"
-import {
-  DetailsChartDimensions,
-  BuildServices,
-  ChartDefaultProps,
-} from "../constants"
+import { DetailsChartDimensions, ChartDefaultProps } from "../constants"
+
+import { Platforms } from "@modules/data/constants"
 import useMatchMedia from "@modules/ui/hooks/useMatchMedia"
 
 const { ChartMinHeight, YAxisWidth, ActiveDotRadius } = DetailsChartDimensions
@@ -58,7 +56,7 @@ function DetailsChart({
   ...rest
 }) {
   const [activeLines, setActiveLines] = React.useState(
-    Object.keys(BuildServices).reduce((acc, key) => {
+    Object.keys(Platforms).reduce((acc, key) => {
       acc[key] = true
       return acc
     }, {})
@@ -66,7 +64,7 @@ function DetailsChart({
 
   const [activeAnnotation, setActiveAnnotation] = React.useState()
 
-  const { colors, mediaQueries } = useTheme()
+  const { colors, tones, mediaQueries } = useTheme()
 
   const isMobile = !useMatchMedia(mediaQueries.desktop)
 
@@ -119,7 +117,7 @@ function DetailsChart({
             bottom: 0,
           }}
         >
-          {getLinearGradientDefs(colors.services)}
+          {getLinearGradientDefs(tones)}
 
           <CartesianGrid
             strokeDasharray="1 1"
@@ -140,7 +138,7 @@ function DetailsChart({
           <Tooltip content={<CustomTooltip />} />
 
           <XAxis
-            dataKey="date"
+            dataKey="createdAt"
             stroke={colors.grey[50]}
             fill={`red`}
             height={50}
@@ -182,15 +180,15 @@ function DetailsChart({
             )
           })}
 
-          {Object.entries(BuildServices).map(([key]) => (
+          {Object.entries(Platforms).map(([key]) => (
             <Area
               key={`${key}ChartArea`}
               type="linear"
               dataKey={key}
               strokeWidth={1}
-              stroke={colors.services[key]}
+              stroke={tones[key].medium}
               fillOpacity={1}
-              fill={`url(#${key}Fill)`}
+              fill={`url(#${key}-fill)`}
               activeDot={<CustomActiveDot />}
               style={{ display: !activeLines[key] ? `none` : undefined }}
               animationDuration={1000}
@@ -198,7 +196,7 @@ function DetailsChart({
           ))}
           {!isMobile && (
             <Brush
-              dataKey="date"
+              dataKey="createdAt"
               startIndex={startIndex}
               data={data}
               height={25}

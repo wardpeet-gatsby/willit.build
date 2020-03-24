@@ -38,7 +38,7 @@ function StatItem({ data, idx, ...rest }) {
           platformMarkerCss({ theme, platform }),
         ]}
       >
-        {Platforms[platform].displayName}
+        {Platforms[platform].displayedAs}
       </span>
     </OverviewItem>
   )

@@ -1,10 +1,10 @@
 import React from "react"
-import { DetailsChartDimensions, BuildServices } from "../constants"
-import { Button } from "gatsby-interface"
+import { DetailsChartDimensions } from "../constants"
+import { Platforms } from "@modules/data/constants"
+import { ToggleCheckbox } from "gatsby-interface"
 
 function CustomLegend({ payload, onClick, activeLines }) {
   const { LegendMinHeight, YAxisWidth } = DetailsChartDimensions
-  const ICON_WIDTH = 10
 
   return (
     <div
@@ -16,7 +16,7 @@ function CustomLegend({ payload, onClick, activeLines }) {
         alignItems: `flex-end`,
 
         [theme.mediaQueries.desktop]: {
-          paddingLeft: `calc(${YAxisWidth}px - ${theme.space[3]})`,
+          paddingLeft: `${YAxisWidth}px`,
           justifyContent: `flex-start`,
         },
       })}
@@ -25,41 +25,34 @@ function CustomLegend({ payload, onClick, activeLines }) {
         const isActive = activeLines[dataKey]
 
         return (
-          <Button
-            key={`${dataKey}LegendBtn`}
-            onClick={() => onClick(dataKey)}
-            variant="GHOST"
+          <ToggleCheckbox
+            key={`legend-toggle-${dataKey}`}
+            label={Platforms[dataKey].displayedAs}
+            checked={isActive}
+            tone={dataKey}
+            onChange={() => onClick(dataKey)}
             css={theme => ({
-              flexShrink: 0,
+              color: theme.colors.grey[60],
+              fontSize: theme.fontSizes[1],
               fontFamily: theme.fonts.body,
-              color: theme.colors.grey[isActive ? 50 : 40],
-              fontSize: theme.fontSizes[2],
-              padding: theme.space[3],
+              margin: `${theme.space[1]} ${theme.space[3]}`,
+              transform: `translate(-6%)`,
+
+              span: {
+                transform: `scale(0.66) translateX(2%)`,
+                marginRight: 0,
+
+                "&:after": {
+                  transform: `scale(0.8)`,
+                },
+              },
+
+              [theme.mediaQueries.desktop]: {
+                margin: 0,
+                marginRight: theme.space[4],
+              },
             })}
-          >
-            <svg
-              viewBox={`0 0 ${ICON_WIDTH} ${ICON_WIDTH}`}
-              width={ICON_WIDTH}
-              height={ICON_WIDTH}
-              xmlns="http://www.w3.org/2000/svg"
-              css={theme => ({
-                marginRight: theme.space[3],
-              })}
-            >
-              <circle
-                cx={ICON_WIDTH / 2}
-                cy={ICON_WIDTH / 2}
-                r={ICON_WIDTH / 2 - 1}
-                css={theme => ({
-                  fill: isActive
-                    ? theme.colors.services[dataKey]
-                    : theme.colors.white,
-                  stroke: theme.colors.services[dataKey],
-                })}
-              />
-            </svg>
-            {BuildServices[dataKey].title}
-          </Button>
+          />
         )
       })}
     </div>

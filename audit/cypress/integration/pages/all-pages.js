@@ -10,17 +10,6 @@ context("All pages", () => {
     })
   })
 
-  it("audits the chart-demo page", () => {
-    cy.visit("/chart-demo")
-    cy.audit({
-      performance: 80,
-      accessibility: 100,
-      "best-practices": 79,
-      seo: 70,
-      pwa: 50,
-    })
-  })
-
   it("audits the methodology-faq", () => {
     cy.visit("/methodology-faq")
     cy.audit({
