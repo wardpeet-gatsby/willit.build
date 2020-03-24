@@ -10,11 +10,11 @@ export function filterDataForChart({ benchmarks /* buildType, pageCount */ }) {
     .map(item => {
       const { createdAt, buildTimes } = item
 
-      const buildTimesInSeconds = Object.entries(buildTimes).reduce(
-        (acc, [key, val]) => {
+      const buildTimesInSeconds = buildTimes.reduce(
+        (acc, { platform, buildTime }) => {
           return {
             ...acc,
-            [key]: Math.round(val / 1000),
+            [platform]: Math.round(buildTime / 1000),
           }
         },
         {}

@@ -105,9 +105,8 @@ export const query = graphql`
           buildType
           createdAt
           buildTimes {
-            NETLIFY
-            GATSBY_CLOUD
-            CIRCLECI
+            platform
+            buildTime
           }
         }
       }
