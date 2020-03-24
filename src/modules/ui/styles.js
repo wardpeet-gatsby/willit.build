@@ -4,7 +4,7 @@ export const controlLabelCss = theme => ({
   fontSize: theme.fontSizes[0],
   fontWeight: theme.fontWeights.body,
   letterSpacing: theme.letterSpacings.tracked,
-  color: theme.colors.grey[50],
+  color: theme.colors.grey[70],
   marginBottom: theme.space[3],
 })
 

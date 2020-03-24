@@ -104,6 +104,7 @@ function MobileScopeNav({ data, filteredData, setFilteredData }) {
       })}
     >
       <ScopeButton
+        aria-label="Previous date"
         onClick={() =>
           shiftChartScope({
             data,
@@ -117,10 +118,11 @@ function MobileScopeNav({ data, filteredData, setFilteredData }) {
         }
         disabled={filteredStartDate <= startDate}
       >
-        <MdChevronLeft />
+        <MdChevronLeft aria-hidden="true" />
       </ScopeButton>
       <span>{getScopeFormatted(filteredStartDate, filteredEndDate)}</span>
       <ScopeButton
+        aria-label="Next date"
         onClick={() =>
           shiftChartScope({
             data,
@@ -134,7 +136,7 @@ function MobileScopeNav({ data, filteredData, setFilteredData }) {
         }
         disabled={filteredEndDate >= endDate}
       >
-        <MdChevronRight />
+        <MdChevronRight aria-hidden="true" />
       </ScopeButton>
     </div>
   )
