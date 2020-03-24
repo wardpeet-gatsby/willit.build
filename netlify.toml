@@ -1,5 +1,5 @@
 [[redirects]]
   from = "/api-playground"
-  to = "/new-path"
-  status = 301
+  to = "https://analytics.staging.gtsb.io/metrics/graphql"
+  status = 200
   force = true
