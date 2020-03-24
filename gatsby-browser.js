@@ -19,6 +19,10 @@ export const onRouteUpdate = loc => {
 }
 
 export const shouldUpdateScroll = ({ routerProps }) => {
+  if (!routerProps.location.state) {
+    return
+  }
+
   const { disableScrollUpdate } = routerProps.location.state
 
   return !disableScrollUpdate
