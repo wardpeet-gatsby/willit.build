@@ -6,7 +6,6 @@ import MaxWidthWrapper, {
 } from "@modules/ui/components/MaxWidthWrapper"
 import DetailsHeader from "./DetailsHeader"
 import DetailsOverview from "./DetailsOverview"
-import convertStringTimeToSeconds from "@modules/build/utils/convertStringTimeToSeconds"
 import { filterDataForChart } from "./SiteDetailsPage.helpers"
 
 const SiteDetailsPage = ({ data, pageContext }) => {
@@ -16,19 +15,13 @@ const SiteDetailsPage = ({ data, pageContext }) => {
   } = data
 
   const { pageCount, buildType } = pageContext
-  const { latestStats, contentSource, siteType, benchmarks } = benchmarkVendor
+  const { latest, contentSource, siteType, benchmarks } = benchmarkVendor
 
   const graphData = filterDataForChart({
     benchmarks,
     buildType,
     pageCount,
   })
-
-  const latestStatsOrdered = [...latestStats].sort(
-    (a, b) =>
-      convertStringTimeToSeconds(a.warmStartTime) -
-      convertStringTimeToSeconds(b.warmStartTime)
-  )
 
   return (
     <MaxWidthWrapper
@@ -62,7 +55,7 @@ const SiteDetailsPage = ({ data, pageContext }) => {
           contentSource={contentSource}
           pageCount={pageCount}
           buildType={buildType}
-          stats={latestStatsOrdered}
+          stats={latest[buildType === `WARM_START` ? `warmStart` : `coldStart`]}
         />
       </div>
       <section>
@@ -91,10 +84,19 @@ export const query = graphql`
     benchmarkApi {
       benchmarkVendor(siteType: $siteType, contentSource: $contentSource) {
         id
-        latestStats {
-          coldStartTime
-          platform
-          warmStartTime
+        latest {
+          coldStart {
+            platform
+            timeInMs
+            timeInMinutes
+            humanReadableTime
+          }
+          warmStart {
+            platform
+            timeInMs
+            timeInMinutes
+            humanReadableTime
+          }
         }
         contentSource
         siteType
@@ -106,7 +108,9 @@ export const query = graphql`
           createdAt
           buildTimes {
             platform
-            buildTime
+            timeInMs
+            timeInMinutes
+            humanReadableTime
           }
         }
       }

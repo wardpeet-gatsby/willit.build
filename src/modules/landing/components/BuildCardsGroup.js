@@ -20,13 +20,22 @@ const BuildCardsGroup = () => {
       benchmarkApi {
         benchmarkVendors {
           id
-          latestStats {
-            coldStartTime
-            platform
-            warmStartTime
-          }
           contentSource
           siteType
+          latest {
+            coldStart {
+              platform
+              timeInMs
+              timeInMinutes
+              humanReadableTime
+            }
+            warmStart {
+              platform
+              timeInMs
+              timeInMinutes
+              humanReadableTime
+            }
+          }
         }
       }
     }
@@ -58,7 +67,7 @@ const BuildCardsGroup = () => {
         <h2 css={visuallyHiddenCss} id="benchmark-sites">
           Benchmark sites
         </h2>
-        {benchmarkVendors.map((data, ...rest) => {
+        {benchmarkVendors.map(data => {
           const contentSource = data.contentSource
           const siteType = data.siteType
 
@@ -68,9 +77,8 @@ const BuildCardsGroup = () => {
               contentSource={contentSource}
               siteType={siteType}
               numberOfPages={512}
-              cachedBuildTime={data.latestStats[0].warmStartTime}
-              uncachedBuildTime={data.latestStats[0].coldStartTime}
-              {...rest}
+              cachedBuildTime={data.latest.warmStart[0].timeInMinutes}
+              uncachedBuildTime={data.latest.coldStart[0].timeInMinutes}
             />
           )
         })}

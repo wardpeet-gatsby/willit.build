@@ -36,10 +36,19 @@ export const query = graphql`
     benchmarkApi {
       benchmarkVendor(siteType: $siteType, contentSource: $contentSource) {
         id
-        latestStats {
-          coldStartTime
-          warmStartTime
-          platform
+        latest {
+          coldStart {
+            platform
+            timeInMs
+            timeInMinutes
+            humanReadableTime
+          }
+          warmStart {
+            platform
+            timeInMs
+            timeInMinutes
+            humanReadableTime
+          }
         }
       }
     }

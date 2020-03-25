@@ -16,7 +16,7 @@ const labelContextCss = idx => {
 }
 
 function StatItem({ data, idx, ...rest }) {
-  const { warmStartTime, platform } = data
+  const { timeInMinutes, platform } = data
   const title = Titles[idx]
 
   return (
@@ -30,7 +30,7 @@ function StatItem({ data, idx, ...rest }) {
           { fontWeight: idx > 0 ? theme.fontWeights.body : undefined },
         ]}
       >
-        {warmStartTime}
+        {timeInMinutes}
       </span>
       <span
         css={theme => [

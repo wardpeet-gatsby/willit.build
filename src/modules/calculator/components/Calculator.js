@@ -2,7 +2,6 @@ import React from "react"
 
 import ContentSourceControl from "@modules/ui/components/ContentSourceControl"
 import PageCountSelectControl from "@modules/ui/components/PageCountSelectControl"
-import convertStringTimeToSeconds from "@modules/build/utils/convertStringTimeToSeconds"
 
 import Stat from "./Stat"
 
@@ -76,10 +75,10 @@ const bottomRowCss = theme => ({
 })
 
 const Calculator = ({ siteType, contentSource, pageCount, data }) => {
-  const stats = data.benchmarkApi.benchmarkVendor.latestStats
+  const stats = data.benchmarkApi.benchmarkVendor.latest
 
-  const sortedWarmTimeStats = sortStatsForSet(stats, "warmStartTime")
-  const sortedColdTimeStats = sortStatsForSet(stats, "coldStartTime")
+  const warmTimeStats = stats.warmStart
+  const coldTimeStats = stats.coldStart
 
   return (
     <article css={wrapperCss}>
@@ -103,8 +102,8 @@ const Calculator = ({ siteType, contentSource, pageCount, data }) => {
         <div css={{ flex: 1.5 }}>
           <Stat
             type="warm-winner"
-            platform={sortedWarmTimeStats[0].platform}
-            time={sortedWarmTimeStats[0].time}
+            platform={warmTimeStats[0].platform}
+            time={warmTimeStats[0].timeInMinutes}
             label="Fastest Content Build"
             isLabelVisible={true}
           />
@@ -112,8 +111,8 @@ const Calculator = ({ siteType, contentSource, pageCount, data }) => {
         <div css={{ flex: 1 }}>
           <Stat
             type="warm-runner-up"
-            platform={sortedWarmTimeStats[1].platform}
-            time={sortedWarmTimeStats[1].time}
+            platform={warmTimeStats[1].platform}
+            time={warmTimeStats[1].timeInMinutes}
             label="Runner-Up"
             isLabelVisible={true}
           />
@@ -121,8 +120,8 @@ const Calculator = ({ siteType, contentSource, pageCount, data }) => {
         <div css={{ flex: 1 }}>
           <Stat
             type="warm-runner-up"
-            platform={sortedWarmTimeStats[2].platform}
-            time={sortedWarmTimeStats[2].time}
+            platform={warmTimeStats[2].platform}
+            time={warmTimeStats[2].timeInMinutes}
             label="Second Runner-Up"
             isLabelVisible={false}
           />
@@ -132,8 +131,8 @@ const Calculator = ({ siteType, contentSource, pageCount, data }) => {
         <div css={{ flex: 1.5 }}>
           <Stat
             type="cold-winner"
-            platform={sortedColdTimeStats[0].platform}
-            time={sortedColdTimeStats[0].time}
+            platform={coldTimeStats[0].platform}
+            time={coldTimeStats[0].timeInMinutes}
             label="Uncached Build"
             isLabelVisible={true}
           />
@@ -141,8 +140,8 @@ const Calculator = ({ siteType, contentSource, pageCount, data }) => {
         <div css={{ flex: 1 }}>
           <Stat
             type="cold-runner-up"
-            platform={sortedColdTimeStats[1].platform}
-            time={sortedColdTimeStats[1].time}
+            platform={coldTimeStats[1].platform}
+            time={coldTimeStats[1].timeInMinutes}
             label="Runner-Up"
             isLabelVisible={false}
           />
@@ -150,8 +149,8 @@ const Calculator = ({ siteType, contentSource, pageCount, data }) => {
         <div css={{ flex: 1 }}>
           <Stat
             type="cold-runner-up"
-            platform={sortedColdTimeStats[2].platform}
-            time={sortedColdTimeStats[2].time}
+            platform={coldTimeStats[2].platform}
+            time={coldTimeStats[2].timeInMinutes}
             label="Second Runner-Up"
             isLabelVisible={false}
           />
@@ -159,24 +158,6 @@ const Calculator = ({ siteType, contentSource, pageCount, data }) => {
       </div>
     </article>
   )
-}
-
-const sortStatsForSet = (stats, key) => {
-  return [...stats]
-    .sort((a, b) => {
-      const aTime = convertStringTimeToSeconds(a[key])
-      const bTime = convertStringTimeToSeconds(b[key])
-
-      if (aTime > bTime) {
-        return 1
-      } else {
-        return -1
-      }
-    })
-    .map(stat => ({
-      time: stat[key],
-      platform: stat.platform,
-    }))
 }
 
 export default Calculator
