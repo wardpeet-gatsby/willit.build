@@ -1,0 +1,11 @@
+[[redirects]]
+  from = "/api-playground"
+  to = "https://analytics.staging.gtsb.io/metrics/graphql"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/metrics/graphql"
+  to = "https://analytics.staging.gtsb.io/metrics/graphql"
+  status = 200
+  force = true
