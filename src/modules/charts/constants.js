@@ -1,5 +1,5 @@
 export const DetailsChartDimensions = {
-  ChartMinHeight: 500,
+  ChartHeight: 500,
   ChartDesktopHorizontalPadding: 100,
   LegendMinHeight: 50,
   YAxisWidth: 70,

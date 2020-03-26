@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import DetailsChart from "@modules/charts/components/DetailsChart"
+import DetailsChartPlaceholder from "@modules/charts/components/DetailsChartPlaceholder"
 import MaxWidthWrapper, {
   HORIZONTAL_PADDING_DESKTOP as wrapperPaddingDesktop,
 } from "@modules/ui/components/MaxWidthWrapper"
@@ -9,6 +10,12 @@ import DetailsOverview from "./DetailsOverview"
 import { filterDataForChart } from "./SiteDetailsPage.helpers"
 
 const SiteDetailsPage = ({ data, pageContext }) => {
+  const [chartIsMounted, setChartIsMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setChartIsMounted(true)
+  }, [])
+
   const {
     allAnnotationsJson: { nodes: graphAnnotations },
     benchmarkApi: { benchmarkVendor },
@@ -59,6 +66,7 @@ const SiteDetailsPage = ({ data, pageContext }) => {
         />
       </div>
       <section>
+        {!chartIsMounted && <DetailsChartPlaceholder />}
         <DetailsChart data={graphData} annotations={graphAnnotations} />
       </section>
     </MaxWidthWrapper>

@@ -2,8 +2,8 @@ import React from "react"
 import { DetailsChartDimensions } from "../constants"
 
 function CustomYAxisLabel({ isMobile }) {
-  const { ChartMinHeight } = DetailsChartDimensions
-  const y = ChartMinHeight / 2
+  const { ChartHeight } = DetailsChartDimensions
+  const y = ChartHeight / 2
 
   /* 
     the positioning 'magic' numbers was manually set

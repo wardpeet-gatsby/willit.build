@@ -33,7 +33,7 @@ import { DetailsChartDimensions, ChartDefaultProps } from "../constants"
 import { Platforms } from "@modules/data/constants"
 import useMatchMedia from "@modules/ui/hooks/useMatchMedia"
 
-const { ChartMinHeight, YAxisWidth, ActiveDotRadius } = DetailsChartDimensions
+const { ChartHeight, YAxisWidth, ActiveDotRadius } = DetailsChartDimensions
 
 export const propTypes = {
   data: PropTypes.array,
@@ -107,7 +107,7 @@ function DetailsChart({
         />
       )}
 
-      <ResponsiveContainer width="100%" minHeight={ChartMinHeight}>
+      <ResponsiveContainer width="100%" height={ChartHeight}>
         <AreaChart
           data={filteredData}
           margin={{
