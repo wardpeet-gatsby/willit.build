@@ -1,7 +1,7 @@
 export const wrapperStyles = theme => ({
-  background: theme.colors.grey[5],
-  border: `1px solid ${theme.colors.grey[20]}`,
+  background: theme.colors.white,
   borderRadius: theme.radii[2],
+  boxShadow: theme.shadows.raised,
   fontFamily: theme.fonts.body,
 })
 

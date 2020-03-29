@@ -2,90 +2,22 @@ import React from "react"
 
 export default props => (
   <svg
-    preserveAspectRatio="none"
-    width="1440"
-    height="181"
-    viewBox="0 0 1440 181"
+    viewBox="0 0 27 30"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <mask
-      id="mask0"
-      mask-type="alpha"
-      maskUnits="userSpaceOnUse"
-      x="-6"
-      y="0"
-      width="1448"
-      height="181"
-    >
-      <rect
-        x="-5.4375"
-        y="0.310547"
-        width="1446.87"
-        height="180"
-        rx="4"
-        fill="#36313D"
-      />
-    </mask>
-    <g mask="url(#mask0)">
-      <path
-        d="M900.675 43.0352L718.007 30.5908L535.339 60.852L352.671 46.1359L170.004 50.9454L-12.6641 36.6793L-12.6641 331.429L1448.68 331.429V59.0529L1266.01 70.892L1083.34 33.2853L900.675 43.0352Z"
-        fill="url(#paint0_linear)"
-        fillOpacity="0.2"
-        stroke="#FFB238"
-        strokeOpacity="0.1"
-        strokeWidth="1.5"
-      />
-      <path
-        d="M1266 92.9701L1448.67 95.5353V240.038L-12.6699 240.038V68.3713L168.091 79.7502L352.666 71.3026L535.333 83.1874L718.001 62.6592L900.669 75.2642L1083.34 68.6072L1266 92.9701Z"
-        fill="url(#paint1_linear)"
-        fillOpacity="0.4"
-        stroke="#E899CE"
-        strokeOpacity="0.1"
-        strokeWidth="1.5"
-      />
-      <path
-        d="M1266 137.735L1448.67 138.362L1448.67 182.555L-12.6699 182.555V89.0801L169.998 112.59L352.666 99.232L535.333 116.864L718.001 97.6235L900.669 116.324L1083.34 116.368L1266 137.735Z"
-        fill="url(#paint2_linear)"
-        stroke="#F6EDFA"
-        strokeWidth="1.5"
-      />
-    </g>
-    <defs>
-      <linearGradient
-        id="paint0_linear"
-        x1="718.007"
-        y1="-1.53579"
-        x2="718.007"
-        y2="164.909"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stopColor="#E34200" stopOpacity="0.2" />
-        <stop offset="1" stopColor="#E34200" stopOpacity="0" />
-      </linearGradient>
-      <linearGradient
-        id="paint1_linear"
-        x1="718.001"
-        y1="57.6174"
-        x2="718.001"
-        y2="113.62"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stopColor="#FFE6F6" />
-        <stop offset="1" stopColor="white" />
-      </linearGradient>
-      <linearGradient
-        id="paint2_linear"
-        x1="718.001"
-        y1="78.9288"
-        x2="718.001"
-        y2="156.518"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stopColor="#F6EDFA" />
-        <stop offset="1" stopColor="white" />
-      </linearGradient>
-    </defs>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M-3.93402e-07 21C-6.10673e-07 25.9706 4.02944 30 9 30C13.9706 30 18 25.9706 18 21L16 21C16 24.866 12.866 28 9 28C5.13401 28 2 24.866 2 21C2 17.134 5.13401 14 9 14L14.6573 14L18 14L18 12L9 12C4.02944 12 -1.76132e-07 16.0294 -3.93402e-07 21ZM13.0004 18L15.3264 18L17.4879 18L18 18L18 16L16.4845 16L13.899 16L9 16C6.23858 16 4 18.2386 4 21C4 23.7614 6.23858 26 9 26C11.7614 26 14 23.7614 14 21L12 21C12 22.6569 10.6569 24 9 24C7.34314 24 6 22.6569 6 21C6 19.3431 7.34315 18 9 18L13.0004 18ZM8 21C8 21.5523 8.44771 22 9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44771 20 8 20.4477 8 21Z"
+      fill="#F5F5F5"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M27 9C27 13.9706 22.9706 18 18 18C15.8567 18 13.8884 17.2508 12.3427 16H18C21.866 16 25 12.866 25 9C25 5.13401 21.866 2 18 2V0C22.9706 0 27 4.02944 27 9ZM13.101 14H10.5155C9.55827 12.5699 9 10.8501 9 9V0H11V3.34267V9C11 10.9587 11.8045 12.7295 13.101 14ZM18 14C20.7614 14 23 11.7614 23 9C23 6.23858 20.7614 4 18 4V6C19.6569 6 21 7.34315 21 9C21 10.6569 19.6569 12 18 12C16.3431 12 15 10.6569 15 9V4.99963V2.67363V0.512117V0H13V1.51555V4.10102V9C13 11.7614 15.2386 14 18 14ZM19 9C19 9.55229 18.5523 10 18 10C17.4477 10 17 9.55229 17 9C17 8.44771 17.4477 8 18 8C18.5523 8 19 8.44771 19 9Z"
+      fill="#F5F5F5"
+    />
   </svg>
 )

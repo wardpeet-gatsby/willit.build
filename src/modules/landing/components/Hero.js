@@ -88,21 +88,17 @@ const Hero = () => {
         </LinkButton>
       </div>
       <div
-        css={theme => ({
+        css={{
           zIndex: `-1`,
-          marginTop: `-${theme.space[7]}`,
           position: `absolute`,
-          left: `0`,
+          left: `-40vw`,
+          right: 0,
+          top: 0,
           width: `100%`,
           overflow: `hidden`,
-        })}
+        }}
       >
-        <DecorativeBackground
-          css={{
-            minWidth: `700px`,
-            width: `100%`,
-          }}
-        />
+        <DecorativeBackground css={{ width: `100%` }} />
       </div>
     </header>
   )

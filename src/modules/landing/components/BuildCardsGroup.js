@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby-interface"
 import { graphql, useStaticQuery } from "gatsby"
 
 import Card from "@modules/build/components/Card"
@@ -7,8 +6,6 @@ import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
 import { HERO_PADDING_DESKTOP } from "../constants"
 
 const wrapperStyles = theme => ({
-  marginTop: `12rem`,
-
   [theme.mediaQueries.desktop]: {
     paddingLeft: HERO_PADDING_DESKTOP,
   },
@@ -45,17 +42,9 @@ const BuildCardsGroup = () => {
 
   return (
     <div css={wrapperStyles}>
-      <Link
-        to="/methodology-faq"
-        css={theme => ({
-          color: theme.colors.purple[60],
-        })}
-      >
-        Methodology + FAQ
-      </Link>
       <div
         css={theme => ({
-          marginTop: theme.space[12],
+          marginTop: theme.space[6],
           display: `grid`,
           gridGap: theme.space[12],
           [theme.mediaQueries.desktop]: {
