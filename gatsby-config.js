@@ -47,7 +47,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `data`,
-        path: `${__dirname}/src/modules/data/json`,
+        path: `${__dirname}/src/json`,
       },
     },
     `gatsby-transformer-sharp`,

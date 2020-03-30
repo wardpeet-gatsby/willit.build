@@ -1,0 +1,13 @@
+[
+  {
+    "date": "3/18/2020",
+    "label": "Gatsby 1.2.3 released",
+    "description": "Gatsby v1.2.3 ships with improved compression, bringing its Weissman score up to 2.75.",
+    "link": "http: //gatsbyjs.com",
+    "linkText": "Learn more"
+  },
+  {
+    "date": "3/21/2020",
+    "label": "Feature release 1.4"
+  }
+]
