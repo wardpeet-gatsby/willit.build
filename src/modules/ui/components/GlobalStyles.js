@@ -5,7 +5,7 @@ const GlobalStyles = () => (
   <Global
     styles={theme => css`
       html {
-        background: theme.colors.grey[5],
+        background: ${theme.colors.grey[5]};
         box-sizing: border-box;
         font-family: ${theme.fonts.body};
       }
