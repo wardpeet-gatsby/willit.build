@@ -97,7 +97,7 @@ const Footer = () => {
   return (
     <div css={outerWrapperCss}>
       <MaxWidthWrapper>
-        <footer>
+        <footer data-cy="footer">
           <nav>
             <ul css={navCss}>
               {data.contentfulFooterNavigation.contentfulchildren.map(
@@ -112,7 +112,7 @@ const Footer = () => {
               )}
             </ul>
           </nav>
-          <p css={footerNoteCss}>
+          <p css={footerNoteCss} data-cy="footer-note__content">
             {data.contentfulFooterNavigation.blurb.blurb}
           </p>
           <nav>

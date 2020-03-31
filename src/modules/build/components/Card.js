@@ -33,6 +33,7 @@ const Card = ({
   numberOfPages,
   cachedBuildTime,
   uncachedBuildTime,
+  ...props
 }) => {
   const formattedSource = ContentSource[contentSource].displayedAs
   const Icon = ContentSource[contentSource].Icon
@@ -51,7 +52,7 @@ const Card = ({
   })
 
   return (
-    <div css={wrapperStyles}>
+    <div css={wrapperStyles} {...props}>
       <h3 css={visuallyHiddenCss}>{formattedSource} Site Benchmarks</h3>
       <div css={gridStyles}>
         <SiteTypeImage image={coverImage} />
@@ -85,7 +86,11 @@ const Card = ({
         </div>
 
         <div>
-          <Link to={allBenchmarksLink} css={linkStyles}>
+          <Link
+            to={allBenchmarksLink}
+            css={linkStyles}
+            data-cy="build-card__link"
+          >
             All benchmarks <MdArrowForward />
           </Link>
         </div>

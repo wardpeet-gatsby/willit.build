@@ -62,6 +62,7 @@ const BuildCardsGroup = () => {
 
           return (
             <Card
+              data-cy="build-card"
               key={data.id}
               contentSource={contentSource}
               siteType={siteType}

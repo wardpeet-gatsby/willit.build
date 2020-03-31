@@ -61,6 +61,7 @@ const Hero = () => {
           {title}
         </h1>
         <p
+          data-cy="main-description"
           css={theme => ({
             color: theme.colors.blackFade[70],
             fontSize: theme.fontSizes[3],
@@ -83,6 +84,7 @@ const Hero = () => {
             fontFamily: theme.fonts.body,
           })}
           to="#benchmark-sites"
+          data-cy="benchmark-sites__link"
         >
           {buttonText}
         </LinkButton>

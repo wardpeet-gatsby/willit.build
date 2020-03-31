@@ -57,8 +57,8 @@ const Header = () => {
   return (
     <div css={outerWrapperCss}>
       <MaxWidthWrapper>
-        <header css={wrapperCss}>
-          <Link to="/" css={logoWrapperCss}>
+        <header css={wrapperCss} data-cy="header">
+          <Link to="/" css={logoWrapperCss} data-cy="header-brand__link">
             <img src={logoSrc} css={logoCss} alt="" />
             {data.site.siteMetadata.title}
           </Link>
