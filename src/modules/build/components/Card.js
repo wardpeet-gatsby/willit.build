@@ -12,6 +12,8 @@ import {
   subtextStyles,
   spanStyles,
   linkStyles,
+  buildTimeStyles,
+  fastestBuildStyles,
 } from "./Card.styles"
 import SiteTypeImage from "./SiteTypeImage"
 import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
@@ -38,7 +40,7 @@ const Card = ({
   const formattedSource = ContentSource[contentSource].displayedAs
   const Icon = ContentSource[contentSource].Icon
   const formattedSiteType = SiteType[siteType].displayedAs
-  const coverImage = SiteType[siteType].thumbnail
+  const gradient = ContentSource[contentSource].gradient
 
   // The GraphQL API returns names in UPPER_SNAKE_CASE.
   // We want to transform this to lower-dash-cash, to match pathnames.
@@ -55,11 +57,23 @@ const Card = ({
     <div css={wrapperStyles} {...props}>
       <h3 css={visuallyHiddenCss}>{formattedSource} Site Benchmarks</h3>
       <div css={gridStyles}>
-        <SiteTypeImage image={coverImage} />
+        <SiteTypeImage gradient={gradient}>
+          <Icon
+            inverted
+            css={theme => ({
+              width: theme.space[7],
+              height: theme.space[7],
+
+              [theme.mediaQueries.tablet]: {
+                width: theme.space[8],
+                height: theme.space[8],
+              },
+            })}
+          />
+        </SiteTypeImage>
         <div>
-          <h4 css={titleStyles}>Source &amp; Site Type</h4>
+          <h4 css={titleStyles}>Source / Type</h4>
           <span css={contentStyles}>
-            <Icon />{" "}
             <span
               css={{
                 verticalAlign: `text-top`,
@@ -74,9 +88,11 @@ const Card = ({
           <h4 css={titleStyles}>Pages</h4>
           <span css={contentStyles}>{numberOfPages}</span>
         </div>
-        <div>
-          <h4 css={titleStyles}>Cached/ uncached build time</h4>
-          <span css={contentStyles}>
+        <div css={buildTimeStyles}>
+          <h4 css={titleStyles}>Fastest Build (cached / uncached)</h4>
+          <span
+            css={theme => [contentStyles(theme), fastestBuildStyles(theme)]}
+          >
             {cachedBuildTime}
             <span css={spanStyles}>/ {uncachedBuildTime}</span>
           </span>

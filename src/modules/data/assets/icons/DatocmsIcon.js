@@ -1,6 +1,6 @@
 import React from "react"
 
-export default ({ height = 25, width = 25, ...rest }) => (
+export default ({ height = 25, width = 25, inverted, ...rest }) => (
   <svg
     width={width}
     height={height}
@@ -16,8 +16,8 @@ export default ({ height = 25, width = 25, ...rest }) => (
         y2="47.631"
         gradientUnits="userSpaceOnUse"
       >
-        <stop offset="0" stopColor="#ff593d" />
-        <stop offset="1" stopColor="#ff7751" />
+        <stop offset="0" stopColor={inverted ? "#fff" : "#ff593d"} />
+        <stop offset="1" stopColor={inverted ? "#fff" : "#ff7751"} />
       </linearGradient>
     </defs>
     <title>d_only</title>

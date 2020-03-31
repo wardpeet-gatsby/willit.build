@@ -6,7 +6,7 @@ import logoSrc from "../../../images/logo.svg"
 
 import MaxWidthWrapper from "./MaxWidthWrapper"
 
-export const mobileNavMediaQuery = `@media (max-width: 1000px)`
+export const mobileNavMediaQuery = `@media (max-width: 800px)`
 
 const outerWrapperCss = theme => ({
   position: `relative`,
@@ -22,8 +22,8 @@ const wrapperCss = theme => ({
 
 const logoWrapperCss = theme => ({
   textDecoration: `none`,
-  fontSize: theme.fontSizes[3],
-  fontWeight: theme.fontWeights.bold,
+  fontSize: theme.fontSizes[2],
+  fontWeight: theme.fontWeights.semiBold,
   color: theme.colors.grey[90],
   display: `flex`,
   alignItems: `center`,
@@ -31,7 +31,7 @@ const logoWrapperCss = theme => ({
 
 const logoCss = theme => ({
   display: `block`,
-  marginRight: theme.space[3],
+  marginRight: theme.space[7],
 })
 
 const Header = () => {
@@ -68,7 +68,14 @@ const Header = () => {
               css={{ nav: { paddingRight: 0 } }}
               mobileNavMediaQuery={mobileNavMediaQuery}
             >
-              <Interface.Navigation.Button linkTo="https://gatsbyjs.com">
+              <Interface.Navigation.Button
+                linkTo="https://gatsbyjs.com"
+                css={theme => ({
+                  fontFamily: theme.fonts.body,
+                  fontSize: theme.fontSizes[1],
+                  fontWeight: theme.fontWeights.semiBold,
+                })}
+              >
                 Build with Cloud
               </Interface.Navigation.Button>
             </Interface.Navigation>

@@ -1,6 +1,6 @@
 import React from "react"
 
-export const MAX_WIDTH = 1280
+export const MAX_WIDTH = 1064
 export const HORIZONTAL_PADDING_MOBILE = `1.5rem`
 export const HORIZONTAL_PADDING_DESKTOP = `2rem`
 

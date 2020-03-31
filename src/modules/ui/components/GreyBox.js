@@ -4,10 +4,9 @@ const GreyBox = ({ children }) => {
   return (
     <div
       css={theme => ({
-        background: theme.colors.grey[10],
-        padding: theme.space[5],
+        padding: `${theme.space[5]} 0`,
         [theme.mediaQueries.phablet]: {
-          padding: `${theme.space[10]} ${theme.space[14]}`,
+          padding: `${theme.space[10]} 0`,
         },
       })}
     >

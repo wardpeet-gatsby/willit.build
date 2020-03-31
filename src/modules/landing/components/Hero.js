@@ -32,10 +32,10 @@ const Hero = () => {
         css={theme => ({
           zIndex: `1`,
           position: `relative`,
-          padding: theme.space[5],
 
           [theme.mediaQueries.phablet]: {
-            padding: HERO_PADDING_DESKTOP,
+            paddingLeft: HERO_PADDING_DESKTOP,
+            paddingTop: theme.space[8],
           },
         })}
       >
@@ -50,10 +50,22 @@ const Hero = () => {
             {
               maxWidth: `100%`,
               marginBottom: theme.space[8],
-              [theme.mediaQueries.tablet]: {
-                maxWidth: `90%`,
-                fontSize: theme.fontSizes[10],
+              fontSize: theme.fontSizes[5],
+              [theme.mediaQueries.mobile]: {
+                maxWidth: `80%`,
+              },
+              [theme.mediaQueries.phablet]: {
                 lineHeight: theme.lineHeights.dense,
+                maxWidth: `86%`,
+                fontSize: theme.fontSizes[6],
+              },
+              [theme.mediaQueries.tablet]: {
+                maxWidth: `32rem`,
+                fontSize: theme.fontSizes[8],
+              },
+              [theme.mediaQueries.desktop]: {
+                maxWidth: `38rem`,
+                fontSize: theme.fontSizes[9],
               },
             },
           ]}
@@ -63,13 +75,14 @@ const Hero = () => {
         <p
           data-cy="main-description"
           css={theme => ({
-            color: theme.colors.blackFade[70],
-            fontSize: theme.fontSizes[3],
+            color: theme.colors.grey[90],
+            fontSize: theme.fontSizes[2],
             lineHeight: theme.lineHeights.default,
             fontFamily: theme.fonts.body,
             maxWidth: `100%`,
             marginBottom: theme.space[10],
             [theme.mediaQueries.tablet]: {
+              fontSize: theme.fontSizes[3],
               maxWidth: `70%`,
             },
           })}
@@ -80,7 +93,7 @@ const Hero = () => {
           rightIcon={<MdArrowDownward />}
           size="M"
           css={theme => ({
-            fontWeight: theme.fontWeights.bold,
+            fontWeight: theme.fontWeights.semiBold,
             fontFamily: theme.fonts.body,
           })}
           to="#benchmark-sites"
@@ -93,10 +106,10 @@ const Hero = () => {
         css={{
           zIndex: `-1`,
           position: `absolute`,
-          left: `-40vw`,
+          left: `-20vw`,
           right: 0,
-          top: 0,
-          width: `100%`,
+          top: `-20vw`,
+          width: `80vw`,
           overflow: `hidden`,
         }}
       >

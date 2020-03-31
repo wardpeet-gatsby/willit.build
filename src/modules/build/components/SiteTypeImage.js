@@ -1,36 +1,28 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { HERO_PADDING_DESKTOP } from "@modules/landing/constants"
-
-const IMAGE_HEIGHT = 144
-const IMAGE_WIDTH = 200
-const IMAGE_OFFSET = 50
 
 const propTypes = {
-  image: PropTypes.string,
+  gradient: PropTypes.object,
 }
-
-const SiteTypeImage = ({ image }) => {
+const SiteTypeImage = ({ gradient, children }) => {
   return (
     <div
       css={theme => ({
-        backgroundRepeat: `no-repeat`,
-        top: `-${IMAGE_OFFSET}px`,
-        position: `relative`,
-        margin: `auto`,
-        width: `${IMAGE_WIDTH}px`,
-        height: `${IMAGE_HEIGHT}px`,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: 48,
+        height: 48,
         borderRadius: theme.radii[2],
-        backgroundImage: `url(${image})`,
-        boxShadow: `0px 4px 8px rgba(46, 41, 51, 0.08), 0px 8px 16px rgba(71, 63, 79, 0.16)`,
-        [theme.mediaQueries.desktop]: {
-          left: `-${HERO_PADDING_DESKTOP}`,
-          boxShadow: `0px 2px 4px rgba(46, 41, 51, 0.08), 0px 4px 8px rgba(71, 63, 79, 0.16)`,
-          top: `auto`,
-          width: `100%`,
+        background: `linear-gradient(0deg, ${gradient.start}, ${gradient.end})`,
+        [theme.mediaQueries.tablet]: {
+          height: 80,
+          width: 80,
         },
       })}
-    />
+    >
+      {children}
+    </div>
   )
 }
 
