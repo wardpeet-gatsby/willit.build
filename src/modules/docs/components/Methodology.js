@@ -53,7 +53,7 @@ const Methodology = () => {
         css={theme => ({
           color: theme.colors.blackFade[80],
           fontFamily: theme.fonts.body,
-          fontWeight: `normal`,
+          fontWeight: theme.fontWeights.body,
           maxWidth: `100%`,
           marginBottom: theme.space[10],
           [theme.mediaQueries.tablet]: {

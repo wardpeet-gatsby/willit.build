@@ -86,7 +86,7 @@ export function DetailsValue({ children }) {
     <span
       css={theme => ({
         fontSize: theme.fontSizes[5],
-        fontWeight: theme.fontWeights.heading,
+        fontWeight: theme.fontWeights.bold,
         color: theme.colors.blackFade[80],
       })}
     >

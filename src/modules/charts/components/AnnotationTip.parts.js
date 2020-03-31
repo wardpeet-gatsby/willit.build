@@ -9,7 +9,7 @@ export function TipLabel({ label }) {
         display: `flex`,
         alignItems: `center`,
         fontSize: theme.fontSizes[1],
-        fontWeight: `normal`,
+        fontWeight: theme.fontWeights.body,
       })}
     >
       <MdInfoOutline

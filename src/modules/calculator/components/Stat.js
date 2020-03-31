@@ -47,7 +47,7 @@ const coldTimeWrapper = {}
 
 const winnerWarmTimeCss = theme => ({
   fontSize: theme.fontSizes[11],
-  fontWeight: theme.fontWeights.heading,
+  fontWeight: theme.fontWeights.bold,
 })
 
 const runnerUpWarmTimeCss = theme => ({
@@ -72,7 +72,7 @@ const runnerUpColdTimeCss = theme => ({
 })
 
 const winnerPlatform = theme => ({
-  fontWeight: theme.fontWeights.heading,
+  fontWeight: theme.fontWeights.bold,
   fontSize: theme.fontSizes[3],
   marginTop: theme.space[4],
   color: theme.colors.grey[60],

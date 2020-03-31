@@ -23,7 +23,7 @@ const wrapperCss = theme => ({
 const logoWrapperCss = theme => ({
   textDecoration: `none`,
   fontSize: theme.fontSizes[3],
-  fontWeight: theme.fontWeights.heading,
+  fontWeight: theme.fontWeights.bold,
   color: theme.colors.grey[90],
   display: `flex`,
   alignItems: `center`,

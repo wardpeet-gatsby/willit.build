@@ -21,7 +21,7 @@ export const controlFooterCss = theme => ({
 export const controlValueCss = theme => ({
   fontSize: theme.fontSizes[3],
   color: theme.colors.grey[90],
-  fontWeight: theme.fontWeights.heading,
+  fontWeight: theme.fontWeights.bold,
 
   [theme.mediaQueries.desktop]: {
     fontSize: theme.fontSizes[5],

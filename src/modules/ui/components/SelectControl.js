@@ -31,7 +31,7 @@ const fakeSelectCss = theme => ({
   display: `flex`,
   fontSize: theme.fontSizes[3],
   color: theme.colors.grey[90],
-  fontWeight: theme.fontWeights.heading,
+  fontWeight: theme.fontWeights.bold,
 
   // Because we're hiding the actual <select>, we need to transfer the
   // focus ring to the visible sibling.

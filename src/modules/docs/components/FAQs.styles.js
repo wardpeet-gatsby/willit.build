@@ -26,7 +26,7 @@ export const questionRowStyles = theme => ({
   background: `transparent`,
   border: `none`,
   fontSize: theme.fontSizes[3],
-  fontWeight: `bold`,
+  fontWeight: theme.fontWeights.bold,
   textAlign: `left`,
   padding: 0,
   cursor: `pointer`,

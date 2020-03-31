@@ -52,7 +52,7 @@ function CustomTooltip({ active, payload }) {
             <span
               css={theme => ({
                 display: `flex`,
-                fontWeight: `bold`,
+                fontWeight: theme.fontWeights.bold,
                 color: theme.tones[name].medium,
                 fontSize: theme.fontSizes[5],
               })}

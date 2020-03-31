@@ -80,7 +80,7 @@ const Hero = () => {
           rightIcon={<MdArrowDownward />}
           size="M"
           css={theme => ({
-            fontWeight: `500`,
+            fontWeight: theme.fontWeights.bold,
             fontFamily: theme.fonts.body,
           })}
           to="#benchmark-sites"

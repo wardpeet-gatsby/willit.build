@@ -25,7 +25,7 @@ export const titleStyles = theme => ({
   letterSpacing: `0.05em`,
   color: theme.colors.blackFade[70],
   textTransform: `uppercase`,
-  fontWeight: `normal`,
+  fontWeight: theme.fontWeights.body,
 })
 
 export const contentStyles = theme => ({
@@ -33,7 +33,7 @@ export const contentStyles = theme => ({
   fontSize: theme.fontSizes[5],
   lineHeight: theme.lineHeights.solid,
   color: theme.colors.blackFade[90],
-  fontWeight: `bold`,
+  fontWeight: theme.fontWeights.bold,
   padding: `0.675rem 0 0.5rem 0`,
 })
 
@@ -52,7 +52,7 @@ export const subtextStyles = theme => ({
 
 export const spanStyles = theme => ({
   fontSize: theme.fontSizes[3],
-  fontWeight: `normal`,
+  fontWeight: theme.fontWeights.body,
   color: theme.colors.blackFade[70],
   paddingLeft: theme.space[2],
 })
