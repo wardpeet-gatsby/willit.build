@@ -8,6 +8,7 @@ import GlobalStyles from "./GlobalStyles"
 import ThemeProvider from "./ThemeProvider"
 import { SkipNavTrigger, SkipNavTarget } from "@modules/a11y/components/SkipNav"
 import { SEO } from "@modules/seo/components/SEO"
+import Banner from "@modules/ui/components/Banner"
 import "../fonts.css"
 
 const App = ({ children }) => {
@@ -15,6 +16,7 @@ const App = ({ children }) => {
     <ThemeProvider>
       <SEO />
       <SkipNavTrigger />
+      <Banner id="build-reports-webinar" />
       <GlobalStyles />
       <Header />
       <main>
