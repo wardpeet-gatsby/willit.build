@@ -101,14 +101,13 @@ const Footer = () => {
           <nav>
             <ul css={navCss}>
               {data.contentfulFooterNavigation.contentfulchildren.map(
-                ({ id, name, icon, linkTo }) => (
-                  <li key={id}>
-                    <Link to={linkTo} css={navLinkCss}>
-                      <img src={icon.file.url} css={iconCss} alt="" />
-                      {name}
-                    </Link>
-                  </li>
-                )
+                ({ id, name, icon, linkTo }) => {
+                  return (
+                    <li key={id}>
+                      <FooterNavLink name={name} icon={icon} linkTo={linkTo} />
+                    </li>
+                  )
+                }
               )}
             </ul>
           </nav>
@@ -140,6 +139,32 @@ const Footer = () => {
         </footer>
       </MaxWidthWrapper>
     </div>
+  )
+}
+
+const FooterNavLink = ({ linkTo, icon, name }) => {
+  // Links can either be internal or external.
+  const isExternal = linkTo.match(/^http/)
+
+  const children = (
+    <>
+      <img src={icon.file.url} css={iconCss} alt="" />
+      {name}
+    </>
+  )
+
+  if (isExternal) {
+    return (
+      <a href={linkTo} css={navLinkCss}>
+        {children}
+      </a>
+    )
+  }
+
+  return (
+    <Link to={linkTo} css={navLinkCss}>
+      {children}
+    </Link>
   )
 }
 
