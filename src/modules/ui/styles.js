@@ -5,13 +5,13 @@ export const controlLabelCss = theme => ({
   fontWeight: theme.fontWeights.body,
   letterSpacing: theme.letterSpacings.tracked,
   color: theme.colors.grey[70],
-  marginBottom: theme.space[3],
+  marginBottom: theme.space[5],
 })
 
 export const controlFooterCss = theme => ({
   fontSize: theme.fontSizes[0],
   color: theme.colors.grey[60],
-  marginTop: theme.space[1],
+  marginTop: theme.space[2],
 
   [theme.mediaQueries.desktop]: {
     fontSize: theme.fontSizes[1],
@@ -21,7 +21,7 @@ export const controlFooterCss = theme => ({
 export const controlValueCss = theme => ({
   fontSize: theme.fontSizes[3],
   color: theme.colors.grey[90],
-  fontWeight: theme.fontWeights.bold,
+  fontWeight: theme.fontWeights.semiBold,
 
   [theme.mediaQueries.desktop]: {
     fontSize: theme.fontSizes[5],

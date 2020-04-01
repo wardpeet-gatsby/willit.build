@@ -2,12 +2,15 @@ import React from "react"
 import { graphql } from "gatsby"
 import DetailsChart from "@modules/charts/components/DetailsChart"
 import DetailsChartPlaceholder from "@modules/charts/components/DetailsChartPlaceholder"
+import { DetailsChartDimensions } from "@modules/charts/constants"
 import MaxWidthWrapper, {
   HORIZONTAL_PADDING_DESKTOP as wrapperPaddingDesktop,
 } from "@modules/ui/components/MaxWidthWrapper"
 import DetailsHeader from "./DetailsHeader"
 import DetailsOverview from "./DetailsOverview"
 import { filterDataForChart } from "./SiteDetailsPage.helpers"
+
+const { YAxisWidth } = DetailsChartDimensions
 
 const SiteDetailsPage = ({ data, pageContext }) => {
   const [chartIsMounted, setChartIsMounted] = React.useState(false)
@@ -47,7 +50,7 @@ const SiteDetailsPage = ({ data, pageContext }) => {
           background: theme.colors.grey[5],
 
           [theme.mediaQueries.desktop]: {
-            padding: `${theme.space[10]} ${theme.space[15]} ${theme.space[8]}`,
+            padding: `${theme.space[10]} 0 ${theme.space[8]} ${YAxisWidth}px`,
           },
         })}
       >

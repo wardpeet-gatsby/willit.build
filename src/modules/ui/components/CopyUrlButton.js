@@ -72,7 +72,7 @@ function Copy({ content, duration, trim = false, ...props }) {
       >
         {copied ? `Copied` : `Copy`}
       </div>
-      <LinkIcon fill={colors.grey[60]} />
+      <LinkIcon fill={colors.grey[40]} />
     </Button>
   )
 }

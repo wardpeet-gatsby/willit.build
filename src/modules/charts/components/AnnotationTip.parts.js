@@ -29,8 +29,7 @@ export function TipDescription({ description, link, linkText }) {
     <p
       css={theme => ({
         marginTop: theme.space[3],
-        lineHeight: 1.5,
-        marginBottom: theme.space[2],
+        lineHeight: theme.lineHeights.default,
       })}
     >
       {description}{" "}
@@ -75,8 +74,7 @@ export function TipSpout({ spoutWidth, spoutHeight, iconWidth, tipAbove }) {
         viewBox="0 0 20 10"
         xmlns="http://www.w3.org/2000/svg"
         css={theme => ({
-          fill: theme.colors.grey[90],
-          opacity: 0.8,
+          fill: theme.colors.blackFade[90],
           width: `100%`,
         })}
       >

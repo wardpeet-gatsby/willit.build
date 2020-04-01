@@ -3,7 +3,7 @@ import { DetailsChartDimensions } from "../constants"
 import { Platforms } from "@modules/data/constants"
 import { ToggleCheckbox } from "gatsby-interface"
 
-function CustomLegend({ payload, onClick, activeLines }) {
+function CustomLegend({ onClick, activeLines }) {
   const { LegendMinHeight, YAxisWidth } = DetailsChartDimensions
 
   return (
@@ -21,16 +21,16 @@ function CustomLegend({ payload, onClick, activeLines }) {
         },
       })}
     >
-      {payload.map(({ dataKey }) => {
-        const isActive = activeLines[dataKey]
+      {Object.entries(Platforms).map(([key, { displayedAs }]) => {
+        const isActive = activeLines[key]
 
         return (
           <ToggleCheckbox
-            key={`legend-toggle-${dataKey}`}
-            label={Platforms[dataKey].displayedAs}
+            key={`legend-toggle-${key}`}
+            label={displayedAs}
             checked={isActive}
-            tone={dataKey}
-            onChange={() => onClick(dataKey)}
+            tone={key}
+            onChange={() => onClick(key)}
             css={theme => ({
               color: theme.colors.grey[60],
               fontSize: theme.fontSizes[1],

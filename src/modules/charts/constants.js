@@ -2,7 +2,7 @@ export const DetailsChartDimensions = {
   ChartHeight: 500,
   ChartDesktopHorizontalPadding: 100,
   LegendMinHeight: 50,
-  YAxisWidth: 70,
+  YAxisWidth: 55,
   ActiveDotRadius: 10,
   ActiveDotDiam: 20,
   ActiveDotInnerRadius: 4,

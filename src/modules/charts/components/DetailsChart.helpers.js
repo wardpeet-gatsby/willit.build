@@ -2,11 +2,38 @@ import React from "react"
 import formatDuration from "../utils/formatDuration"
 import { DetailsChartDimensions } from "../constants"
 
-const {
-  YAxisWidth,
-  ActiveDotRadius,
-  ChartDesktopHorizontalPadding,
-} = DetailsChartDimensions
+const { ActiveDotRadius } = DetailsChartDimensions
+
+export function filteredDataInitialStartIndex({
+  data,
+  isMobile,
+  initialDataRangeMobile,
+  initialDataRangeDesktop,
+}) {
+  const initialDataRange = isMobile
+    ? initialDataRangeMobile
+    : initialDataRangeDesktop
+
+  return data.length > initialDataRange ? data.length - initialDataRange : 0
+}
+
+export function filteredDataInitialEndIndex({ data }) {
+  return data.length - 1
+}
+
+export function filterData({
+  data,
+  filteredDataStartIndex,
+  filteredDataEndIndex,
+}) {
+  return data.slice(filteredDataStartIndex, filteredDataEndIndex + 1)
+}
+
+export function filterDataForMobile({ data, scope }) {
+  const startIndex = data.length > scope ? data.length - scope : 0
+
+  return data.filter((_, idx) => idx >= startIndex)
+}
 
 export function xAxisTickFormater(value) {
   return value.slice(0, -5)
@@ -48,6 +75,22 @@ export function getYAxisTicks(data) {
 export function getLinearGradientDefs(tones) {
   return (
     <defs>
+      <pattern
+        id="brush-slide-fill"
+        x="50%"
+        y="0"
+        width="1"
+        height="1"
+        patternTransform="translate(-4,17)"
+        patternUnits="objectBoundingBox"
+      >
+        <rect fill="rgba(0,0,0,0.04)" x="0" y="0" width="100%" height="100" />
+
+        <rect fill="rgba(0,0,0,0.3)" x="0" y="0" width="2" height="16" />
+        <rect fill="rgba(0,0,0,0.3)" x="5" y="0" width="2" height="16" />
+        <rect fill="rgba(0,0,0,0.3)" x="10" y="0" width="2" height="16" />
+      </pattern>
+
       <linearGradient id="GATSBY_CLOUD-fill" x1="0" y1="0" x2="0" y2="1">
         <stop
           offset="0%"
@@ -82,14 +125,14 @@ export function getLinearGradientDefs(tones) {
 
 export const wrapperCss = theme => ({
   background: theme.colors.grey[5],
-  paddingLeft: 0,
-  paddingRight: 0,
-  paddingBottom: theme.space[8],
+  marginBottom: theme.space[4],
 
   [theme.mediaQueries.desktop]: {
-    paddingLeft: `${ChartDesktopHorizontalPadding - YAxisWidth}px`, // we need this to make chart right edge aligned
-    paddingRight: `${ChartDesktopHorizontalPadding - ActiveDotRadius}px`, // with other content wrapped in MaxWidthWrapper
-    paddingBottom: theme.space[12],
+    marginRight: `-${ActiveDotRadius}px`, // this nullify the right margin set on the chart
+  },
+
+  ".recharts-cartesian-grid": {
+    borderRight: `1px solid red`,
   },
 
   ".recharts-cartesian-axis-tick-value": {
@@ -100,27 +143,26 @@ export const wrapperCss = theme => ({
   ".recharts-brush": {},
 
   ".recharts-brush-slide": {
-    fill: `#aaa`,
+    fill: `url(#brush-slide-fill)`,
+    fillOpacity: 1,
   },
 
   ".recharts-brush-texts": {
-    fontFamily: theme.fonts.body,
-    fill: "#666",
-    fontSize: theme.fontSizes[0],
+    display: `none`,
   },
 
   ".recharts-brush-traveller": {
     rect: {
-      fill: `#999`,
+      fill: `#ccc`,
     },
   },
 
   ".recharts-brush > rect:not(.recharts-brush-slide)": {
-    fill: `#fbfbfb`,
+    fill: `rgba(0,0,0,0)`,
     stroke: `#fbfbfb`,
   },
 
   ".recharts-cartesian-axis-line, .recharts-cartesian-axis-tick-line": {
-    stroke: theme.colors.blackFade[10],
+    stroke: theme.colors.blackFade[20],
   },
 })

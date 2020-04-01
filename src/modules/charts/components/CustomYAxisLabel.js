@@ -3,7 +3,7 @@ import { DetailsChartDimensions } from "../constants"
 
 function CustomYAxisLabel({ isMobile }) {
   const { ChartHeight } = DetailsChartDimensions
-  const y = ChartHeight / 2
+  const y = ChartHeight / 2 + 35 // "35" is ~half of width of "BUILD TIME" string
 
   /* 
     the positioning 'magic' numbers was manually set
@@ -14,7 +14,7 @@ function CustomYAxisLabel({ isMobile }) {
   return (
     <text
       y={y}
-      x="0"
+      x={0}
       transform={`rotate(-90, 0, ${y}) translate(0,10)`}
       css={theme => ({
         fontFamily: theme.fonts.body,
@@ -24,17 +24,14 @@ function CustomYAxisLabel({ isMobile }) {
     >
       <tspan
         x="0"
-        dx={isMobile ? -25 : 0}
-        dy={10}
+        dx={0}
+        dy={isMobile ? 10 : 0}
         css={theme => ({
           letterSpacing: theme.letterSpacings.tracked,
           fontWeight: theme.fontWeights.bold,
         })}
       >
         BUILD TIME
-      </tspan>
-      <tspan x={isMobile ? 65 : 10} dy={isMobile ? 0 : 14}>
-        {isMobile ? `(MINUTES)` : `MINUTES`}
       </tspan>
     </text>
   )

@@ -27,6 +27,7 @@ function DetailsOverview({
           borderTop: `1px solid ${theme.colors.blackFade[10]}`,
           padding: 0,
           marginTop: theme.space[6],
+          marginBottom: theme.space[4],
         },
       })}
     >

@@ -27,12 +27,16 @@ function CustomTooltip({ active, payload }) {
       css={theme => ({
         display: `flex`,
         flexDirection: `column`,
-        background: theme.colors.blackFade[80],
+        background: theme.colors.blackFade[90],
         borderRadius: theme.radii[2],
         color: theme.colors.white,
-        padding: theme.space[7],
+        padding: theme.space[5],
         fontFamily: theme.fonts.body,
         margin: `0 ${theme.space[3]}`,
+
+        [theme.mediaQueries.desktop]: {
+          padding: theme.space[7],
+        },
       })}
     >
       {values.map(({ name, value }) => {
@@ -47,6 +51,7 @@ function CustomTooltip({ active, payload }) {
               display: `flex`,
               flexDirection: `column`,
               marginBottom: theme.space[4],
+              lineHeight: 1,
             })}
           >
             <span
@@ -54,30 +59,37 @@ function CustomTooltip({ active, payload }) {
                 display: `flex`,
                 fontWeight: theme.fontWeights.bold,
                 color: theme.tones[name].medium,
-                fontSize: theme.fontSizes[5],
+                fontSize: theme.fontSizes[3],
+
+                [theme.mediaQueries.desktop]: {
+                  fontSize: theme.fontSizes[5],
+                },
               })}
             >
               {formatDuration(value)}
             </span>
             <span
-              css={{
+              css={theme => ({
                 display: `flex`,
                 alignItems: `center`,
-              }}
+                marginTop: theme.space[1],
+              })}
             >
               <Icon
                 css={theme => ({
-                  margin: 0,
-                  padding: 0,
                   marginRight: theme.space[2],
-                  width: theme.space[5],
-                  height: theme.space[5],
+                  width: `0.8em`,
+                  height: `0.8em`,
                 })}
               />
               <span
                 css={theme => ({
                   whiteSpace: `nowrap`,
-                  fontSize: theme.fontSizes[1],
+                  fontSize: theme.fontSizes[0],
+
+                  [theme.mediaQueries.desktop]: {
+                    fontSize: theme.fontSizes[1],
+                  },
                 })}
               >
                 {Platforms[name].displayedAs}

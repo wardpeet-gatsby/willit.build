@@ -42,7 +42,7 @@ export const SocialShareIcon = ({ Icon, url, label, ...props }) => {
       }}
       {...props}
     >
-      <Icon fill={colors.grey[60]} />
+      <Icon fill={colors.grey[40]} />
     </Button>
   )
 }

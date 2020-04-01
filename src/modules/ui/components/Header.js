@@ -31,7 +31,7 @@ const logoWrapperCss = theme => ({
 
 const logoCss = theme => ({
   display: `block`,
-  marginRight: theme.space[7],
+  marginRight: theme.space[8],
 })
 
 const Header = () => {

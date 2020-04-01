@@ -1,7 +1,7 @@
 import React from "react"
 import { DetailsChartDimensions } from "../constants"
 
-function CustomReferenceLineLabel({ viewBox, annotation, onClick }) {
+function AnnotationRefLineLabel({ viewBox, annotation, onClick }) {
   const ref = React.useRef()
   const { AnnotationIconSize } = DetailsChartDimensions
 
@@ -51,4 +51,4 @@ function CustomReferenceLineLabel({ viewBox, annotation, onClick }) {
   )
 }
 
-export default CustomReferenceLineLabel
+export default AnnotationRefLineLabel

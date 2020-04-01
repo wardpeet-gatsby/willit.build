@@ -85,7 +85,7 @@ function shiftChartScope({
   setFilteredData(newFilteredData)
 }
 
-function MobileScopeNav({ data, filteredData, setFilteredData }) {
+function RangeControllerMobile({ data, filteredData, setFilteredData }) {
   const startDate = new Date(data[0].createdAt)
   const endDate = new Date(data[data.length - 1].createdAt)
   const filteredStartDate = new Date(filteredData[0].createdAt)
@@ -144,4 +144,4 @@ function MobileScopeNav({ data, filteredData, setFilteredData }) {
   )
 }
 
-export default MobileScopeNav
+export default RangeControllerMobile
