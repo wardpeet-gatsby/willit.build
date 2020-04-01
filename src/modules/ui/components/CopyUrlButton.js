@@ -5,7 +5,7 @@ import { Button, colors } from "gatsby-interface"
 import LinkIcon from "../assets/Link"
 import copyToClipboard from "../utils/copy-to-clipboard"
 
-function Copy({ content, duration, trim = false }) {
+function Copy({ content, duration, trim = false, ...props }) {
   const [copied, setCopied] = useState(false)
 
   useEffect(() => {
@@ -58,6 +58,7 @@ function Copy({ content, duration, trim = false }) {
         await copyToClipboard(trim ? content.trim() : content)
         setCopied(true)
       }}
+      {...props}
     >
       <div
         css={theme => ({

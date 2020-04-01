@@ -64,18 +64,20 @@ const SocialLinks = ({
       <div css={spacerCss} />
       <div css={spacerCss} />
       <SocialShareLink
+        data-cy="social-link__twitter"
         Icon={TwitterIcon}
         url={twitterShareUrl}
         label="Share Gatsby Cloud benchmarks on Twitter"
       />
       <div css={spacerCss} />
       <SocialShareLink
+        data-cy="social-link__share"
         Icon={LinkedInIcon}
         url={linkedinShareUrl}
         label="Share Gatsby Cloud benchmarks on LinkedIn"
       />
       <div css={spacerCss} />
-      <CopyUrlButton content={href} />
+      <CopyUrlButton data-cy="social-link__clipboard-copy" content={href} />
     </div>
   )
 }

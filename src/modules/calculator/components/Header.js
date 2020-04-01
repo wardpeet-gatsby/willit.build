@@ -74,7 +74,9 @@ const Header = ({ siteType, contentSource, pageCount }) => {
         <div css={iconWrapperCss}>
           <CalculatorIcon />
         </div>
-        <h1 css={headerStyles}>Build time calculator</h1>
+        <h1 css={headerStyles} data-cy="calculator__title">
+          Build time calculator
+        </h1>
         <div css={socialLinksWrapperCss}>
           <SocialLinks
             siteType={siteType}
@@ -84,7 +86,7 @@ const Header = ({ siteType, contentSource, pageCount }) => {
         </div>
       </div>
       <div css={blurbWrapperCss}>
-        <p css={blurbCss}>
+        <p css={blurbCss} data-cy="calculator__description">
           The willit.build build time calculator provides an estimation of build
           time across each supported Continuous Deployment platform.
         </p>

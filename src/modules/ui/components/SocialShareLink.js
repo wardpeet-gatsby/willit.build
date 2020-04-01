@@ -9,7 +9,7 @@ const propTypes = {
   label: PropTypes.string.isRequired,
 }
 
-export const SocialShareIcon = ({ Icon, url, label }) => {
+export const SocialShareIcon = ({ Icon, url, label, ...props }) => {
   return (
     <Button
       tone={`NEUTRAL`}
@@ -40,6 +40,7 @@ export const SocialShareIcon = ({ Icon, url, label }) => {
           window.open(url, `_blank`, `height=500,width=500`)
         }
       }}
+      {...props}
     >
       <Icon fill={colors.grey[60]} />
     </Button>
