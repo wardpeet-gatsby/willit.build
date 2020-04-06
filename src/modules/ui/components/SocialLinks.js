@@ -33,7 +33,7 @@ const cmsTwitterMap = {
 }
 
 const SocialLinks = ({
-  includeGithubLink,
+  repositoryUrl,
   siteType = ``,
   contentSource = ``,
   pageCount = ``,
@@ -49,13 +49,13 @@ const SocialLinks = ({
   )}`
 
   // LinkedIn has apparently all but killed their query param share function, cant add a message
-  const linkedinShareUrl = `https://www.linkedin.com/shareArticle?url=${href}/calculator/type/blog/source/drupal/page-count/512`
+  const linkedinShareUrl = `https://www.linkedin.com/shareArticle?url=${href}/calculator/type/${siteType}/source/${contentSource}/page-count/${pageCount}`
 
   return (
     <div css={wrapperCss}>
-      {includeGithubLink && (
+      {repositoryUrl && (
         <BaseAnchor
-          href="https://github.com/gatsby-inc/willit.build"
+          href={`https://github.com/${repositoryUrl}`}
           css={githubLinkCss}
         >
           View source on Github

@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars, @typescript-eslint/no-unused-vars */
-
 import ContentfulIcon from "./assets/icons/ContentfulIcon"
 import CosmicjsIcon from "./assets/icons/CosmicjsIcon"
 import DatocmsIcon from "./assets/icons/DatocmsIcon"
@@ -22,82 +20,50 @@ import {
   BaseBuildType,
 } from "../../../base-constants"
 
-export { pageCountIds } from "../../../base-constants"
+const Icons = {
+  BLOG: BlogIcon,
+  CONTENTFUL: ContentfulIcon,
+  COSMICJS: CosmicjsIcon,
+  DATOCMS: DatocmsIcon,
+  DRUPAL: DrupalIcon,
+  MDX: MarkdownIcon,
+  MARKDOWN: MarkdownIcon,
+  WORDPRESS: WordpressIcon,
+}
+
+const Thumbnails = {
+  BLOG: BlogThumbnail,
+}
+
+export {
+  siteTypeIds,
+  contentSourceIds,
+  pageCountIds,
+} from "../../../base-constants"
 
 export const PageCount = BasePageCount
 
 export const BuildType = BaseBuildType
 
-export const SiteType = {
-  BLOG: {
-    id: `BLOG`,
-    displayedAs: `Blog`,
-    thumbnail: BlogThumbnail,
-    Icon: BlogIcon,
-  },
-}
+export const SiteType = Object.entries(BaseSiteType).reduce(
+  (acc, [key, val]) => {
+    val.Icon = Icons[key] || null
+    val.thumbnail = Thumbnails[key] || null
+    acc[key] = val
 
-export const siteTypeIds = Object.values(SiteType).map(type => type.id)
+    return acc
+  },
+  {}
+)
 
-export const ContentSource = {
-  CONTENTFUL: {
-    id: `CONTENTFUL`,
-    displayedAs: `Contentful`,
-    Icon: ContentfulIcon,
-    gradient: {
-      start: `#159BF3`,
-      end: `#B17ACC`,
-    },
-  },
-  COSMICJS: {
-    id: `COSMICJS`,
-    displayedAs: `CosmicJS`,
-    Icon: CosmicjsIcon,
-    gradient: {
-      start: `#29ABE2`,
-      end: `#2DE3DA`,
-    },
-  },
-  DATOCMS: {
-    id: `DATOCMS`,
-    displayedAs: `DatoCMS`,
-    Icon: DatocmsIcon,
-    gradient: {
-      start: `#FF684F`,
-      end: `#FFB238`,
-    },
-  },
-  DRUPAL: {
-    id: `DRUPAL`,
-    displayedAs: `Drupal`,
-    Icon: DrupalIcon,
-    gradient: {
-      start: `#2BA9E0`,
-      end: `#35B637`,
-    },
-  },
-  MDX: {
-    id: `MDX`,
-    displayedAs: `MDX`,
-    Icon: MarkdownIcon,
-    gradient: {
-      start: `#000000`,
-      end: `#BF9141`,
-    },
-  },
-  WORDPRESS: {
-    id: `WORDPRESS`,
-    displayedAs: `Wordpress`,
-    Icon: WordpressIcon,
-    gradient: {
-      start: `#21759B`,
-      end: `#BC027F`,
-    },
-  },
-}
+export const ContentSource = Object.entries(BaseContentSource).reduce(
+  (acc, [key, val]) => {
+    val.Icon = Icons[key] || null
+    acc[key] = val
 
-export const contentSourceIds = Object.values(ContentSource).map(
-  source => source.id
+    return acc
+  },
+  {}
 )
 
 export const Platforms = {

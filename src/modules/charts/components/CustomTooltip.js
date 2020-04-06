@@ -8,6 +8,10 @@ function CustomTooltip({ active, payload }) {
     return null
   }
 
+  const errors = Object.entries(
+    payload[0].payload.errors
+  ).map(([key, value]) => ({ name: key, error: value }))
+
   const values = payload
     .map(({ name, value }) => ({
       name,
@@ -21,6 +25,8 @@ function CustomTooltip({ active, payload }) {
     payload && payload[0] && payload[0].payload && payload[0].payload.createdAt
   const formattedDate =
     valuesDate && format(new Date(`${valuesDate}`), `MMMM d, yyyy`)
+
+  const tooltipItems = [...errors, ...values]
 
   return (
     <div
@@ -39,7 +45,7 @@ function CustomTooltip({ active, payload }) {
         },
       })}
     >
-      {values.map(({ name, value }) => {
+      {tooltipItems.map(({ name, value, error }) => {
         const Icon = Platforms[name].IconOnDark
           ? Platforms[name].IconOnDark
           : Platforms[name].Icon
@@ -59,14 +65,14 @@ function CustomTooltip({ active, payload }) {
                 display: `flex`,
                 fontWeight: theme.fontWeights.bold,
                 color: theme.tones[name].medium,
-                fontSize: theme.fontSizes[3],
+                fontSize: error ? theme.fontSizes[2] : theme.fontSizes[3],
 
                 [theme.mediaQueries.desktop]: {
-                  fontSize: theme.fontSizes[5],
+                  fontSize: error ? theme.fontSizes[3] : theme.fontSizes[5],
                 },
               })}
             >
-              {formatDuration(value)}
+              {error ? error : formatDuration(value)}
             </span>
             <span
               css={theme => ({

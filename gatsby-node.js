@@ -1,11 +1,14 @@
 const moduleAliases = require(`./module-aliases`)
 
 const {
+  contentSourceIds,
+  siteTypeIds,
   pageCountIds,
   BaseBuildType,
   buildTypeKeys,
 } = require("./base-constants")
 const formatPath = require("./src/modules/data/utils/formatPath")
+const checkIfContstantsExist = require("./src/modules/data/utils/checkIfContstantsExist")
 
 exports.createPages = async ({ graphql, actions: { createPage } }) => {
   const result = await graphql(
@@ -16,17 +19,95 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
             id
             contentSource
             siteType
+
+            # following keys is a temporary hack to check if there is data for particular pageCounts
+            # we need to update api to return array of BenchmarkLatestStats if there is not specified numberOfPages in the query
+
+            latest512: latest(numberOfPages: 512) {
+              coldStart {
+                timeInMs
+              }
+              warmStart {
+                timeInMs
+              }
+            }
+            latest4096: latest(numberOfPages: 4096) {
+              coldStart {
+                timeInMs
+              }
+              warmStart {
+                timeInMs
+              }
+            }
+            latest8192: latest(numberOfPages: 8192) {
+              coldStart {
+                timeInMs
+              }
+              warmStart {
+                timeInMs
+              }
+            }
+            latest32768: latest(numberOfPages: 32768) {
+              coldStart {
+                timeInMs
+              }
+              warmStart {
+                timeInMs
+              }
+            }
           }
         }
       }
     `
   )
 
-  result.data.benchmarkApi.benchmarkVendors.forEach(
-    ({ id, contentSource, siteType }) => {
-      pageCountIds.forEach(pageCount => {
+  const activeBenchmarks = result.data.benchmarkApi.benchmarkVendors.reduce(
+    (acc, item) => {
+      const {
+        id,
+        contentSource,
+        siteType,
+        latest512: { warmStart: ws512, coldStart: cs512 },
+        latest4096: { warmStart: ws4096, coldStart: cs4096 },
+        latest8192: { warmStart: ws8192, coldStart: cs8192 },
+        latest32768: { warmStart: ws32768, coldStart: cs32768 },
+      } = item
+
+      const pageCounts = {
+        "512": ws512.length && cs512.length,
+        "4096": ws4096.length && cs4096.length,
+        "8192": ws8192.length && cs8192.length,
+        "32768": ws32768.length && cs32768.length,
+      }
+
+      const activePageCounts = Object.entries(pageCounts).reduce(
+        (acc, [key, val]) => {
+          if (val) {
+            return [...acc, key]
+          }
+          return acc
+        },
+        []
+      )
+
+      if (contentSource && activePageCounts.length) {
+        return [...acc, { id, contentSource, siteType, activePageCounts }]
+      }
+
+      return acc
+    },
+    []
+  )
+
+  activeBenchmarks.forEach(
+    ({ id, contentSource, siteType, activePageCounts }) => {
+      activePageCounts.forEach(pageCount => {
         buildTypeKeys.forEach(buildType => {
-          const detailsPath = createPage({
+          if (!checkIfContstantsExist({ id, contentSource, siteType })) {
+            return
+          }
+
+          createPage({
             path: formatPath({
               prefix: `details`,
               siteType,
@@ -39,10 +120,11 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
             ),
             context: {
               id,
-              pageCount,
+              pageCount: Number(pageCount),
               contentSource,
               siteType,
               buildType,
+              activeBenchmarks,
             },
           })
 
@@ -57,8 +139,9 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
               `./src/modules/calculator/components/CalculatorPage.js`
             ),
             context: {
-              pageCount,
+              pageCount: Number(pageCount),
               contentSource,
+              activeBenchmarks,
               siteType,
             },
           })
@@ -78,8 +161,9 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       `./src/modules/calculator/components/CalculatorPage.js`
     ),
     context: {
-      pageCount: pageCountIds[0],
+      pageCount: Number(pageCountIds[0]),
       contentSource: defaultCalculatorContentSource,
+      activeBenchmarks,
       siteType: defaultCalculatorSiteType,
     },
   })

@@ -22,7 +22,7 @@ context("All pages", () => {
   })
 
   it("audits the calculator", () => {
-    cy.visit("/calculator/type/blog/source/drupal/page-count/512")
+    cy.visit("/calculator/type/blog/source/datocms/page-count/512")
     cy.audit({
       performance: 90,
       accessibility: 100,

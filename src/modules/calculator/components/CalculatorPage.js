@@ -7,7 +7,7 @@ import Header from "./Header"
 import Calculator from "./Calculator"
 
 const CalculatorPage = ({ pageContext, data }) => {
-  const { siteType, contentSource, pageCount } = pageContext
+  const { siteType, contentSource, activeBenchmarks, pageCount } = pageContext
 
   return (
     <MaxWidthWrapper>
@@ -22,21 +22,25 @@ const CalculatorPage = ({ pageContext, data }) => {
           contentSource={contentSource}
           pageCount={pageCount}
           data={data}
+          activeBenchmarks={activeBenchmarks}
         />
       </GreyBox>
     </MaxWidthWrapper>
   )
 }
 
+export default CalculatorPage
+
 export const query = graphql`
   query calculatorStats(
     $contentSource: BenchmarkVendors_CmsVendor!
     $siteType: BenchmarkVendors_BenchmarkSiteType!
+    $pageCount: Int!
   ) {
     benchmarkApi {
       benchmarkVendor(siteType: $siteType, contentSource: $contentSource) {
         id
-        latest {
+        latest(numberOfPages: $pageCount) {
           coldStart {
             platform
             timeInMs
@@ -54,5 +58,3 @@ export const query = graphql`
     }
   }
 `
-
-export default CalculatorPage

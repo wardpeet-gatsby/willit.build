@@ -1,11 +1,7 @@
 import React from "react"
 import { navigate } from "gatsby"
 
-import {
-  ContentSource,
-  contentSourceIds,
-  BuildType,
-} from "@modules/data/constants"
+import { ContentSource, BuildType } from "@modules/data/constants"
 import SelectControl, {
   SelectControlOption,
 } from "@modules/ui/components/SelectControl"
@@ -15,6 +11,7 @@ const ContentSourceControl = ({
   siteType,
   pageCount,
   initialContentSource,
+  activeBenchmarks,
   buildType,
 }) => {
   const [currentContentSource, setCurrentContentSource] = React.useState(
@@ -24,50 +21,48 @@ const ContentSourceControl = ({
   const { displayedAs, Icon } = ContentSource[currentContentSource]
 
   return (
-    <>
-      <SelectControl
-        label="Content Source"
-        id="content-source-control"
-        value={currentContentSource}
-        displayedValue={
-          <>
-            <Icon
-              css={theme => ({
-                marginRight: theme.space[2],
-              })}
-            />
-            {displayedAs}
-          </>
-        }
-        onChange={(ev, newPath) => {
-          setCurrentContentSource(ev.target.value)
+    <SelectControl
+      label="Content Source"
+      id="content-source-control"
+      value={currentContentSource}
+      displayedValue={
+        <>
+          <Icon
+            css={theme => ({
+              marginRight: theme.space[2],
+            })}
+          />
+          {displayedAs}
+        </>
+      }
+      onChange={(ev, newPath) => {
+        setCurrentContentSource(ev.target.value)
 
-          navigate(newPath, {
-            state: { refocusId: ev.target.id, disableScrollUpdate: true },
-          })
-        }}
-      >
-        {contentSourceIds.map(contentSourceId => {
-          return (
-            <SelectControlOption
-              key={contentSourceId}
-              value={contentSourceId}
-              path={formatPath({
-                prefix: `calculator`,
-                siteType,
-                contentSource: contentSourceId,
-                pageCount,
-                buildType: buildType
-                  ? BuildType[buildType].displayedAs
-                  : undefined,
-              })}
-            >
-              {ContentSource[contentSourceId].displayedAs}
-            </SelectControlOption>
-          )
-        })}
-      </SelectControl>
-    </>
+        navigate(newPath, {
+          state: { refocusId: ev.target.id, disableScrollUpdate: true },
+        })
+      }}
+    >
+      {activeBenchmarks.map(({ contentSource }) => {
+        return (
+          <SelectControlOption
+            key={contentSource}
+            value={contentSource}
+            path={formatPath({
+              prefix: `calculator`,
+              siteType,
+              contentSource,
+              pageCount,
+              buildType: buildType
+                ? BuildType[buildType].displayedAs
+                : undefined,
+            })}
+          >
+            {ContentSource[contentSource].displayedAs}
+          </SelectControlOption>
+        )
+      })}
+    </SelectControl>
   )
 }
 

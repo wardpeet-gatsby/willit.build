@@ -8,12 +8,13 @@ import MaxWidthWrapper, {
 } from "@modules/ui/components/MaxWidthWrapper"
 import DetailsHeader from "./DetailsHeader"
 import DetailsOverview from "./DetailsOverview"
-import { filterDataForChart } from "./SiteDetailsPage.helpers"
+import { formatDataForChart } from "./SiteDetailsPage.helpers"
 
 const { YAxisWidth } = DetailsChartDimensions
 
 const SiteDetailsPage = ({ data, pageContext }) => {
   const [chartIsMounted, setChartIsMounted] = React.useState(false)
+  const { activeBenchmarks } = pageContext
 
   React.useEffect(() => {
     setChartIsMounted(true)
@@ -25,9 +26,15 @@ const SiteDetailsPage = ({ data, pageContext }) => {
   } = data
 
   const { pageCount, buildType } = pageContext
-  const { latest, contentSource, siteType, benchmarks } = benchmarkVendor
+  const {
+    latest,
+    contentSource,
+    siteType,
+    benchmarks,
+    repositoryUrl,
+  } = benchmarkVendor
 
-  const graphData = filterDataForChart({
+  const graphData = formatDataForChart({
     benchmarks,
     buildType,
     pageCount,
@@ -58,6 +65,7 @@ const SiteDetailsPage = ({ data, pageContext }) => {
           siteType={siteType}
           contentSource={contentSource}
           pageCount={pageCount}
+          repositoryUrl={repositoryUrl}
         />
 
         <DetailsOverview
@@ -66,6 +74,7 @@ const SiteDetailsPage = ({ data, pageContext }) => {
           pageCount={pageCount}
           buildType={buildType}
           stats={latest[buildType === `WARM_START` ? `warmStart` : `coldStart`]}
+          activeBenchmarks={activeBenchmarks}
         />
       </div>
       <section>
@@ -82,6 +91,8 @@ export const query = graphql`
   query SiteDetailsPageQuery(
     $contentSource: BenchmarkVendors_CmsVendor!
     $siteType: BenchmarkVendors_BenchmarkSiteType!
+    $pageCount: Int!
+    $buildType: BenchmarkVendors_BenchmarkBuildType!
   ) {
     allAnnotationsJson {
       nodes {
@@ -95,7 +106,10 @@ export const query = graphql`
     benchmarkApi {
       benchmarkVendor(siteType: $siteType, contentSource: $contentSource) {
         id
-        latest {
+        repositoryUrl
+        contentSource
+        siteType
+        latest(numberOfPages: $pageCount) {
           coldStart {
             platform
             timeInMs
@@ -109,9 +123,8 @@ export const query = graphql`
             humanReadableTime
           }
         }
-        contentSource
-        siteType
-        benchmarks {
+
+        benchmarks(numberOfPages: $pageCount, buildType: $buildType) {
           id
           numberOfPages
           numberOfImages

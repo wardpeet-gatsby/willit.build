@@ -1,7 +1,7 @@
 import React from "react"
 import { navigate } from "gatsby"
 
-import { PageCount, pageCountIds, BuildType } from "@modules/data/constants"
+import { PageCount, BuildType } from "@modules/data/constants"
 import SelectControl, { SelectControlOption } from "./SelectControl"
 import formatPath from "@modules/data/utils/formatPath"
 
@@ -9,6 +9,7 @@ const PageCountSelectControl = ({
   siteType,
   initialPageCount,
   contentSource,
+  activeBenchmarks,
   buildType,
   footer,
   pathPrefix,
@@ -18,6 +19,9 @@ const PageCountSelectControl = ({
   )
 
   const { displayedAs } = PageCount[currentPageCount]
+  const activePageCounts = activeBenchmarks.find(item => {
+    return siteType === item.siteType && contentSource === item.contentSource
+  }).activePageCounts
 
   return (
     <SelectControl
@@ -34,7 +38,7 @@ const PageCountSelectControl = ({
       }}
       footer={footer}
     >
-      {pageCountIds.map(countNum => (
+      {activePageCounts.map(countNum => (
         <SelectControlOption
           key={countNum}
           value={countNum}

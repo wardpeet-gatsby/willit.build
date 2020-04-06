@@ -15,6 +15,7 @@ function DetailsOverview({
   siteType,
   pageCount,
   contentSource,
+  activeBenchmarks,
   buildType,
   stats,
 }) {
@@ -59,6 +60,7 @@ function DetailsOverview({
             buildType={buildType}
             footer="1 image per page"
             pathPrefix="details"
+            activeBenchmarks={activeBenchmarks}
           />
         </OverviewItem>
 

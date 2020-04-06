@@ -4,7 +4,7 @@ import { HORIZONTAL_PADDING_MOBILE as wrapperPaddingMobile } from "@modules/ui/c
 import { HeaderTitle, HeaderSiteType, BackLink } from "./DetailsHeader.parts"
 import SocialLinks from "@modules/ui/components/SocialLinks"
 
-function DetailsHeader({ siteType, contentSource, pageCount }) {
+function DetailsHeader({ siteType, contentSource, pageCount, repositoryUrl }) {
   return (
     <header
       css={theme => ({
@@ -52,7 +52,7 @@ function DetailsHeader({ siteType, contentSource, pageCount }) {
           })}
         >
           <SocialLinks
-            includeGithubLink={true}
+            repositoryUrl={repositoryUrl}
             contentSource={contentSource}
             siteType={siteType}
             pageCount={pageCount}

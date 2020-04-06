@@ -74,7 +74,13 @@ const bottomRowCss = theme => ({
   paddingTop: theme.space[7],
 })
 
-const Calculator = ({ siteType, contentSource, pageCount, data }) => {
+const Calculator = ({
+  siteType,
+  contentSource,
+  activeBenchmarks,
+  pageCount,
+  data,
+}) => {
   const stats = data.benchmarkApi.benchmarkVendor.latest
 
   const warmTimeStats = stats.warmStart
@@ -88,6 +94,7 @@ const Calculator = ({ siteType, contentSource, pageCount, data }) => {
             siteType={siteType}
             pageCount={pageCount}
             initialContentSource={contentSource}
+            activeBenchmarks={activeBenchmarks}
             pathPrefix="calculator"
           />
         </div>
@@ -95,65 +102,78 @@ const Calculator = ({ siteType, contentSource, pageCount, data }) => {
           siteType={siteType}
           initialPageCount={pageCount}
           contentSource={contentSource}
+          activeBenchmarks={activeBenchmarks}
           pathPrefix="calculator"
         />
       </div>
       <div css={topRowCss}>
         <div css={{ flex: 1.5 }}>
-          <Stat
-            type="warm-winner"
-            platform={warmTimeStats[0].platform}
-            time={warmTimeStats[0].timeInMinutes}
-            label="Fastest Content Build"
-            isLabelVisible={true}
-          />
+          {warmTimeStats[0] && (
+            <Stat
+              type="warm-winner"
+              platform={warmTimeStats[0].platform}
+              time={warmTimeStats[0].timeInMinutes}
+              label="Fastest Content Build"
+              isLabelVisible={true}
+            />
+          )}
         </div>
         <div css={{ flex: 1 }}>
-          <Stat
-            type="warm-runner-up"
-            platform={warmTimeStats[1].platform}
-            time={warmTimeStats[1].timeInMinutes}
-            label="Runner-Up"
-            isLabelVisible={true}
-          />
+          {warmTimeStats[1] && (
+            <Stat
+              type="warm-runner-up"
+              platform={warmTimeStats[1].platform}
+              time={warmTimeStats[1].timeInMinutes}
+              label="Runner-Up"
+              isLabelVisible={true}
+            />
+          )}
         </div>
         <div css={{ flex: 1 }}>
-          <Stat
-            type="warm-runner-up"
-            platform={warmTimeStats[2].platform}
-            time={warmTimeStats[2].timeInMinutes}
-            label="Second Runner-Up"
-            isLabelVisible={false}
-          />
+          {warmTimeStats[2] && (
+            <Stat
+              type="warm-runner-up"
+              platform={warmTimeStats[2].platform}
+              time={warmTimeStats[2].timeInMinutes}
+              label="Second Runner-Up"
+              isLabelVisible={false}
+            />
+          )}
         </div>
       </div>
       <div css={bottomRowCss}>
         <div css={{ flex: 1.5 }}>
-          <Stat
-            type="cold-winner"
-            platform={coldTimeStats[0].platform}
-            time={coldTimeStats[0].timeInMinutes}
-            label="Uncached Build"
-            isLabelVisible={true}
-          />
+          {coldTimeStats[0] && (
+            <Stat
+              type="cold-winner"
+              platform={coldTimeStats[0].platform}
+              time={coldTimeStats[0].timeInMinutes}
+              label="Uncached Build"
+              isLabelVisible={true}
+            />
+          )}
         </div>
         <div css={{ flex: 1 }}>
-          <Stat
-            type="cold-runner-up"
-            platform={coldTimeStats[1].platform}
-            time={coldTimeStats[1].timeInMinutes}
-            label="Runner-Up"
-            isLabelVisible={false}
-          />
+          {coldTimeStats[1] && (
+            <Stat
+              type="cold-runner-up"
+              platform={coldTimeStats[1].platform}
+              time={coldTimeStats[1].timeInMinutes}
+              label="Runner-Up"
+              isLabelVisible={false}
+            />
+          )}
         </div>
         <div css={{ flex: 1 }}>
-          <Stat
-            type="cold-runner-up"
-            platform={coldTimeStats[2].platform}
-            time={coldTimeStats[2].timeInMinutes}
-            label="Second Runner-Up"
-            isLabelVisible={false}
-          />
+          {coldTimeStats[2] && (
+            <Stat
+              type="cold-runner-up"
+              platform={coldTimeStats[2].platform}
+              time={coldTimeStats[2].timeInMinutes}
+              label="Second Runner-Up"
+              isLabelVisible={false}
+            />
+          )}
         </div>
       </div>
     </article>

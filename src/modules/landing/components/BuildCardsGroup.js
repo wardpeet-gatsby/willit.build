@@ -8,6 +8,8 @@ import {
   HORIZONTAL_PADDING_DESKTOP,
 } from "@modules/ui/components/MaxWidthWrapper"
 
+import checkIfContstantsExist from "@modules/data/utils/checkIfContstantsExist"
+
 const BuildCardsGroup = () => {
   const data = useStaticQuery(graphql`
     {
@@ -16,7 +18,7 @@ const BuildCardsGroup = () => {
           id
           contentSource
           siteType
-          latest {
+          latest(numberOfPages: 512) {
             coldStart {
               platform
               timeInMs
@@ -58,19 +60,26 @@ const BuildCardsGroup = () => {
       <h2 css={visuallyHiddenCss} id="benchmark-sites">
         Benchmark sites
       </h2>
-      {benchmarkVendors.map(data => {
-        const contentSource = data.contentSource
-        const siteType = data.siteType
+      {benchmarkVendors.map(({ contentSource, siteType, id, latest }) => {
+        if (!checkIfContstantsExist({ id, contentSource, siteType })) {
+          return null
+        }
+
+        const { warmStart, coldStart } = latest
+
+        if (!warmStart.length || !coldStart.length) {
+          return null
+        }
 
         return (
           <Card
-            key={data.id}
+            key={id}
             data-cy="build-card"
             contentSource={contentSource}
             siteType={siteType}
             numberOfPages={512}
-            cachedBuildTime={data.latest.warmStart[0].timeInMinutes}
-            uncachedBuildTime={data.latest.coldStart[0].timeInMinutes}
+            cachedBuildTime={latest.warmStart[0].timeInMinutes}
+            uncachedBuildTime={latest.coldStart[0].timeInMinutes}
           />
         )
       })}
