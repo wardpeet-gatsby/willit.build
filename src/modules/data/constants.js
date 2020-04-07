@@ -35,12 +35,6 @@ const Thumbnails = {
   BLOG: BlogThumbnail,
 }
 
-export {
-  siteTypeIds,
-  contentSourceIds,
-  pageCountIds,
-} from "../../../base-constants"
-
 export const PageCount = BasePageCount
 
 export const BuildType = BaseBuildType

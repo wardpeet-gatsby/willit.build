@@ -103,6 +103,8 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     ({ id, contentSource, siteType, activePageCounts }) => {
       activePageCounts.forEach(pageCount => {
         buildTypeKeys.forEach(buildType => {
+          // prevents creating pages for newly added benchmarks if there is no meta costants for them yet
+          // checkIfContstantsExist renders console.warn if there is no proper constants
           if (!checkIfContstantsExist({ id, contentSource, siteType })) {
             return
           }
