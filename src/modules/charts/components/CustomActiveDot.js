@@ -2,7 +2,13 @@ import React from "react"
 import { useTheme } from "@modules/ui/components/ThemeProvider"
 import { DetailsChartDimensions } from "../constants"
 
-function CustomActiveDot({ cx, cy, dataKey }) {
+function CustomActiveDot(prop) {
+  const { cx, cy, dataKey } = prop
+
+  if (!cx || !cy) {
+    return null
+  }
+
   const {
     ActiveDotRadius,
     ActiveDotDiam,
