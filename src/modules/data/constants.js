@@ -3,6 +3,7 @@ import CosmicjsIcon from "./assets/icons/CosmicjsIcon"
 import DatocmsIcon from "./assets/icons/DatocmsIcon"
 import DrupalIcon from "./assets/icons/DrupalIcon"
 import MarkdownIcon from "./assets/icons/MarkdownIcon"
+import MdxIcon from "./assets/icons/MdxIcon"
 import WordpressIcon from "./assets/icons/WordpressIcon"
 
 import GatsbyIcon from "./assets/icons/GatsbyIcon"
@@ -26,7 +27,7 @@ const Icons = {
   COSMICJS: CosmicjsIcon,
   DATOCMS: DatocmsIcon,
   DRUPAL: DrupalIcon,
-  MDX: MarkdownIcon,
+  MDX: MdxIcon,
   MARKDOWN: MarkdownIcon,
   WORDPRESS: WordpressIcon,
 }
