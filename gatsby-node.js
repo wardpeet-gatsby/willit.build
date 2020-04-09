@@ -1,11 +1,9 @@
 const moduleAliases = require(`./module-aliases`)
 
 const {
-  contentSourceIds,
-  siteTypeIds,
   pageCountIds,
   BaseBuildType,
-  buildTypeKeys,
+  buildTypeIds,
 } = require("./base-constants")
 const formatPath = require("./src/modules/data/utils/formatPath")
 const checkIfContstantsExist = require("./src/modules/data/utils/checkIfContstantsExist")
@@ -20,8 +18,9 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
             contentSource
             siteType
 
-            # following keys is a temporary hack to check if there is data for particular pageCounts
-            # we need to update api to return array of BenchmarkLatestStats if there is not specified numberOfPages in the query
+            # following part is a temporary solution to check if there is data for particular pageCounts
+            # we need to update api the way that it returns an array of all available BenchmarkLatestStats
+            # if there is no arguments in query (not specified numberOfPages)
 
             latest512: latest(numberOfPages: 512) {
               coldStart {
@@ -90,7 +89,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
         []
       )
 
-      if (contentSource && activePageCounts.length) {
+      if (contentSource && siteType && activePageCounts.length) {
         return [...acc, { id, contentSource, siteType, activePageCounts }]
       }
 
@@ -102,9 +101,9 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   activeBenchmarks.forEach(
     ({ id, contentSource, siteType, activePageCounts }) => {
       activePageCounts.forEach(pageCount => {
-        buildTypeKeys.forEach(buildType => {
-          // prevents creating pages for newly added benchmarks if there is no meta costants for them yet
-          // checkIfContstantsExist renders console.warn if there is no proper constants
+        buildTypeIds.forEach(buildType => {
+          // prevents creating pages for newly added benchmarks if there is no coresponding meta costants
+          // the checkIfContstantsExist helper prints console.warn if there is no coresponding constants
           if (!checkIfContstantsExist({ id, contentSource, siteType })) {
             return
           }

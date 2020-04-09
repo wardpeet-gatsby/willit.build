@@ -3,9 +3,6 @@
 
 const formatNum = num => Intl.NumberFormat("en-US").format(num)
 
-const extractIds = entityMap =>
-  Object.values(entityMap).map(entity => entity.id)
-
 const SiteType = {
   BLOG: {
     id: `BLOG`,
@@ -14,11 +11,10 @@ const SiteType = {
 }
 
 module.exports.BaseSiteType = SiteType
-module.exports.siteTypeIds = extractIds(SiteType)
+module.exports.siteTypeIds = Object.keys(SiteType)
 
 const ContentSource = {
   CONTENTFUL: {
-    id: `CONTENTFUL`,
     displayedAs: `Contentful`,
     gradient: {
       start: `#159BF3`,
@@ -26,7 +22,6 @@ const ContentSource = {
     },
   },
   COSMICJS: {
-    id: `COSMICJS`,
     displayedAs: `CosmicJS`,
     gradient: {
       start: `#29ABE2`,
@@ -34,7 +29,6 @@ const ContentSource = {
     },
   },
   DATOCMS: {
-    id: `DATOCMS`,
     displayedAs: `DatoCMS`,
     gradient: {
       start: `#FF684F`,
@@ -42,7 +36,6 @@ const ContentSource = {
     },
   },
   DRUPAL: {
-    id: `DRUPAL`,
     displayedAs: `Drupal`,
     gradient: {
       start: `#2BA9E0`,
@@ -50,7 +43,6 @@ const ContentSource = {
     },
   },
   MARKDOWN: {
-    id: `MARKDOWN`,
     displayedAs: `Markdown`,
     gradient: {
       start: `#000000`,
@@ -58,7 +50,6 @@ const ContentSource = {
     },
   },
   MDX: {
-    id: `MDX`,
     displayedAs: `MDX`,
     gradient: {
       start: `#000000`,
@@ -66,7 +57,6 @@ const ContentSource = {
     },
   },
   WORDPRESS: {
-    id: `WORDPRESS`,
     displayedAs: `Wordpress`,
     gradient: {
       start: `#21759B`,
@@ -75,29 +65,25 @@ const ContentSource = {
   },
 }
 module.exports.BaseContentSource = ContentSource
-module.exports.contentSourceIds = extractIds(ContentSource)
+module.exports.contentSourceIds = Object.keys(ContentSource)
 
 // TODO: Real numbers!
 const BasePageCount = {
   "512": {
-    id: `512`,
     displayedAs: formatNum(512),
   },
   "4096": {
-    id: `4096`,
     displayedAs: formatNum(4096),
   },
   "8192": {
-    id: `8192`,
     displayedAs: formatNum(8192),
   },
   "32768": {
-    id: `32768`,
     displayedAs: formatNum(32768),
   },
 }
 module.exports.BasePageCount = BasePageCount
-module.exports.pageCountIds = extractIds(BasePageCount)
+module.exports.pageCountIds = Object.keys(BasePageCount)
 
 const BaseBuildType = {
   COLD_START: {
@@ -110,4 +96,4 @@ const BaseBuildType = {
   },
 }
 module.exports.BaseBuildType = BaseBuildType
-module.exports.buildTypeKeys = Object.keys(BaseBuildType)
+module.exports.buildTypeIds = Object.keys(BaseBuildType)
