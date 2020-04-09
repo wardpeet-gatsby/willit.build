@@ -15,15 +15,15 @@ const labelContextCss = idx => {
   return idx > 1 ? visuallyHiddenCss : {}
 }
 
-function StatItem({ data, idx, ...rest }) {
+function StatItem({ data, idx, HeadingTag = `h2`, ...rest }) {
   const { timeInMinutes, platform } = data
   const title = Titles[idx]
 
   return (
     <OverviewItem {...rest}>
-      <h3 css={theme => [controlLabelCss(theme), labelContextCss(idx)]}>
+      <HeadingTag css={theme => [controlLabelCss(theme), labelContextCss(idx)]}>
         {title}
-      </h3>
+      </HeadingTag>
       <span
         css={theme => [
           controlValueCss(theme),

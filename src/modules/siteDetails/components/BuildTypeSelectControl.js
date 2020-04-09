@@ -20,6 +20,7 @@ const BuildTypeSelectControl = ({
 
   return (
     <SelectControl
+      labelHeadingTag="h2"
       label="Build type"
       id="build-type-control"
       value={currentBuildType}

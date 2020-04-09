@@ -87,6 +87,7 @@ function DetailsOverview({
               data={item}
               idx={idx}
               css={theme => contextOverviewItemCss({ theme })}
+              HeadingTag={idx === 0 ? `h2` : `h3`}
             />
           )
         })}

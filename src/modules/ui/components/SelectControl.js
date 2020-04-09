@@ -58,20 +58,31 @@ const SelectControl = ({
   displayedValue,
   onChange,
   footer,
+  labelHeadingTag = ``,
   children,
 }) => {
   const id = providedId || useRandomId("select-control")
+  const HeadingTag = labelHeadingTag
 
   return (
     <div>
-      <label htmlFor={`${id}`} css={controlLabelCss}>
-        {label}
-      </label>
+      {!!labelHeadingTag ? (
+        <HeadingTag>
+          <label htmlFor={`${id}`} css={controlLabelCss}>
+            {label}
+          </label>
+        </HeadingTag>
+      ) : (
+        <label htmlFor={`${id}`} css={controlLabelCss}>
+          {label}
+        </label>
+      )}
+
       <div css={selectWrapperCss}>
-        {/* 
+        {/*
           Generally, triggering things on-change instead of on-blur is
           problematic, but because we're using this as a way to change
-          routes, I think it's alright. 
+          routes, I think it's alright.
         */}
         {/* eslint-disable-next-line jsx-a11y/no-onchange */}
         <select

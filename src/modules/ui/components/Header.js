@@ -5,6 +5,7 @@ import * as Interface from "gatsby-interface"
 import logoSrc from "../../../images/logo.svg"
 
 import MaxWidthWrapper from "./MaxWidthWrapper"
+import Banner from "@modules/ui/components/Banner"
 
 export const mobileNavMediaQuery = `@media (max-width: 800px)`
 
@@ -56,32 +57,36 @@ const Header = () => {
 
   return (
     <div css={outerWrapperCss}>
-      <MaxWidthWrapper>
-        <header css={wrapperCss} data-cy="header">
-          <Link to="/" css={logoWrapperCss} data-cy="header-brand__link">
-            <img src={logoSrc} css={logoCss} alt="" />
-            {data.site.siteMetadata.title}
-          </Link>
-          <div>
-            <Interface.Navigation
-              items={data.contentfulHeaderNavigation.contentfulchildren}
-              css={{ nav: { paddingRight: 0 } }}
-              mobileNavMediaQuery={mobileNavMediaQuery}
-            >
-              <Interface.Navigation.Button
-                linkTo="https://gatsbyjs.com"
-                css={theme => ({
-                  fontFamily: theme.fonts.body,
-                  fontSize: theme.fontSizes[1],
-                  fontWeight: theme.fontWeights.semiBold,
-                })}
+      <header data-cy="header">
+        <Banner id="build-reports-webinar" />
+        <MaxWidthWrapper>
+          <div css={wrapperCss}>
+            <Link to="/" css={logoWrapperCss} data-cy="header-brand__link">
+              <img src={logoSrc} css={logoCss} alt="" />
+              {data.site.siteMetadata.title}
+            </Link>
+            <div>
+              <Interface.Navigation
+                items={data.contentfulHeaderNavigation.contentfulchildren}
+                css={{ nav: { paddingRight: 0 } }}
+                mobileNavMediaQuery={mobileNavMediaQuery}
+                aria-label="General site navigation in header"
               >
-                Build with Cloud
-              </Interface.Navigation.Button>
-            </Interface.Navigation>
+                <Interface.Navigation.Button
+                  linkTo="https://gatsbyjs.com"
+                  css={theme => ({
+                    fontFamily: theme.fonts.body,
+                    fontSize: theme.fontSizes[1],
+                    fontWeight: theme.fontWeights.semiBold,
+                  })}
+                >
+                  Build with Cloud
+                </Interface.Navigation.Button>
+              </Interface.Navigation>
+            </div>
           </div>
-        </header>
-      </MaxWidthWrapper>
+        </MaxWidthWrapper>
+      </header>
     </div>
   )
 }

@@ -96,8 +96,7 @@ const FAQs = () => {
               <MdArrowForward css={theme => ({ marginLeft: theme.space[2] })} />
             </Link>
           </div>
-          {/* Screen readers don't need to toggle items off/on */}
-          <div css={expandCollapseRowStyles} aria-hidden={true}>
+          <div css={expandCollapseRowStyles}>
             <button css={expandCollapseButtonStyles} onClick={toggleExpandAll}>
               {areAllQuestionsExpanded ? "Collapse all" : "Expand all"}
             </button>

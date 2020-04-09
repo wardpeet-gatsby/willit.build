@@ -98,7 +98,7 @@ const Footer = () => {
     <div css={outerWrapperCss}>
       <MaxWidthWrapper>
         <footer data-cy="footer">
-          <nav>
+          <nav aria-label="General site navigation in footer">
             <ul css={navCss}>
               {data.contentfulFooterNavigation.contentfulchildren.map(
                 ({ id, name, icon, linkTo }) => {
@@ -114,7 +114,7 @@ const Footer = () => {
           <p css={footerNoteCss} data-cy="footer-note__content">
             {data.contentfulFooterNavigation.blurb.blurb}
           </p>
-          <nav>
+          <nav aria-label="External links navigation">
             <ul css={navCss}>
               <li>
                 <a href="https://www.gatsbyjs.com/" css={externalNavLinkCss}>

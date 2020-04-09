@@ -48,23 +48,23 @@ const Methodology = () => {
         >
           {title}
         </h1>
+        <p
+          css={theme => ({
+            color: theme.colors.blackFade[80],
+            fontFamily: theme.fonts.body,
+            fontWeight: theme.fontWeights.body,
+            maxWidth: `100%`,
+            marginBottom: theme.space[10],
+            [theme.mediaQueries.tablet]: {
+              maxWidth: `65%`,
+              fontSize: theme.fontSizes[5],
+              lineHeight: theme.lineHeights.default,
+            },
+          })}
+        >
+          {subheading}
+        </p>
       </header>
-      <h3
-        css={theme => ({
-          color: theme.colors.blackFade[80],
-          fontFamily: theme.fonts.body,
-          fontWeight: theme.fontWeights.body,
-          maxWidth: `100%`,
-          marginBottom: theme.space[10],
-          [theme.mediaQueries.tablet]: {
-            maxWidth: `65%`,
-            fontSize: theme.fontSizes[5],
-            lineHeight: theme.lineHeights.default,
-          },
-        })}
-      >
-        {subheading}
-      </h3>
       <div
         dangerouslySetInnerHTML={{ __html: marked(description) }}
         css={theme => ({

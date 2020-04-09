@@ -22,6 +22,7 @@ const ContentSourceControl = ({
 
   return (
     <SelectControl
+      labelHeadingTag="h2"
       label="Content Source"
       id="content-source-control"
       value={currentContentSource}

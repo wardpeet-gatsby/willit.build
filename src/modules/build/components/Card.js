@@ -113,7 +113,7 @@ const Card = ({
             css={linkStyles}
             data-cy="build-card__link"
           >
-            All benchmarks <MdArrowForward />
+            {formattedSource} data <MdArrowForward />
           </Link>
         </div>
       </div>
