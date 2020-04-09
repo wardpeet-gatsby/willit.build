@@ -4,12 +4,17 @@ export function formatDataForChart({ benchmarks }) {
   return benchmarks.map(item => {
     const { createdAt, buildTimes } = item
 
-    const buildTimesInSeconds = buildTimes.reduce(
-      (acc, { platform, timeInMs }) => {
+    const data = buildTimes.reduce(
+      (acc, { platform, timeInMs, timeInMinutes }) => {
         const formated = { ...acc }
 
         if (timeInMs) {
-          formated[platform] = Math.round(timeInMs / 1000)
+          if (!formated.valuesInMinutes) {
+            formated.valuesInMinutes = {}
+          }
+
+          formated[platform] = Math.floor(timeInMs / 1000)
+          formated.valuesInMinutes[platform] = timeInMinutes
         } else {
           if (!formated.errors) {
             formated.errors = {}
@@ -25,7 +30,7 @@ export function formatDataForChart({ benchmarks }) {
 
     return {
       createdAt: format(new Date(createdAt), "M/d/yyyy"),
-      ...buildTimesInSeconds,
+      ...data,
     }
   })
 }

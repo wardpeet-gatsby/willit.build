@@ -1,6 +1,5 @@
 import React from "react"
 import format from "date-fns/format"
-import formatDuration from "../utils/formatDuration"
 import { Platforms } from "@modules/data/constants"
 
 function CustomTooltip({ active, payload }) {
@@ -8,21 +7,30 @@ function CustomTooltip({ active, payload }) {
     return null
   }
 
-  const errors = Object.entries(
-    payload[0].payload.errors
-  ).map(([key, value]) => ({ name: key, error: value }))
+  const innerPayload = payload && payload[0] && payload[0].payload
+
+  if (!innerPayload) {
+    return null
+  }
+
+  const errors = Object.entries(innerPayload.errors).map(([key, value]) => ({
+    name: key,
+    error: value,
+  }))
+
+  const valuesInMinutes = innerPayload.valuesInMinutes
 
   const values = payload
     .map(({ name, value }) => ({
       name,
       value,
+      valueInMinutes: valuesInMinutes[name],
     }))
     .sort((a, b) => {
       return b.value - a.value
     })
 
-  const valuesDate =
-    payload && payload[0] && payload[0].payload && payload[0].payload.createdAt
+  const valuesDate = innerPayload.createdAt
   const formattedDate =
     valuesDate && format(new Date(`${valuesDate}`), `MMMM d, yyyy`)
 
@@ -45,7 +53,7 @@ function CustomTooltip({ active, payload }) {
         },
       })}
     >
-      {tooltipItems.map(({ name, value, error }) => {
+      {tooltipItems.map(({ name, valueInMinutes, error }) => {
         const Icon = Platforms[name].IconOnDark
           ? Platforms[name].IconOnDark
           : Platforms[name].Icon
@@ -72,13 +80,13 @@ function CustomTooltip({ active, payload }) {
                 },
               })}
             >
-              {error ? error : formatDuration(value)}
+              {error ? error : valueInMinutes}
             </span>
             <span
               css={theme => ({
                 display: `flex`,
                 alignItems: `center`,
-                marginTop: theme.space[1],
+                marginTop: theme.space[2],
               })}
             >
               <Icon
