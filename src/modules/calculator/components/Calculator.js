@@ -2,77 +2,99 @@ import React from "react"
 
 import ContentSourceControl from "@modules/ui/components/ContentSourceControl"
 import PageCountSelectControl from "@modules/ui/components/PageCountSelectControl"
-
+import { controlLabelCss } from "@modules/ui/styles"
 import Stat from "./Stat"
 
 const wrapperCss = theme => ({
-  display: `grid`,
-  gridTemplateColumns: `1fr`,
-  gridTemplateAreas: `
-    "controls"
-    "warm"
-    "cold"
-  `,
+  display: `flex`,
+  flexDirection: `column`,
 
   [theme.mediaQueries.desktop]: {
-    gridTemplateColumns: `1fr 3fr`,
-    gridTemplateAreas: `
-      "controls warm warm warm"
-      "controls cold cold cold"
-    `,
+    flexDirection: `row`,
   },
 })
 
 const controlsWrapperCss = theme => ({
-  gridArea: `controls`,
-  display: `flex`,
-  justifyContent: `center`,
-  paddingBottom: theme.space[7],
-  marginBottom: theme.space[7],
   borderBottom: `1px solid ${theme.colors.blackFade[10]}`,
-
-  [theme.mediaQueries.phablet]: {
-    justifyContent: `flex-start`,
-  },
-  [theme.mediaQueries.desktop]: {
-    paddingBottom: 0,
-    marginBottom: 0,
-    borderBottom: `none`,
-    flexDirection: `column`,
-  },
-})
-const firstControlWrapperCss = theme => ({
-  marginRight: theme.space[7],
-
-  [theme.mediaQueries.desktop]: {
-    marginRight: 0,
-    marginBottom: theme.space[7],
-  },
-})
-
-const rowCss = theme => ({
   display: `flex`,
-  flexDirection: `column`,
+  justifyContent: `space-around`,
+  paddingBottom: theme.space[5],
+  marginBottom: theme.space[5],
+
+  [theme.mediaQueries.desktop]: {
+    border: 0,
+    flexDirection: `column`,
+    justifyContent: `flex-start`,
+    marginBottom: 0,
+    paddingBottom: 0,
+  },
+})
+
+const controlPositionerCss = theme => ({
+  display: `flex`,
 
   [theme.mediaQueries.tablet]: {
-    flexDirection: `row`,
-    justifyContent: `space-between`,
-    alignItems: `flex-end`,
+    flexBasis: `50%`,
+    justifyContent: `center`,
+  },
+
+  [theme.mediaQueries.desktop]: {
+    flexBasis: `auto`,
+    justifyContent: `flex-start`,
+    paddingRight: theme.space[14],
+
+    "&:first-of-type": {
+      marginBottom: theme.space[7],
+    },
   },
 })
 
-const topRowCss = theme => ({
-  ...rowCss(theme),
-  gridArea: `warm`,
-  paddingBottom: theme.space[7],
-  borderBottom: `1px solid ${theme.colors.blackFade[10]}`,
+const buildTypeSectionCss = theme => ({
+  alignItems: `center`,
+  display: `flex`,
+  flexBasis: `50%`,
+  flexDirection: `column`,
+
+  [theme.mediaQueries.desktop]: {
+    alignItems: `flex-end`,
+    flexDirection: `row`,
+    flexWrap: `wrap`,
+    justifyContent: `space-between`,
+
+    "&:first-of-type": {
+      borderBottom: `1px solid ${theme.colors.blackFade[10]}`,
+      marginBottom: theme.space[7],
+      paddingBottom: theme.space[7],
+    },
+  },
 })
 
-const bottomRowCss = theme => ({
-  ...rowCss(theme),
-  gridArea: `cold`,
-  paddingTop: theme.space[7],
-})
+const buildTypeHeaderCss = theme => [
+  controlLabelCss(theme),
+  {
+    fontWeight: theme.fontWeights.bold,
+    flexBasis: `100%`,
+    lineHeight: theme.lineHeights.dense,
+    textAlign: `center`,
+    marginBottom: theme.space[7],
+    marginTop: theme.space[3],
+
+    strong: {
+      display: `block`,
+    },
+
+    [theme.mediaQueries.tablet]: {
+      strong: {
+        display: `inline`,
+      },
+    },
+
+    [theme.mediaQueries.desktop]: {
+      marginTo1p: 0,
+      textAlign: `left`,
+    },
+  },
+]
 
 const Calculator = ({
   siteType,
@@ -89,7 +111,7 @@ const Calculator = ({
   return (
     <article css={wrapperCss}>
       <div css={controlsWrapperCss}>
-        <div css={firstControlWrapperCss}>
+        <div css={controlPositionerCss}>
           <ContentSourceControl
             siteType={siteType}
             pageCount={pageCount}
@@ -98,83 +120,104 @@ const Calculator = ({
             pathPrefix="calculator"
           />
         </div>
-        <PageCountSelectControl
-          siteType={siteType}
-          initialPageCount={pageCount}
-          contentSource={contentSource}
-          activeBenchmarks={activeBenchmarks}
-          pathPrefix="calculator"
-        />
+        <div css={controlPositionerCss}>
+          <PageCountSelectControl
+            siteType={siteType}
+            initialPageCount={pageCount}
+            contentSource={contentSource}
+            activeBenchmarks={activeBenchmarks}
+            pathPrefix="calculator"
+          />
+        </div>
       </div>
-      <div css={topRowCss}>
-        <div css={{ flex: 1.5 }}>
+      <div
+        css={theme => ({
+          display: `flex`,
+          width: `100%`,
+
+          [theme.mediaQueries.desktop]: {
+            flexDirection: `column`,
+          },
+        })}
+      >
+        <section css={buildTypeSectionCss}>
+          <h2 css={buildTypeHeaderCss}>
+            <strong>Cached</strong> builds
+          </h2>
           {warmTimeStats[0] && (
             <Stat
-              type="warm-winner"
+              emphasized={true}
+              winner={true}
               platform={warmTimeStats[0].platform}
               time={warmTimeStats[0].timeInMinutes}
-              label="Fastest Content Build"
-              isLabelVisible={true}
+              label={
+                <>
+                  Winner <span>- Fastest Build</span>
+                </>
+              }
             />
           )}
-        </div>
-        <div css={{ flex: 1 }}>
+
           {warmTimeStats[1] && (
             <Stat
-              type="warm-runner-up"
+              emphasized={true}
               platform={warmTimeStats[1].platform}
               time={warmTimeStats[1].timeInMinutes}
               label="Runner-Up"
-              isLabelVisible={true}
             />
           )}
-        </div>
-        <div css={{ flex: 1 }}>
+
           {warmTimeStats[2] && (
             <Stat
-              type="warm-runner-up"
+              emphasized={true}
               platform={warmTimeStats[2].platform}
               time={warmTimeStats[2].timeInMinutes}
-              label="Second Runner-Up"
-              isLabelVisible={false}
+              label={
+                <>
+                  Second <span>Runner-Up</span>
+                </>
+              }
             />
           )}
-        </div>
-      </div>
-      <div css={bottomRowCss}>
-        <div css={{ flex: 1.5 }}>
+        </section>
+        <section css={buildTypeSectionCss}>
+          <h2 css={buildTypeHeaderCss}>
+            <strong>Uncached</strong> builds
+          </h2>
+
           {coldTimeStats[0] && (
             <Stat
-              type="cold-winner"
+              winner={true}
               platform={coldTimeStats[0].platform}
               time={coldTimeStats[0].timeInMinutes}
-              label="Uncached Build"
-              isLabelVisible={true}
+              label={
+                <>
+                  Winner <span>- the fastest</span>
+                </>
+              }
             />
           )}
-        </div>
-        <div css={{ flex: 1 }}>
+
           {coldTimeStats[1] && (
             <Stat
-              type="cold-runner-up"
               platform={coldTimeStats[1].platform}
               time={coldTimeStats[1].timeInMinutes}
               label="Runner-Up"
-              isLabelVisible={false}
             />
           )}
-        </div>
-        <div css={{ flex: 1 }}>
+
           {coldTimeStats[2] && (
             <Stat
-              type="cold-runner-up"
               platform={coldTimeStats[2].platform}
               time={coldTimeStats[2].timeInMinutes}
-              label="Second Runner-Up"
-              isLabelVisible={false}
+              label={
+                <>
+                  Second <span>Runner-Up</span>
+                </>
+              }
             />
           )}
-        </div>
+        </section>
       </div>
     </article>
   )
