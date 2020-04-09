@@ -14,6 +14,7 @@ import {
   linkStyles,
   buildTimeStyles,
   fastestBuildStyles,
+  benchmarkLinkStyles,
 } from "./Card.styles"
 import SiteTypeImage from "./SiteTypeImage"
 import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
@@ -92,7 +93,9 @@ const Card = ({
           <span css={contentStyles}>{numberOfPages}</span>
         </div>
         <div css={buildTimeStyles}>
-          <h4 css={titleStyles}>Fastest Build (cached / uncached)</h4>
+          <h4 css={titleStyles}>
+            Fastest Build <span>(cached / uncached)</span>
+          </h4>
           <span
             css={theme => [contentStyles(theme), fastestBuildStyles(theme)]}
           >
@@ -104,7 +107,7 @@ const Card = ({
           </span>
         </div>
 
-        <div>
+        <div css={benchmarkLinkStyles}>
           <Link
             to={allBenchmarksLink}
             css={linkStyles}

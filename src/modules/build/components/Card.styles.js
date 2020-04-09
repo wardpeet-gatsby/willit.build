@@ -58,7 +58,15 @@ export const gridStyles = theme => ({
 })
 
 export const buildTimeStyles = theme => ({
-  gridColumn: 2,
+  gridColumn: `2 / 4`,
+  [theme.mediaQueries.tablet]: {
+    gridColumn: "auto",
+  },
+})
+
+export const benchmarkLinkStyles = theme => ({
+  gridColumn: `2 / 4`,
+  textAlign: `right`,
   [theme.mediaQueries.tablet]: {
     gridColumn: "auto",
   },
@@ -66,11 +74,18 @@ export const buildTimeStyles = theme => ({
 
 export const titleStyles = theme => ({
   fontSize: theme.fontSizes[0],
-  lineHeight: 1,
+  lineHeight: theme.lineHeights.dense,
   letterSpacing: `0.05em`,
   color: theme.colors.grey[50],
   textTransform: `uppercase`,
   fontWeight: theme.fontWeights.body,
+
+  span: {
+    display: `block`,
+    [theme.mediaQueries.tablet]: {
+      display: `inline`,
+    },
+  },
 })
 
 export const contentStyles = theme => ({
