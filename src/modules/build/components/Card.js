@@ -53,6 +53,9 @@ const Card = ({
     buildType: BuildType[`WARM_START`].displayedAs,
   })
 
+  const ICON_SIZE_MOBILE = contentSource === `MDX` ? `2.25rem` : `1.5rem`
+  const ICON_SIZE_DESKTOP = contentSource === `MDX` ? `3rem` : `2rem`
+
   return (
     <div css={wrapperStyles} {...props}>
       <h3 css={visuallyHiddenCss}>{formattedSource} Site Benchmarks</h3>
@@ -61,12 +64,12 @@ const Card = ({
           <Icon
             inverted
             css={theme => ({
-              width: theme.space[7],
-              height: theme.space[7],
+              width: ICON_SIZE_MOBILE,
+              height: ICON_SIZE_MOBILE,
 
               [theme.mediaQueries.tablet]: {
-                width: theme.space[8],
-                height: theme.space[8],
+                width: ICON_SIZE_DESKTOP,
+                height: ICON_SIZE_DESKTOP,
               },
             })}
           />

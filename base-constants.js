@@ -52,8 +52,8 @@ const ContentSource = {
   MDX: {
     displayedAs: `MDX`,
     gradient: {
-      start: `#000000`,
-      end: `#BF9141`,
+      start: `#E04F00`,
+      end: `#F9AC00`,
     },
   },
   WORDPRESS: {
