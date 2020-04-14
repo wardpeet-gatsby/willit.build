@@ -30,6 +30,7 @@ module.exports = {
     url: `https://willit.build`,
   },
   plugins: [
+    `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-source-contentful`,
       options: contentfulConfig,

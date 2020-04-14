@@ -8,7 +8,26 @@ const {
 const formatPath = require("./src/modules/data/utils/formatPath")
 const checkIfContstantsExist = require("./src/modules/data/utils/checkIfContstantsExist")
 
-exports.createPages = async ({ graphql, actions: { createPage } }) => {
+exports.createPages = async ({
+  graphql,
+  actions: { createPage, createRedirect },
+}) => {
+  // Handle our API Playground redirects.
+  // NOTE: This works because we're using `gatsby-plugin-netlify`. So these
+  // redirects happen outside of Gatsby altogether.
+  createRedirect({
+    fromPath: `/api-playground`,
+    toPath: `https://analytics.staging.gtsb.io/metrics/graphql`,
+    statusCode: 200,
+    force: true,
+  })
+  createRedirect({
+    fromPath: `/metrics/graphql`,
+    toPath: `https://analytics.staging.gtsb.io/metrics/graphql`,
+    statusCode: 200,
+    force: true,
+  })
+
   const result = await graphql(
     `
       {
