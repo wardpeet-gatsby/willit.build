@@ -44,6 +44,10 @@ const Header = () => {
         }
       }
       contentfulHeaderNavigation(name: { eq: "Main Header" }) {
+        button {
+          name
+          href
+        }
         contentfulchildren {
           ... on ContentfulNavigationItem {
             id
@@ -72,16 +76,18 @@ const Header = () => {
                 mobileNavMediaQuery={mobileNavMediaQuery}
                 aria-label="General site navigation in header"
               >
-                <Interface.Navigation.Button
-                  linkTo="https://gatsbyjs.com"
-                  css={theme => ({
-                    fontFamily: theme.fonts.body,
-                    fontSize: theme.fontSizes[1],
-                    fontWeight: theme.fontWeights.semiBold,
-                  })}
-                >
-                  Build with Cloud
-                </Interface.Navigation.Button>
+                {data.contentfulHeaderNavigation.button && (
+                  <Interface.Navigation.Button
+                    linkTo={data.contentfulHeaderNavigation.button.href}
+                    css={theme => ({
+                      fontFamily: theme.fonts.body,
+                      fontSize: theme.fontSizes[1],
+                      fontWeight: theme.fontWeights.semiBold,
+                    })}
+                  >
+                    {data.contentfulHeaderNavigation.button.name}
+                  </Interface.Navigation.Button>
+                )}
               </Interface.Navigation>
             </div>
           </div>
