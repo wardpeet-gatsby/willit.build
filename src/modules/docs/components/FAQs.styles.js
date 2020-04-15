@@ -42,6 +42,7 @@ export const questionRowStyles = theme => ({
 export const answerStyles = theme => ({
   paddingTop: theme.space[4],
   fontSize: theme.fontSizes[2],
+  lineHeight: theme.lineHeights.dense,
   marginBottom: `0`,
 
   ol: {

@@ -1,12 +1,15 @@
 import React from "react"
 
-const GreyBox = ({ children }) => {
+const ContentBox = ({ children }) => {
   return (
     <div
       css={theme => ({
         padding: `${theme.space[5]} 0`,
+
         [theme.mediaQueries.phablet]: {
-          padding: `${theme.space[10]} 0`,
+          padding: theme.space[8],
+          paddingRight: 0,
+          paddingLeft: theme.space[10],
         },
       })}
     >
@@ -15,4 +18,4 @@ const GreyBox = ({ children }) => {
   )
 }
 
-export default GreyBox
+export default ContentBox

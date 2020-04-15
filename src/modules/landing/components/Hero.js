@@ -51,11 +51,12 @@ const Hero = () => {
               maxWidth: `100%`,
               marginBottom: theme.space[8],
               fontSize: theme.fontSizes[5],
+              lineHeight: theme.lineHeights.dense,
+
               [theme.mediaQueries.mobile]: {
                 maxWidth: `80%`,
               },
               [theme.mediaQueries.phablet]: {
-                lineHeight: theme.lineHeights.dense,
                 maxWidth: `86%`,
                 fontSize: theme.fontSizes[6],
               },
@@ -65,7 +66,7 @@ const Hero = () => {
               },
               [theme.mediaQueries.desktop]: {
                 maxWidth: `38rem`,
-                fontSize: theme.fontSizes[9],
+                fontSize: theme.fontSizes[10],
               },
             },
           ]}

@@ -2,13 +2,12 @@ import React from "react"
 
 import { getTextGradientStyle } from "@modules/ui/utils"
 import SocialLinks from "@modules/ui/components/SocialLinks"
-import CalculatorIcon from "../assets/Icon"
 
 const headerStyles = theme => [
   getTextGradientStyle(
     theme,
-    `${theme.colors.black} 0%`,
-    `${theme.colors.grey[50]} 100%`
+    `${theme.colors.blue[50]} 32.5%`,
+    `${theme.colors.purple[50]} 50.5%`
   ),
   {
     maxWidth: `100%`,
@@ -41,18 +40,6 @@ const socialLinksWrapperCss = theme => ({
   },
 })
 
-const iconWrapperCss = theme => ({
-  position: `absolute`,
-  top: 11,
-  left: `-${theme.space[3]}`,
-  transform: `translateX(-100%)`,
-  display: `none`,
-
-  [theme.mediaQueries.phablet]: {
-    display: `block`,
-  },
-})
-
 const blurbWrapperCss = theme => ({
   fontSize: theme.fontSizes[1],
   color: theme.colors.grey[60],
@@ -71,9 +58,6 @@ const Header = ({ siteType, contentSource, pageCount }) => {
   return (
     <header>
       <div css={topRowCss}>
-        <div css={iconWrapperCss}>
-          <CalculatorIcon />
-        </div>
         <h1 css={headerStyles} data-cy="calculator__title">
           Build time calculator
         </h1>

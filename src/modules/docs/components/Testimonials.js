@@ -7,6 +7,7 @@ const Testimonials = () => {
       allContentfulTestimonial {
         edges {
           node {
+            id
             author
             quote {
               quote
@@ -29,10 +30,11 @@ const Testimonials = () => {
             fontFamily: theme.fonts.body,
             maxWidth: `100%`,
             marginBottom: theme.space[10],
+            lineHeight: theme.lineHeights.default,
+
             [theme.mediaQueries.tablet]: {
               maxWidth: `65%`,
               fontSize: theme.fontSizes[4],
-              lineHeight: theme.lineHeights.default,
             },
           })}
         >

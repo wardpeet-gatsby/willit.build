@@ -4,16 +4,16 @@ import Methodology from "@modules/docs/components/Methodology"
 import Testimonials from "@modules/docs/components/Testimonials"
 import FAQs from "@modules/docs/components/FAQs"
 import MaxWidthWrapper from "@modules/ui/components/MaxWidthWrapper"
-import GreyBox from "@modules/ui/components/GreyBox"
+import ContentBox from "@modules/ui/components/ContentBox"
 
 const MethodologyFAQ = () => {
   return (
     <MaxWidthWrapper>
-      <GreyBox>
+      <ContentBox>
         <Methodology />
         <Testimonials />
         <FAQs />
-      </GreyBox>
+      </ContentBox>
     </MaxWidthWrapper>
   )
 }

@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import MaxWidthWrapper from "@modules/ui/components/MaxWidthWrapper"
-import GreyBox from "@modules/ui/components/GreyBox"
+import ContentBox from "@modules/ui/components/ContentBox"
 import Header from "./Header"
 import Calculator from "./Calculator"
 
@@ -11,7 +11,7 @@ const CalculatorPage = ({ pageContext, data }) => {
 
   return (
     <MaxWidthWrapper>
-      <GreyBox>
+      <ContentBox>
         <Header
           siteType={siteType}
           contentSource={contentSource}
@@ -24,7 +24,7 @@ const CalculatorPage = ({ pageContext, data }) => {
           data={data}
           activeBenchmarks={activeBenchmarks}
         />
-      </GreyBox>
+      </ContentBox>
     </MaxWidthWrapper>
   )
 }

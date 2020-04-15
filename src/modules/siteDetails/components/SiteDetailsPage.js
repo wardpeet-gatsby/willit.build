@@ -57,7 +57,7 @@ const SiteDetailsPage = ({ data, pageContext }) => {
           background: theme.colors.grey[5],
 
           [theme.mediaQueries.desktop]: {
-            padding: `${theme.space[10]} 0 ${theme.space[8]} ${YAxisWidth}px`,
+            padding: `${theme.space[2]} 0 ${theme.space[8]} ${YAxisWidth}px`,
           },
         })}
       >

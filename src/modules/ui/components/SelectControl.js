@@ -66,7 +66,7 @@ const SelectControl = ({
 
   return (
     <div>
-      {!!labelHeadingTag ? (
+      {labelHeadingTag ? (
         <HeadingTag>
           <label htmlFor={`${id}`} css={controlLabelCss}>
             {label}
