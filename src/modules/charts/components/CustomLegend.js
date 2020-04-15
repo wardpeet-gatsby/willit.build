@@ -21,8 +21,9 @@ function CustomLegend({ onClick, activeLines }) {
         },
       })}
     >
-      {Object.entries(Platforms).map(([key, { displayedAs }]) => {
+      {Object.keys(activeLines).map(key => {
         const isActive = activeLines[key]
+        const displayedAs = Platforms[key].displayedAs
 
         return (
           <ToggleCheckbox

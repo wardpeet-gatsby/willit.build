@@ -34,7 +34,7 @@ const SiteDetailsPage = ({ data, pageContext }) => {
     repositoryUrl,
   } = benchmarkVendor
 
-  const graphData = formatDataForChart({
+  const { graphData, activePlatorms } = formatDataForChart({
     benchmarks,
     buildType,
     pageCount,
@@ -79,7 +79,11 @@ const SiteDetailsPage = ({ data, pageContext }) => {
       </div>
       <section>
         {!chartIsMounted && <DetailsChartPlaceholder />}
-        <DetailsChart data={graphData} annotations={graphAnnotations} />
+        <DetailsChart
+          data={graphData}
+          annotations={graphAnnotations}
+          activePlatorms={activePlatorms}
+        />
       </section>
     </MaxWidthWrapper>
   )

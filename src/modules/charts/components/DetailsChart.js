@@ -15,7 +15,6 @@ import {
   getYAxisTicks,
 } from "./DetailsChart.helpers"
 import { ChartDefaultProps } from "../constants"
-import { Platforms } from "@modules/data/constants"
 import useMatchMedia from "@modules/ui/hooks/useMatchMedia"
 
 export const propTypes = {
@@ -28,6 +27,7 @@ function DetailsChart({
   data = [],
   initialDataRangeDesktop = ChartDefaultProps.InitialDataScopeDesktop,
   initialDataRangeMobile = ChartDefaultProps.InitialDataScopeMobile,
+  activePlatorms,
   annotations = [],
   ...rest
 }) {
@@ -65,12 +65,7 @@ function DetailsChart({
     )
   }
 
-  const [activeLines, setActiveLines] = React.useState(
-    Object.keys(Platforms).reduce((acc, key) => {
-      acc[key] = true
-      return acc
-    }, {})
-  )
+  const [activeLines, setActiveLines] = React.useState(activePlatorms)
 
   const yAxisTicks = getYAxisTicks(data)
 

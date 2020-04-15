@@ -1,7 +1,9 @@
 import format from "date-fns/format"
 
 export function formatDataForChart({ benchmarks }) {
-  return benchmarks.map(item => {
+  const activePlatorms = {}
+
+  const graphData = benchmarks.map(item => {
     const { createdAt, buildTimes } = item
 
     const data = buildTimes.reduce(
@@ -9,6 +11,10 @@ export function formatDataForChart({ benchmarks }) {
         const formated = { ...acc }
 
         if (timeInMs) {
+          if (!activePlatorms[platform]) {
+            activePlatorms[platform] = true
+          }
+
           if (!formated.valuesInMinutes) {
             formated.valuesInMinutes = {}
           }
@@ -33,4 +39,6 @@ export function formatDataForChart({ benchmarks }) {
       ...data,
     }
   })
+
+  return { graphData, activePlatorms }
 }
