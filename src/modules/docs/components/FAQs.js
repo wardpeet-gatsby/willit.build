@@ -22,31 +22,19 @@ import {
 const Question = ({ title, answer, isExpanded, handleToggle }) => {
   return (
     <div css={questionWrapper}>
-      <h3>
-        <button
-          css={questionRowStyles}
-          onClick={handleToggle}
-          aria-expanded={isExpanded}
-        >
-          <span css={titleStyles}>{title}</span>
+      <button css={questionRowStyles} onClick={handleToggle}>
+        <div css={titleStyles}>{title}</div>
 
-          <span>
-            {isExpanded ? (
-              <MdRemove css={faqIconStyles} />
-            ) : (
-              <MdAdd css={faqIconStyles} />
-            )}
-          </span>
-        </button>
-      </h3>
-
-      <p
-        css={theme => [
-          answerStyles(theme),
-          !isExpanded && {
-            display: `none`,
-          },
-        ]}
+        <div>
+          {isExpanded ? (
+            <MdRemove css={faqIconStyles} />
+          ) : (
+            <MdAdd css={faqIconStyles} />
+          )}
+        </div>
+      </button>
+      <div
+        css={theme => [answerStyles(theme), !isExpanded && visuallyHiddenCss]}
         dangerouslySetInnerHTML={{ __html: marked(answer) }}
       />
     </div>
@@ -109,11 +97,7 @@ const FAQs = () => {
             </Link>
           </div>
           <div css={expandCollapseRowStyles}>
-            <button
-              css={expandCollapseButtonStyles}
-              onClick={toggleExpandAll}
-              aria-expanded={!!areAllQuestionsExpanded}
-            >
+            <button css={expandCollapseButtonStyles} onClick={toggleExpandAll}>
               {areAllQuestionsExpanded ? "Collapse all" : "Expand all"}
             </button>
           </div>
