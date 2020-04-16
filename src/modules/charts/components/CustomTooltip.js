@@ -13,10 +13,12 @@ function CustomTooltip({ active, payload }) {
     return null
   }
 
-  const errors = Object.entries(innerPayload.errors).map(([key, value]) => ({
-    name: key,
-    error: value,
-  }))
+  const errors = Object.entries(innerPayload.errors || {}).map(
+    ([key, value]) => ({
+      name: key,
+      error: value,
+    })
+  )
 
   const valuesInMinutes = innerPayload.valuesInMinutes
 

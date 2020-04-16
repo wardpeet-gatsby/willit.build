@@ -18,10 +18,10 @@ export default function ThemeProvider({ children }) {
         medium: theme.colors.purple[40],
       },
       NETLIFY: {
-        medium: theme.colors.teal[50],
+        medium: theme.colors.teal[80],
       },
       CIRCLECI: {
-        medium: theme.colors.orange[50],
+        medium: theme.colors.orange[80],
       },
     },
   }
