@@ -11,6 +11,7 @@ import {
   YAxis,
 } from "recharts"
 import CustomYAxisLabel from "./CustomYAxisLabel"
+import CustomXAxisLabel from "./CustomXAxisLabel"
 import CustomTooltip from "./CustomTooltip"
 import CustomActiveDot from "./CustomActiveDot"
 import AnnotationRefLineLabel from "./AnnotationRefLineLabel"
@@ -65,9 +66,10 @@ function Chart({
           <Tooltip content={<CustomTooltip />} />
 
           <XAxis
+            label={props => <CustomXAxisLabel isMobile={isMobile} {...props} />}
             dataKey="createdAt"
             stroke={colors.grey[50]}
-            height={50}
+            height={70}
             tickMargin={14}
             tickLine={false}
             tickFormatter={xAxisTickFormater}
