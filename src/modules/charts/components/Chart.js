@@ -13,7 +13,7 @@ import {
 import CustomYAxisLabel from "./CustomYAxisLabel"
 import CustomXAxisLabel from "./CustomXAxisLabel"
 import CustomTooltip from "./CustomTooltip"
-import CustomActiveDot from "./CustomActiveDot"
+import CustomDot from "./CustomDot"
 import AnnotationRefLineLabel from "./AnnotationRefLineLabel"
 import AnnotationTip from "./AnnotationTip"
 import { useTheme } from "@modules/ui/components/ThemeProvider"
@@ -121,7 +121,8 @@ function Chart({
               stroke={tones[key].medium}
               fillOpacity={1}
               fill={`url(#${key}-fill)`}
-              activeDot={<CustomActiveDot />}
+              dot={<CustomDot />}
+              activeDot={<CustomDot active={true} />}
               style={{ display: !activeLines[key] ? `none` : undefined }}
               animationDuration={1000}
               strokeDasharray={strokeDasharray}

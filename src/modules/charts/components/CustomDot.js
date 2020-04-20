@@ -2,8 +2,8 @@ import React from "react"
 import { useTheme } from "@modules/ui/components/ThemeProvider"
 import { DetailsChartDimensions } from "../constants"
 
-function CustomActiveDot(prop) {
-  const { cx, cy, dataKey } = prop
+function CustomDot(prop) {
+  const { cx, cy, dataKey, active = false } = prop
 
   if (!cx || !cy) {
     return null
@@ -24,13 +24,15 @@ function CustomActiveDot(prop) {
       height={ActiveDotDiam}
       viewBox={`0 0 ${ActiveDotDiam} ${ActiveDotDiam}`}
     >
-      <circle
-        cx={ActiveDotRadius}
-        cy={ActiveDotRadius}
-        r={ActiveDotRadius}
-        fill={tones[dataKey].medium}
-        opacity="0.2"
-      />
+      {active && (
+        <circle
+          cx={ActiveDotRadius}
+          cy={ActiveDotRadius}
+          r={ActiveDotRadius}
+          fill={tones[dataKey].medium}
+          opacity="0.2"
+        />
+      )}
       <circle
         cx={ActiveDotRadius}
         cy={ActiveDotRadius}
@@ -41,4 +43,4 @@ function CustomActiveDot(prop) {
   )
 }
 
-export default CustomActiveDot
+export default CustomDot
