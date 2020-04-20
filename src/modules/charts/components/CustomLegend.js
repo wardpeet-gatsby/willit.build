@@ -2,9 +2,12 @@ import React from "react"
 import { DetailsChartDimensions } from "../constants"
 import { Platforms } from "@modules/data/constants"
 import { ToggleCheckbox } from "gatsby-interface"
+import LinePreview from "./LinePreview"
+import { useTheme } from "@modules/ui/components/ThemeProvider"
 
 function CustomLegend({ onClick, activeLines }) {
   const { LegendMinHeight, YAxisWidth } = DetailsChartDimensions
+  const { tones } = useTheme()
 
   return (
     <div
@@ -25,35 +28,55 @@ function CustomLegend({ onClick, activeLines }) {
         const isActive = activeLines[key]
         const displayedAs = Platforms[key].displayedAs
 
+        /*
+          There are some 'magic' numbers in styling transition/margins below, 
+          all of them are result of scaling down the original component, 
+          the values come through 'manual' trial and error 
+        */
+
         return (
-          <ToggleCheckbox
+          <div
             key={`legend-toggle-${key}`}
-            label={displayedAs}
-            checked={isActive}
-            tone={key}
-            onChange={() => onClick(key)}
             css={theme => ({
-              color: theme.colors.grey[60],
-              fontSize: theme.fontSizes[1],
-              fontFamily: theme.fonts.body,
-              margin: `${theme.space[1]} ${theme.space[3]}`,
-              transform: `translate(-6%)`,
-
-              span: {
-                transform: `scale(0.66) translateX(2%)`,
-                marginRight: 0,
-
-                "&:after": {
-                  transform: `scale(0.8)`,
-                },
-              },
+              alignItems: `center`,
+              display: `flex`,
+              margin: `${theme.space[1]} ${theme.space[4]}`,
 
               [theme.mediaQueries.desktop]: {
-                margin: 0,
-                marginRight: theme.space[4],
+                transform: `translate(-${theme.space[4]})`,
               },
             })}
-          />
+          >
+            <ToggleCheckbox
+              label={displayedAs}
+              checked={isActive}
+              tone={key}
+              onChange={() => onClick(key)}
+              css={theme => ({
+                color: theme.colors.grey[60],
+                fontSize: theme.fontSizes[1],
+                fontFamily: theme.fonts.body,
+
+                span: {
+                  transform: `scale(0.66) translateX(5%)`,
+                  margin: 0,
+                  marginLeft: `-10px`,
+
+                  "&:after": {
+                    transform: `scale(0.8)`,
+                  },
+                },
+              })}
+            />
+            <LinePreview
+              strokeDasharray={Platforms[key].strokeDasharray}
+              strokeColor={tones[key].medium}
+              width={25}
+              css={theme => ({
+                marginLeft: theme.space[2],
+              })}
+            />
+          </div>
         )
       })}
     </div>

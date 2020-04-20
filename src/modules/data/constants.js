@@ -66,16 +66,19 @@ export const Platforms = {
     id: `GATSBY_CLOUD`,
     displayedAs: "Gatsby Cloud",
     Icon: GatsbyIcon,
+    strokeDasharray: "0",
   },
   NETLIFY: {
     id: `NETLIFY`,
     displayedAs: "Netlify",
     Icon: NetlifyIcon,
+    strokeDasharray: "2 3",
   },
   CIRCLECI: {
     id: `CIRCLECI`,
     displayedAs: "Circle CI",
     Icon: CircleCiIcon,
     IconOnDark: CircleCiBrightIcon,
+    strokeDasharray: "10 5",
   },
 }

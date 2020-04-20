@@ -1,8 +1,12 @@
 import React from "react"
 import format from "date-fns/format"
 import { Platforms } from "@modules/data/constants"
+import LinePreview from "./LinePreview"
+import { useTheme } from "@modules/ui/components/ThemeProvider"
 
 function CustomTooltip({ active, payload }) {
+  const { tones } = useTheme()
+
   if (!active) {
     return null
   }
@@ -66,13 +70,12 @@ function CustomTooltip({ active, payload }) {
             css={theme => ({
               display: `flex`,
               flexDirection: `column`,
-              marginBottom: theme.space[4],
+              marginBottom: theme.space[5],
               lineHeight: 1,
             })}
           >
             <span
               css={theme => ({
-                display: `flex`,
                 fontWeight: theme.fontWeights.bold,
                 color: theme.tones[name].medium,
                 fontSize: error ? theme.fontSizes[2] : theme.fontSizes[3],
@@ -84,6 +87,7 @@ function CustomTooltip({ active, payload }) {
             >
               {error ? error : valueInMinutes}
             </span>
+
             <span
               css={theme => ({
                 display: `flex`,
@@ -110,6 +114,15 @@ function CustomTooltip({ active, payload }) {
               >
                 {Platforms[name].displayedAs}
               </span>
+
+              <LinePreview
+                strokeDasharray={Platforms[name].strokeDasharray}
+                strokeColor={tones[name].medium}
+                width={25}
+                css={theme => ({
+                  marginLeft: theme.space[2],
+                })}
+              />
             </span>
           </span>
         )

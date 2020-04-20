@@ -112,18 +112,19 @@ function Chart({
             <ReferenceLine x={lastDate} stroke={colors.blackFade[20]} />
           )}
 
-          {Object.entries(Platforms).map(([key]) => (
+          {Object.entries(Platforms).map(([key, { strokeDasharray }]) => (
             <Area
               key={`${key}ChartArea`}
               type="linear"
               dataKey={key}
-              strokeWidth={1}
+              strokeWidth={2}
               stroke={tones[key].medium}
               fillOpacity={1}
               fill={`url(#${key}-fill)`}
               activeDot={<CustomActiveDot />}
               style={{ display: !activeLines[key] ? `none` : undefined }}
               animationDuration={1000}
+              strokeDasharray={strokeDasharray}
             />
           ))}
         </AreaChart>

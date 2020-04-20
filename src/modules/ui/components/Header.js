@@ -75,7 +75,6 @@ const Header = () => {
                 css={{ nav: { paddingRight: 0 } }}
                 mobileNavMediaQuery={mobileNavMediaQuery}
                 aria-label="General site navigation in header"
-                linkClosesMobileNav={true}
               >
                 {data.contentfulHeaderNavigation.button && (
                   <Interface.Navigation.Button
