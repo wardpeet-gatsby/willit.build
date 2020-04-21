@@ -1,9 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import marked from "marked"
-
-import { useTheme } from "@modules/ui/components/ThemeProvider"
-import { getTextGradientStyle } from "@modules/ui/utils"
+import { pageHeadingCss } from "@modules/ui/styles"
 
 const Methodology = () => {
   const { contentfulMethodology } = useStaticQuery(graphql`
@@ -24,31 +22,10 @@ const Methodology = () => {
   const description = contentfulMethodology.description.description
   const subheading = contentfulMethodology.subheading.subheading
 
-  const { colors } = useTheme()
   return (
     <div>
       <header>
-        <h1
-          css={theme => [
-            getTextGradientStyle(
-              theme,
-              `${colors.blue[50]} 32.5%`,
-              `${colors.purple[50]} 50.5%`
-            ),
-            {
-              maxWidth: `100%`,
-              marginBottom: theme.space[8],
-              lineHeight: theme.lineHeights.dense,
-
-              [theme.mediaQueries.tablet]: {
-                maxWidth: `80%`,
-                fontSize: theme.fontSizes[10],
-              },
-            },
-          ]}
-        >
-          {title}
-        </h1>
+        <h1 css={pageHeadingCss}>{title}</h1>
         <p
           css={theme => ({
             color: theme.colors.blackFade[80],

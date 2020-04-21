@@ -1,11 +1,18 @@
 import React from "react"
+import ContentBox from "@modules/ui/components/ContentBox"
+import MaxWidthWrapper from "@modules/ui/components/MaxWidthWrapper"
+import { pageHeadingCss } from "@modules/ui/styles"
 
 const NotFoundPage = () => {
   return (
-    <React.Fragment>
-      <h1>NOT FOUND</h1>
-      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-    </React.Fragment>
+    <MaxWidthWrapper>
+      <ContentBox>
+        <h1 css={pageHeadingCss}>Page not found</h1>
+        <p>
+          {`We don't seem to have a page at this URL. Sorry for the inconvenience!`}
+        </p>
+      </ContentBox>
+    </MaxWidthWrapper>
   )
 }
 

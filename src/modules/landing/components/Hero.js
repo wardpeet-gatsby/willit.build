@@ -4,9 +4,8 @@ import { MdArrowDownward } from "react-icons/md"
 import { useStaticQuery, graphql } from "gatsby"
 
 import DecorativeBackground from "../assets/DecorativeBackground"
-import { useTheme } from "@modules/ui/components/ThemeProvider"
-import { getTextGradientStyle } from "@modules/ui/utils"
 import { HERO_PADDING_DESKTOP } from "../constants"
+import { pageHeadingCss } from "@modules/ui/styles"
 
 const Hero = () => {
   const { contentfulHomepage } = useStaticQuery(graphql`
@@ -25,7 +24,6 @@ const Hero = () => {
   const description = contentfulHomepage.description.description
   const buttonText = contentfulHomepage.button
 
-  const { colors } = useTheme()
   return (
     <header>
       <div
@@ -39,38 +37,7 @@ const Hero = () => {
           },
         })}
       >
-        <h1
-          data-cy="main-title"
-          css={theme => [
-            getTextGradientStyle(
-              theme,
-              `${colors.blue[50]} 32.5%`,
-              `${colors.purple[50]} 50.5%`
-            ),
-            {
-              maxWidth: `100%`,
-              marginBottom: theme.space[8],
-              fontSize: theme.fontSizes[5],
-              lineHeight: theme.lineHeights.dense,
-
-              [theme.mediaQueries.mobile]: {
-                maxWidth: `80%`,
-              },
-              [theme.mediaQueries.phablet]: {
-                maxWidth: `86%`,
-                fontSize: theme.fontSizes[6],
-              },
-              [theme.mediaQueries.tablet]: {
-                maxWidth: `32rem`,
-                fontSize: theme.fontSizes[8],
-              },
-              [theme.mediaQueries.desktop]: {
-                maxWidth: `38rem`,
-                fontSize: theme.fontSizes[10],
-              },
-            },
-          ]}
-        >
+        <h1 data-cy="main-title" css={pageHeadingCss}>
           {title}
         </h1>
         <p

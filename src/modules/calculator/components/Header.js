@@ -1,21 +1,13 @@
 import React from "react"
 
-import { getTextGradientStyle } from "@modules/ui/utils"
 import SocialLinks from "@modules/ui/components/SocialLinks"
+import { pageHeadingCss } from "@modules/ui/styles"
 
 const headerStyles = theme => [
-  getTextGradientStyle(
-    theme,
-    `${theme.colors.blue[50]} 32.5%`,
-    `${theme.colors.purple[50]} 50.5%`
-  ),
+  pageHeadingCss(theme),
   {
-    maxWidth: `100%`,
-    [theme.mediaQueries.tablet]: {
-      maxWidth: `80%`,
-      fontSize: theme.fontSizes[10],
-      lineHeight: theme.lineHeights.dense,
-    },
+    margin: 0,
+    maxWidth: `none`,
   },
 ]
 
