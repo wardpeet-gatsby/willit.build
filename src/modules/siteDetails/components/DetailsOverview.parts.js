@@ -22,6 +22,7 @@ export function OverviewItem({ children, ...rest }) {
     <div
       css={theme => ({
         paddingTop: theme.space[7],
+        paddingBottom: theme.space[7],
         display: `flex`,
         flexDirection: `column`,
         justifyContent: `flex-end`,

@@ -8,28 +8,28 @@ export function formatDataForChart({ benchmarks }) {
 
     const data = buildTimes.reduce(
       (acc, { platform, timeInMs, timeInMinutes }) => {
-        const formated = { ...acc }
+        const formatted = { ...acc }
 
         if (timeInMs) {
           if (!activePlatorms[platform]) {
             activePlatorms[platform] = true
           }
 
-          if (!formated.valuesInMinutes) {
-            formated.valuesInMinutes = {}
+          if (!formatted.valuesInMinutes) {
+            formatted.valuesInMinutes = {}
           }
 
-          formated[platform] = Math.floor(timeInMs / 1000)
-          formated.valuesInMinutes[platform] = timeInMinutes
+          formatted[platform] = Math.floor(timeInMs / 1000)
+          formatted.valuesInMinutes[platform] = timeInMinutes
         } else {
-          if (!formated.errors) {
-            formated.errors = {}
+          if (!formatted.errors) {
+            formatted.errors = {}
           }
 
-          formated.errors[platform] = `Error`
+          formatted.errors[platform] = `Error`
         }
 
-        return formated
+        return formatted
       },
       {}
     )

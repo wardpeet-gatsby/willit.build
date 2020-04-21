@@ -16,6 +16,7 @@ import {
 } from "./DetailsChart.helpers"
 import { ChartDefaultProps } from "../constants"
 import useMatchMedia from "@modules/ui/hooks/useMatchMedia"
+import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
 
 export const propTypes = {
   data: PropTypes.array,
@@ -84,6 +85,7 @@ function DetailsChart({
 
   return (
     <div css={wrapperCss} {...rest}>
+      <h2 css={visuallyHiddenCss}>Charted data</h2>
       {isMobile && filteredData && (
         <RangeControllerMobile
           data={data}

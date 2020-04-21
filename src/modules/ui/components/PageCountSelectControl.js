@@ -25,7 +25,7 @@ const PageCountSelectControl = ({
 
   return (
     <SelectControl
-      labelHeadingTag="h2"
+      labelHeadingTag="h3"
       label="Pages"
       id="page-count-control"
       value={currentPageCount}

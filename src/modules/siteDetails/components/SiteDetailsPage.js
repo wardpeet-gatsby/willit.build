@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
 import DetailsChart from "@modules/charts/components/DetailsChart"
+import DetailsTable from "@modules/charts/components/DetailsTable"
 import DetailsChartPlaceholder from "@modules/charts/components/DetailsChartPlaceholder"
 import { DetailsChartDimensions } from "@modules/charts/constants"
 import MaxWidthWrapper, {
@@ -84,6 +85,19 @@ const SiteDetailsPage = ({ data, pageContext }) => {
           annotations={graphAnnotations}
           activePlatorms={activePlatorms}
         />
+        <div
+          css={theme => ({
+            [theme.mediaQueries.desktop]: {
+              padding: `${theme.space[2]} 0 ${theme.space[8]} ${YAxisWidth}px`,
+            },
+          })}
+        >
+          <DetailsTable
+            data={graphData}
+            annotations={graphAnnotations}
+            activePlatorms={activePlatorms}
+          />
+        </div>
       </section>
     </MaxWidthWrapper>
   )

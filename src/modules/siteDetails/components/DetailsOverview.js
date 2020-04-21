@@ -26,13 +26,13 @@ function DetailsOverview({
 
         [theme.mediaQueries.desktop]: {
           borderTop: `1px solid ${theme.colors.blackFade[10]}`,
+          borderBottom: `1px solid ${theme.colors.blackFade[10]}`,
           padding: 0,
           marginTop: theme.space[6],
           marginBottom: theme.space[4],
         },
       })}
     >
-      <h2 css={visuallyHiddenCss}>Details</h2>
       <div
         css={theme => ({
           borderBottom: `1px solid ${theme.colors.blackFade[10]}`,
@@ -48,6 +48,7 @@ function DetailsOverview({
           },
         })}
       >
+        <h2 css={visuallyHiddenCss}>Dataset select controls</h2>
         <OverviewItem
           css={theme =>
             contextOverviewItemCss({ theme, basis: `40%`, type: `control` })
@@ -79,7 +80,7 @@ function DetailsOverview({
         </OverviewItem>
 
         <Border />
-
+        <h2 css={visuallyHiddenCss}>Most recent build results</h2>
         {stats.map((item, idx) => {
           return (
             <StatItem
@@ -87,7 +88,6 @@ function DetailsOverview({
               data={item}
               idx={idx}
               css={theme => contextOverviewItemCss({ theme })}
-              HeadingTag={idx === 0 ? `h2` : `h3`}
             />
           )
         })}
