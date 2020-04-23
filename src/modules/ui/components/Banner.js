@@ -18,8 +18,8 @@ const ANIMATION_DURATION = 300
 
 const wrapperStyles = theme => ({
   minHeight: BANNER_HEIGHT,
-  background: theme.colors.purple[90],
-  color: theme.colors.whiteFade[80],
+  background: theme.colors.purple[60],
+  color: theme.colors.white,
   paddingTop: theme.space[2],
   paddingBottom: theme.space[2],
   display: `flex`,
