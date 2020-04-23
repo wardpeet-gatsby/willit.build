@@ -88,8 +88,8 @@ function DetailsTable({ data = [] }) {
             }
 
             // Sort for fastest build times
-            let sortable = []
-            for (var platform in buildTimes) {
+            const sortable = []
+            for (const platform in buildTimes) {
               if (
                 buildTimes[platform] &&
                 typeof buildTimes[platform] === "number"
@@ -106,7 +106,7 @@ function DetailsTable({ data = [] }) {
               <tr key={`${dataPerDiem.createdAt}_daterow`}>
                 <td css={tableDataCss}>{formattedDate}</td>
                 {allPlatforms.map(platform => {
-                  let tableValue = getTableValue({
+                  const tableValue = getTableValue({
                     dataPerDiem,
                     platform,
                   })

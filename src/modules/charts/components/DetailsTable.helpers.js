@@ -80,21 +80,21 @@ const durationDict = {
 export function getTableValue({ dataPerDiem, platform }) {
   const { valuesInMinutes } = dataPerDiem
 
-  let buildTimeInSeconds = dataPerDiem[platform]
+  const buildTimeInSeconds = dataPerDiem[platform]
   if (buildTimeInSeconds) {
     // Get build time into "mm:ss" format for visual display
-    let formattedBuildTimeInSeconds = addSeconds(
+    const formattedBuildTimeInSeconds = addSeconds(
       new Date(0),
       buildTimeInSeconds
     )
-    let formattedBuildTime = format(formattedBuildTimeInSeconds, "mm:ss")
+    const formattedBuildTime = format(formattedBuildTimeInSeconds, "mm:ss")
 
     // Get build time into human readable "1 minute, 20 seconds" for SR
-    let rawValuesInMinutes = valuesInMinutes[platform].split(` `)
-    let readableBuildTime = rawValuesInMinutes
+    const rawValuesInMinutes = valuesInMinutes[platform].split(` `)
+    const readableBuildTime = rawValuesInMinutes
       .map(value => {
-        let duration = value.slice(0, value.length - 1)
-        let durationType = value.slice(-1)
+        const duration = value.slice(0, value.length - 1)
+        const durationType = value.slice(-1)
         return Number(duration) === 1
           ? `${duration} ${durationDict[durationType].singular}`
           : `${duration} ${durationDict[durationType].plural}`
