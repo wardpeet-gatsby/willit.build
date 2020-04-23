@@ -121,8 +121,13 @@ function Chart({
               stroke={tones[key].medium}
               fillOpacity={1}
               fill={`url(#${key}-fill)`}
-              dot={<CustomDot />}
-              activeDot={<CustomDot active={true} />}
+              dot={<CustomDot belongsToActiveLine={!!activeLines[key]} />}
+              activeDot={
+                <CustomDot
+                  active={true}
+                  belongsToActiveLine={!!activeLines[key]}
+                />
+              }
               style={{ display: !activeLines[key] ? `none` : undefined }}
               animationDuration={1000}
               strokeDasharray={strokeDasharray}
