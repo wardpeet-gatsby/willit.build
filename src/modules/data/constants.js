@@ -9,7 +9,6 @@ import WordpressIcon from "./assets/icons/WordpressIcon"
 import GatsbyIcon from "./assets/icons/GatsbyIcon"
 import NetlifyIcon from "./assets/icons/NetlifyIcon"
 import CircleCiIcon from "./assets/icons/CircleCiIcon"
-import CircleCiBrightIcon from "./assets/icons/CircleCiBrightIcon"
 
 import BlogIcon from "./assets/icons/BlogIcon"
 import BlogThumbnail from "./assets/thumbnails/BlogThumbnail.png"
@@ -19,7 +18,10 @@ import {
   BaseSiteType,
   BaseContentSource,
   BaseBuildType,
+  BasePlatform,
 } from "../../../base-constants"
+
+export { platformIds } from "../../../base-constants"
 
 const Icons = {
   BLOG: BlogIcon,
@@ -30,6 +32,9 @@ const Icons = {
   MDX: MdxIcon,
   MARKDOWN: MarkdownIcon,
   WORDPRESS: WordpressIcon,
+  GATSBY_CLOUD: GatsbyIcon,
+  CIRCLECI: CircleCiIcon,
+  NETLIFY: NetlifyIcon,
 }
 
 const Thumbnails = {
@@ -61,24 +66,12 @@ export const ContentSource = Object.entries(BaseContentSource).reduce(
   {}
 )
 
-export const Platforms = {
-  GATSBY_CLOUD: {
-    id: `GATSBY_CLOUD`,
-    displayedAs: "Gatsby Cloud",
-    Icon: GatsbyIcon,
-    strokeDasharray: "0",
+export const Platform = Object.entries(BasePlatform).reduce(
+  (acc, [key, val]) => {
+    val.Icon = Icons[key] || null
+    acc[key] = val
+
+    return acc
   },
-  NETLIFY: {
-    id: `NETLIFY`,
-    displayedAs: "Netlify",
-    Icon: NetlifyIcon,
-    strokeDasharray: "2 3",
-  },
-  CIRCLECI: {
-    id: `CIRCLECI`,
-    displayedAs: "Circle CI",
-    Icon: CircleCiIcon,
-    IconOnDark: CircleCiBrightIcon,
-    strokeDasharray: "10 5",
-  },
-}
+  {}
+)

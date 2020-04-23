@@ -98,7 +98,7 @@ const SelectControl = ({
         >
           {children}
         </select>
-        <div css={fakeSelectCss}>
+        <div data-cy={`${id}-fake`} css={fakeSelectCss}>
           {displayedValue}
           <div css={caretWrapper}>
             <CaretDown />

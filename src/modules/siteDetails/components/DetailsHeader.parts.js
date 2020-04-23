@@ -32,6 +32,7 @@ export function Link({ children, ...rest }) {
 export function BackLink() {
   return (
     <Link
+      data-cy="siteDetails__backLink"
       to="/"
       css={theme => ({
         [theme.mediaQueries.desktop]: {
@@ -56,6 +57,7 @@ export function HeaderTitle({ contentSource }) {
 
   return (
     <h1
+      data-cy="siteDetails__headerTitle"
       css={theme => [
         {
           alignItems: `center`,
@@ -99,6 +101,7 @@ export function HeaderSiteType({ siteType }) {
 
   return (
     <div
+      data-cy="siteDetails__siteType"
       css={theme => [
         smallTextCss(theme),
         {

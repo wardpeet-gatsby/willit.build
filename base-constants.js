@@ -66,9 +66,11 @@ const ContentSource = {
 }
 module.exports.BaseContentSource = ContentSource
 module.exports.contentSourceIds = Object.keys(ContentSource)
+module.exports.contentSourceDisplayedAsRegExp = Object.keys(ContentSource)
+  .map(item => ContentSource[item].displayedAs)
+  .join("|")
 
-// TODO: Real numbers!
-const BasePageCount = {
+const PageCount = {
   "512": {
     displayedAs: formatNum(512),
   },
@@ -82,8 +84,11 @@ const BasePageCount = {
     displayedAs: formatNum(32768),
   },
 }
-module.exports.BasePageCount = BasePageCount
-module.exports.pageCountIds = Object.keys(BasePageCount)
+module.exports.BasePageCount = PageCount
+module.exports.pageCountIds = Object.keys(PageCount)
+module.exports.pageCountDisplayedAsRegExp = Object.keys(PageCount)
+  .map(item => PageCount[item].displayedAs)
+  .join("|")
 
 const BaseBuildType = {
   COLD_START: {
@@ -97,3 +102,23 @@ const BaseBuildType = {
 }
 module.exports.BaseBuildType = BaseBuildType
 module.exports.buildTypeIds = Object.keys(BaseBuildType)
+
+const Platform = {
+  GATSBY_CLOUD: {
+    displayedAs: "Gatsby Cloud",
+    strokeDasharray: "0",
+  },
+  NETLIFY: {
+    displayedAs: "Netlify",
+    strokeDasharray: "2 3",
+  },
+  CIRCLECI: {
+    displayedAs: "Circle CI",
+    strokeDasharray: "10 5",
+  },
+}
+module.exports.BasePlatform = Platform
+module.exports.platformIds = Object.keys(Platform)
+module.exports.platformDisplayedAsRegExp = Object.keys(Platform)
+  .map(item => Platform[item].displayedAs)
+  .join("|")

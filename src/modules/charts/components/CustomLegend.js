@@ -1,6 +1,6 @@
 import React from "react"
 import { DetailsChartDimensions } from "../constants"
-import { Platforms } from "@modules/data/constants"
+import { Platform } from "@modules/data/constants"
 import { ToggleCheckbox } from "gatsby-interface"
 import LinePreview from "./LinePreview"
 import { useTheme } from "@modules/ui/components/ThemeProvider"
@@ -26,7 +26,7 @@ function CustomLegend({ onClick, activeLines }) {
     >
       {Object.keys(activeLines).map(key => {
         const isActive = activeLines[key]
-        const displayedAs = Platforms[key].displayedAs
+        const displayedAs = Platform[key].displayedAs
 
         /*
           There are some 'magic' numbers in styling transition/margins below, 
@@ -37,6 +37,7 @@ function CustomLegend({ onClick, activeLines }) {
         return (
           <div
             key={`legend-toggle-${key}`}
+            data-cy="chart-legend-item"
             css={theme => ({
               alignItems: `center`,
               display: `flex`,
@@ -69,7 +70,7 @@ function CustomLegend({ onClick, activeLines }) {
               })}
             />
             <LinePreview
-              strokeDasharray={Platforms[key].strokeDasharray}
+              strokeDasharray={Platform[key].strokeDasharray}
               strokeColor={tones[key].medium}
               width={25}
               css={theme => ({

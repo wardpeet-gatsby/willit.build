@@ -1,6 +1,6 @@
 import React from "react"
 import format from "date-fns/format"
-import { Platforms } from "@modules/data/constants"
+import { Platform } from "@modules/data/constants"
 import LinePreview from "./LinePreview"
 import { useTheme } from "@modules/ui/components/ThemeProvider"
 
@@ -44,6 +44,7 @@ function CustomTooltip({ active, payload }) {
 
   return (
     <div
+      data-cy="chart-tooltip"
       css={theme => ({
         display: `flex`,
         flexDirection: `column`,
@@ -60,12 +61,11 @@ function CustomTooltip({ active, payload }) {
       })}
     >
       {tooltipItems.map(({ name, valueInMinutes, error }) => {
-        const Icon = Platforms[name].IconOnDark
-          ? Platforms[name].IconOnDark
-          : Platforms[name].Icon
+        const Icon = Platform[name].Icon
 
         return (
           <span
+            data-cy="chart-tooltip-metric"
             key={`${name}TooltipSec`}
             css={theme => ({
               display: `flex`,
@@ -75,6 +75,7 @@ function CustomTooltip({ active, payload }) {
             })}
           >
             <span
+              data-cy="chart-tooltip-value"
               css={theme => ({
                 fontWeight: theme.fontWeights.bold,
                 color: theme.tones[name].medium,
@@ -89,6 +90,7 @@ function CustomTooltip({ active, payload }) {
             </span>
 
             <span
+              data-cy="chart-tooltip-label"
               css={theme => ({
                 display: `flex`,
                 alignItems: `center`,
@@ -96,6 +98,7 @@ function CustomTooltip({ active, payload }) {
               })}
             >
               <Icon
+                inverted={name === `CIRCLECI` ? true : false}
                 css={theme => ({
                   marginRight: theme.space[2],
                   width: `0.8em`,
@@ -112,11 +115,11 @@ function CustomTooltip({ active, payload }) {
                   },
                 })}
               >
-                {Platforms[name].displayedAs}
+                {Platform[name].displayedAs}
               </span>
 
               <LinePreview
-                strokeDasharray={Platforms[name].strokeDasharray}
+                strokeDasharray={Platform[name].strokeDasharray}
                 strokeColor={tones[name].medium}
                 width={25}
                 css={theme => ({
@@ -128,6 +131,7 @@ function CustomTooltip({ active, payload }) {
         )
       })}
       <span
+        data-cy="chart-tooltip-date"
         css={theme => ({
           fontSize: theme.fontSizes[0],
           color: theme.colors.whiteFade[70],

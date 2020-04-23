@@ -58,12 +58,13 @@ const Card = ({
   const ICON_SIZE_DESKTOP = contentSource === `MDX` ? `3rem` : `2rem`
 
   return (
-    <div css={wrapperStyles} {...props}>
+    <div css={wrapperStyles} data-cy="build-card" {...props}>
       <h3 css={visuallyHiddenCss}>{formattedSource} Site Benchmarks</h3>
       <div css={gridStyles}>
         <SiteTypeImage gradient={gradient}>
           <Icon
-            inverted
+            data-cy="build-card__icon"
+            inverted={true}
             css={theme => ({
               width: ICON_SIZE_MOBILE,
               height: ICON_SIZE_MOBILE,
@@ -75,7 +76,7 @@ const Card = ({
             })}
           />
         </SiteTypeImage>
-        <div>
+        <div data-cy="build-card__source">
           <h4 css={titleStyles}>Source / Type</h4>
           <span css={contentStyles}>
             <span
@@ -88,11 +89,11 @@ const Card = ({
           </span>
           <span css={subtextStyles}>{formattedSiteType}</span>
         </div>
-        <div>
+        <div data-cy="build-card__pages">
           <h4 css={titleStyles}>Pages</h4>
           <span css={contentStyles}>{numberOfPages}</span>
         </div>
-        <div css={buildTimeStyles}>
+        <div css={buildTimeStyles} data-cy="build-card__stats">
           <h4 css={titleStyles}>
             Fastest Build <span>(cached / uncached)</span>
           </h4>

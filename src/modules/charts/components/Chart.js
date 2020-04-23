@@ -22,7 +22,7 @@ import {
   yAxisTickFormater,
   getLinearGradientDefs,
 } from "./DetailsChart.helpers"
-import { Platforms } from "@modules/data/constants"
+import { Platform } from "@modules/data/constants"
 import { DetailsChartDimensions } from "../constants"
 
 const { ChartHeight, YAxisWidth, ActiveDotRadius } = DetailsChartDimensions
@@ -43,7 +43,7 @@ function Chart({
   }
 
   return (
-    <React.Fragment>
+    <div data-cy="main-chart">
       <ResponsiveContainer width="100%" height={ChartHeight}>
         <AreaChart
           data={filteredData}
@@ -112,7 +112,7 @@ function Chart({
             <ReferenceLine x={lastDate} stroke={colors.blackFade[20]} />
           )}
 
-          {Object.entries(Platforms).map(([key, { strokeDasharray }]) => (
+          {Object.entries(Platform).map(([key, { strokeDasharray }]) => (
             <Area
               key={`${key}ChartArea`}
               type="linear"
@@ -131,6 +131,7 @@ function Chart({
               style={{ display: !activeLines[key] ? `none` : undefined }}
               animationDuration={1000}
               strokeDasharray={strokeDasharray}
+              className={`main-chart-area`}
             />
           ))}
         </AreaChart>
@@ -139,7 +140,7 @@ function Chart({
         activeAnnotation={activeAnnotation}
         setActiveAnnotation={setActiveAnnotation}
       />
-    </React.Fragment>
+    </div>
   )
 }
 

@@ -14,7 +14,7 @@ import {
 } from "recharts"
 import MonthRefLineLabel from "./MonthRefLineLabel"
 import { DetailsChartDimensions } from "../constants"
-import { Platforms } from "@modules/data/constants"
+import { Platform } from "@modules/data/constants"
 
 const { ActiveDotRadius, YAxisWidth } = DetailsChartDimensions
 
@@ -58,7 +58,7 @@ function RangeControllerDesktop({
 
           <XAxis dataKey="createdAt" hide={true} />
 
-          {Object.entries(Platforms).map(([key]) => (
+          {Object.entries(Platform).map(([key]) => (
             <Area
               key={`${key}ControllerChartArea`}
               type="linear"

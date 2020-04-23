@@ -55,6 +55,7 @@ const SocialLinks = ({
     <div css={wrapperCss}>
       {repositoryUrl && (
         <BaseAnchor
+          data-cy="github-repo-link"
           href={`https://github.com/${repositoryUrl}`}
           css={githubLinkCss}
         >

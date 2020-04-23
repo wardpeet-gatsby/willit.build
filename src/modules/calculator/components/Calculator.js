@@ -192,7 +192,7 @@ const Calculator = ({
               time={coldTimeStats[0].timeInMinutes}
               label={
                 <>
-                  Winner <span>- the fastest</span>
+                  Winner <span>- Fastest Build</span>
                 </>
               }
             />

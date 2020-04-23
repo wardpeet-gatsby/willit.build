@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Platforms } from "../../data/constants"
+import { Platform, platformIds } from "../../data/constants"
 import TabularIcon from "../../data/assets/icons/TabularIcon"
 import TrophyIcon from "../../data/assets/icons/TrophyIcon"
 import {
@@ -24,8 +24,6 @@ export const propTypes = {
 }
 
 function DetailsTable({ data = [] }) {
-  const allPlatforms = Object.values(Platforms).map(platform => platform.id)
-
   // Sort the dataset -- most recent to least recent
   let sortedData = [...data].sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
@@ -54,11 +52,11 @@ function DetailsTable({ data = [] }) {
           </tr>
           <tr>
             <th css={tableHeaderPlatformNameCss} colSpan="1"></th>
-            {allPlatforms.map(platform => {
-              const PlatformIcon = Platforms[platform].Icon
+            {platformIds.map(platform => {
+              const PlatformIcon = Platform[platform].Icon
               return (
                 <th
-                  key={`${Platforms[platform].id}_tableheader`}
+                  key={`${platform}_tableheader`}
                   css={tableHeaderPlatformNameCss}
                   colSpan="1"
                 >
@@ -66,7 +64,7 @@ function DetailsTable({ data = [] }) {
                     <PlatformIcon css={platformIconCss} />
                   </span>
 
-                  {Platforms[platform].displayedAs}
+                  {Platform[platform].displayedAs}
                 </th>
               )
             })}
@@ -105,7 +103,7 @@ function DetailsTable({ data = [] }) {
             return (
               <tr key={`${dataPerDiem.createdAt}_daterow`}>
                 <td css={tableDataCss}>{formattedDate}</td>
-                {allPlatforms.map(platform => {
+                {platformIds.map(platform => {
                   const tableValue = getTableValue({
                     dataPerDiem,
                     platform,
@@ -113,7 +111,7 @@ function DetailsTable({ data = [] }) {
                   if (tableValue.error) {
                     return (
                       <td
-                        key={`${Platforms[platform].id}_${dataPerDiem.createdAt}_error`}
+                        key={`${platform}_${dataPerDiem.createdAt}_error`}
                         css={tableDataCss}
                       >
                         <span aria-hidden="true" css={tableDataDefaultCss}>
@@ -125,10 +123,7 @@ function DetailsTable({ data = [] }) {
 
                   if (buildTimes[platform] === sortable[0][1]) {
                     return (
-                      <td
-                        key={`${Platforms[platform].id}_buildtime`}
-                        css={tableDataCss}
-                      >
+                      <td key={`${platform}_buildtime`} css={tableDataCss}>
                         <span css={visuallyHiddenCss}>
                           {`Fastest: ${tableValue.readableBuildTime}`}
                         </span>
@@ -145,10 +140,7 @@ function DetailsTable({ data = [] }) {
                     )
                   } else {
                     return (
-                      <td
-                        key={`${Platforms[platform].id}_buildtime`}
-                        css={tableDataCss}
-                      >
+                      <td key={`${platform}_buildtime`} css={tableDataCss}>
                         <span css={visuallyHiddenCss}>
                           {tableValue.readableBuildTime}
                         </span>

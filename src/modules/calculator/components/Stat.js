@@ -2,10 +2,8 @@ import React from "react"
 import PropTypes from "prop-types"
 import { MdTimer } from "react-icons/md"
 
-import { Platforms } from "@modules/data/constants"
+import { Platform, platformIds } from "@modules/data/constants"
 import { controlLabelCss } from "@modules/ui/styles"
-
-const PlatformKeys = Object.keys(Platforms)
 
 const statCss = ({ theme, winner }) => ({
   flexBasis: winner ? `40%` : `30%`,
@@ -70,7 +68,7 @@ const iconCss = {
 }
 
 const propTypes = {
-  platform: PropTypes.oneOf(PlatformKeys),
+  platform: PropTypes.oneOf(platformIds),
   time: PropTypes.string.isRequired,
   label: PropTypes.node,
   emphasized: PropTypes.bool,
@@ -78,7 +76,7 @@ const propTypes = {
 }
 
 const Stat = ({ time, platform, winner, emphasized, label }) => {
-  const { displayedAs, Icon } = Platforms[platform]
+  const { displayedAs, Icon } = Platform[platform]
 
   return (
     <div css={theme => statCss({ theme, winner })}>
