@@ -84,6 +84,7 @@ const SiteDetailsPage = ({ data, pageContext }) => {
           data={graphData}
           annotations={graphAnnotations}
           activePlatorms={activePlatorms}
+          setChartIsMounted={setChartIsMounted}
         />
         <div
           css={theme => ({

@@ -33,6 +33,7 @@ function Chart({
   yAxisTicks,
   annotations,
   activeLines,
+  onFinishLoad,
 }) {
   const { colors, tones } = useTheme()
   const [activeAnnotation, setActiveAnnotation] = React.useState()
@@ -46,6 +47,10 @@ function Chart({
   function showAnnotationTip(annotation, ref) {
     setActiveAnnotation({ annotation, ref })
   }
+
+  React.useEffect(() => {
+    onFinishLoad(true)
+  }, [])
 
   return (
     <div data-cy="main-chart">

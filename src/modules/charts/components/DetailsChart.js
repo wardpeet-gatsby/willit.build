@@ -2,10 +2,10 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useTheme } from "@modules/ui/components/ThemeProvider"
 
-import Chart from "./Chart"
+import LazyChart from "./LazyChart"
 import CustomLegend from "./CustomLegend"
 import RangeControllerMobile from "./RangeControllerMobile"
-import RangeControllerDesktop from "./RangeControllerDesktop"
+import LazyRangeControllerDesktop from "./LazyRangeControllerDesktop"
 import {
   wrapperCss,
   filterData,
@@ -30,6 +30,7 @@ function DetailsChart({
   initialDataRangeMobile = ChartDefaultProps.InitialDataScopeMobile,
   activePlatorms,
   annotations = [],
+  setChartIsMounted,
   ...rest
 }) {
   const { mediaQueries } = useTheme()
@@ -95,18 +96,19 @@ function DetailsChart({
       )}
 
       {filteredData && (
-        <Chart
+        <LazyChart
           data={data}
           filteredData={filteredData}
           isMobile={isMobile}
           yAxisTicks={yAxisTicks}
           annotations={annotations}
           activeLines={activeLines}
+          onFinishLoad={setChartIsMounted}
         />
       )}
 
       {!isMobile && (
-        <RangeControllerDesktop
+        <LazyRangeControllerDesktop
           data={data}
           isMobile={isMobile}
           activeLines={activeLines}
