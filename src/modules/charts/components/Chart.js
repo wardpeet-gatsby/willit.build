@@ -37,6 +37,11 @@ function Chart({
   const { colors, tones } = useTheme()
   const [activeAnnotation, setActiveAnnotation] = React.useState()
   const lastDate = filteredData[filteredData.length - 1].createdAt
+  const [isRendered, setIsRendered] = React.useState(false)
+
+  React.useEffect(() => {
+    setTimeout(() => setIsRendered(true), 0)
+  }, [])
 
   function showAnnotationTip(annotation, ref) {
     setActiveAnnotation({ annotation, ref })
@@ -129,7 +134,7 @@ function Chart({
                 />
               }
               style={{ display: !activeLines[key] ? `none` : undefined }}
-              animationDuration={1000}
+              animationDuration={isRendered ? 0 : 1000}
               strokeDasharray={strokeDasharray}
               className={`main-chart-area`}
             />
