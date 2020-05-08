@@ -67,6 +67,10 @@ export const platformIconCss = theme => ({
 })
 
 const durationDict = {
+  h: {
+    singular: `hour`,
+    plural: `hours`,
+  },
   m: {
     singular: `minute`,
     plural: `minutes`,
