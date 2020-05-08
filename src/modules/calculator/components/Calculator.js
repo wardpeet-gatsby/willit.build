@@ -3,6 +3,7 @@ import React from "react"
 import ContentSourceControl from "@modules/ui/components/ContentSourceControl"
 import PageCountSelectControl from "@modules/ui/components/PageCountSelectControl"
 import { controlLabelCss } from "@modules/ui/styles"
+import HelpCircle from "@modules/ui/components/HelpCircle"
 import Stat from "./Stat"
 
 const wrapperCss = theme => ({
@@ -153,6 +154,10 @@ const Calculator = ({
               label={
                 <>
                   Winner <span>- Fastest Build</span>
+                  <HelpCircle
+                    helpInfo="Cached builds are “warm” builds, with a cache that can be reused."
+                    href="/methodology-faq"
+                  />
                 </>
               }
             />
@@ -193,6 +198,10 @@ const Calculator = ({
               label={
                 <>
                   Winner <span>- Fastest Build</span>
+                  <HelpCircle
+                    helpInfo="An uncached build is a “from-scratch” build. These should be relatively rare."
+                    href="/methodology-faq"
+                  />
                 </>
               }
             />

@@ -5,6 +5,7 @@ import SelectControl, {
 } from "@modules/ui/components/SelectControl"
 import { BuildType } from "@modules/data/constants"
 import formatPath from "@modules/data/utils/formatPath"
+import HelpCircle from "@modules/ui/components/HelpCircle"
 
 const BuildTypeSelectControl = ({
   siteType,
@@ -25,7 +26,15 @@ const BuildTypeSelectControl = ({
       id="build-type-control"
       value={currentBuildType}
       displayedValue={displayedAs}
-      footer={description}
+      footer={
+        <>
+          {description}
+          <HelpCircle
+            helpInfo="Learn more about our various build types in our Frequently Asked Questions."
+            href="/methodology-faq"
+          />
+        </>
+      }
       onChange={(ev, newPath) => {
         setCurrentBuildType(ev.target.value)
         navigate(newPath, {
