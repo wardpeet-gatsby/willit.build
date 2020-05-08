@@ -104,7 +104,7 @@ const Card = ({
             <span css={spanStyles}>/ {uncachedBuildTime}</span>
           </span>
           <span css={subtextStyles}>
-            <GatsbyIcon /> Gatsby Cloud
+            <GatsbyIcon aria-hidden="true" /> Gatsby Cloud
           </span>
         </div>
 

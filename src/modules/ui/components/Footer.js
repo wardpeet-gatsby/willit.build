@@ -1,7 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
-import wordmarkSrc from "@images/wordmark.svg"
+import wordmarkSrc from "@images/wordmark-calm.svg"
 
 import MaxWidthWrapper from "./MaxWidthWrapper"
 

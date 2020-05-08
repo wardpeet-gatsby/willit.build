@@ -1,9 +1,17 @@
 import React, { useRef } from "react"
+import { toCamelCase } from "@modules/data/utils/transformName"
+import { generateId } from "../../../../utils"
 
 let ID = 0
 
-function NetlifyIcon({ height = 16, width = 16, ...rest }) {
+function NetlifyIcon({
+  height = 16,
+  width = 16,
+  title = `Netlify logo`,
+  ...rest
+}) {
   const idRef = useRef(ID++)
+  const titleId = `${toCamelCase(title)}SvgTitle_${generateId(3)}`
 
   return (
     <svg
@@ -12,8 +20,11 @@ function NetlifyIcon({ height = 16, width = 16, ...rest }) {
       viewBox="0 0 16 16"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      aria-labelledby={titleId}
+      role="img"
       {...rest}
     >
+      <title id={titleId}>{title}</title>
       <path
         fill={`url(#paint${idRef.current}_radial)`}
         fillRule="evenodd"

@@ -72,8 +72,19 @@ describe("Homepage", () => {
       .first()
       .click()
 
-    cy.get("[data-cy=siteDetails__headerTitle]")
-      .contains(new RegExp(contentSourceDisplayedAsRegExp, "g"))
-      .should("be.visible")
+    cy.get("[data-cy=siteDetails__headerTitle]").should($title => {
+      const title = $title.text()
+      const text = $title.text()
+      expect(text).to.match(new RegExp(contentSourceDisplayedAsRegExp, "g"))
+    })
+
+    // cy.get("[data-cy=siteDetails__headerTitle] > span")
+    //   .contains(`span`, new RegExp(contentSourceDisplayedAsRegExp, "g"))
+    //   .should("be.visible")
+
+    // cy.get("[data-cy=siteDetails__headerTitle]")
+    //   .contains(new RegExp(contentSourceDisplayedAsRegExp, "g"))
+    //   .debug()
+    //.should("be.visible")
   })
 })
