@@ -27,13 +27,18 @@ const SiteDetailsPage = ({ data, pageContext }) => {
   } = data
 
   const { pageCount, buildType } = pageContext
-  const {
-    latest,
-    contentSource,
-    siteType,
-    benchmarks,
-    repositoryUrl,
-  } = benchmarkVendor
+  const { latest, contentSource, siteType, benchmarks } = benchmarkVendor
+
+  // BAND-AID: The backend returns the repository URL in the wrong format:
+  // - Current: https://github.com/gatsbyjs/gatsby/benchmarks/source-contentful
+  // - Correct: https://github.com/gatsbyjs/gatsby/tree/master/benchmarks/source-contentful
+  //
+  // We'll patch in the missing /tree/master here
+  let { repositoryUrl } = benchmarkVendor
+  repositoryUrl = repositoryUrl.replace(
+    "gatsbyjs/gatsby",
+    "gatsbyjs/gatsby/tree/master"
+  )
 
   const { graphData, activePlatorms } = formatDataForChart({
     benchmarks,
