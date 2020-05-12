@@ -6,7 +6,7 @@ import LinePreview from "./LinePreview"
 import { useTheme } from "@modules/ui/components/ThemeProvider"
 
 function CustomLegend({ onClick, activeLines }) {
-  const { LegendMinHeight, YAxisWidth } = DetailsChartDimensions
+  const { LegendMinHeight, YAxisWidth, VerticalGap } = DetailsChartDimensions
   const { tones } = useTheme()
 
   return (
@@ -17,6 +17,7 @@ function CustomLegend({ onClick, activeLines }) {
         justifyContent: `center`,
         minHeight: `${LegendMinHeight}px`,
         alignItems: `flex-end`,
+        marginTop: `${VerticalGap}px`,
 
         [theme.mediaQueries.desktop]: {
           paddingLeft: `${YAxisWidth}px`,

@@ -1,6 +1,8 @@
 export const DetailsChartDimensions = {
   ChartHeight: 500,
+  ChartWithControlsHeight: 620,
   ChartDesktopHorizontalPadding: 100,
+  RangeControllerDesktopHeight: 50,
   LegendMinHeight: 50,
   YAxisWidth: 55,
   ActiveDotRadius: 10,
@@ -11,6 +13,7 @@ export const DetailsChartDimensions = {
   AnnotationIconSize: 30, // used also to set its height
   AnnotationSpoutWidth: 20,
   AnnotationSpoutHeight: 10,
+  VerticalGap: 10,
 }
 
 export const ChartDefaultProps = {

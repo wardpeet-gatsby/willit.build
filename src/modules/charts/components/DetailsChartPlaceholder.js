@@ -2,6 +2,8 @@ import React from "react"
 import { DetailsChartDimensions } from "@modules/charts/constants"
 import { keyframes } from "@emotion/core"
 
+const { ChartWithControlsHeight } = DetailsChartDimensions
+
 const getActiveAnimation = theme => keyframes`
   20% {
     transform: scale(1.75);
@@ -21,7 +23,6 @@ const DefaultPoints = [
 ]
 
 function DetailsChartPlaceholder() {
-  const { ChartHeight } = DetailsChartDimensions
   const [points, setPoints] = React.useState(DefaultPoints)
 
   React.useEffect(() => {
@@ -61,7 +62,7 @@ function DetailsChartPlaceholder() {
         justifyContent: `center`,
         width: `100%`,
         background: theme.colors.grey[5],
-        minHeight: `${ChartHeight}px`,
+        minHeight: `${ChartWithControlsHeight}px`,
       })}
     >
       <svg

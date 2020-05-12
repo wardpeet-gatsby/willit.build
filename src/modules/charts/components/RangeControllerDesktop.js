@@ -16,7 +16,11 @@ import MonthRefLineLabel from "./MonthRefLineLabel"
 import { DetailsChartDimensions } from "../constants"
 import { Platform } from "@modules/data/constants"
 
-const { ActiveDotRadius, YAxisWidth } = DetailsChartDimensions
+const {
+  ActiveDotRadius,
+  YAxisWidth,
+  RangeControllerDesktopHeight,
+} = DetailsChartDimensions
 
 function RangeControllerDesktop({
   data,
@@ -41,15 +45,17 @@ function RangeControllerDesktop({
   return (
     <div
       ref={measuredRef}
-      css={theme => ({
+      css={{
         marginLeft: `${YAxisWidth}px`,
         marginRight: isMobile ? 0 : `${ActiveDotRadius}px`,
-        marginTop: theme.space[3],
-        marginBottom: theme.space[3],
         position: `relative`,
-      })}
+      }}
     >
-      <ResponsiveContainer width="100%" height={50} css={{ opacity: 0.6 }}>
+      <ResponsiveContainer
+        width="100%"
+        height={RangeControllerDesktopHeight}
+        css={{ opacity: 0.6 }}
+      >
         <AreaChart
           data={data}
           margin={{ top: 0, right: 0, left: 0, bottom: 0 }}

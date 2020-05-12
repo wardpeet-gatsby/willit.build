@@ -11,7 +11,7 @@ import DetailsHeader from "./DetailsHeader"
 import DetailsOverview from "./DetailsOverview"
 import { formatDataForChart } from "./SiteDetailsPage.helpers"
 
-const { YAxisWidth } = DetailsChartDimensions
+const { YAxisWidth, ChartWithControlsHeight } = DetailsChartDimensions
 
 const SiteDetailsPage = ({ data, pageContext }) => {
   const [chartIsMounted, setChartIsMounted] = React.useState(false)
@@ -83,7 +83,11 @@ const SiteDetailsPage = ({ data, pageContext }) => {
           activeBenchmarks={activeBenchmarks}
         />
       </div>
-      <section>
+      <section
+        css={{
+          minHeight: `${ChartWithControlsHeight}px`,
+        }}
+      >
         {!chartIsMounted && <DetailsChartPlaceholder />}
         <DetailsChart
           data={graphData}
@@ -91,19 +95,20 @@ const SiteDetailsPage = ({ data, pageContext }) => {
           activePlatorms={activePlatorms}
           setChartIsMounted={setChartIsMounted}
         />
-        <div
-          css={theme => ({
-            [theme.mediaQueries.desktop]: {
-              padding: `${theme.space[2]} 0 ${theme.space[8]} ${YAxisWidth}px`,
-            },
-          })}
-        >
-          <DetailsTable
-            data={graphData}
-            annotations={graphAnnotations}
-            activePlatorms={activePlatorms}
-          />
-        </div>
+      </section>
+
+      <section
+        css={theme => ({
+          [theme.mediaQueries.desktop]: {
+            padding: `${theme.space[2]} 0 ${theme.space[8]} ${YAxisWidth}px`,
+          },
+        })}
+      >
+        <DetailsTable
+          data={graphData}
+          annotations={graphAnnotations}
+          activePlatorms={activePlatorms}
+        />
       </section>
     </MaxWidthWrapper>
   )

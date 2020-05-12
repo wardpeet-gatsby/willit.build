@@ -14,9 +14,15 @@ import {
   filteredDataInitialEndIndex,
   getYAxisTicks,
 } from "./DetailsChart.helpers"
-import { ChartDefaultProps } from "../constants"
+import { ChartDefaultProps, DetailsChartDimensions } from "../constants"
 import useMatchMedia from "@modules/ui/hooks/useMatchMedia"
 import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
+
+const {
+  ChartHeight,
+  RangeControllerDesktopHeight,
+  VerticalGap,
+} = DetailsChartDimensions
 
 export const propTypes = {
   data: PropTypes.array,
@@ -96,27 +102,40 @@ function DetailsChart({
       )}
 
       {filteredData && (
-        <LazyChart
-          data={data}
-          filteredData={filteredData}
-          isMobile={isMobile}
-          yAxisTicks={yAxisTicks}
-          annotations={annotations}
-          activeLines={activeLines}
-          onFinishLoad={setChartIsMounted}
-        />
+        <div
+          css={{
+            minHeight: `${ChartHeight}px`,
+          }}
+        >
+          <LazyChart
+            data={data}
+            filteredData={filteredData}
+            isMobile={isMobile}
+            yAxisTicks={yAxisTicks}
+            annotations={annotations}
+            activeLines={activeLines}
+            onFinishLoad={setChartIsMounted}
+          />
+        </div>
       )}
 
       {!isMobile && (
-        <LazyRangeControllerDesktop
-          data={data}
-          isMobile={isMobile}
-          activeLines={activeLines}
-          filteredDataStartIndex={filteredDataStartIndex}
-          filteredDataEndIndex={filteredDataEndIndex}
-          updateDataRange={updateDataRange}
-          yAxisTicks={yAxisTicks}
-        />
+        <div
+          css={{
+            minHeight: `${RangeControllerDesktopHeight + VerticalGap}px`,
+            paddingTop: `${VerticalGap}px`,
+          }}
+        >
+          <LazyRangeControllerDesktop
+            data={data}
+            isMobile={isMobile}
+            activeLines={activeLines}
+            filteredDataStartIndex={filteredDataStartIndex}
+            filteredDataEndIndex={filteredDataEndIndex}
+            updateDataRange={updateDataRange}
+            yAxisTicks={yAxisTicks}
+          />
+        </div>
       )}
       <CustomLegend activeLines={activeLines} onClick={toggleChartLine} />
     </div>
