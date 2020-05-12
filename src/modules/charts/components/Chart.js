@@ -92,6 +92,7 @@ function Chart({
             padding={{ top: 0 }}
             width={YAxisWidth}
             x={10}
+            domain={[0, yAxisTicks[yAxisTicks.length - 1]]}
             ticks={yAxisTicks}
             tickFormatter={yAxisTickFormater}
             orientation={isMobile ? `right` : `left`}

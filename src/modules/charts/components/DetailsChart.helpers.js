@@ -3,6 +3,8 @@ import formatDuration from "../utils/formatDuration"
 import { DetailsChartDimensions } from "../constants"
 
 const { ActiveDotRadius } = DetailsChartDimensions
+const SECONDS_IN_MINUTE = 60
+const MINUTES_IN_HOUR = 60
 
 export function filteredDataInitialStartIndex({
   data,
@@ -44,7 +46,13 @@ export function yAxisTickFormater(value) {
     return `0`
   }
 
-  return formatDuration(value).slice(0, -3)
+  return formatDuration(value)
+    .split(" ")
+    .reduce((acc, item) => {
+      const numStr = Number(item.substring(0, item.length - 1))
+      return numStr ? [...acc, item] : acc
+    }, [])
+    .join(" ")
 }
 
 export function getYAxisTicks(data) {
@@ -58,18 +66,56 @@ export function getYAxisTicks(data) {
     return maxItemValue > result ? maxItemValue : result
   }, 0)
 
-  const maxTickInMinutes = Math.ceil(maxValue / 60)
-  const maxTick = maxTickInMinutes * 60
-  const midTick = Math.floor(maxTickInMinutes / 2) * 60
+  const maxTickInMinutes = Math.ceil(maxValue / SECONDS_IN_MINUTE)
+  let maxTickInHours
+  let maxTickInSeconds
 
-  if (maxTickInMinutes > 5) {
-    const secondTick = Math.ceil(maxTickInMinutes * 0.1) * 60
-    const secondToLastTick = Math.floor(maxTickInMinutes * 0.9) * 60
-
-    return [0, secondTick, midTick, secondToLastTick, maxTick]
+  if (maxTickInMinutes >= MINUTES_IN_HOUR) {
+    maxTickInHours = Math.ceil(maxTickInMinutes / MINUTES_IN_HOUR)
+    maxTickInSeconds = maxTickInHours * MINUTES_IN_HOUR * SECONDS_IN_MINUTE
+  } else {
+    maxTickInSeconds = maxTickInMinutes * SECONDS_IN_MINUTE
   }
 
-  return [0, midTick, maxTick]
+  const maxTipNumberValue = maxTickInHours ? maxTickInHours : maxTickInMinutes
+  const multiplier = maxTickInHours
+    ? MINUTES_IN_HOUR * SECONDS_IN_MINUTE
+    : SECONDS_IN_MINUTE
+
+  // depending on max tick value we render different amount of ticks,
+  // the goal is that we render ticks with integer value in one unit
+  // for example 15s, 45s, 1m, 3m, 45m, 1h, 3h,
+  // but never 1m 35s, or 1h 25m
+  // this way wy maintain proper spacing between yAxis label and its ticks' labels
+  if (maxTipNumberValue === 1) {
+    const secondTick = 0.25 * multiplier
+    const thirdTick = 0.5 * multiplier
+    const fourthTick = 0.75 * multiplier
+
+    return [0, secondTick, thirdTick, fourthTick, maxTickInSeconds]
+  } else if (maxTipNumberValue === 2) {
+    const secondTick = 1 * multiplier
+
+    return [0, secondTick, maxTickInSeconds]
+  } else if (maxTipNumberValue === 3) {
+    const secondTick = 1 * multiplier
+    const thirdTick = 2 * multiplier
+
+    return [0, secondTick, thirdTick, maxTickInSeconds]
+  } else if (maxTipNumberValue % 2 !== 0) {
+    const secondTick = Math.floor(maxTipNumberValue * 0.2) * multiplier
+    const thirdTick = Math.floor(maxTipNumberValue * 0.4) * multiplier
+    const fourthTick = Math.floor(maxTipNumberValue * 0.6) * multiplier
+    const fifthTick = Math.floor(maxTipNumberValue * 0.8) * multiplier
+
+    return [0, secondTick, thirdTick, fourthTick, fifthTick, maxTickInSeconds]
+  } else {
+    const secondTick = Math.floor(maxTipNumberValue * 0.25) * multiplier
+    const thirdTick = Math.floor(maxTipNumberValue * 0.5) * multiplier
+    const fourthTick = Math.ceil(maxTipNumberValue * 0.75) * multiplier
+
+    return [0, secondTick, thirdTick, fourthTick, maxTickInSeconds]
+  }
 }
 
 export function getLinearGradientDefs(tones) {
