@@ -20,8 +20,6 @@ const wrapperStyles = theme => ({
   minHeight: BANNER_HEIGHT,
   background: theme.colors.purple[60],
   color: theme.colors.white,
-  paddingTop: theme.space[2],
-  paddingBottom: theme.space[2],
   display: `flex`,
   alignItems: `center`,
   justifyContent: `center`,
@@ -30,19 +28,22 @@ const wrapperStyles = theme => ({
   transformOrigin: `top center`,
 })
 
-const edgeColumnStyles = () => ({
-  width: BANNER_HEIGHT,
-  display: `grid`,
-  placeItems: `center`,
-})
-
-const textStyles = () => ({
+const textStyles = theme => ({
   flex: 1,
   textAlign: `center`,
   animation: `${fadeInAnimation} ${ANIMATION_DURATION}ms ${ANIMATION_DURATION}ms both`,
+  lineHeight: theme.lineHeights.dense,
+  padding: `${theme.space[3]}`,
 })
 const linkStyles = () => ({
   color: `inherit`,
+})
+
+const closeBoxStyles = () => ({
+  width: BANNER_HEIGHT,
+  height: BANNER_HEIGHT,
+  display: `grid`,
+  placeItems: `center`,
 })
 
 const closeButtonStyles = theme => ({
@@ -91,9 +92,8 @@ const Banner = ({ id }) => {
 
   return (
     <div css={wrapperStyles}>
-      <div css={edgeColumnStyles} />
       <div css={textStyles}>{contents}</div>
-      <div css={edgeColumnStyles}>
+      <div css={closeBoxStyles}>
         <button
           css={closeButtonStyles}
           aria-label="Dismiss banner"

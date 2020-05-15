@@ -99,6 +99,8 @@ const SiteDetailsPage = ({ data, pageContext }) => {
 
       <section
         css={theme => ({
+          padding: `0 ${theme.space[5]}`,
+
           [theme.mediaQueries.desktop]: {
             padding: `${theme.space[2]} 0 ${theme.space[8]} ${YAxisWidth}px`,
           },

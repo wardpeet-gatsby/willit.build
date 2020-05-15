@@ -19,7 +19,7 @@ function CustomYAxisLabel({ isMobile }) {
       transform={`rotate(-90, 0, ${y}) translate(0,10)`}
       css={textStyles}
     >
-      <tspan x="0" dx={0} dy={isMobile ? 10 : 0} css={tspanStyles}>
+      <tspan x="0" dx={0} dy={isMobile ? 15 : 0} css={tspanStyles}>
         BUILD TIME
       </tspan>
     </text>

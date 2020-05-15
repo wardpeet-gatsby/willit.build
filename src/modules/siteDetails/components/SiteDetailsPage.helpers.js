@@ -7,7 +7,7 @@ export function formatDataForChart({ benchmarks }) {
     const { createdAt, buildTimes } = item
 
     const data = buildTimes.reduce(
-      (acc, { platform, timeInMs, timeInMinutes }) => {
+      (acc, { platform, timeInMs, timeInMinutes, humanReadableTime }) => {
         const formatted = { ...acc }
 
         if (timeInMs) {
@@ -19,8 +19,13 @@ export function formatDataForChart({ benchmarks }) {
             formatted.valuesInMinutes = {}
           }
 
+          if (!formatted.humanReadableTime) {
+            formatted.humanReadableTime = {}
+          }
+
           formatted[platform] = Math.floor(timeInMs / 1000)
           formatted.valuesInMinutes[platform] = timeInMinutes
+          formatted.humanReadableTime[platform] = humanReadableTime
         } else {
           if (!formatted.errors) {
             formatted.errors = {}

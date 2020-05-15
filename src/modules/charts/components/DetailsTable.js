@@ -4,26 +4,35 @@ import { Platform, platformIds } from "../../data/constants"
 import TabularIcon from "../../data/assets/icons/TabularIcon"
 import TrophyIcon from "../../data/assets/icons/TrophyIcon"
 import {
-  tableWrapperCss,
+  tableHeadingCss,
   tableCss,
   tableHeaderCss,
   tableHeaderPlatformNameCss,
+  tableHeaderPlatformNameTxtCss,
+  tableHeaderPlatformNamePositionerCss,
   tableDataCss,
-  tableDataFastestBuildWrapperCss,
-  tableDataFastestBuildCss,
   tableDataDefaultCss,
+  tableDataWinnerCss,
+  trophyIconCss,
   tabularIconCss,
   platformIconCss,
   getTableValue,
   getFormattedDate,
+  mobileOnlyVisibleCss,
+  desktopOnlyVisibleCss,
 } from "./DetailsTable.helpers"
 import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
+import useMatchMedia from "@modules/ui/hooks/useMatchMedia"
+import { useTheme } from "@modules/ui/components/ThemeProvider"
 
 export const propTypes = {
   data: PropTypes.array,
 }
 
 function DetailsTable({ data = [] }) {
+  const { mediaQueries } = useTheme()
+  const isMobile = !useMatchMedia(mediaQueries.desktop)
+
   // Sort the dataset -- most recent to least recent
   let sortedData = [...data].sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
@@ -35,7 +44,7 @@ function DetailsTable({ data = [] }) {
 
   return (
     <div>
-      <div css={tableWrapperCss}>
+      <div css={tableHeadingCss}>
         <TabularIcon css={tabularIconCss} />
         <h2>Tabular data</h2>
       </div>
@@ -60,11 +69,15 @@ function DetailsTable({ data = [] }) {
                   css={tableHeaderPlatformNameCss}
                   colSpan="1"
                 >
-                  <span aria-hidden="true">
-                    <PlatformIcon css={platformIconCss} />
-                  </span>
+                  <div css={tableHeaderPlatformNamePositionerCss}>
+                    <span aria-hidden="true">
+                      <PlatformIcon css={platformIconCss} />
+                    </span>
 
-                  {Platform[platform].displayedAs}
+                    <span css={tableHeaderPlatformNameTxtCss}>
+                      {Platform[platform].displayedAs}
+                    </span>
+                  </div>
                 </th>
               )
             })}
@@ -99,11 +112,20 @@ function DetailsTable({ data = [] }) {
 
             const formattedDate = getFormattedDate({
               date: dataPerDiem.createdAt,
+              isMobile,
             })
+
             return (
               <tr key={`${dataPerDiem.createdAt}_daterow`}>
-                <td css={tableDataCss}>{formattedDate}</td>
+                <td css={tableDataCss}>
+                  <span css={mobileOnlyVisibleCss}>{formattedDate.mobile}</span>
+                  <span css={desktopOnlyVisibleCss}>
+                    {formattedDate.desktop}
+                  </span>
+                </td>
                 {platformIds.map(platform => {
+                  const isWinner = buildTimes[platform] === sortable[0][1]
+
                   const tableValue = getTableValue({
                     dataPerDiem,
                     platform,
@@ -121,35 +143,23 @@ function DetailsTable({ data = [] }) {
                     )
                   }
 
-                  if (buildTimes[platform] === sortable[0][1]) {
-                    return (
-                      <td key={`${platform}_buildtime`} css={tableDataCss}>
-                        <span css={visuallyHiddenCss}>
-                          {`Fastest: ${tableValue.readableBuildTime}`}
-                        </span>
-                        <div
-                          aria-hidden="true"
-                          css={tableDataFastestBuildWrapperCss}
-                        >
-                          <TrophyIcon />
-                          <span css={tableDataFastestBuildCss}>
-                            {tableValue.formattedBuildTime}
-                          </span>
-                        </div>
-                      </td>
-                    )
-                  } else {
-                    return (
-                      <td key={`${platform}_buildtime`} css={tableDataCss}>
-                        <span css={visuallyHiddenCss}>
-                          {tableValue.readableBuildTime}
-                        </span>
-                        <span aria-hidden="true" css={tableDataDefaultCss}>
-                          {tableValue.formattedBuildTime}
-                        </span>
-                      </td>
-                    )
-                  }
+                  return (
+                    <td key={`${platform}_buildtime`} css={tableDataCss}>
+                      <span css={visuallyHiddenCss}>
+                        {isWinner && `Fastest:`} {tableValue.readableBuildTime}
+                      </span>
+                      <div
+                        aria-hidden="true"
+                        css={theme => [
+                          tableDataDefaultCss(theme),
+                          isWinner ? tableDataWinnerCss(theme) : null,
+                        ]}
+                      >
+                        {isWinner && <TrophyIcon css={trophyIconCss} />}
+                        <span>{tableValue.buildTime}</span>
+                      </div>
+                    </td>
+                  )
                 })}
               </tr>
             )
