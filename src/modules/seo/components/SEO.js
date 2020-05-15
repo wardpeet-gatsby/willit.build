@@ -3,6 +3,8 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
+import ogImage from "../../../images/og-image.png"
+
 export function SEO({ description, lang, meta, title }) {
   const { site } = useStaticQuery(
     graphql`
@@ -12,6 +14,7 @@ export function SEO({ description, lang, meta, title }) {
             title
             description
             author
+            url
           }
         }
       }
@@ -20,6 +23,9 @@ export function SEO({ description, lang, meta, title }) {
 
   const metaDescription = description || site.siteMetadata.description
   const metaTitle = title || site.siteMetadata.title
+  const imageAlt = `A machine shows a bunch of different assets — javascript, HTML, images — being transformed by a metaphorical machine into a Gatsby site`
+
+  const fullOgImage = `${site.siteMetadata.url}${ogImage}`
 
   return (
     <Helmet
@@ -38,6 +44,22 @@ export function SEO({ description, lang, meta, title }) {
           content: metaTitle,
         },
         {
+          property: `og:image`,
+          content: fullOgImage,
+        },
+        {
+          property: `og:image:alt`,
+          content: imageAlt,
+        },
+        {
+          property: `og:image:width`,
+          content: 1600,
+        },
+        {
+          property: `og:image:height`,
+          content: 836,
+        },
+        {
           property: `og:description`,
           content: metaDescription,
         },
@@ -47,7 +69,7 @@ export function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: `twitter:creator`,
@@ -60,6 +82,14 @@ export function SEO({ description, lang, meta, title }) {
         {
           name: `twitter:description`,
           content: metaDescription,
+        },
+        {
+          name: `twitter:image`,
+          content: fullOgImage,
+        },
+        {
+          property: `twitter:image:alt`,
+          content: imageAlt,
         },
       ].concat(meta)}
     />
