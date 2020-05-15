@@ -72,48 +72,6 @@ export const benchmarkLinkStyles = theme => ({
   },
 })
 
-export const titleStyles = theme => ({
-  fontSize: theme.fontSizes[0],
-  lineHeight: theme.lineHeights.dense,
-  letterSpacing: `0.05em`,
-  color: theme.colors.grey[50],
-  textTransform: `uppercase`,
-  fontWeight: theme.fontWeights.body,
-
-  span: {
-    display: `block`,
-    [theme.mediaQueries.tablet]: {
-      display: `inline`,
-    },
-  },
-})
-
-export const contentStyles = theme => ({
-  display: `block`,
-  fontSize: theme.fontSizes[3],
-  lineHeight: theme.lineHeights.solid,
-  color: theme.colors.blackFade[90],
-  fontWeight: theme.fontWeights.semiBold,
-  paddingTop: theme.space[4],
-  paddingBottom: theme.space[3],
-  [theme.mediaQueries.phablet]: {
-    fontSize: theme.fontSizes[4],
-  },
-  [theme.mediaQueries.desktop]: {
-    fontSize: theme.fontSizes[5],
-  },
-})
-
-export const fastestBuildStyles = theme => ({
-  fontSize: theme.fontSizes[5],
-  [theme.mediaQueries.phablet]: {
-    fontSize: theme.fontSizes[4],
-  },
-  [theme.mediaQueries.desktop]: {
-    fontSize: theme.fontSizes[5],
-  },
-})
-
 export const subtextStyles = theme => ({
   alignItems: `center`,
   display: `flex`,
@@ -126,16 +84,6 @@ export const subtextStyles = theme => ({
   [theme.mediaQueries.phablet]: {
     color: theme.colors.grey[90],
     fontSize: theme.fontSizes[1],
-  },
-})
-
-export const spanStyles = theme => ({
-  fontSize: theme.fontSizes[2],
-  fontWeight: `normal`,
-  color: theme.colors.grey[50],
-  paddingLeft: theme.space[2],
-  [theme.mediaQueries.tablet]: {
-    fontSize: theme.fontSizes[3],
   },
 })
 
@@ -157,4 +105,45 @@ export const linkStyles = theme => ({
     right: 0,
     bottom: 0,
   },
+})
+
+export const sectionHeadingCss = theme => ({
+  fontSize: theme.fontSizes[0],
+  lineHeight: theme.lineHeights.dense,
+  letterSpacing: `0.05em`,
+  color: theme.colors.grey[50],
+  textTransform: `uppercase`,
+  fontWeight: theme.fontWeights.body,
+})
+
+export const sectionHeadingNoteCss = theme => ({
+  display: `block`,
+  [theme.mediaQueries.tablet]: {
+    display: `inline`,
+  },
+})
+
+export const separatorCss = theme => ({
+  fontWeight: `normal`,
+  margin: `0 ${theme.space[2]}`,
+  color: theme.colors.grey[40],
+})
+
+export const emphesizedTextCss = theme => ({
+  display: `flex`,
+  paddingTop: theme.space[4],
+  paddingBottom: theme.space[3],
+  fontSize: theme.fontSizes[3],
+  lineHeight: theme.lineHeights.solid,
+  color: theme.colors.blackFade[90],
+  fontWeight: theme.fontWeights.semiBold,
+
+  [theme.mediaQueries.desktop]: {
+    fontSize: theme.fontSizes[5],
+  },
+})
+
+export const deEmphesizedTextCss = theme => ({
+  color: theme.colors.blackFade[70],
+  fontWeight: theme.fontWeights.body,
 })

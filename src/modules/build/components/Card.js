@@ -3,22 +3,27 @@ import PropTypes from "prop-types"
 import { Link } from "gatsby-interface"
 import { MdArrowForward } from "react-icons/md"
 import formatPath from "@modules/data/utils/formatPath"
-import { ContentSource, SiteType, BuildType } from "@modules/data/constants"
+import {
+  ContentSource,
+  SiteType,
+  BuildType,
+  Platform,
+} from "@modules/data/constants"
 import {
   wrapperStyles,
   gridStyles,
-  titleStyles,
-  contentStyles,
+  sectionHeadingCss,
+  sectionHeadingNoteCss,
+  emphesizedTextCss,
+  deEmphesizedTextCss,
   subtextStyles,
-  spanStyles,
   linkStyles,
   buildTimeStyles,
-  fastestBuildStyles,
   benchmarkLinkStyles,
+  separatorCss,
 } from "./Card.styles"
 import SiteTypeImage from "./SiteTypeImage"
 import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
-import GatsbyIcon from "@modules/data/assets/icons/GatsbyIcon"
 
 const propTypes = {
   Icon: PropTypes.func,
@@ -34,14 +39,17 @@ const Card = ({
   contentSource,
   siteType = SiteType.Blog,
   numberOfPages,
-  cachedBuildTime,
-  uncachedBuildTime,
+  cachedBuild,
+  uncachedBuild,
   ...props
 }) => {
   const formattedSource = ContentSource[contentSource].displayedAs
-  const Icon = ContentSource[contentSource].Icon
   const formattedSiteType = SiteType[siteType].displayedAs
   const gradient = ContentSource[contentSource].gradient
+
+  const ContentSourceIcon = ContentSource[contentSource].Icon
+  const CachedBuildPlatformIcon = Platform[cachedBuild.platform].Icon
+  const UncachedBuildPlatformIcon = Platform[uncachedBuild.platform].Icon
 
   // The GraphQL API returns names in UPPER_SNAKE_CASE.
   // We want to transform this to lower-dash-cash, to match pathnames.
@@ -62,7 +70,7 @@ const Card = ({
       <h3 css={visuallyHiddenCss}>{formattedSource} Site Benchmarks</h3>
       <div css={gridStyles}>
         <SiteTypeImage gradient={gradient}>
-          <Icon
+          <ContentSourceIcon
             data-cy="build-card__icon"
             inverted={true}
             css={theme => ({
@@ -77,8 +85,8 @@ const Card = ({
           />
         </SiteTypeImage>
         <div data-cy="build-card__source">
-          <h4 css={titleStyles}>Source / Type</h4>
-          <span css={contentStyles}>
+          <h4 css={sectionHeadingCss}>Source / Type</h4>
+          <span css={emphesizedTextCss}>
             <span
               css={{
                 verticalAlign: `text-top`,
@@ -90,22 +98,23 @@ const Card = ({
           <span css={subtextStyles}>{formattedSiteType}</span>
         </div>
         <div data-cy="build-card__pages">
-          <h4 css={titleStyles}>Pages</h4>
-          <span css={contentStyles}>{numberOfPages}</span>
+          <h4 css={sectionHeadingCss}>Pages</h4>
+          <span css={emphesizedTextCss}>{numberOfPages}</span>
         </div>
         <div css={buildTimeStyles} data-cy="build-card__stats">
-          <h4 css={titleStyles}>
-            Fastest Build <span>(cached / uncached)</span>
+          <h4 css={sectionHeadingCss}>
+            Fastest Build{" "}
+            <em css={sectionHeadingNoteCss}>(cached / uncached)</em>
           </h4>
-          <span
-            css={theme => [contentStyles(theme), fastestBuildStyles(theme)]}
-          >
-            {cachedBuildTime}
-            <span css={spanStyles}>/ {uncachedBuildTime}</span>
-          </span>
-          <span css={subtextStyles}>
-            <GatsbyIcon aria-hidden="true" /> Gatsby Cloud
-          </span>
+          <div css={emphesizedTextCss}>
+            <span>
+              {cachedBuild.timeInMinutes} <CachedBuildPlatformIcon />
+            </span>
+            <span css={separatorCss}>/</span>
+            <span css={deEmphesizedTextCss}>
+              {uncachedBuild.timeInMinutes} <UncachedBuildPlatformIcon />
+            </span>
+          </div>
         </div>
 
         <div css={benchmarkLinkStyles}>

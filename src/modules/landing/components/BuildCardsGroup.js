@@ -77,8 +77,8 @@ const BuildCardsGroup = () => {
             contentSource={contentSource}
             siteType={siteType}
             numberOfPages={512}
-            cachedBuildTime={latest.warmStart[0].timeInMinutes}
-            uncachedBuildTime={latest.coldStart[0].timeInMinutes}
+            cachedBuild={latest.warmStart[0]}
+            uncachedBuild={latest.coldStart[0]}
           />
         )
       })}
