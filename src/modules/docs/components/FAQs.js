@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import { MdAdd, MdRemove, MdArrowForward } from "react-icons/md"
 import { Link } from "gatsby-interface"
 import marked from "marked"
+import { useLocation } from "@reach/router"
 
 import {
   wrapperStyles,
@@ -18,10 +19,32 @@ import {
   expandCollapseRowStyles,
 } from "./FAQs.styles"
 
-const Question = ({ title, answer, isExpanded, handleToggle }) => {
+const Question = ({ id, title, answer, isExpanded, handleToggle }) => {
+  const location = useLocation()
+  const linkedQuestionId = location.hash.replace(/^#/, "")
+
+  const elem = React.useRef()
+
+  React.useEffect(() => {
+    if (!elem.current) {
+      return
+    }
+
+    if (linkedQuestionId === id) {
+      elem.current.scrollIntoView()
+      // This is funky on mobile so I need to override the whatever with some
+      // things. This way, the UX is 📈📈📈
+      handleToggle()
+    }
+  }, [id, linkedQuestionId])
+
   return (
-    <div css={questionWrapper}>
-      <h3>
+    <div css={questionWrapper} ref={elem}>
+      {/*
+        If the page links to a specific question, this is our anchor for it
+        to scroll to:
+      */}
+      <h3 id={id}>
         <button
           css={questionRowStyles}
           onClick={handleToggle}
@@ -59,6 +82,7 @@ const FAQs = () => {
         edges {
           node {
             id
+            contentfulid
             question
             answer {
               answer
@@ -124,6 +148,7 @@ const FAQs = () => {
           return (
             <Question
               key={node.id}
+              id={node.contentfulid || node.id}
               title={node.question}
               answer={node.answer.answer}
               isExpanded={!!expandedQuestions[node.id]}

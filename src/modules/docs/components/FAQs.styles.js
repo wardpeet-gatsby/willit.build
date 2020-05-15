@@ -6,9 +6,7 @@ export const wrapperStyles = theme => ({
   marginBottom: theme.space[8],
 
   [theme.mediaQueries.phablet]: {
-    gridTemplateColumns: `repeat(auto-fit, minmax(40px, 1fr))`,
-    gridTemplateRows: `repeat(6,  auto)`,
-    gridAutoFlow: `column`,
+    gridTemplateColumns: `1fr 1fr`,
   },
 })
 
@@ -48,10 +46,19 @@ export const answerStyles = theme => ({
   ol: {
     paddingInlineStart: theme.space[6],
     paddingTop: theme.space[4],
+    marginBottom: theme.space[8],
+  },
+
+  "ol li": {
+    marginBottom: theme.space[4],
   },
 
   p: {
     marginBottom: `0`,
+
+    ":not(:last-of-type)": {
+      marginBottom: theme.space[4],
+    },
   },
 
   a: {
