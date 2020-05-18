@@ -25,6 +25,12 @@ const Question = ({ id, title, answer, isExpanded, handleToggle }) => {
 
   const elem = React.useRef()
 
+  const [processedAnswer, setProcessedAnswer] = React.useState(null)
+
+  React.useEffect(() => {
+    setProcessedAnswer(marked(answer))
+  }, [answer])
+
   React.useEffect(() => {
     if (!elem.current) {
       return
@@ -69,7 +75,7 @@ const Question = ({ id, title, answer, isExpanded, handleToggle }) => {
             display: `none`,
           },
         ]}
-        dangerouslySetInnerHTML={{ __html: marked(answer) }}
+        dangerouslySetInnerHTML={{ __html: processedAnswer }}
       />
     </div>
   )
