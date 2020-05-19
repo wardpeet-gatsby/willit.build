@@ -57,7 +57,7 @@ const ContentSource = {
     },
   },
   WORDPRESS: {
-    displayedAs: `Wordpress`,
+    displayedAs: `WordPress`,
     gradient: {
       start: `#21759B`,
       end: `#BC027F`,

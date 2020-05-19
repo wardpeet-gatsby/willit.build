@@ -6,7 +6,7 @@ export default ({
   height = 25,
   width = 25,
   inverted,
-  title = `Wordpress logo`,
+  title = `WordPress logo`,
   ...rest
 }) => {
   const titleId = `${toCamelCase(title)}SvgTitle_${generateId(3)}`
