@@ -120,7 +120,7 @@ const Explainer = () => {
         </BlockGrid>
       </Block>
       <Block>
-        <p css={LabelStyles}>Up to 65,535 pages built on</p>
+        <p css={LabelStyles}>Up to 32,768 pages built on</p>
         <BlockGrid>
           <img src={gatsbyCloudSrc} alt="Gatsby Cloud logo" />
           <Delimiter /> <Icon Icon={NetlifyIcon} />
