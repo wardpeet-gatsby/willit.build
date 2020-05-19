@@ -1,9 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { Link } from "gatsby-interface"
+
 import DetailsChart from "@modules/charts/components/DetailsChart"
 import DetailsTable from "@modules/charts/components/DetailsTable"
 import DetailsChartPlaceholder from "@modules/charts/components/DetailsChartPlaceholder"
 import { DetailsChartDimensions } from "@modules/charts/constants"
+import { ArtificiallySlowContentSources } from "@modules/data/constants"
 import MaxWidthWrapper, {
   HORIZONTAL_PADDING_DESKTOP as wrapperPaddingDesktop,
 } from "@modules/ui/components/MaxWidthWrapper"
@@ -39,6 +42,8 @@ const SiteDetailsPage = ({ data, pageContext }) => {
     "gatsbyjs/gatsby",
     "gatsbyjs/gatsby/tree/master"
   )
+
+  const isArtificiallySlow = !!ArtificiallySlowContentSources[contentSource]
 
   const { graphData, activePlatorms } = formatDataForChart({
     benchmarks,
@@ -83,6 +88,23 @@ const SiteDetailsPage = ({ data, pageContext }) => {
           activeBenchmarks={activeBenchmarks}
         />
       </div>
+
+      {isArtificiallySlow && (
+        <section
+          css={theme => ({
+            textAlign: `center`,
+            padding: `${theme.space[2]} ${theme.space[5]} ${theme.space[6]} ${theme.space[5]}`,
+            fontSize: theme.fontSizes[1],
+            color: theme.colors.grey[60],
+            lineHeight: theme.lineHeights.body,
+          })}
+        >
+          <strong>Note:</strong> Markdown build times are artificially inflated.
+          You should experience quicker builds.{" "}
+          <Link to="/methodology-faq#markdown-mdx-builds">Learn more</Link>
+        </section>
+      )}
+
       <section
         css={{
           minHeight: `${ChartWithControlsHeight}px`,

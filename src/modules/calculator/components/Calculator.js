@@ -1,7 +1,9 @@
 import React from "react"
+import { Link } from "gatsby-interface"
 
 import ContentSourceControl from "@modules/ui/components/ContentSourceControl"
 import PageCountSelectControl from "@modules/ui/components/PageCountSelectControl"
+import { ArtificiallySlowContentSources } from "@modules/data/constants"
 import { controlLabelCss } from "@modules/ui/styles"
 import HelpCircle from "@modules/ui/components/HelpCircle"
 import Stat from "./Stat"
@@ -17,15 +19,23 @@ const wrapperCss = theme => ({
 
 const controlsWrapperCss = theme => ({
   borderBottom: `1px solid ${theme.colors.blackFade[10]}`,
-  display: `flex`,
-  justifyContent: `space-around`,
+  display: `grid`,
   paddingBottom: theme.space[5],
   marginBottom: theme.space[5],
+  justifyContent: `space-around`,
+  gridTemplateAreas: `
+    'source pages'
+    'disclaimer disclaimer'
+  `,
+  gridTemplateRows: `min-content min-content`,
 
   [theme.mediaQueries.desktop]: {
+    gridTemplateAreas: `
+      'source'
+      'disclaimer'
+      'pages'
+    `,
     border: 0,
-    flexDirection: `column`,
-    justifyContent: `flex-start`,
     marginBottom: 0,
     paddingBottom: 0,
   },
@@ -35,12 +45,10 @@ const controlPositionerCss = theme => ({
   display: `flex`,
 
   [theme.mediaQueries.tablet]: {
-    flexBasis: `50%`,
     justifyContent: `center`,
   },
 
   [theme.mediaQueries.desktop]: {
-    flexBasis: `auto`,
     justifyContent: `flex-start`,
     paddingRight: theme.space[14],
 
@@ -91,11 +99,30 @@ const buildTypeHeaderCss = theme => [
     },
 
     [theme.mediaQueries.desktop]: {
-      marginTo1p: 0,
+      marginTop: 0,
       textAlign: `left`,
     },
   },
 ]
+
+const mdxDisclaimerCss = theme => ({
+  gridArea: `disclaimer`,
+  fontSize: theme.fontSizes[1],
+  color: theme.colors.grey[60],
+  marginTop: theme.space[4],
+  lineHeight: theme.lineHeights.body,
+
+  [theme.mediaQueries.tablet]: {
+    textAlign: `center`,
+  },
+  [theme.mediaQueries.desktop]: {
+    marginTop: -12,
+    paddingBottom: theme.space[10],
+    paddingRight: theme.space[5],
+    textAlign: `left`,
+    maxWidth: 250,
+  },
+})
 
 const Calculator = ({
   siteType,
@@ -109,10 +136,17 @@ const Calculator = ({
   const warmTimeStats = stats.warmStart
   const coldTimeStats = stats.coldStart
 
+  const isArtificiallySlow = !!ArtificiallySlowContentSources[contentSource]
+
   return (
     <article css={wrapperCss}>
       <div css={controlsWrapperCss}>
-        <div css={controlPositionerCss}>
+        <div
+          css={theme => ({
+            ...controlPositionerCss(theme),
+            gridArea: "source",
+          })}
+        >
           <ContentSourceControl
             siteType={siteType}
             pageCount={pageCount}
@@ -121,7 +155,23 @@ const Calculator = ({
             pathPrefix="calculator"
           />
         </div>
-        <div css={controlPositionerCss}>
+
+        {isArtificiallySlow && (
+          <section css={mdxDisclaimerCss}>
+            <p>
+              <strong>Note:</strong> Markdown build times are artificially
+              inflated. You should experience quicker builds.{" "}
+              <Link to="/methodology-faq#markdown-mdx-builds">Learn more</Link>
+            </p>
+          </section>
+        )}
+
+        <div
+          css={theme => ({
+            ...controlPositionerCss(theme),
+            gridArea: "pages",
+          })}
+        >
           <PageCountSelectControl
             siteType={siteType}
             initialPageCount={pageCount}

@@ -75,3 +75,8 @@ export const Platform = Object.entries(BasePlatform).reduce(
   },
   {}
 )
+
+export const ArtificiallySlowContentSources = {
+  MARKDOWN: true,
+  MDX: true,
+}
