@@ -24,12 +24,13 @@ const githubLinkCss = theme => ({
 })
 
 const cmsTwitterMap = {
-  DATOCMS: `datocms`,
-  CONTENTFUL: `contentful`,
-  COSMICJS: `cosmicjs`,
-  DRUPAL: `drupal`,
-  MDX: `mdx_js`,
-  WORDPRESS: `WordPress`,
+  DATOCMS: `@datocms`,
+  CONTENTFUL: `@contentful`,
+  COSMICJS: `@cosmicjs`,
+  DRUPAL: `@drupal`,
+  MDX: `@mdx_js`,
+  MARKDOWN: `Markdown`,
+  WORDPRESS: `@WordPress`,
 }
 
 const SocialLinks = ({
@@ -40,7 +41,7 @@ const SocialLinks = ({
 }) => {
   const { href } = useLocation()
 
-  const twitterShareText = `Check out the benchmarks for building a ${pageCount} page @${
+  const twitterShareText = `Check out the benchmarks for building a ${pageCount} page ${
     cmsTwitterMap[contentSource]
   } ${siteType.toLowerCase()} site on @gatsbyjs Cloud.`
 
