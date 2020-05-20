@@ -50,7 +50,9 @@ const SocialLinks = ({
   )}`
 
   // LinkedIn has apparently all but killed their query param share function, cant add a message
-  const linkedinShareUrl = `https://www.linkedin.com/shareArticle?url=${href}/calculator/type/${siteType}/source/${contentSource}/page-count/${pageCount}`
+  const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+    href
+  )}`
 
   return (
     <div css={wrapperCss}>
