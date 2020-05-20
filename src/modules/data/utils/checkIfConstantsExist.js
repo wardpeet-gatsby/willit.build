@@ -5,7 +5,11 @@
 
 const { contentSourceIds, siteTypeIds } = require("../../../../base-constants")
 
-module.exports = function({ id, contentSource, siteType }) {
+module.exports = function checkIfConstantsExist({
+  id,
+  contentSource,
+  siteType,
+}) {
   if (!contentSourceIds.includes(contentSource)) {
     console.warn(
       `There is no value for 'ContentSource[${contentSource}]' so metrics for the '${contentSource}' value of 'contentSource' are ommited (id: ${id}). Please update 'base-constants.js' file.`

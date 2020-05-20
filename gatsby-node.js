@@ -6,7 +6,7 @@ const {
   buildTypeIds,
 } = require("./base-constants")
 const formatPath = require("./src/modules/data/utils/formatPath")
-const checkIfContstantsExist = require("./src/modules/data/utils/checkIfContstantsExist")
+const checkIfConstantsExist = require("./src/modules/data/utils/checkIfConstantsExist")
 
 exports.createPages = async ({
   graphql,
@@ -48,12 +48,18 @@ exports.createPages = async ({
               warmStart {
                 timeInMs
               }
+              dataUpdate {
+                timeInMs
+              }
             }
             latest4096: latest(numberOfPages: 4096) {
               coldStart {
                 timeInMs
               }
               warmStart {
+                timeInMs
+              }
+              dataUpdate {
                 timeInMs
               }
             }
@@ -64,12 +70,18 @@ exports.createPages = async ({
               warmStart {
                 timeInMs
               }
+              dataUpdate {
+                timeInMs
+              }
             }
             latest32768: latest(numberOfPages: 32768) {
               coldStart {
                 timeInMs
               }
               warmStart {
+                timeInMs
+              }
+              dataUpdate {
                 timeInMs
               }
             }
@@ -85,17 +97,29 @@ exports.createPages = async ({
         id,
         contentSource,
         siteType,
-        latest512: { warmStart: ws512, coldStart: cs512 },
-        latest4096: { warmStart: ws4096, coldStart: cs4096 },
-        latest8192: { warmStart: ws8192, coldStart: cs8192 },
-        latest32768: { warmStart: ws32768, coldStart: cs32768 },
+        latest512: { dataUpdate: du512, warmStart: ws512, coldStart: cs512 },
+        latest4096: {
+          dataUpdate: du4096,
+          warmStart: ws4096,
+          coldStart: cs4096,
+        },
+        latest8192: {
+          dataUpdate: du8192,
+          warmStart: ws8192,
+          coldStart: cs8192,
+        },
+        latest32768: {
+          dataUpdate: du32768,
+          warmStart: ws32768,
+          coldStart: cs32768,
+        },
       } = item
 
       const pageCounts = {
-        "512": ws512.length && cs512.length,
-        "4096": ws4096.length && cs4096.length,
-        "8192": ws8192.length && cs8192.length,
-        "32768": ws32768.length && cs32768.length,
+        "512": du512.length && ws512.length && cs512.length,
+        "4096": du4096.length && ws4096.length && cs4096.length,
+        "8192": du8192.length && ws8192.length && cs8192.length,
+        "32768": du32768.length && ws32768.length && cs32768.length,
       }
 
       const activePageCounts = Object.entries(pageCounts).reduce(
@@ -121,9 +145,11 @@ exports.createPages = async ({
     ({ id, contentSource, siteType, activePageCounts }) => {
       activePageCounts.forEach(pageCount => {
         buildTypeIds.forEach(buildType => {
-          // prevents creating pages for newly added benchmarks if there is no coresponding meta costants
-          // the checkIfContstantsExist helper prints console.warn if there is no coresponding constants
-          if (!checkIfContstantsExist({ id, contentSource, siteType })) {
+          // prevents creating pages for newly added benchmarks if there is no
+          // coresponding meta constants
+          // the checkIfConstantsExist helper prints console.warn if there is
+          // no coresponding constants
+          if (!checkIfConstantsExist({ id, contentSource, siteType })) {
             return
           }
 

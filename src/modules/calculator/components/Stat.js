@@ -7,6 +7,7 @@ import { controlLabelCss } from "@modules/ui/styles"
 
 const statCss = ({ theme, winner }) => ({
   flexBasis: winner ? `40%` : `30%`,
+  marginTop: theme.space[2],
   marginBottom: theme.space[8],
   textAlign: `center`,
 
@@ -20,7 +21,7 @@ const statHeaderCss = theme => [
   controlLabelCss(theme),
   {
     lineHeight: theme.lineHeights.body,
-
+    marginBottom: theme.space[3],
     span: {
       display: `block`,
       fontSize: `10px`,
@@ -44,6 +45,8 @@ const statValueCss = ({ theme, winner, emphasized }) => ({
   color: theme.colors.blackFade[emphasized ? 90 : 60],
   fontSize: theme.fontSizes[6],
   fontWeight: winner ? theme.fontWeights.bold : theme.fontWeights.body,
+  // Optically align the numbers with the left edge
+  transform: `translateX(-2px)`,
 
   [theme.mediaQueries.desktop]: {
     color: theme.colors.blackFade[emphasized ? 90 : 70],
@@ -64,7 +67,12 @@ const statDescriptionCss = ({ theme, winner }) => ({
 })
 
 const iconCss = {
-  verticalAlign: `middle`,
+  transform: `translateY(1px)`,
+}
+
+const timerIconCss = {
+  ...iconCss,
+  marginLeft: 4,
 }
 
 const propTypes = {
@@ -81,7 +89,7 @@ const Stat = ({ time, platform, winner, emphasized, label }) => {
   return (
     <div css={theme => statCss({ theme, winner })}>
       <h3 css={statHeaderCss}>
-        {winner && <MdTimer css={iconCss} />} {label}
+        {label} {winner && <MdTimer css={timerIconCss} />}
       </h3>
       <div css={statContentCss}>
         <span css={theme => statValueCss({ theme, winner, emphasized })}>

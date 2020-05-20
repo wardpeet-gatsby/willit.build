@@ -58,8 +58,13 @@ describe("Calculator", () => {
     cy.get("[id=page-count-control]").should("be.visible")
 
     // Calculator metrics
-    cy.contains("Cached builds", { matchCase: false }).should("be.visible")
-    cy.contains("Uncached builds", { matchCase: false }).should("be.visible")
+    cy.contains("Content changes", { matchCase: false }).should("be.visible")
+    cy.contains("Cached code changes", { matchCase: false }).should(
+      "be.visible"
+    )
+    cy.contains("Uncached code changes", { matchCase: false }).should(
+      "be.visible"
+    )
     cy.contains("Winner - Fastest build", { matchCase: false }).should(
       "be.visible"
     )

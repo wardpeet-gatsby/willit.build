@@ -91,13 +91,17 @@ module.exports.pageCountDisplayedAsRegExp = Object.keys(PageCount)
   .join("|")
 
 const BaseBuildType = {
-  COLD_START: {
-    displayedAs: `Uncached`,
-    description: `Lorem ipsum dolor uncached`,
+  DATA_UPDATE: {
+    displayedAs: `Content`,
+    description: `Indicates a data change (from the CMS)`,
   },
   WARM_START: {
     displayedAs: `Cached`,
-    description: `Lorem ipsum dolor cached`,
+    description: `Indicates a cached code change`,
+  },
+  COLD_START: {
+    displayedAs: `Uncached`,
+    description: `Indicates an uncached code change`,
   },
 }
 module.exports.BaseBuildType = BaseBuildType

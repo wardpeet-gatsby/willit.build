@@ -5,7 +5,6 @@ import ContentSourceControl from "@modules/ui/components/ContentSourceControl"
 import PageCountSelectControl from "@modules/ui/components/PageCountSelectControl"
 import { ArtificiallySlowContentSources } from "@modules/data/constants"
 import { controlLabelCss } from "@modules/ui/styles"
-import HelpCircle from "@modules/ui/components/HelpCircle"
 import Stat from "./Stat"
 
 const wrapperCss = theme => ({
@@ -38,6 +37,9 @@ const controlsWrapperCss = theme => ({
     border: 0,
     marginBottom: 0,
     paddingBottom: 0,
+    // Avoid changing column widths depending on the
+    // value of the contentSource dropdown.
+    minWidth: 260,
   },
 })
 
@@ -70,7 +72,7 @@ const buildTypeSectionCss = theme => ({
     flexWrap: `wrap`,
     justifyContent: `space-between`,
 
-    "&:first-of-type": {
+    "&:not(:last-of-type)": {
       borderBottom: `1px solid ${theme.colors.blackFade[10]}`,
       marginBottom: theme.space[7],
       paddingBottom: theme.space[7],
@@ -86,7 +88,7 @@ const buildTypeHeaderCss = theme => [
     lineHeight: theme.lineHeights.dense,
     textAlign: `center`,
     marginBottom: theme.space[7],
-    marginTop: theme.space[3],
+    marginTop: 0,
 
     strong: {
       display: `block`,
@@ -133,8 +135,16 @@ const Calculator = ({
 }) => {
   const stats = data.benchmarkApi.benchmarkVendor.latest
 
-  const warmTimeStats = stats.warmStart
-  const coldTimeStats = stats.coldStart
+  const secondaryStats = [
+    {
+      label: `Cached code changes`,
+      stats: stats.warmStart,
+    },
+    {
+      label: `Uncached code changes`,
+      stats: stats.coldStart,
+    },
+  ]
 
   const isArtificiallySlow = !!ArtificiallySlowContentSources[contentSource]
 
@@ -182,101 +192,98 @@ const Calculator = ({
         </div>
       </div>
       <div
-        css={theme => ({
-          display: `flex`,
+        css={_theme => ({
           width: `100%`,
-
-          [theme.mediaQueries.desktop]: {
-            flexDirection: `column`,
-          },
+          overflowX: `auto`,
         })}
       >
-        <section css={buildTypeSectionCss}>
-          <h2 css={buildTypeHeaderCss}>
-            <strong>Cached</strong> builds
-          </h2>
-          {warmTimeStats[0] && (
-            <Stat
-              emphasized={true}
-              winner={true}
-              platform={warmTimeStats[0].platform}
-              time={warmTimeStats[0].timeInMinutes}
-              label={
-                <>
-                  Winner <span>- Fastest Build</span>
-                  <HelpCircle
-                    helpInfo="Cached builds are “warm” builds, with a cache that can be reused."
-                    href="/methodology-faq"
-                  />
-                </>
-              }
-            />
-          )}
+        <div
+          css={theme => ({
+            minWidth: 500,
+            display: `flex`,
 
-          {warmTimeStats[1] && (
-            <Stat
-              emphasized={true}
-              platform={warmTimeStats[1].platform}
-              time={warmTimeStats[1].timeInMinutes}
-              label="Runner-Up"
-            />
-          )}
+            [theme.mediaQueries.desktop]: {
+              flexDirection: `column`,
+            },
+          })}
+        >
+          <section css={buildTypeSectionCss}>
+            <h2 css={buildTypeHeaderCss}>Content changes</h2>
+            {stats.dataUpdate[0] && (
+              <Stat
+                emphasized={true}
+                winner={true}
+                platform={stats.dataUpdate[0].platform}
+                time={stats.dataUpdate[0].timeInMinutes}
+                label={
+                  <>
+                    Winner <span>- Fastest Build</span>
+                  </>
+                }
+              />
+            )}
 
-          {warmTimeStats[2] && (
-            <Stat
-              emphasized={true}
-              platform={warmTimeStats[2].platform}
-              time={warmTimeStats[2].timeInMinutes}
-              label={
-                <>
-                  Second <span>Runner-Up</span>
-                </>
-              }
-            />
-          )}
-        </section>
-        <section css={buildTypeSectionCss}>
-          <h2 css={buildTypeHeaderCss}>
-            <strong>Uncached</strong> builds
-          </h2>
+            {stats.dataUpdate[1] && (
+              <Stat
+                emphasized={true}
+                platform={stats.dataUpdate[1].platform}
+                time={stats.dataUpdate[1].timeInMinutes}
+                label="Runner-Up"
+              />
+            )}
 
-          {coldTimeStats[0] && (
-            <Stat
-              winner={true}
-              platform={coldTimeStats[0].platform}
-              time={coldTimeStats[0].timeInMinutes}
-              label={
-                <>
-                  Winner <span>- Fastest Build</span>
-                  <HelpCircle
-                    helpInfo="An uncached build is a “from-scratch” build. These should be relatively rare."
-                    href="/methodology-faq"
-                  />
-                </>
-              }
-            />
-          )}
+            {stats.dataUpdate[2] && (
+              <Stat
+                emphasized={true}
+                platform={stats.dataUpdate[2].platform}
+                time={stats.dataUpdate[2].timeInMinutes}
+                label={
+                  <>
+                    Second <span>Runner-Up</span>
+                  </>
+                }
+              />
+            )}
+          </section>
+          {secondaryStats.map(({ label, stats }) => (
+            <section key={label} css={buildTypeSectionCss}>
+              <h2 css={buildTypeHeaderCss}>{label}</h2>
 
-          {coldTimeStats[1] && (
-            <Stat
-              platform={coldTimeStats[1].platform}
-              time={coldTimeStats[1].timeInMinutes}
-              label="Runner-Up"
-            />
-          )}
+              {stats[0] && (
+                <Stat
+                  winner={true}
+                  platform={stats[0].platform}
+                  time={stats[0].timeInMinutes}
+                  label={
+                    <>
+                      Winner <span>- Fastest Build</span>
+                    </>
+                  }
+                />
+              )}
 
-          {coldTimeStats[2] && (
-            <Stat
-              platform={coldTimeStats[2].platform}
-              time={coldTimeStats[2].timeInMinutes}
-              label={
-                <>
-                  Second <span>Runner-Up</span>
-                </>
-              }
-            />
-          )}
-        </section>
+              {stats[1] && (
+                <Stat
+                  platform={stats[1].platform}
+                  time={stats[1].timeInMinutes}
+                  label="Runner-Up"
+                />
+              )}
+
+              {stats[2] && (
+                <Stat
+                  platform={stats[2].platform}
+                  time={stats[2].timeInMinutes}
+                  label={
+                    <>
+                      Second <span>Runner-Up</span>
+                    </>
+                  }
+                />
+              )}
+            </section>
+          ))}
+        </div>
       </div>
     </article>
   )

@@ -13,7 +13,6 @@ import {
   wrapperStyles,
   gridStyles,
   sectionHeadingCss,
-  sectionHeadingNoteCss,
   emphesizedTextCss,
   deEmphesizedTextCss,
   subtextStyles,
@@ -31,16 +30,14 @@ const propTypes = {
   source: PropTypes.string,
   siteType: PropTypes.string,
   numberOfPages: PropTypes.number,
-  cachedBuildTime: PropTypes.string,
-  uncachedBuildTime: PropTypes.string,
 }
 
 const Card = ({
   contentSource,
   siteType = SiteType.Blog,
   numberOfPages,
-  cachedBuild,
-  uncachedBuild,
+  contentChangeBuild,
+  codeChangeBuild,
   ...props
 }) => {
   const formattedSource = ContentSource[contentSource].displayedAs
@@ -48,8 +45,8 @@ const Card = ({
   const gradient = ContentSource[contentSource].gradient
 
   const ContentSourceIcon = ContentSource[contentSource].Icon
-  const CachedBuildPlatformIcon = Platform[cachedBuild.platform].Icon
-  const UncachedBuildPlatformIcon = Platform[uncachedBuild.platform].Icon
+  const ContentChangePlatformIcon = Platform[contentChangeBuild.platform].Icon
+  const CodeChangePlatformIcon = Platform[codeChangeBuild.platform].Icon
 
   // The GraphQL API returns names in UPPER_SNAKE_CASE.
   // We want to transform this to lower-dash-cash, to match pathnames.
@@ -103,16 +100,15 @@ const Card = ({
         </div>
         <div css={buildTimeStyles} data-cy="build-card__stats">
           <h4 css={sectionHeadingCss}>
-            Fastest Build{" "}
-            <em css={sectionHeadingNoteCss}>(cached / uncached)</em>
+            Fastest Build <em>(content / code)</em>
           </h4>
           <div css={emphesizedTextCss}>
             <span>
-              {cachedBuild.timeInMinutes} <CachedBuildPlatformIcon />
+              {contentChangeBuild.timeInMinutes} <ContentChangePlatformIcon />
             </span>
             <span css={separatorCss}>/</span>
             <span css={deEmphesizedTextCss}>
-              {uncachedBuild.timeInMinutes} <UncachedBuildPlatformIcon />
+              {codeChangeBuild.timeInMinutes} <CodeChangePlatformIcon />
             </span>
           </div>
         </div>

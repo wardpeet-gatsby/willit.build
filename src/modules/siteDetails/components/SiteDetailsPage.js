@@ -13,6 +13,7 @@ import MaxWidthWrapper, {
 import DetailsHeader from "./DetailsHeader"
 import DetailsOverview from "./DetailsOverview"
 import { formatDataForChart } from "./SiteDetailsPage.helpers"
+import { convertUpperSnakeToCamel } from "@utils"
 
 const { YAxisWidth, ChartWithControlsHeight } = DetailsChartDimensions
 
@@ -51,6 +52,8 @@ const SiteDetailsPage = ({ data, pageContext }) => {
     pageCount,
   })
 
+  const buildTypeCamel = convertUpperSnakeToCamel(buildType)
+
   return (
     <MaxWidthWrapper
       css={theme => ({
@@ -84,7 +87,7 @@ const SiteDetailsPage = ({ data, pageContext }) => {
           contentSource={contentSource}
           pageCount={pageCount}
           buildType={buildType}
-          stats={latest[buildType === `WARM_START` ? `warmStart` : `coldStart`]}
+          stats={latest[buildTypeCamel]}
           activeBenchmarks={activeBenchmarks}
         />
       </div>
@@ -170,6 +173,12 @@ export const query = graphql`
             humanReadableTime
           }
           warmStart {
+            platform
+            timeInMs
+            timeInMinutes
+            humanReadableTime
+          }
+          dataUpdate {
             platform
             timeInMs
             timeInMinutes

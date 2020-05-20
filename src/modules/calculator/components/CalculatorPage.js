@@ -53,6 +53,12 @@ export const query = graphql`
             timeInMinutes
             humanReadableTime
           }
+          dataUpdate {
+            platform
+            timeInMs
+            timeInMinutes
+            humanReadableTime
+          }
         }
       }
     }

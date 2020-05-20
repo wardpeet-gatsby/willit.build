@@ -165,7 +165,7 @@ export function getTableValue({ dataPerDiem, platform }) {
 
   const buildTimeInSeconds = dataPerDiem[platform]
 
-  if (buildTimeInSeconds) {
+  if (typeof buildTimeInSeconds === "number") {
     const buildTime = valuesInMinutes[platform]
     const readableBuildTime = humanReadableTime[platform]
 

@@ -116,13 +116,6 @@ export const sectionHeadingCss = theme => ({
   fontWeight: theme.fontWeights.body,
 })
 
-export const sectionHeadingNoteCss = theme => ({
-  display: `block`,
-  [theme.mediaQueries.tablet]: {
-    display: `inline`,
-  },
-})
-
 export const separatorCss = theme => ({
   fontWeight: `normal`,
   margin: `0 ${theme.space[2]}`,

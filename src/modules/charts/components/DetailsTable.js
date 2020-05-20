@@ -89,12 +89,12 @@ function DetailsTable({ data = [] }) {
             // for a given day. (If errored, it's missing)
             const buildTimes = {
               NETLIFY:
-                dataPerDiem.NETLIFY || dataPerDiem.errors.NETLIFY || null,
+                dataPerDiem.NETLIFY ?? dataPerDiem.errors.NETLIFY ?? null,
               CIRCLECI:
-                dataPerDiem.CIRCLECI || dataPerDiem.errors.CIRCLECI || null,
+                dataPerDiem.CIRCLECI ?? dataPerDiem.errors.CIRCLECI ?? null,
               GATSBY_CLOUD:
-                dataPerDiem.GATSBY_CLOUD ||
-                dataPerDiem.errors.GATSBY_CLOUD ||
+                dataPerDiem.GATSBY_CLOUD ??
+                dataPerDiem.errors.GATSBY_CLOUD ??
                 null,
             }
 
