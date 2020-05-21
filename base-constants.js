@@ -94,14 +94,17 @@ const BaseBuildType = {
   DATA_UPDATE: {
     displayedAs: `Content`,
     description: `Indicates a data change (from the CMS)`,
+    strokeDasharray: "0",
   },
   WARM_START: {
     displayedAs: `Cached`,
     description: `Indicates a cached code change`,
+    strokeDasharray: "10 5",
   },
   COLD_START: {
     displayedAs: `Uncached`,
     description: `Indicates an uncached code change`,
+    strokeDasharray: "2 3",
   },
 }
 module.exports.BaseBuildType = BaseBuildType
@@ -110,19 +113,16 @@ module.exports.buildTypeIds = Object.keys(BaseBuildType)
 const Platform = {
   GATSBY_CLOUD: {
     displayedAs: "Gatsby Cloud",
-    strokeDasharray: "0",
   },
   NETLIFY: {
     displayedAs: "Netlify",
-    strokeDasharray: "2 3",
   },
   CIRCLECI: {
     displayedAs: "Circle CI",
-    strokeDasharray: "10 5",
   },
 }
 module.exports.BasePlatform = Platform
 module.exports.platformIds = Object.keys(Platform)
-module.exports.platformDisplayedAsRegExp = Object.keys(Platform)
-  .map(item => Platform[item].displayedAs)
+module.exports.BaseBuildTypeDisplayedAsRegex = Object.keys(BaseBuildType)
+  .map(item => BaseBuildType[item].displayedAs)
   .join("|")

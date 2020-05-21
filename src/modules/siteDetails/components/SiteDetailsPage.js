@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import { Link } from "gatsby-interface"
 
 import DetailsChart from "@modules/charts/components/DetailsChart"
-import DetailsTable from "@modules/charts/components/DetailsTable"
+// import DetailsTable from "@modules/charts/components/DetailsTable"
 import DetailsChartPlaceholder from "@modules/charts/components/DetailsChartPlaceholder"
 import { DetailsChartDimensions } from "@modules/charts/constants"
 import { ArtificiallySlowContentSources } from "@modules/data/constants"
@@ -49,9 +49,8 @@ const SiteDetailsPage = ({ data, pageContext }) => {
 
   const isArtificiallySlow = !!ArtificiallySlowContentSources[contentSource]
 
-  const { graphData, activePlatorms } = formatDataForChart({
+  const { graphData } = formatDataForChart({
     benchmarks,
-    buildType,
     pageCount,
   })
 
@@ -120,12 +119,11 @@ const SiteDetailsPage = ({ data, pageContext }) => {
         <DetailsChart
           data={graphData}
           annotations={graphAnnotations}
-          activePlatorms={activePlatorms}
           setChartIsMounted={setChartIsMounted}
         />
       </section>
 
-      <section
+      {/* <section
         css={theme => ({
           padding: `0 ${theme.space[5]}`,
 
@@ -134,12 +132,12 @@ const SiteDetailsPage = ({ data, pageContext }) => {
           },
         })}
       >
-        <DetailsTable
+         <DetailsTable
           data={graphData}
           annotations={graphAnnotations}
           activePlatorms={activePlatorms}
-        />
-      </section>
+        /> 
+      </section> */}
     </MaxWidthWrapper>
   )
 }

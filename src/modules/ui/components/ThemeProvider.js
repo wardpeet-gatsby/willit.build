@@ -14,13 +14,13 @@ export default function ThemeProvider({ children }) {
     tones: {
       ...theme.tones,
       // platform tones let us apply custom active colors to CustomLegend toggle buttons
-      GATSBY_CLOUD: {
+      DATA_UPDATE: {
         medium: theme.colors.purple[40],
       },
-      NETLIFY: {
+      WARM_START: {
         medium: theme.colors.teal[80],
       },
-      CIRCLECI: {
+      COLD_START: {
         medium: theme.colors.orange[80],
       },
     },

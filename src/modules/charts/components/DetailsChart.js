@@ -34,7 +34,6 @@ function DetailsChart({
   data = [],
   initialDataRangeDesktop = ChartDefaultProps.InitialDataScopeDesktop,
   initialDataRangeMobile = ChartDefaultProps.InitialDataScopeMobile,
-  activePlatorms,
   annotations = [],
   setChartIsMounted,
   ...rest
@@ -73,7 +72,11 @@ function DetailsChart({
     )
   }
 
-  const [activeLines, setActiveLines] = React.useState(activePlatorms)
+  const [activeLines, setActiveLines] = React.useState({
+    COLD_START: true,
+    DATA_UPDATE: true,
+    WARM_START: true,
+  })
 
   const yAxisTicks = getYAxisTicks(data)
 

@@ -30,13 +30,13 @@ export const controlValueCss = theme => ({
   },
 })
 
-export const platformMarkerCss = ({ theme, platform }) => ({
+export const platformMarkerCss = ({ theme }) => ({
   "&::after": {
     content: `""`,
     display: `inline-block`,
     width: `8px`,
     height: `8px`,
-    background: theme.tones[platform].medium,
+    background: `black`,
     borderRadius: theme.radii[2],
     marginLeft: theme.space[3],
   },

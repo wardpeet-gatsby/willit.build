@@ -1,7 +1,7 @@
 import {
   BaseBuildType,
   platformIds,
-  platformDisplayedAsRegExp,
+  BaseBuildTypeDisplayedAsRegex,
 } from "../../base-constants"
 
 const formatPath = require("../../src/modules/data/utils/formatPath")
@@ -40,10 +40,10 @@ describe("DetailsChart", () => {
       platformIds.length
     )
 
-    cy.get("[data-cy=chart-tooltip-metric]").each((el, idx) => {
+    cy.get("[data-cy=chart-tooltip-metric]").each(el => {
       cy.get("[data-cy=chart-tooltip-label]", { withinSubject: el })
         .should("be.visible")
-        .contains(new RegExp(platformDisplayedAsRegExp, "gi"))
+        .contains(new RegExp(BaseBuildTypeDisplayedAsRegex, "gi"))
       cy.get("[data-cy=chart-tooltip-value]", { withinSubject: el })
         .should("be.visible")
         .contains(/\d+m\s\d{1,2}s|Error/gi)

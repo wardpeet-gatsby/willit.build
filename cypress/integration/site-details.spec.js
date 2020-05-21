@@ -3,10 +3,8 @@ import {
   BasePageCount,
   BaseSiteType,
   BaseBuildType,
-  buildTypeIds,
   platformIds,
-  BasePlatform,
-  platformDisplayedAsRegExp,
+  BaseBuildTypeDisplayedAsRegex,
 } from "../../base-constants"
 
 const formatPath = require("../../src/modules/data/utils/formatPath")
@@ -109,10 +107,10 @@ describe("SiteDetails page", () => {
       cy.get("span", { withinSubject: el })
         .contains(/\d+m\s\d{1,2}s/gi)
         .should("be.visible")
-      // item should contain one of available Platform displayedAs value
-      cy.get("span", { withinSubject: el })
-        .contains(new RegExp(platformDisplayedAsRegExp, "gi"))
-        .should("be.visible")
+      // TODO: Re-enable this test when tackling #7717
+      // cy.get("span", { withinSubject: el })
+      //   .contains(new RegExp(BaseBuildTypeDisplayedAsRegex, "gi"))
+      //   .should("be.visible")
     })
   })
 
@@ -156,7 +154,7 @@ describe("SiteDetails page", () => {
     cy.get("[data-cy=chart-legend-item]").each((el, idx) => {
       // label should contain one of available Platform displayedAs value
       cy.get("label", { withinSubject: el }).contains(
-        new RegExp(platformDisplayedAsRegExp, "gi")
+        new RegExp(BaseBuildTypeDisplayedAsRegex, "gi")
       )
     })
   })

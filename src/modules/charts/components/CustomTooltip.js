@@ -1,6 +1,6 @@
 import React from "react"
 import format from "date-fns/format"
-import { Platform } from "@modules/data/constants"
+import { BuildType } from "@modules/data/constants"
 import LinePreview from "./LinePreview"
 import { useTheme } from "@modules/ui/components/ThemeProvider"
 
@@ -61,8 +61,6 @@ function CustomTooltip({ active, payload }) {
       })}
     >
       {tooltipItems.map(({ name, valueInMinutes, error }) => {
-        const Icon = Platform[name].Icon
-
         return (
           <span
             data-cy="chart-tooltip-metric"
@@ -97,14 +95,6 @@ function CustomTooltip({ active, payload }) {
                 marginTop: theme.space[2],
               })}
             >
-              <Icon
-                inverted={name === `CIRCLECI` ? true : false}
-                css={theme => ({
-                  marginRight: theme.space[2],
-                  width: `0.8em`,
-                  height: `0.8em`,
-                })}
-              />
               <span
                 css={theme => ({
                   whiteSpace: `nowrap`,
@@ -115,11 +105,11 @@ function CustomTooltip({ active, payload }) {
                   },
                 })}
               >
-                {Platform[name].displayedAs}
+                {BuildType[name].displayedAs}
               </span>
 
               <LinePreview
-                strokeDasharray={Platform[name].strokeDasharray}
+                strokeDasharray={BuildType[name].strokeDasharray}
                 strokeColor={tones[name].medium}
                 width={25}
                 css={theme => ({

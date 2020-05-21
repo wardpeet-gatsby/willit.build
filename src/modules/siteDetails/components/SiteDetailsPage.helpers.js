@@ -1,49 +1,37 @@
 import format from "date-fns/format"
 
 export function formatDataForChart({ benchmarks }) {
-  const activePlatorms = {}
+  const graphDataByCreatedAt = {}
 
-  const graphData = benchmarks.map(item => {
-    const { createdAt, buildTimes } = item
+  benchmarks.forEach(({ createdAt, buildType, buildTimes }) => {
+    const metrics = buildTimes.find(item => item.platform === `GATSBY_CLOUD`)
+    const { timeInMs, timeInMinutes, humanReadableTime } = metrics
+    const formatedCreatedAt = format(new Date(createdAt), "M/d/yyyy")
 
-    const data = buildTimes.reduce(
-      (acc, { platform, timeInMs, timeInMinutes, humanReadableTime }) => {
-        const formatted = { ...acc }
+    if (!graphDataByCreatedAt[formatedCreatedAt]) {
+      graphDataByCreatedAt[formatedCreatedAt] = {
+        createdAt: formatedCreatedAt,
+        valuesInMinutes: {},
+        humanReadableTime: {},
+      }
+    }
 
-        if (timeInMs) {
-          if (!activePlatorms[platform]) {
-            activePlatorms[platform] = true
-          }
-
-          if (!formatted.valuesInMinutes) {
-            formatted.valuesInMinutes = {}
-          }
-
-          if (!formatted.humanReadableTime) {
-            formatted.humanReadableTime = {}
-          }
-
-          formatted[platform] = Math.floor(timeInMs / 1000)
-          formatted.valuesInMinutes[platform] = timeInMinutes
-          formatted.humanReadableTime[platform] = humanReadableTime
-        } else {
-          if (!formatted.errors) {
-            formatted.errors = {}
-          }
-
-          formatted.errors[platform] = `Error`
-        }
-
-        return formatted
-      },
-      {}
-    )
-
-    return {
-      createdAt: format(new Date(createdAt), "M/d/yyyy"),
-      ...data,
+    if (timeInMs) {
+      graphDataByCreatedAt[formatedCreatedAt][buildType] = Math.floor(
+        timeInMs / 1000
+      )
+      graphDataByCreatedAt[formatedCreatedAt].valuesInMinutes[
+        buildType
+      ] = timeInMinutes
+      graphDataByCreatedAt[formatedCreatedAt].humanReadableTime[
+        buildType
+      ] = humanReadableTime
     }
   })
 
-  return { graphData, activePlatorms }
+  const graphData = Object.values(graphDataByCreatedAt).sort(
+    (a, b) => new Date(b.createdAt) + new Date(a.createdAt)
+  )
+
+  return { graphData }
 }

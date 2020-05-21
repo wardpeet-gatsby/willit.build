@@ -22,7 +22,7 @@ import {
   yAxisTickFormater,
   getLinearGradientDefs,
 } from "./DetailsChart.helpers"
-import { Platform } from "@modules/data/constants"
+import { BuildType } from "@modules/data/constants"
 import { DetailsChartDimensions } from "../constants"
 
 const { ChartHeight, YAxisWidth, ActiveDotRadius } = DetailsChartDimensions
@@ -123,7 +123,7 @@ function Chart({
             <ReferenceLine x={lastDate} stroke={colors.blackFade[20]} />
           )}
 
-          {Object.entries(Platform).map(([key, { strokeDasharray }]) => (
+          {Object.entries(BuildType).map(([key, { strokeDasharray }]) => (
             <Area
               key={`${key}ChartArea`}
               type="linear"

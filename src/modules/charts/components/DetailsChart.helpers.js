@@ -56,11 +56,12 @@ export function yAxisTickFormater(value) {
 }
 
 export function getYAxisTicks(data) {
+  //  console.log({ data })
   const maxValue = data.reduce((result, row) => {
     const maxItemValue = Object.keys(row).reduce((rowResult, key) => {
-      return typeof row[key] == "number" && row[key] > rowResult
+      return typeof row[key] === "number" && row[key] > rowResult
         ? row[key]
-        : result
+        : rowResult
     }, 0)
 
     return maxItemValue > result ? maxItemValue : result
@@ -131,37 +132,44 @@ export function getLinearGradientDefs(tones) {
         patternUnits="objectBoundingBox"
       >
         <rect fill="rgba(0,0,0,0.04)" x="0" y="0" width="100%" height="100" />
-
         <rect fill="rgba(0,0,0,0.3)" x="0" y="0" width="2" height="16" />
         <rect fill="rgba(0,0,0,0.3)" x="5" y="0" width="2" height="16" />
         <rect fill="rgba(0,0,0,0.3)" x="10" y="0" width="2" height="16" />
       </pattern>
 
-      <linearGradient id="GATSBY_CLOUD-fill" x1="0" y1="0" x2="0" y2="1">
+      <linearGradient id="DATA_UPDATE-fill" x1="0" y1="0" x2="0" y2="1">
         <stop
           offset="0%"
-          stopColor={tones.GATSBY_CLOUD.medium}
+          stopColor={tones.DATA_UPDATE.medium}
           stopOpacity={0.15}
         />
         <stop
           offset="60%"
-          stopColor={tones.GATSBY_CLOUD.medium}
+          stopColor={tones.DATA_UPDATE.medium}
           stopOpacity={0.01}
         />
       </linearGradient>
-      <linearGradient id="NETLIFY-fill" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor={tones.NETLIFY.medium} stopOpacity={0.15} />
-        <stop offset="60%" stopColor={tones.NETLIFY.medium} stopOpacity={0.0} />
-      </linearGradient>
-      <linearGradient id="CIRCLECI-fill" x1="0" y1="0" x2="0" y2="1">
+      <linearGradient id="WARM_START-fill" x1="0" y1="0" x2="0" y2="1">
         <stop
           offset="0%"
-          stopColor={tones.CIRCLECI.medium}
+          stopColor={tones.WARM_START.medium}
           stopOpacity={0.15}
         />
         <stop
           offset="60%"
-          stopColor={tones.CIRCLECI.medium}
+          stopColor={tones.WARM_START.medium}
+          stopOpacity={0.0}
+        />
+      </linearGradient>
+      <linearGradient id="COLD_START-fill" x1="0" y1="0" x2="0" y2="1">
+        <stop
+          offset="0%"
+          stopColor={tones.COLD_START.medium}
+          stopOpacity={0.15}
+        />
+        <stop
+          offset="60%"
+          stopColor={tones.COLD_START.medium}
           stopOpacity={0.0}
         />
       </linearGradient>
