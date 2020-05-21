@@ -24,8 +24,8 @@ const contentfulConfig = {
 
 module.exports = {
   siteMetadata: {
-    title: `Will it Build?`,
-    description: `Will it build? That is the question. Gatsby sites are increasingly being used for larger and more ambitious projects, and Will it Build lets developers learn how much time it'll take to build large, complex projects at scale.`,
+    title: `Will It Build?`,
+    description: `Will it build? That is the question. Gatsby sites are increasingly being used for larger and more ambitious projects, and Will It Build lets developers learn how much time it'll take to build large, complex projects at scale.`,
     author: `@gatsbyjs`,
     url: `https://willit.build`,
   },

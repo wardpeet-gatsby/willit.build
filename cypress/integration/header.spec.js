@@ -10,7 +10,7 @@ describe("Header", () => {
     cy.get("[data-cy=header-brand__link]")
       .should("be.visible")
       .and("have.attr", "href", "/")
-      .and("contain.text", "Will it Build?")
+      .and("contain.text", "Will It Build?")
   })
 
   it("should own valid menu links", () => {

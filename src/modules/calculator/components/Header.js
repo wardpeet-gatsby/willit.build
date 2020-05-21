@@ -63,8 +63,8 @@ const Header = ({ siteType, contentSource, pageCount }) => {
       </div>
       <div css={blurbWrapperCss}>
         <p css={blurbCss} data-cy="calculator__description">
-          The willit.build build time calculator provides an estimation of build
-          time across each supported Continuous Deployment platform.
+          The Will It Build build time calculator provides an estimation of
+          build time across each supported Continuous Deployment platform.
         </p>
       </div>
     </header>

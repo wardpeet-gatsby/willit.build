@@ -4,7 +4,7 @@
   </a>
 </p>
 <h1 align="center">
-  willit.build
+  Will It Build
 </h1>
 
 The placeholder for Will It Build.
