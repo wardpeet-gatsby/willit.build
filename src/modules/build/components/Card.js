@@ -3,12 +3,7 @@ import PropTypes from "prop-types"
 import { Link } from "gatsby-interface"
 import { MdArrowForward } from "react-icons/md"
 import formatPath from "@modules/data/utils/formatPath"
-import {
-  ContentSource,
-  SiteType,
-  BuildType,
-  Platform,
-} from "@modules/data/constants"
+import { ContentSource, SiteType, BuildType } from "@modules/data/constants"
 import {
   wrapperStyles,
   gridStyles,
@@ -45,8 +40,6 @@ const Card = ({
   const gradient = ContentSource[contentSource].gradient
 
   const ContentSourceIcon = ContentSource[contentSource].Icon
-  const ContentChangePlatformIcon = Platform[contentChangeBuild.platform].Icon
-  const CodeChangePlatformIcon = Platform[codeChangeBuild.platform].Icon
 
   // The GraphQL API returns names in UPPER_SNAKE_CASE.
   // We want to transform this to lower-dash-cash, to match pathnames.
@@ -103,12 +96,10 @@ const Card = ({
             Fastest Build <em>(content / code)</em>
           </h4>
           <div css={emphesizedTextCss}>
-            <span>
-              {contentChangeBuild.timeInMinutes} <ContentChangePlatformIcon />
-            </span>
+            <span>{contentChangeBuild.timeInMinutes}</span>
             <span css={separatorCss}>/</span>
             <span css={deEmphesizedTextCss}>
-              {codeChangeBuild.timeInMinutes} <CodeChangePlatformIcon />
+              {codeChangeBuild.timeInMinutes}
             </span>
           </div>
         </div>

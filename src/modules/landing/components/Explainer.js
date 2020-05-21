@@ -8,9 +8,6 @@ import MarkdownIcon from "@modules/data/assets/icons/MarkdownIcon"
 import ContentfulIcon from "@modules/data/assets/icons/ContentfulIcon"
 import CosmicjsIcon from "@modules/data/assets/icons/CosmicjsIcon"
 
-import NetlifyIcon from "@modules/data/assets/icons/NetlifyIcon"
-import CircleCiIcon from "@modules/data/assets/icons/CircleCiIcon"
-
 import wordmarkSrc from "@images/wordmark.svg"
 import gatsbyCloudSrc from "@images/gatsby-cloud.svg"
 
@@ -123,8 +120,6 @@ const Explainer = () => {
         <p css={LabelStyles}>Up to 32,768 pages built on</p>
         <BlockGrid>
           <img src={gatsbyCloudSrc} alt="Gatsby Cloud logo" />
-          <Delimiter /> <Icon Icon={NetlifyIcon} />
-          <Delimiter /> <Icon Icon={CircleCiIcon} />
         </BlockGrid>
       </Block>
       <Block>
