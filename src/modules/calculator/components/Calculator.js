@@ -3,8 +3,10 @@ import { Link } from "gatsby-interface"
 
 import ContentSourceControl from "@modules/ui/components/ContentSourceControl"
 import PageCountSelectControl from "@modules/ui/components/PageCountSelectControl"
-import { ArtificiallySlowContentSources } from "@modules/data/constants"
-import { controlLabelCss } from "@modules/ui/styles"
+import {
+  BuildType,
+  ArtificiallySlowContentSources,
+} from "@modules/data/constants"
 import Stat from "./Stat"
 
 const wrapperCss = theme => ({
@@ -80,33 +82,6 @@ const buildTypeSectionCss = theme => ({
   },
 })
 
-const buildTypeHeaderCss = theme => [
-  controlLabelCss(theme),
-  {
-    fontWeight: theme.fontWeights.bold,
-    flexBasis: `100%`,
-    lineHeight: theme.lineHeights.dense,
-    textAlign: `center`,
-    marginBottom: theme.space[7],
-    marginTop: 0,
-
-    strong: {
-      display: `block`,
-    },
-
-    [theme.mediaQueries.tablet]: {
-      strong: {
-        display: `inline`,
-      },
-    },
-
-    [theme.mediaQueries.desktop]: {
-      marginTop: 0,
-      textAlign: `left`,
-    },
-  },
-]
-
 const mdxDisclaimerCss = theme => ({
   gridArea: `disclaimer`,
   fontSize: theme.fontSizes[1],
@@ -134,17 +109,6 @@ const Calculator = ({
   data,
 }) => {
   const stats = data.benchmarkApi.benchmarkVendor.latest
-
-  const secondaryStats = [
-    {
-      label: `Cached code changes`,
-      stats: stats.warmStart,
-    },
-    {
-      label: `Uncached code changes`,
-      stats: stats.coldStart,
-    },
-  ]
 
   const isArtificiallySlow = !!ArtificiallySlowContentSources[contentSource]
 
@@ -208,81 +172,30 @@ const Calculator = ({
           })}
         >
           <section css={buildTypeSectionCss}>
-            <h2 css={buildTypeHeaderCss}>Content changes</h2>
             {stats.dataUpdate[0] && (
               <Stat
-                emphasized={true}
-                winner={true}
-                platform={stats.dataUpdate[0].platform}
                 time={stats.dataUpdate[0].timeInMinutes}
-                label={
-                  <>
-                    Winner <span>- Fastest Build</span>
-                  </>
-                }
+                label="Content"
+                description={BuildType.DATA_UPDATE.description}
               />
             )}
 
-            {stats.dataUpdate[1] && (
+            {stats.warmStart[0] && (
               <Stat
-                emphasized={true}
-                platform={stats.dataUpdate[1].platform}
-                time={stats.dataUpdate[1].timeInMinutes}
-                label="Runner-Up"
+                time={stats.warmStart[0].timeInMinutes}
+                label="Cached"
+                description={BuildType.WARM_START.description}
               />
             )}
 
-            {stats.dataUpdate[2] && (
+            {stats.coldStart[0] && (
               <Stat
-                emphasized={true}
-                platform={stats.dataUpdate[2].platform}
-                time={stats.dataUpdate[2].timeInMinutes}
-                label={
-                  <>
-                    Second <span>Runner-Up</span>
-                  </>
-                }
+                time={stats.coldStart[0].timeInMinutes}
+                label="Uncached"
+                description={BuildType.COLD_START.description}
               />
             )}
           </section>
-          {secondaryStats.map(({ label, stats }) => (
-            <section key={label} css={buildTypeSectionCss}>
-              <h2 css={buildTypeHeaderCss}>{label}</h2>
-
-              {stats[0] && (
-                <Stat
-                  winner={true}
-                  platform={stats[0].platform}
-                  time={stats[0].timeInMinutes}
-                  label={
-                    <>
-                      Winner <span>- Fastest Build</span>
-                    </>
-                  }
-                />
-              )}
-
-              {stats[1] && (
-                <Stat
-                  platform={stats[1].platform}
-                  time={stats[1].timeInMinutes}
-                  label="Runner-Up"
-                />
-              )}
-
-              {stats[2] && (
-                <Stat
-                  platform={stats[2].platform}
-                  time={stats[2].timeInMinutes}
-                  label={
-                    <>
-                      Second <span>Runner-Up</span>
-                    </>
-                  }
-                />
-              )}
-            </section>
-          ))}
         </div>
       </div>
     </article>

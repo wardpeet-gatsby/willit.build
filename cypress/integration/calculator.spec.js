@@ -58,16 +58,15 @@ describe("Calculator", () => {
     cy.get("[id=page-count-control]").should("be.visible")
 
     // Calculator metrics
-    cy.contains("Content changes", { matchCase: false }).should("be.visible")
-    cy.contains("Cached code changes", { matchCase: false }).should(
+    cy.contains("Indicates a data change", { matchCase: false }).should(
       "be.visible"
     )
-    cy.contains("Uncached code changes", { matchCase: false }).should(
+    cy.contains("Indicates a cached code change", { matchCase: false }).should(
       "be.visible"
     )
-    cy.contains("Winner - Fastest build", { matchCase: false }).should(
-      "be.visible"
-    )
+    cy.contains("Indicates an uncached code change", {
+      matchCase: false,
+    }).should("be.visible")
   })
 
   it("should redirect to a proper page when Pages dropdown value changes", () => {

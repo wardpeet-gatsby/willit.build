@@ -1,13 +1,11 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { MdTimer } from "react-icons/md"
 
-import { Platform, platformIds } from "@modules/data/constants"
 import { controlLabelCss } from "@modules/ui/styles"
+import HelpCircle from "@modules/ui/components/HelpCircle"
 
-const statCss = ({ theme, winner }) => ({
-  flexBasis: winner ? `40%` : `30%`,
-  marginTop: theme.space[2],
+const statCss = ({ theme }) => ({
+  flexBasis: `30%`,
   marginBottom: theme.space[8],
   textAlign: `center`,
 
@@ -41,63 +39,46 @@ const statContentCss = {
   flexDirection: `column`,
 }
 
-const statValueCss = ({ theme, winner, emphasized }) => ({
-  color: theme.colors.blackFade[emphasized ? 90 : 60],
+const statValueCss = ({ theme }) => ({
+  color: theme.colors.blackFade[90],
   fontSize: theme.fontSizes[6],
-  fontWeight: winner ? theme.fontWeights.bold : theme.fontWeights.body,
+  fontWeight: theme.fontWeights.body,
   // Optically align the numbers with the left edge
   transform: `translateX(-2px)`,
 
   [theme.mediaQueries.desktop]: {
-    color: theme.colors.blackFade[emphasized ? 90 : 70],
-    fontSize: emphasized ? theme.fontSizes[9] : theme.fontSizes[6],
-    fontWeight: winner ? theme.fontWeights.bold : theme.fontWeights.body,
+    color: theme.colors.blackFade[90],
+    fontSize: theme.fontSizes[9],
+    fontWeight: theme.fontWeights.body,
   },
 })
 
-const statDescriptionCss = ({ theme, winner }) => ({
-  color: theme.colors.blackFade[70],
+const statDescriptionCss = theme => ({
+  color: theme.colors.grey[60],
   fontSize: theme.fontSizes[1],
-  fontWeight: winner ? theme.fontWeights.semiBold : theme.fontWeights.body,
+  fontWeight: theme.fontWeights.body,
   marginTop: theme.space[3],
-
-  [theme.mediaQueries.desktop]: {
-    fontSize: theme.fontSizes[3],
-  },
 })
-
-const iconCss = {
-  transform: `translateY(1px)`,
-}
-
-const timerIconCss = {
-  ...iconCss,
-  marginLeft: 4,
-}
 
 const propTypes = {
-  platform: PropTypes.oneOf(platformIds),
   time: PropTypes.string.isRequired,
   label: PropTypes.node,
-  emphasized: PropTypes.bool,
-  winner: PropTypes.bool,
+  description: PropTypes.string.isRequired,
 }
 
-const Stat = ({ time, platform, winner, emphasized, label }) => {
-  const { displayedAs, Icon } = Platform[platform]
-
+const Stat = ({ time, label, description }) => {
   return (
-    <div css={theme => statCss({ theme, winner })}>
+    <div css={theme => statCss({ theme })}>
       <h3 css={statHeaderCss}>
-        {label} {winner && <MdTimer css={timerIconCss} />}
+        {label}{" "}
+        <HelpCircle
+          helpInfo="Learn more about our various build types in our Frequently Asked Questions."
+          href="/methodology-faq#build-type-differences"
+        />
       </h3>
       <div css={statContentCss}>
-        <span css={theme => statValueCss({ theme, winner, emphasized })}>
-          {time}
-        </span>
-        <span css={theme => statDescriptionCss({ theme, winner })}>
-          <Icon css={iconCss} /> {displayedAs}
-        </span>
+        <span css={theme => statValueCss({ theme })}>{time}</span>
+        <span css={statDescriptionCss}>{description} </span>
       </div>
     </div>
   )

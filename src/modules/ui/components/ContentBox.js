@@ -5,6 +5,7 @@ const ContentBox = ({ children }) => {
     <div
       css={theme => ({
         padding: `${theme.space[5]} 0`,
+        marginBottom: theme.space[10],
 
         [theme.mediaQueries.phablet]: {
           padding: theme.space[8],
