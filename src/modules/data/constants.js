@@ -21,7 +21,7 @@ import {
   BasePlatform,
 } from "../../../base-constants"
 
-export { platformIds } from "../../../base-constants"
+export { platformIds, buildTypeIds } from "../../../base-constants"
 
 const Icons = {
   BLOG: BlogIcon,

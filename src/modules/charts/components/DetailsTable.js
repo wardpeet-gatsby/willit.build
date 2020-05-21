@@ -1,42 +1,30 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Platform, platformIds } from "../../data/constants"
+import { BuildType, buildTypeIds } from "../../data/constants"
 import TabularIcon from "../../data/assets/icons/TabularIcon"
-import TrophyIcon from "../../data/assets/icons/TrophyIcon"
 import {
   tableHeadingCss,
   tableCss,
   tableHeaderCss,
-  tableHeaderPlatformNameCss,
-  tableHeaderPlatformNameTxtCss,
-  tableHeaderPlatformNamePositionerCss,
+  tableHeaderColNameCss,
+  tableHeaderColTxtCss,
+  tableHeaderColPositionerCss,
   tableDataCss,
   tableDataDefaultCss,
-  tableDataWinnerCss,
-  trophyIconCss,
   tabularIconCss,
-  platformIconCss,
-  getTableValue,
   getFormattedDate,
   mobileOnlyVisibleCss,
   desktopOnlyVisibleCss,
 } from "./DetailsTable.helpers"
 import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
-import useMatchMedia from "@modules/ui/hooks/useMatchMedia"
-import { useTheme } from "@modules/ui/components/ThemeProvider"
 
 export const propTypes = {
   data: PropTypes.array,
 }
 
 function DetailsTable({ data = [] }) {
-  const { mediaQueries } = useTheme()
-  const isMobile = !useMatchMedia(mediaQueries.desktop)
-
   // Sort the dataset -- most recent to least recent
-  let sortedData = [...data].sort(
-    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-  )
+  let sortedData = [...data].reverse()
 
   // For v1, show the data from the last thirty days
   // Later work may include progressively loading more data, if deemed a priority
@@ -60,22 +48,17 @@ function DetailsTable({ data = [] }) {
             </th>
           </tr>
           <tr>
-            <th css={tableHeaderPlatformNameCss} colSpan="1"></th>
-            {platformIds.map(platform => {
-              const PlatformIcon = Platform[platform].Icon
+            <th css={tableHeaderColNameCss} colSpan="1"></th>
+            {buildTypeIds.map(buildType => {
               return (
                 <th
-                  key={`${platform}_tableheader`}
-                  css={tableHeaderPlatformNameCss}
+                  key={`${buildType}_tableheader`}
+                  css={tableHeaderColNameCss}
                   colSpan="1"
                 >
-                  <div css={tableHeaderPlatformNamePositionerCss}>
-                    <span aria-hidden="true">
-                      <PlatformIcon css={platformIconCss} />
-                    </span>
-
-                    <span css={tableHeaderPlatformNameTxtCss}>
-                      {Platform[platform].displayedAs}
+                  <div css={tableHeaderColPositionerCss}>
+                    <span css={tableHeaderColTxtCss}>
+                      {BuildType[buildType].displayedAs}
                     </span>
                   </div>
                 </th>
@@ -85,35 +68,7 @@ function DetailsTable({ data = [] }) {
         </thead>
         <tbody>
           {sortedData.map(dataPerDiem => {
-            // Get times into dependable structure to find fastest build(s)
-            // for a given day. (If errored, it's missing)
-            const buildTimes = {
-              NETLIFY:
-                dataPerDiem.NETLIFY ?? dataPerDiem.errors.NETLIFY ?? null,
-              CIRCLECI:
-                dataPerDiem.CIRCLECI ?? dataPerDiem.errors.CIRCLECI ?? null,
-              GATSBY_CLOUD:
-                dataPerDiem.GATSBY_CLOUD ??
-                dataPerDiem.errors.GATSBY_CLOUD ??
-                null,
-            }
-
-            // Sort for fastest build times
-            const sortable = []
-            for (const platform in buildTimes) {
-              if (
-                buildTimes[platform] &&
-                typeof buildTimes[platform] === "number"
-              ) {
-                sortable.push([platform, buildTimes[platform]])
-              }
-            }
-            sortable.sort((a, b) => a[1] - b[1])
-
-            const formattedDate = getFormattedDate({
-              date: dataPerDiem.createdAt,
-              isMobile,
-            })
+            const formattedDate = getFormattedDate(dataPerDiem.createdAt)
 
             return (
               <tr key={`${dataPerDiem.createdAt}_daterow`}>
@@ -123,40 +78,34 @@ function DetailsTable({ data = [] }) {
                     {formattedDate.desktop}
                   </span>
                 </td>
-                {platformIds.map(platform => {
-                  const isWinner = buildTimes[platform] === sortable[0][1]
-
-                  const tableValue = getTableValue({
-                    dataPerDiem,
-                    platform,
-                  })
-                  if (tableValue.error) {
-                    return (
-                      <td
-                        key={`${platform}_${dataPerDiem.createdAt}_error`}
-                        css={tableDataCss}
-                      >
-                        <span aria-hidden="true" css={tableDataDefaultCss}>
-                          {tableValue.error}
-                        </span>
-                      </td>
-                    )
-                  }
+                {buildTypeIds.map(buildType => {
+                  const visualValue = dataPerDiem.valuesInMinutes[buildType]
+                  const visuallyHiddenValue =
+                    dataPerDiem.humanReadableTime[buildType]
 
                   return (
-                    <td key={`${platform}_buildtime`} css={tableDataCss}>
+                    <td key={`${buildType}_buildtime`} css={tableDataCss}>
                       <span css={visuallyHiddenCss}>
-                        {isWinner && `Fastest:`} {tableValue.readableBuildTime}
+                        {visuallyHiddenValue ? visuallyHiddenValue : `no data`}
                       </span>
-                      <div
-                        aria-hidden="true"
-                        css={theme => [
-                          tableDataDefaultCss(theme),
-                          isWinner ? tableDataWinnerCss(theme) : null,
-                        ]}
-                      >
-                        {isWinner && <TrophyIcon css={trophyIconCss} />}
-                        <span>{tableValue.buildTime}</span>
+                      <div aria-hidden="true" css={tableDataDefaultCss}>
+                        {visualValue ? (
+                          <span
+                            css={theme => ({
+                              fontWeight: theme.fontWeights.semiBold,
+                            })}
+                          >
+                            {visualValue}
+                          </span>
+                        ) : (
+                          <em
+                            css={theme => ({
+                              color: theme.colors.grey[50],
+                            })}
+                          >
+                            no data
+                          </em>
+                        )}
                       </div>
                     </td>
                   )

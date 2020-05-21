@@ -1,10 +1,5 @@
 import format from "date-fns/format"
 
-const TROPHY_ICON_SIZE_DESKTOP = `1em`
-const TROPHY_ICON_MARGIN_DESKTOP = `.5em`
-const TROPHY_ICON_SIZE_MOBILE = `.9em`
-const TROPHY_ICON_MARGIN_MOBILE = `.2em`
-
 export const tableHeadingCss = theme => ({
   display: `flex`,
   alignItems: `center`,
@@ -56,13 +51,13 @@ export const tableHeaderCss = theme => ({
   },
 })
 
-export const tableHeaderPlatformNameCss = theme => ({
+export const tableHeaderColNameCss = theme => ({
   borderBottom: `1px solid ${theme.colors.blackFade[10]}`,
   textAlign: `center`,
   width: `20%`,
 })
 
-export const tableHeaderPlatformNameTxtCss = theme => ({
+export const tableHeaderColTxtCss = theme => ({
   fontSize: theme.fontSizes[0],
   whiteSpace: `nowrap`,
 
@@ -71,7 +66,7 @@ export const tableHeaderPlatformNameTxtCss = theme => ({
   },
 })
 
-export const tableHeaderPlatformNamePositionerCss = theme => ({
+export const tableHeaderColPositionerCss = theme => ({
   display: `flex`,
   flexDirection: `column`,
   justifyContent: `flex-start`,
@@ -113,29 +108,6 @@ export const tableDataDefaultCss = theme => ({
 
   [theme.mediaQueries.desktop]: {
     justifyContent: `flex-start`,
-    paddingLeft: `calc(${TROPHY_ICON_SIZE_DESKTOP} + ${TROPHY_ICON_MARGIN_DESKTOP})`,
-  },
-})
-
-export const tableDataWinnerCss = theme => ({
-  color: `${theme.colors.green[80]}`,
-  fontWeight: `bold`,
-  paddingLeft: 0,
-
-  [theme.mediaQueries.desktop]: {
-    paddingLeft: 0,
-  },
-})
-
-export const trophyIconCss = theme => ({
-  marginRight: TROPHY_ICON_MARGIN_MOBILE,
-  width: TROPHY_ICON_SIZE_MOBILE,
-  height: TROPHY_ICON_SIZE_MOBILE,
-
-  [theme.mediaQueries.desktop]: {
-    marginRight: TROPHY_ICON_MARGIN_DESKTOP,
-    width: TROPHY_ICON_SIZE_DESKTOP,
-    height: TROPHY_ICON_SIZE_DESKTOP,
   },
 })
 
@@ -151,31 +123,7 @@ export const tabularIconCss = theme => ({
   height: `1.4em`,
 })
 
-export const platformIconCss = theme => ({
-  marginBottom: theme.space[2],
-
-  [theme.mediaQueries.desktop]: {
-    marginRight: theme.space[3],
-    marginBottom: 0,
-  },
-})
-
-export function getTableValue({ dataPerDiem, platform }) {
-  const { valuesInMinutes, humanReadableTime } = dataPerDiem
-
-  const buildTimeInSeconds = dataPerDiem[platform]
-
-  if (typeof buildTimeInSeconds === "number") {
-    const buildTime = valuesInMinutes[platform]
-    const readableBuildTime = humanReadableTime[platform]
-
-    return { buildTime, readableBuildTime }
-  }
-  // Return error for unsuccessful build
-  return { error: dataPerDiem.errors[platform] || `Error` }
-}
-
-export function getFormattedDate({ date }) {
+export function getFormattedDate(date) {
   return {
     mobile: format(new Date(`${date}`), `MM/dd/yy`),
     desktop: format(new Date(`${date}`), `MMMM d, ''yy`),

@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import { Link } from "gatsby-interface"
 
 import DetailsChart from "@modules/charts/components/DetailsChart"
-// import DetailsTable from "@modules/charts/components/DetailsTable"
+import DetailsTable from "@modules/charts/components/DetailsTable"
 import DetailsChartPlaceholder from "@modules/charts/components/DetailsChartPlaceholder"
 import { DetailsChartDimensions } from "@modules/charts/constants"
 import { ArtificiallySlowContentSources } from "@modules/data/constants"
@@ -123,7 +123,7 @@ const SiteDetailsPage = ({ data, pageContext }) => {
         />
       </section>
 
-      {/* <section
+      <section
         css={theme => ({
           padding: `0 ${theme.space[5]}`,
 
@@ -132,12 +132,8 @@ const SiteDetailsPage = ({ data, pageContext }) => {
           },
         })}
       >
-         <DetailsTable
-          data={graphData}
-          annotations={graphAnnotations}
-          activePlatorms={activePlatorms}
-        /> 
-      </section> */}
+        <DetailsTable data={graphData} annotations={graphAnnotations} />
+      </section>
     </MaxWidthWrapper>
   )
 }
