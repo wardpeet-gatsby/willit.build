@@ -30,8 +30,11 @@ const SiteDetailsPage = ({ data, pageContext }) => {
     benchmarkApi: { benchmarkVendor },
   } = data
 
-  const { pageCount, buildType } = pageContext
+  const { pageCount } = pageContext
   const { latest, contentSource, siteType, benchmarks } = benchmarkVendor
+
+  // TEMP: Stop relying on buildType. We have all the data at once now.
+  const buildType = "WARM_START"
 
   // BAND-AID: The backend returns the repository URL in the wrong format:
   // - Current: https://github.com/gatsbyjs/gatsby/benchmarks/source-contentful
@@ -148,7 +151,6 @@ export const query = graphql`
     $contentSource: BenchmarkVendors_CmsVendor!
     $siteType: BenchmarkVendors_BenchmarkSiteType!
     $pageCount: Int!
-    $buildType: BenchmarkVendors_BenchmarkBuildType!
   ) {
     allAnnotationsJson {
       nodes {
@@ -185,8 +187,7 @@ export const query = graphql`
             humanReadableTime
           }
         }
-
-        benchmarks(numberOfPages: $pageCount, buildType: $buildType) {
+        benchmarks(numberOfPages: $pageCount) {
           id
           numberOfPages
           numberOfImages

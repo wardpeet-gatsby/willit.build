@@ -9,11 +9,8 @@ module.exports = function formatPath({
   siteType,
   contentSource,
   pageCount,
-  buildType,
 }) {
   return `/${prefix}/type/${toLowerDashCase(siteType)}/source/${toLowerDashCase(
     contentSource
-  )}/page-count/${pageCount}${
-    buildType ? `/build-type/${toLowerDashCase(buildType)}` : ``
-  }`
+  )}/page-count/${pageCount}`
 }

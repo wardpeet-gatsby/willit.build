@@ -1,10 +1,6 @@
 const moduleAliases = require(`./module-aliases`)
 
-const {
-  pageCountIds,
-  BaseBuildType,
-  buildTypeIds,
-} = require("./base-constants")
+const { pageCountIds, BaseBuildType } = require("./base-constants")
 const formatPath = require("./src/modules/data/utils/formatPath")
 const checkIfConstantsExist = require("./src/modules/data/utils/checkIfConstantsExist")
 
@@ -144,53 +140,49 @@ exports.createPages = async ({
   activeBenchmarks.forEach(
     ({ id, contentSource, siteType, activePageCounts }) => {
       activePageCounts.forEach(pageCount => {
-        buildTypeIds.forEach(buildType => {
-          // prevents creating pages for newly added benchmarks if there is no
-          // coresponding meta constants
-          // the checkIfConstantsExist helper prints console.warn if there is
-          // no coresponding constants
-          if (!checkIfConstantsExist({ id, contentSource, siteType })) {
-            return
-          }
+        // prevents creating pages for newly added benchmarks if there is no
+        // coresponding meta constants
+        // the checkIfConstantsExist helper prints console.warn if there is
+        // no coresponding constants
+        if (!checkIfConstantsExist({ id, contentSource, siteType })) {
+          return
+        }
 
-          createPage({
-            path: formatPath({
-              prefix: `details`,
-              siteType,
-              contentSource,
-              pageCount,
-              buildType: BaseBuildType[buildType].displayedAs,
-            }),
-            component: require.resolve(
-              `./src/modules/siteDetails/components/SiteDetailsPage.js`
-            ),
-            context: {
-              id,
-              pageCount: Number(pageCount),
-              contentSource,
-              siteType,
-              buildType,
-              activeBenchmarks,
-            },
-          })
+        createPage({
+          path: formatPath({
+            prefix: `details`,
+            siteType,
+            contentSource,
+            pageCount,
+          }),
+          component: require.resolve(
+            `./src/modules/siteDetails/components/SiteDetailsPage.js`
+          ),
+          context: {
+            id,
+            pageCount: Number(pageCount),
+            contentSource,
+            siteType,
+            activeBenchmarks,
+          },
+        })
 
-          createPage({
-            path: formatPath({
-              prefix: `calculator`,
-              siteType,
-              contentSource,
-              pageCount,
-            }),
-            component: require.resolve(
-              `./src/modules/calculator/components/CalculatorPage.js`
-            ),
-            context: {
-              pageCount: Number(pageCount),
-              contentSource,
-              activeBenchmarks,
-              siteType,
-            },
-          })
+        createPage({
+          path: formatPath({
+            prefix: `calculator`,
+            siteType,
+            contentSource,
+            pageCount,
+          }),
+          component: require.resolve(
+            `./src/modules/calculator/components/CalculatorPage.js`
+          ),
+          context: {
+            pageCount: Number(pageCount),
+            contentSource,
+            activeBenchmarks,
+            siteType,
+          },
         })
       })
     }
