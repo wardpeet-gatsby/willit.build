@@ -24,6 +24,7 @@ const navCss = theme => ({
 
   [theme.mediaQueries.desktop]: {
     flexDirection: `row`,
+    alignItems: `center`,
   },
 })
 
@@ -128,7 +129,7 @@ const Footer = () => {
                   <img
                     src={wordmarkSrc}
                     alt="Gatsby wordmark"
-                    style={{ width: 76 }}
+                    style={{ width: 76, transform: `translateY(2px)` }}
                   />
                 </a>
               </li>
