@@ -1,7 +1,6 @@
 import React from "react"
 import { keyframes } from "@emotion/core"
 import { MdClose } from "react-icons/md"
-import { BaseAnchor } from "gatsby-interface"
 
 const fadeInAnimation = keyframes({
   from: {
@@ -35,9 +34,6 @@ const textStyles = theme => ({
   lineHeight: theme.lineHeights.dense,
   padding: `${theme.space[3]}`,
 })
-const linkStyles = () => ({
-  color: `inherit`,
-})
 
 const closeBoxStyles = () => ({
   width: BANNER_HEIGHT,
@@ -59,26 +55,14 @@ const closeButtonStyles = theme => ({
 })
 
 const availableBanners = {
-  "build-reports-webinar": {
-    contents: (
-      // `translateY` added to ensure vertical optical alignment.
-      // The emoji pushes the rest of the text down and it doesn't appear
-      // centered within the banner.
-      <p css={theme => ({ lineHeight: theme.lineHeights.solid })}>
-        <span
-          role="img"
-          aria-label="loudspeaker"
-          css={{ verticalAlign: `middle` }}
-        >
-          📣
-        </span>{" "}
-        <BaseAnchor href="/" css={linkStyles}>
-          Learn more
-        </BaseAnchor>{" "}
-        about Gatsby’s new build service!
-      </p>
-    ),
-  },
+  // NOTE: No banners currently avaiable.
+  // Leaving this banner in as a demo of how to use it in the future.
+  //
+  // You'll also need to mount the banner in `ui/components/Header.js`
+  //
+  // "banner-id": {
+  //   contents: <p>Text here!</p>
+  // },
 }
 
 const Banner = ({ id }) => {

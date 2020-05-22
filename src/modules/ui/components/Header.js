@@ -5,7 +5,6 @@ import * as Interface from "gatsby-interface"
 import logoSrc from "../../../images/logo.svg"
 
 import MaxWidthWrapper from "./MaxWidthWrapper"
-import Banner from "@modules/ui/components/Banner"
 
 export const mobileNavMediaQuery = `@media (max-width: 800px)`
 
@@ -62,7 +61,6 @@ const Header = () => {
   return (
     <div css={outerWrapperCss}>
       <header data-cy="header">
-        <Banner id="build-reports-webinar" />
         <MaxWidthWrapper>
           <div css={wrapperCss}>
             <Link to="/" css={logoWrapperCss} data-cy="header-brand__link">
