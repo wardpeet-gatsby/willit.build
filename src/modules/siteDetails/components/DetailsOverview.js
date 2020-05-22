@@ -9,6 +9,7 @@ import {
   Border,
 } from "./DetailsOverview.parts"
 import { HORIZONTAL_PADDING_MOBILE as wrapperPaddingMobile } from "@modules/ui/components/MaxWidthWrapper"
+import { BaseBuildType } from "../../../../base-constants"
 
 function DetailsOverview({
   siteType,
@@ -21,16 +22,19 @@ function DetailsOverview({
     stats.dataUpdate[0] && {
       colorKey: "DATA_UPDATE",
       displayedAs: "Content",
+      description: BaseBuildType.DATA_UPDATE.description,
       timeInMinutes: stats.dataUpdate[0].timeInMinutes,
     },
     stats.warmStart[0] && {
       colorKey: "WARM_START",
       displayedAs: "Cached",
+      description: BaseBuildType.WARM_START.description,
       timeInMinutes: stats.warmStart[0].timeInMinutes,
     },
     stats.coldStart[0] && {
       colorKey: "COLD_START",
       displayedAs: "Uncached",
+      description: BaseBuildType.COLD_START.description,
       timeInMinutes: stats.coldStart[0].timeInMinutes,
     },
   ].filter(stat => stat)
@@ -83,7 +87,9 @@ function DetailsOverview({
         </OverviewItem>
 
         <Border />
+
         <h2 css={visuallyHiddenCss}>Most recent build results</h2>
+
         {formattedStats.map((item, idx) => {
           return (
             <StatItem

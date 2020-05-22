@@ -155,48 +155,43 @@ const Calculator = ({
           />
         </div>
       </div>
+
       <div
-        css={_theme => ({
-          width: `100%`,
-          overflowX: `auto`,
+        css={theme => ({
+          display: `flex`,
+          justifyContent: "center",
+
+          [theme.mediaQueries.desktop]: {
+            flexDirection: `column`,
+            justifyContent: "unset",
+          },
         })}
       >
-        <div
-          css={theme => ({
-            minWidth: 500,
-            display: `flex`,
+        <section css={buildTypeSectionCss}>
+          {stats.dataUpdate[0] && (
+            <Stat
+              time={stats.dataUpdate[0].timeInMinutes}
+              label="Content"
+              description={BuildType.DATA_UPDATE.description}
+            />
+          )}
 
-            [theme.mediaQueries.desktop]: {
-              flexDirection: `column`,
-            },
-          })}
-        >
-          <section css={buildTypeSectionCss}>
-            {stats.dataUpdate[0] && (
-              <Stat
-                time={stats.dataUpdate[0].timeInMinutes}
-                label="Content"
-                description={BuildType.DATA_UPDATE.description}
-              />
-            )}
+          {stats.warmStart[0] && (
+            <Stat
+              time={stats.warmStart[0].timeInMinutes}
+              label="Cached"
+              description={BuildType.WARM_START.description}
+            />
+          )}
 
-            {stats.warmStart[0] && (
-              <Stat
-                time={stats.warmStart[0].timeInMinutes}
-                label="Cached"
-                description={BuildType.WARM_START.description}
-              />
-            )}
-
-            {stats.coldStart[0] && (
-              <Stat
-                time={stats.coldStart[0].timeInMinutes}
-                label="Uncached"
-                description={BuildType.COLD_START.description}
-              />
-            )}
-          </section>
-        </div>
+          {stats.coldStart[0] && (
+            <Stat
+              time={stats.coldStart[0].timeInMinutes}
+              label="Uncached"
+              description={BuildType.COLD_START.description}
+            />
+          )}
+        </section>
       </div>
     </article>
   )

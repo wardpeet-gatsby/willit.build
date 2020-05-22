@@ -48,11 +48,14 @@ export const contextOverviewItemCss = ({
   [theme.mediaQueries.desktop]: {
     width: `auto`,
     justifyContent: `flex-end`,
-    paddingTop: theme.space[7],
-    paddingRight: theme.space[8],
+    paddingTop: theme.space[5],
+
+    "&:first-of-type": {
+      paddingRight: theme.space[6],
+    },
 
     "&:not(:first-of-type)": {
-      paddingLeft: theme.space[8],
+      paddingLeft: theme.space[6],
     },
   },
 })

@@ -93,7 +93,7 @@ const Card = ({
         </div>
         <div css={buildTimeStyles} data-cy="build-card__stats">
           <h4 css={sectionHeadingCss}>
-            Fastest Build <em>(content / code)</em>
+            Build Times <em>(content / code)</em>
           </h4>
           <div css={emphesizedTextCss}>
             <span>{contentChangeBuild.timeInMinutes}</span>

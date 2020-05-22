@@ -58,7 +58,7 @@ describe("Homepage", () => {
         .should("be.visible")
 
       cy.get("[data-cy=build-card__stats]", { withinSubject: el })
-        .contains(`Fastest Build (Content / Code)`, { matchCase: false })
+        .contains(`Build Times (Content / Code)`, { matchCase: false })
         .should("be.visible")
 
       cy.get("[data-cy=build-card__stats]", { withinSubject: el })
