@@ -92,7 +92,7 @@ module.exports.pageCountDisplayedAsRegExp = Object.keys(PageCount)
 
 const BaseBuildType = {
   DATA_UPDATE: {
-    displayedAs: `Content`,
+    displayedAs: `Data`,
     description: `Indicates a data change (from the CMS)`,
     strokeDasharray: "0",
   },

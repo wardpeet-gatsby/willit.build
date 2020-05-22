@@ -21,7 +21,7 @@ function DetailsOverview({
   const formattedStats = [
     stats.dataUpdate[0] && {
       colorKey: "DATA_UPDATE",
-      displayedAs: "Content",
+      displayedAs: "Data",
       description: BaseBuildType.DATA_UPDATE.description,
       timeInMinutes: stats.dataUpdate[0].timeInMinutes,
     },

@@ -90,7 +90,7 @@ const Explainer = () => {
       })}
     >
       <Block>
-        <p css={LabelStyles}>Gatsby + 6 different Content Sources</p>
+        <p css={LabelStyles}>Gatsby + 6 different Data Sources</p>
         <BlockGrid>
           <Icon Icon={GatsbyIcon} />{" "}
           <span

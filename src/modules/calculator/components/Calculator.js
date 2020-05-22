@@ -171,7 +171,7 @@ const Calculator = ({
           {stats.dataUpdate[0] && (
             <Stat
               time={stats.dataUpdate[0].timeInMinutes}
-              label="Content"
+              label="Data"
               description={BuildType.DATA_UPDATE.description}
             />
           )}
