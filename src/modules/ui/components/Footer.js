@@ -10,6 +10,13 @@ const outerWrapperCss = theme => ({
   paddingBottom: theme.space[15],
 })
 
+const innerWrapperCss = theme => ({
+  [theme.mediaQueries.desktop]: {
+    paddingLeft: theme.space[10],
+    paddingRight: theme.space[10],
+  },
+})
+
 const navCss = theme => ({
   display: `flex`,
   listStyleType: `none`,
@@ -97,7 +104,7 @@ const Footer = () => {
   return (
     <div css={outerWrapperCss}>
       <MaxWidthWrapper>
-        <footer data-cy="footer">
+        <footer data-cy="footer" css={innerWrapperCss}>
           <nav aria-label="General site navigation in footer">
             <ul css={navCss}>
               {data.contentfulFooterNavigation.contentfulchildren.map(
