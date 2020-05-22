@@ -20,7 +20,7 @@ describe("Homepage", () => {
     cy.get("[data-cy=benchmark-sites__link]").should(
       "have.attr",
       "href",
-      "/#benchmark-sites"
+      "https://www.gatsbyjs.com/contact-us/"
     )
   })
 

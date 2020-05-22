@@ -1,6 +1,5 @@
 import React from "react"
-import { LinkButton } from "gatsby-interface"
-import { MdArrowDownward } from "react-icons/md"
+import { AnchorButton } from "gatsby-interface"
 import { useStaticQuery, graphql } from "gatsby"
 
 import DecorativeBackground from "../assets/DecorativeBackground"
@@ -57,18 +56,13 @@ const Hero = () => {
         >
           {description}
         </p>
-        <LinkButton
-          rightIcon={<MdArrowDownward />}
+        <AnchorButton
           size="M"
-          css={theme => ({
-            fontWeight: theme.fontWeights.semiBold,
-            fontFamily: theme.fonts.body,
-          })}
-          to="#benchmark-sites"
+          href="https://www.gatsbyjs.com/contact-us/"
           data-cy="benchmark-sites__link"
         >
           {buttonText}
-        </LinkButton>
+        </AnchorButton>
       </div>
       <div
         css={{

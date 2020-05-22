@@ -1,4 +1,5 @@
 import React from "react"
+import { AnchorButton } from "gatsby-interface"
 
 import SocialLinks from "@modules/ui/components/SocialLinks"
 import { pageHeadingCss } from "@modules/ui/styles"
@@ -43,6 +44,7 @@ const blurbWrapperCss = theme => ({
 
 const blurbCss = theme => ({
   maxWidth: 500,
+  marginBottom: theme.space[6],
   lineHeight: theme.lineHeights.default,
 })
 
@@ -66,6 +68,13 @@ const Header = ({ siteType, contentSource, pageCount }) => {
           The Will It Build build time calculator provides an estimation of
           build time across each supported Continuous Deployment platform.
         </p>
+        <AnchorButton
+          size="M"
+          href="https://www.gatsbyjs.com/contact-us/"
+          data-cy="benchmark-sites__link"
+        >
+          Contact us
+        </AnchorButton>
       </div>
     </header>
   )
