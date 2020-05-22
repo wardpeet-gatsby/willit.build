@@ -34,7 +34,7 @@ function StatItem({ data, idx, ...rest }) {
           {title}{" "}
           <HelpCircle
             helpInfo="Learn more about our various build types in our Frequently Asked Questions."
-            href="/methodology-faq#build-type-differences"
+            href="/faq#build-type-differences"
           />
         </h3>
       )}
