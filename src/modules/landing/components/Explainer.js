@@ -6,7 +6,6 @@ import WordpressIcon from "@modules/data/assets/icons/WordpressIcon"
 import DrupalIcon from "@modules/data/assets/icons/DrupalIcon"
 import MarkdownIcon from "@modules/data/assets/icons/MarkdownIcon"
 import ContentfulIcon from "@modules/data/assets/icons/ContentfulIcon"
-import CosmicjsIcon from "@modules/data/assets/icons/CosmicjsIcon"
 
 import wordmarkSrc from "@images/wordmark.svg"
 import gatsbyCloudSrc from "@images/gatsby-cloud.svg"
@@ -110,8 +109,6 @@ const Explainer = () => {
           <Icon Icon={DatocmsIcon} />
           <Delimiter />
           <Icon Icon={WordpressIcon} />
-          <Delimiter />
-          <Icon Icon={CosmicjsIcon} />
           <Delimiter />
           <Icon Icon={MarkdownIcon} />
         </BlockGrid>
