@@ -66,7 +66,7 @@ const Header = ({ siteType, contentSource, pageCount }) => {
       <div css={blurbWrapperCss}>
         <p css={blurbCss} data-cy="calculator__description">
           The Will It Build build time calculator provides an estimation of
-          build time across each supported Continuous Deployment platform.
+          build time in Gatsby Cloud.
         </p>
         <AnchorButton
           size="M"

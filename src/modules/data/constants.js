@@ -7,8 +7,6 @@ import MdxIcon from "./assets/icons/MdxIcon"
 import WordpressIcon from "./assets/icons/WordpressIcon"
 
 import GatsbyIcon from "./assets/icons/GatsbyIcon"
-import NetlifyIcon from "./assets/icons/NetlifyIcon"
-import CircleCiIcon from "./assets/icons/CircleCiIcon"
 
 import BlogIcon from "./assets/icons/BlogIcon"
 import BlogThumbnail from "./assets/thumbnails/BlogThumbnail.png"
@@ -18,10 +16,9 @@ import {
   BaseSiteType,
   BaseContentSource,
   BaseBuildType,
-  BasePlatform,
 } from "../../../base-constants"
 
-export { platformIds, buildTypeIds } from "../../../base-constants"
+export { buildTypeIds } from "../../../base-constants"
 
 const Icons = {
   BLOG: BlogIcon,
@@ -33,8 +30,6 @@ const Icons = {
   MARKDOWN: MarkdownIcon,
   WORDPRESS: WordpressIcon,
   GATSBY_CLOUD: GatsbyIcon,
-  CIRCLECI: CircleCiIcon,
-  NETLIFY: NetlifyIcon,
 }
 
 const Thumbnails = {
@@ -57,16 +52,6 @@ export const SiteType = Object.entries(BaseSiteType).reduce(
 )
 
 export const ContentSource = Object.entries(BaseContentSource).reduce(
-  (acc, [key, val]) => {
-    val.Icon = Icons[key] || null
-    acc[key] = val
-
-    return acc
-  },
-  {}
-)
-
-export const Platform = Object.entries(BasePlatform).reduce(
   (acc, [key, val]) => {
     val.Icon = Icons[key] || null
     acc[key] = val

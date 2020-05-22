@@ -94,12 +94,6 @@ export const tableDataCss = theme => ({
   },
 })
 
-export const tableDataFastestBuildWrapperCss = () => ({
-  display: `flex`,
-  alignItems: `center`,
-  marginLeft: `-1px`,
-})
-
 export const tableDataDefaultCss = theme => ({
   display: `flex`,
   alignItems: `center`,
@@ -109,12 +103,6 @@ export const tableDataDefaultCss = theme => ({
   [theme.mediaQueries.desktop]: {
     justifyContent: `flex-start`,
   },
-})
-
-export const tableDataFastestBuildCss = theme => ({
-  color: `${theme.colors.green[80]}`,
-  fontWeight: `bold`,
-  marginLeft: theme.space[3],
 })
 
 export const tabularIconCss = theme => ({

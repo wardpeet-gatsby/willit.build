@@ -12,7 +12,7 @@ export const smallTextCss = theme => ({
   fontSize: theme.fontSizes[1],
 })
 
-export function Link({ children, ...rest }) {
+function Link({ children, ...rest }) {
   return (
     <BaseLink
       to="/"

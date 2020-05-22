@@ -42,19 +42,16 @@ export const query = graphql`
         id
         latest(numberOfPages: $pageCount) {
           coldStart {
-            platform
             timeInMs
             timeInMinutes
             humanReadableTime
           }
           warmStart {
-            platform
             timeInMs
             timeInMinutes
             humanReadableTime
           }
           dataUpdate {
-            platform
             timeInMs
             timeInMinutes
             humanReadableTime

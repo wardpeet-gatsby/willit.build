@@ -1,4 +1,4 @@
-export const sample = (arr, len = 1) => {
+const sample = (arr, len = 1) => {
   const output = []
 
   for (let i = 0; i < len; i++) {

@@ -109,20 +109,3 @@ const BaseBuildType = {
 }
 module.exports.BaseBuildType = BaseBuildType
 module.exports.buildTypeIds = Object.keys(BaseBuildType)
-
-const Platform = {
-  GATSBY_CLOUD: {
-    displayedAs: "Gatsby Cloud",
-  },
-  NETLIFY: {
-    displayedAs: "Netlify",
-  },
-  CIRCLECI: {
-    displayedAs: "Circle CI",
-  },
-}
-module.exports.BasePlatform = Platform
-module.exports.platformIds = Object.keys(Platform)
-module.exports.BaseBuildTypeDisplayedAsRegex = Object.keys(BaseBuildType)
-  .map(item => BaseBuildType[item].displayedAs)
-  .join("|")

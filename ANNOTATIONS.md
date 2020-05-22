@@ -2,11 +2,11 @@
 
 ![Screenshot showing an info circle on a graph with a tooltip displaying "Gatsby 1.2.3 released", with some additional made-up information.](./docs/annotation-sample.png)
 
-An annotation is a tooltip that appears in the graph on a specific date to explain a large swing in the data, for one or multiple platforms. These can be positive or negative.
+An annotation is a tooltip that appears in the graph on a specific date to explain a large swing in the data. These can be positive or negative.
 
 For example:
 
-- A critical outage caused Platform A's builds to slow for 8 hours
+- A critical outage caused builds to slow for 8 hours
 - An infrastructure improvement caused a noticeable improvement for image-heavy builds
 - version 1.2.3 of Gatsby improved speed across the board.
 
@@ -35,5 +35,3 @@ If the description is still insufficient to describe the change, you can supply 
 Annotations should be reserved for _significant_ changes. By "significant", we mean that it should be eyebrow-raising; a user should wonder what happened there, and the annotation should be a welcome bit of context.
 
 This is one of those "hard to define, but I know it when I see it" kind of deals. As we continue development of this project, we may land on a more formal definition of what is / is not a reasonable effect to warrant an annotation.
-
-We welcome annotations from any platform listed on Will It Build.

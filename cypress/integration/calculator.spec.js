@@ -45,7 +45,7 @@ describe("Calculator", () => {
       .should("be.visible")
       .and(
         "contain",
-        "The Will It Build build time calculator provides an estimation of build time across each supported Continuous Deployment platform."
+        "The Will It Build build time calculator provides an estimation of build time in Gatsby Cloud."
       )
 
     // Social links

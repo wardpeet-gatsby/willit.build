@@ -13,7 +13,7 @@ export default function ThemeProvider({ children }) {
     },
     tones: {
       ...theme.tones,
-      // platform tones let us apply custom active colors to CustomLegend toggle buttons
+      // these tones let us apply custom active colors to CustomLegend toggle buttons
       DATA_UPDATE: {
         medium: theme.colors.purple[40],
       },

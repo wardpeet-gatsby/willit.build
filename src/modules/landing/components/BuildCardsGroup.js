@@ -20,19 +20,16 @@ const BuildCardsGroup = () => {
           siteType
           latest(numberOfPages: 512) {
             coldStart {
-              platform
               timeInMs
               timeInMinutes
               humanReadableTime
             }
             warmStart {
-              platform
               timeInMs
               timeInMinutes
               humanReadableTime
             }
             dataUpdate {
-              platform
               timeInMs
               timeInMinutes
               humanReadableTime

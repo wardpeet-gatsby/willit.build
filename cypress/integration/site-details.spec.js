@@ -3,8 +3,6 @@ import {
   BasePageCount,
   BaseSiteType,
   BaseBuildType,
-  platformIds,
-  BaseBuildTypeDisplayedAsRegex,
 } from "../../base-constants"
 
 const formatPath = require("../../src/modules/data/utils/formatPath")
@@ -96,10 +94,6 @@ describe("SiteDetails page", () => {
       cy.get("span", { withinSubject: el })
         .contains(/\d+m\s\d{1,2}s/gi)
         .should("be.visible")
-
-      cy.get("span", { withinSubject: el })
-        .contains(new RegExp(BaseBuildTypeDisplayedAsRegex, "gi"))
-        .should("be.visible")
     })
   })
 
@@ -117,7 +111,7 @@ describe("SiteDetails page", () => {
           el.find(".recharts-xAxis")
           cy.get(".recharts-area", { withinSubject: el }).should(
             "have.length",
-            platformIds.length
+            3
           )
         }
 
@@ -126,7 +120,7 @@ describe("SiteDetails page", () => {
           el.find(".recharts-cartesian-grid")
           cy.get(".recharts-area", { withinSubject: el }).should(
             "have.length",
-            platformIds.length
+            3
           )
         }
 
@@ -140,12 +134,6 @@ describe("SiteDetails page", () => {
     cy.get("[data-cy=chart-legend-item]")
       .its("length")
       .should("be.gte", 1) // there should be at least one controller
-    cy.get("[data-cy=chart-legend-item]").each((el, idx) => {
-      // label should contain one of available Platform displayedAs value
-      cy.get("label", { withinSubject: el }).contains(
-        new RegExp(BaseBuildTypeDisplayedAsRegex, "gi")
-      )
-    })
   })
 
   // page count change

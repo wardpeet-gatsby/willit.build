@@ -4,7 +4,8 @@ export function formatDataForChart({ benchmarks }) {
   const graphDataByCreatedAt = {}
 
   benchmarks.forEach(({ createdAt, buildType, buildTimes }) => {
-    const metrics = buildTimes.find(item => item.platform === `GATSBY_CLOUD`)
+    // TODO: Maybe we should think of a way to avoid using this array that way
+    const metrics = buildTimes[0]
     const { timeInMs, timeInMinutes, humanReadableTime } = metrics
     const formatedCreatedAt = format(new Date(createdAt), "M/d/yyyy")
 

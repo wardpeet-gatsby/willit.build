@@ -7,10 +7,6 @@ module.exports.toLowerDashCase = name => {
   return name.toLowerCase().replace("_", "-")
 }
 
-module.exports.toUpperSnakeCase = name => {
-  return name.toUpperCase().replace("-", "_")
-}
-
 module.exports.toCamelCase = name => {
   return name
     .toLowerCase()
