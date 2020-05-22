@@ -2,7 +2,6 @@ import React from "react"
 
 import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
 import PageCountSelectControl from "@modules/ui/components/PageCountSelectControl"
-import BuildTypeSelectControl from "./BuildTypeSelectControl"
 import StatItem from "./StatItem"
 import {
   OverviewItem,
@@ -16,9 +15,26 @@ function DetailsOverview({
   pageCount,
   contentSource,
   activeBenchmarks,
-  buildType,
   stats,
 }) {
+  const formattedStats = [
+    stats.dataUpdate[0] && {
+      colorKey: "DATA_UPDATE",
+      displayedAs: "Content",
+      timeInMinutes: stats.dataUpdate[0].timeInMinutes,
+    },
+    stats.warmStart[0] && {
+      colorKey: "WARM_START",
+      displayedAs: "Cached",
+      timeInMinutes: stats.warmStart[0].timeInMinutes,
+    },
+    stats.coldStart[0] && {
+      colorKey: "COLD_START",
+      displayedAs: "Uncached",
+      timeInMinutes: stats.coldStart[0].timeInMinutes,
+    },
+  ].filter(stat => stat)
+
   return (
     <div
       css={theme => ({
@@ -43,6 +59,8 @@ function DetailsOverview({
 
           [theme.mediaQueries.desktop]: {
             borderBottom: 0,
+            justifyContent: `flex-start`,
+
             flexWrap: `no-wrap`,
             paddingBottom: 0,
           },
@@ -51,37 +69,22 @@ function DetailsOverview({
         <h2 css={visuallyHiddenCss}>Dataset select controls</h2>
         <OverviewItem
           css={theme =>
-            contextOverviewItemCss({ theme, basis: `40%`, type: `control` })
+            contextOverviewItemCss({ theme, basis: `100%`, type: `control` })
           }
         >
           <PageCountSelectControl
             siteType={siteType}
             initialPageCount={pageCount}
             contentSource={contentSource}
-            buildType={buildType}
             footer="1 image per page"
             pathPrefix="details"
             activeBenchmarks={activeBenchmarks}
           />
         </OverviewItem>
 
-        <OverviewItem
-          css={theme =>
-            contextOverviewItemCss({ theme, basis: `60%`, type: `control` })
-          }
-        >
-          <BuildTypeSelectControl
-            siteType={siteType}
-            pageCount={pageCount}
-            contentSource={contentSource}
-            initialBuildType={buildType}
-            pathPrefix="details"
-          />
-        </OverviewItem>
-
         <Border />
         <h2 css={visuallyHiddenCss}>Most recent build results</h2>
-        {stats.map((item, idx) => {
+        {formattedStats.map((item, idx) => {
           return (
             <StatItem
               key={idx}

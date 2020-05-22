@@ -13,7 +13,6 @@ import MaxWidthWrapper, {
 import DetailsHeader from "./DetailsHeader"
 import DetailsOverview from "./DetailsOverview"
 import { formatDataForChart } from "./SiteDetailsPage.helpers"
-import { convertUpperSnakeToCamel } from "@utils"
 
 const { YAxisWidth, ChartWithControlsHeight } = DetailsChartDimensions
 
@@ -54,8 +53,6 @@ const SiteDetailsPage = ({ data, pageContext }) => {
     pageCount,
   })
 
-  const buildTypeCamel = convertUpperSnakeToCamel(buildType)
-
   return (
     <MaxWidthWrapper
       css={theme => ({
@@ -89,7 +86,7 @@ const SiteDetailsPage = ({ data, pageContext }) => {
           contentSource={contentSource}
           pageCount={pageCount}
           buildType={buildType}
-          stats={latest[buildTypeCamel]}
+          stats={latest}
           activeBenchmarks={activeBenchmarks}
         />
       </div>

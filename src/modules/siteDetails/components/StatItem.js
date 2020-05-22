@@ -4,26 +4,30 @@ import {
   controlLabelCss,
   controlFooterCss,
   controlValueCss,
-  platformMarkerCss,
+  buildTypeMarkerCss,
 } from "@modules/ui/styles"
-import { Platform } from "@modules/data/constants"
-import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
+import HelpCircle from "@modules/ui/components/HelpCircle"
+import { useTheme } from "@modules/ui/components/ThemeProvider"
 
-const Titles = [`Fastest build`, `Runner-up`, `Second runner-up`]
-
-const labelContextCss = idx => {
-  return idx > 1 ? visuallyHiddenCss : {}
-}
+const Titles = [`Build Times`]
 
 function StatItem({ data, idx, ...rest }) {
-  const { timeInMinutes, platform } = data
+  const { timeInMinutes, colorKey, displayedAs } = data
   const title = Titles[idx]
+
+  const { tones } = useTheme()
 
   return (
     <OverviewItem {...rest} data-cy="stat-item">
-      <h3 css={theme => [controlLabelCss(theme), labelContextCss(idx)]}>
-        {title}
-      </h3>
+      {title && (
+        <h3 css={theme => controlLabelCss(theme)}>
+          {title}{" "}
+          <HelpCircle
+            helpInfo="Learn more about our various build types in our Frequently Asked Questions."
+            href="/methodology-faq#build-type-differences"
+          />
+        </h3>
+      )}
       <span
         css={theme => [
           controlValueCss(theme),
@@ -35,10 +39,15 @@ function StatItem({ data, idx, ...rest }) {
       <span
         css={theme => [
           controlFooterCss(theme),
-          platformMarkerCss({ theme, platform }),
+          buildTypeMarkerCss({ theme }),
+          {
+            "&::after": {
+              background: tones[colorKey].medium,
+            },
+          },
         ]}
       >
-        {Platform[platform].displayedAs}
+        {displayedAs}
       </span>
     </OverviewItem>
   )

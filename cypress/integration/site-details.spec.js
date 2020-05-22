@@ -87,30 +87,19 @@ describe("SiteDetails page", () => {
       .should("be.visible")
       .and("contain", BasePageCount[INITIAL_PAGE_COUNT].displayedAs)
 
-    // build type controler
-    cy.contains("label", `Build type`, { matchCase: false }).should(
-      "be.visible"
-    )
-    cy.get("#build-type-control")
-      .should("be.visible")
-      .and("have.value", INITIAL_BUILD_TYPE)
-    cy.get("[data-cy=build-type-control-fake]")
-      .should("be.visible")
-      .and("contain", BaseBuildType[INITIAL_BUILD_TYPE].displayedAs)
-
     // stats
     cy.get("[data-cy=stat-item")
       .its("length")
       .should("be.gte", 1) // at least one stat section
-    cy.get("[data-cy=stat-item").each((el, idx) => {
+    cy.get("[data-cy=stat-item").each(el => {
       // item should contain stat value
       cy.get("span", { withinSubject: el })
         .contains(/\d+m\s\d{1,2}s/gi)
         .should("be.visible")
-      // TODO: Re-enable this test when tackling #7717
-      // cy.get("span", { withinSubject: el })
-      //   .contains(new RegExp(BaseBuildTypeDisplayedAsRegex, "gi"))
-      //   .should("be.visible")
+
+      cy.get("span", { withinSubject: el })
+        .contains(new RegExp(BaseBuildTypeDisplayedAsRegex, "gi"))
+        .should("be.visible")
     })
   })
 
@@ -174,22 +163,5 @@ describe("SiteDetails page", () => {
     cy.get("[id=page-count-control]")
       .should("be.visible")
       .and("have.value", NEW_PAGE_COUNT)
-  })
-
-  // build type change
-  it("should redirect to a proper page when Build Type dropdown value changes", () => {
-    cy.get("[id=build-type-control]")
-      .should("be.visible")
-      .select(NEW_BUILD_TYPE)
-
-    cy.url().should("contain", NEW_BUILD_TYPE_PATH)
-
-    cy.get("[data-cy=build-type-control-fake]")
-      .should("be.visible")
-      .and("contain", BaseBuildType[NEW_BUILD_TYPE].displayedAs)
-
-    cy.get("[id=build-type-control]")
-      .should("be.visible")
-      .and("have.value", NEW_BUILD_TYPE)
   })
 })

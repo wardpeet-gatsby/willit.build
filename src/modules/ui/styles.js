@@ -30,7 +30,7 @@ export const controlValueCss = theme => ({
   },
 })
 
-export const platformMarkerCss = ({ theme }) => ({
+export const buildTypeMarkerCss = ({ theme }) => ({
   "&::after": {
     content: `""`,
     display: `inline-block`,

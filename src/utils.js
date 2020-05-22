@@ -14,15 +14,3 @@ export const generateId = (len = 12) => {
 
   return sample(characters, len).join("")
 }
-
-/**
- * Convert an ALL_UPPER_SNAKE_CASE to camelCase
- */
-export const convertUpperSnakeToCamel = str => {
-  return str.toLowerCase().replace(/([-_][a-z])/g, group =>
-    group
-      .toUpperCase()
-      .replace("-", "")
-      .replace("_", "")
-  )
-}

@@ -21,7 +21,6 @@ export function OverviewItem({ children, ...rest }) {
   return (
     <div
       css={theme => ({
-        paddingTop: theme.space[7],
         paddingBottom: theme.space[7],
         display: `flex`,
         flexDirection: `column`,
@@ -43,9 +42,17 @@ export const contextOverviewItemCss = ({
   justifyContent: type === `control` ? `flex-start` : undefined,
   paddingTop: type === `control` ? 0 : undefined,
 
-  [theme.mediaQueries.desktop]: {
+  [theme.mediaQueries.phablet]: {
     flexBasis: `auto`,
+  },
+  [theme.mediaQueries.desktop]: {
+    width: `auto`,
     justifyContent: `flex-end`,
     paddingTop: theme.space[7],
+    paddingRight: theme.space[8],
+
+    "&:not(:first-of-type)": {
+      paddingLeft: theme.space[8],
+    },
   },
 })
