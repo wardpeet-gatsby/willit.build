@@ -6,7 +6,7 @@ import FAQs from "@modules/docs/components/FAQs"
 import MaxWidthWrapper from "@modules/ui/components/MaxWidthWrapper"
 import ContentBox from "@modules/ui/components/ContentBox"
 
-const MethodologyFAQ = () => {
+const FAQ = () => {
   return (
     <MaxWidthWrapper>
       <ContentBox>
@@ -18,4 +18,4 @@ const MethodologyFAQ = () => {
   )
 }
 
-export default MethodologyFAQ
+export default FAQ

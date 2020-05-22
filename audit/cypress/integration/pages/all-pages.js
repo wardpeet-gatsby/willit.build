@@ -10,8 +10,8 @@ context("All pages", () => {
     })
   })
 
-  it("audits the methodology-faq", () => {
-    cy.visit("/methodology-faq")
+  it("audits the FAQ", () => {
+    cy.visit("/faq")
     cy.audit({
       performance: 90,
       accessibility: 100,

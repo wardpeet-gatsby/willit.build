@@ -15,7 +15,7 @@ describe("Header", () => {
 
   it("should own valid menu links", () => {
     cy.get("[data-cy=header]").within(() => {
-      cy.get('[href="/methodology-faq"]').should("be.visible")
+      cy.get('[href="/faq"]').should("be.visible")
       cy.get('[href="/calculator"]').should("be.visible")
     })
   })

@@ -135,7 +135,7 @@ const Calculator = ({
             <p>
               <strong>Note:</strong> Markdown build times are artificially
               inflated. You should experience quicker builds.{" "}
-              <Link to="/methodology-faq#markdown-mdx-builds">Learn more</Link>
+              <Link to="/faq#markdown-mdx-builds">Learn more</Link>
             </p>
           </section>
         )}
