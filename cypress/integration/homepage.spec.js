@@ -17,11 +17,6 @@ describe("Homepage", () => {
   it("should contain all Hero elements", () => {
     cy.get("[data-cy=main-title]").should("be.visible")
     cy.get("[data-cy=main-description]").should("be.visible")
-    cy.get("[data-cy=benchmark-sites__link]").should(
-      "have.attr",
-      "href",
-      "https://www.gatsbyjs.com/contact-us/"
-    )
   })
 
   it("should contain cards for all active benchmarks", () => {

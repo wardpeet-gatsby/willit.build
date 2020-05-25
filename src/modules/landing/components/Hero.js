@@ -1,5 +1,4 @@
 import React from "react"
-import { AnchorButton } from "gatsby-interface"
 import { useStaticQuery, graphql } from "gatsby"
 
 import DecorativeBackground from "../assets/DecorativeBackground"
@@ -21,7 +20,6 @@ const Hero = () => {
 
   const title = contentfulHomepage.header
   const description = contentfulHomepage.description.description
-  const buttonText = contentfulHomepage.button
 
   return (
     <header>
@@ -56,13 +54,6 @@ const Hero = () => {
         >
           {description}
         </p>
-        <AnchorButton
-          size="M"
-          href="https://www.gatsbyjs.com/contact-us/"
-          data-cy="benchmark-sites__link"
-        >
-          {buttonText}
-        </AnchorButton>
       </div>
       <div
         css={{

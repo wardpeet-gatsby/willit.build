@@ -1,5 +1,4 @@
 import React from "react"
-import { AnchorButton } from "gatsby-interface"
 
 import SocialLinks from "@modules/ui/components/SocialLinks"
 import { pageHeadingCss } from "@modules/ui/styles"
@@ -68,13 +67,6 @@ const Header = ({ siteType, contentSource, pageCount }) => {
           The Will It Build build time calculator provides an estimation of
           build time in Gatsby Cloud.
         </p>
-        <AnchorButton
-          size="M"
-          href="https://www.gatsbyjs.com/contact-us/"
-          data-cy="benchmark-sites__link"
-        >
-          Contact us
-        </AnchorButton>
       </div>
     </header>
   )
