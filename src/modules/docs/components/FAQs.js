@@ -4,6 +4,7 @@ import { MdAdd, MdRemove, MdArrowForward } from "react-icons/md"
 import { Link } from "gatsby-interface"
 import marked from "marked"
 import { useLocation } from "@reach/router"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 
 import {
   wrapperStyles,
@@ -144,6 +145,13 @@ const FAQs = () => {
               href="https://www.gatsbyjs.com/contact-us/"
               target="_blank"
               css={contactLinkStyles}
+              onClick={() => {
+                trackCustomEvent({
+                  category: "FAQ",
+                  action: "click",
+                  label: "Talk to us",
+                })
+              }}
             >
               Talk to us{" "}
               <MdArrowForward css={theme => ({ marginLeft: theme.space[2] })} />
@@ -152,7 +160,16 @@ const FAQs = () => {
           <div css={expandCollapseRowStyles}>
             <button
               css={expandCollapseButtonStyles}
-              onClick={toggleExpandAll}
+              onClick={() => {
+                toggleExpandAll()
+                trackCustomEvent({
+                  category: "FAQ",
+                  action: "click",
+                  label: `${
+                    areAllQuestionsExpanded ? `Collapse all` : `Expand all`
+                  }`,
+                })
+              }}
               aria-expanded={!!areAllQuestionsExpanded}
             >
               {areAllQuestionsExpanded ? "Collapse all" : "Expand all"}

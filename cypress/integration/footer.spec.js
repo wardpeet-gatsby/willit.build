@@ -22,12 +22,12 @@ describe("Footer", () => {
 
   it("should own some external links", () => {
     cy.get("[data-cy=footer]").within(() => {
-      cy.get('[href="https://www.gatsbyjs.com/get-started"]').should(
+      cy.get('[href*="https://www.gatsbyjs.com/get-started"]').should(
         "be.visible"
       )
       cy.get('[href="https://github.com/gatsbyjs/gatsby"]').should("be.visible")
       cy.get('[href="https://twitter.com/gatsbyjs"]').should("be.visible")
-      cy.get('[href="https://www.gatsbyjs.com/contact-us/"]').should(
+      cy.get('[href*="https://www.gatsbyjs.com/contact-us"]').should(
         "be.visible"
       )
     })

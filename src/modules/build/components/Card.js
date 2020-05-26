@@ -18,6 +18,7 @@ import {
 } from "./Card.styles"
 import SiteTypeImage from "./SiteTypeImage"
 import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
+import { trackCustomEvent } from "gatsby-plugin-google-analytics"
 
 const propTypes = {
   Icon: PropTypes.func,
@@ -109,6 +110,13 @@ const Card = ({
             to={allBenchmarksLink}
             css={linkStyles}
             data-cy="build-card__link"
+            onClick={() =>
+              trackCustomEvent({
+                category: "Home - BuildCardsGroup",
+                action: "click",
+                label: `${formattedSource} data`,
+              })
+            }
           >
             {formattedSource} data <MdArrowForward />
           </Link>
