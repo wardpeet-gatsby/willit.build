@@ -22,7 +22,7 @@ export function SEO({ description, lang, meta, title }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
-  const metaTitle = title || site.siteMetadata.title
+  const metaTitle = `${site.siteMetadata.title} – ${title}`
   const imageAlt = `A machine shows a bunch of different assets — javascript, HTML, images — being transformed by a metaphorical machine into a Gatsby site`
 
   const fullOgImage = `${site.siteMetadata.url}${ogImage}`
@@ -33,7 +33,6 @@ export function SEO({ description, lang, meta, title }) {
         lang,
       }}
       title={metaTitle}
-      titleTemplate={`%s | ${metaTitle}`}
       meta={[
         {
           name: `description`,

@@ -6,13 +6,17 @@ import DetailsChart from "@modules/charts/components/DetailsChart"
 import DetailsTable from "@modules/charts/components/DetailsTable"
 import DetailsChartPlaceholder from "@modules/charts/components/DetailsChartPlaceholder"
 import { DetailsChartDimensions } from "@modules/charts/constants"
-import { ArtificiallySlowContentSources } from "@modules/data/constants"
+import {
+  ContentSource,
+  ArtificiallySlowContentSources,
+} from "@modules/data/constants"
 import MaxWidthWrapper, {
   HORIZONTAL_PADDING_DESKTOP as wrapperPaddingDesktop,
 } from "@modules/ui/components/MaxWidthWrapper"
 import DetailsHeader from "./DetailsHeader"
 import DetailsOverview from "./DetailsOverview"
 import { formatDataForChart } from "./SiteDetailsPage.helpers"
+import { SEO } from "@modules/seo/components/SEO"
 
 const { YAxisWidth, ChartWithControlsHeight } = DetailsChartDimensions
 
@@ -53,6 +57,8 @@ const SiteDetailsPage = ({ data, pageContext }) => {
     pageCount,
   })
 
+  const { displayedAs: contentSourceTitle } = ContentSource[contentSource]
+
   return (
     <MaxWidthWrapper
       css={theme => ({
@@ -65,6 +71,7 @@ const SiteDetailsPage = ({ data, pageContext }) => {
         },
       })}
     >
+      <SEO title={`${contentSourceTitle} benchmarks`} />
       <div
         css={theme => ({
           background: theme.colors.grey[5],

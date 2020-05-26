@@ -5,12 +5,14 @@ import MaxWidthWrapper from "@modules/ui/components/MaxWidthWrapper"
 import ContentBox from "@modules/ui/components/ContentBox"
 import Header from "./Header"
 import Calculator from "./Calculator"
+import { SEO } from "@modules/seo/components/SEO"
 
 const CalculatorPage = ({ pageContext, data }) => {
   const { siteType, contentSource, activeBenchmarks, pageCount } = pageContext
 
   return (
     <MaxWidthWrapper>
+      <SEO title="Calculator" />
       <ContentBox>
         <Header
           siteType={siteType}
