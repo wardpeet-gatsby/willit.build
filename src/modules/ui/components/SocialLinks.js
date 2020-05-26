@@ -62,7 +62,7 @@ const SocialLinks = ({
           href={`https://github.com/${repositoryUrl}`}
           css={githubLinkCss}
         >
-          View source on Github
+          View benchmark source on Github
         </BaseAnchor>
       )}
       <div css={spacerCss} />
