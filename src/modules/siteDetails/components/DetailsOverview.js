@@ -2,6 +2,7 @@ import React from "react"
 
 import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
 import PageCountSelectControl from "@modules/ui/components/PageCountSelectControl"
+import { ContentSource } from "@modules/data/constants"
 import StatItem from "./StatItem"
 import {
   OverviewItem,
@@ -18,13 +19,16 @@ function DetailsOverview({
   activeBenchmarks,
   stats,
 }) {
+  const hideData = ContentSource[contentSource].hideData
+
   const formattedStats = [
-    stats.dataUpdate[0] && {
-      colorKey: "DATA_UPDATE",
-      displayedAs: "Data",
-      description: BaseBuildType.DATA_UPDATE.description,
-      timeInMinutes: stats.dataUpdate[0].timeInMinutes,
-    },
+    !hideData &&
+      stats.dataUpdate[0] && {
+        colorKey: "DATA_UPDATE",
+        displayedAs: "Data",
+        description: BaseBuildType.DATA_UPDATE.description,
+        timeInMinutes: stats.dataUpdate[0].timeInMinutes,
+      },
     stats.warmStart[0] && {
       colorKey: "WARM_START",
       displayedAs: "Cached",

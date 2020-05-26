@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { ContentSource } from "@modules/data/constants"
 import { BuildType, buildTypeIds } from "../../data/constants"
 import TabularIcon from "../../data/assets/icons/TabularIcon"
 import {
@@ -20,9 +21,15 @@ import { visuallyHiddenCss } from "@modules/a11y/stylesheets"
 
 export const propTypes = {
   data: PropTypes.array,
+  contentSource: PropTypes.string.isRequired,
 }
 
-function DetailsTable({ data = [] }) {
+function DetailsTable({ data = [], contentSource }) {
+  const hideData = ContentSource[contentSource].hideData
+  const buildTypes = buildTypeIds.filter(
+    buildType => !(buildType === "DATA_UPDATE" && hideData)
+  )
+
   // Sort the dataset -- most recent to least recent
   let sortedData = [...data].reverse()
 
@@ -49,7 +56,7 @@ function DetailsTable({ data = [] }) {
           </tr>
           <tr>
             <th css={tableHeaderColNameCss} colSpan="1"></th>
-            {buildTypeIds.map(buildType => {
+            {buildTypes.map(buildType => {
               return (
                 <th
                   key={`${buildType}_tableheader`}
@@ -78,7 +85,7 @@ function DetailsTable({ data = [] }) {
                     {formattedDate.desktop}
                   </span>
                 </td>
-                {buildTypeIds.map(buildType => {
+                {buildTypes.map(buildType => {
                   const visualValue = dataPerDiem.valuesInMinutes[buildType]
                   const visuallyHiddenValue =
                     dataPerDiem.humanReadableTime[buildType]

@@ -5,13 +5,13 @@ import { controlLabelCss } from "@modules/ui/styles"
 import HelpCircle from "@modules/ui/components/HelpCircle"
 
 const statCss = ({ theme }) => ({
-  flexBasis: `30%`,
   marginBottom: theme.space[8],
   textAlign: `center`,
 
   [theme.mediaQueries.desktop]: {
     marginBottom: 0,
     textAlign: `left`,
+    flex: 1,
   },
 })
 

@@ -36,6 +36,7 @@ const Card = ({
   codeChangeBuild,
   ...props
 }) => {
+  const hideData = ContentSource[contentSource].hideData
   const formattedSource = ContentSource[contentSource].displayedAs
   const formattedSiteType = SiteType[siteType].displayedAs
   const gradient = ContentSource[contentSource].gradient
@@ -94,11 +95,15 @@ const Card = ({
         </div>
         <div css={buildTimeStyles} data-cy="build-card__stats">
           <h4 css={sectionHeadingCss}>
-            Build Times <em>(data / code)</em>
+            Build Times <em>({!hideData && `data / `}code)</em>
           </h4>
           <div css={emphesizedTextCss}>
-            <span>{contentChangeBuild.timeInMinutes}</span>
-            <span css={separatorCss}>/</span>
+            {!hideData && (
+              <>
+                <span>{contentChangeBuild.timeInMinutes}</span>
+                <span css={separatorCss}>/</span>
+              </>
+            )}
             <span css={deEmphesizedTextCss}>
               {codeChangeBuild.timeInMinutes}
             </span>

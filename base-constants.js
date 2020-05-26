@@ -48,6 +48,7 @@ const ContentSource = {
       start: `#000000`,
       end: `#BF9141`,
     },
+    hideData: true,
   },
   MDX: {
     displayedAs: `MDX`,
@@ -55,6 +56,7 @@ const ContentSource = {
       start: `#E04F00`,
       end: `#F9AC00`,
     },
+    hideData: true,
   },
   WORDPRESS: {
     displayedAs: `WordPress`,

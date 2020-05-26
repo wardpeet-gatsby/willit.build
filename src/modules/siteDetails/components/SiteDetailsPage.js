@@ -129,7 +129,11 @@ const SiteDetailsPage = ({ data, pageContext }) => {
           },
         })}
       >
-        <DetailsTable data={graphData} annotations={graphAnnotations} />
+        <DetailsTable
+          data={graphData}
+          annotations={graphAnnotations}
+          contentSource={contentSource}
+        />
       </section>
     </MaxWidthWrapper>
   )

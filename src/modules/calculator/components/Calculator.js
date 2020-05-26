@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "gatsby-interface"
-
+import { ContentSource } from "@modules/data/constants"
 import ContentSourceControl from "@modules/ui/components/ContentSourceControl"
 import PageCountSelectControl from "@modules/ui/components/PageCountSelectControl"
 import {
@@ -69,10 +69,9 @@ const buildTypeSectionCss = theme => ({
   flexDirection: `column`,
 
   [theme.mediaQueries.desktop]: {
-    alignItems: `flex-end`,
+    alignItems: `flex-start`,
     flexDirection: `row`,
     flexWrap: `wrap`,
-    justifyContent: `space-between`,
 
     "&:not(:last-of-type)": {
       borderBottom: `1px solid ${theme.colors.blackFade[10]}`,
@@ -101,6 +100,8 @@ const mdxDisclaimerCss = theme => ({
   },
 })
 
+const statCss = theme => ({ marginRight: theme.space[7], flex: 1 })
+
 const Calculator = ({
   siteType,
   contentSource,
@@ -110,6 +111,7 @@ const Calculator = ({
 }) => {
   const stats = data.benchmarkApi.benchmarkVendor.latest
 
+  const hideData = ContentSource[contentSource].hideData
   const isArtificiallySlow = !!ArtificiallySlowContentSources[contentSource]
 
   return (
@@ -168,20 +170,24 @@ const Calculator = ({
         })}
       >
         <section css={buildTypeSectionCss}>
-          {stats.dataUpdate[0] && (
-            <Stat
-              time={stats.dataUpdate[0].timeInMinutes}
-              label="Data"
-              description={BuildType.DATA_UPDATE.description}
-            />
+          {!hideData && stats.dataUpdate[0] && (
+            <div css={statCss}>
+              <Stat
+                time={stats.dataUpdate[0].timeInMinutes}
+                label="Data"
+                description={BuildType.DATA_UPDATE.description}
+              />
+            </div>
           )}
 
           {stats.warmStart[0] && (
-            <Stat
-              time={stats.warmStart[0].timeInMinutes}
-              label="Cached"
-              description={BuildType.WARM_START.description}
-            />
+            <div css={statCss}>
+              <Stat
+                time={stats.warmStart[0].timeInMinutes}
+                label="Cached"
+                description={BuildType.WARM_START.description}
+              />
+            </div>
           )}
 
           {stats.coldStart[0] && (
