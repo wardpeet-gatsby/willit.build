@@ -7,10 +7,8 @@
   Will It Build
 </h1>
 
-The placeholder for Will It Build.
+_Will it build?_ That is the question. Gatsby sites are increasingly being used for larger and more ambitious projects, and Will It Build lets developers learn how much time it'll take to build large, complex projects at scale.
 
-## 🚀 Quick start
+This is the codebase for the front-end website, located at https://willit.build.
 
-1. Clone this repo
-1. Run `yarn`
-1. `yarn start` or `yarn build`
+**Note:** We've open-sourced it primarily as an educational resource; we aren't seeking contributions from community members, and may not respond to any issues or PRs opened.

@@ -2,6 +2,8 @@
 
 ![Screenshot showing an info circle on a graph with a tooltip displaying "Gatsby 1.2.3 released", with some additional made-up information.](./docs/annotation-sample.png)
 
+> Please note: This doc is meant for **internal use**.
+
 An annotation is a tooltip that appears in the graph on a specific date to explain a large swing in the data. These can be positive or negative.
 
 For example:

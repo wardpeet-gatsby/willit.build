@@ -11,12 +11,6 @@ describe("API Playground", () => {
       .invoke("removeAttr", "target")
       .click()
 
-    // For now, this loads a "Password protected site" page on Netlify.
-    // This is a temporary state of the world, but our test should support it.
-    const isPasswordProtected = cy.contains("Password protected site")
-
-    if (!isPasswordProtected) {
-      cy.get(".graphiql-wrapper").should("be.visible")
-    }
+    cy.get(".graphiql-wrapper").should("be.visible")
   })
 })
