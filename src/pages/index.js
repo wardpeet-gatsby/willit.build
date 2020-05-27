@@ -9,7 +9,10 @@ import { SEO } from "@modules/seo/components/SEO"
 const Index = () => {
   return (
     <MaxWidthWrapper>
-      <SEO title="Home" />
+      <SEO
+        title="Gatsby Build Benchmarks"
+        description="Compare historical build times of Gatsby example sites built on Gatsby Cloud, with data sourced from popular CMS (Content Management System) providers."
+      />
       <Hero />
       <Explainer />
       <BuildCardsGroup />

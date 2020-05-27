@@ -12,7 +12,10 @@ const CalculatorPage = ({ pageContext, data }) => {
 
   return (
     <MaxWidthWrapper>
-      <SEO title="Calculator" />
+      <SEO
+        title="Gatsby Build Time Calculator"
+        description="Estimate build times for your projects in Gatsby Cloud | Will It Build"
+      />
       <ContentBox>
         <Header
           siteType={siteType}

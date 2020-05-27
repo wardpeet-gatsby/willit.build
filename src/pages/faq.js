@@ -9,7 +9,10 @@ import { SEO } from "@modules/seo/components/SEO"
 const FAQ = () => {
   return (
     <MaxWidthWrapper>
-      <SEO title="FAQ" />
+      <SEO
+        title="Frequently Asked Questions"
+        description="Learn more about Will It Build and Gatsby Builds. How are the build times measured?, Why are Gatsby builds faster on Gatsby Cloud than on other solutions?, and more."
+      />
       <ContentBox>
         <Methodology />
         <FAQs />

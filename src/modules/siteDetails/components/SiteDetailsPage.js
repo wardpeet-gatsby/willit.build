@@ -71,7 +71,10 @@ const SiteDetailsPage = ({ data, pageContext }) => {
         },
       })}
     >
-      <SEO title={`${contentSourceTitle} benchmarks`} />
+      <SEO
+        title={`Gatsby and ${contentSourceTitle} Build Benchmarks`}
+        description="Compare historical build times of Gatsby example sites with data sourced from Contentful and built on Gatsby Cloud"
+      />
       <div
         css={theme => ({
           background: theme.colors.grey[5],
