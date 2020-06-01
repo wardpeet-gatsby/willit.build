@@ -3,7 +3,12 @@ import PropTypes from "prop-types"
 import { Link } from "gatsby-interface"
 import { MdArrowForward } from "react-icons/md"
 import formatPath from "@modules/data/utils/formatPath"
-import { ContentSource, SiteType, BuildType } from "@modules/data/constants"
+import {
+  PageCount,
+  ContentSource,
+  SiteType,
+  BuildType,
+} from "@modules/data/constants"
 import {
   wrapperStyles,
   gridStyles,
@@ -91,7 +96,9 @@ const Card = ({
         </div>
         <div data-cy="build-card__pages">
           <h4 css={sectionHeadingCss}>Pages</h4>
-          <span css={emphesizedTextCss}>{numberOfPages}</span>
+          <span css={emphesizedTextCss}>
+            {PageCount[numberOfPages].displayedAs}
+          </span>
         </div>
         <div css={buildTimeStyles} data-cy="build-card__stats">
           <h4 css={sectionHeadingCss}>
