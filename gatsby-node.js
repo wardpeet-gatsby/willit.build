@@ -128,7 +128,12 @@ exports.createPages = async ({
         []
       )
 
-      if (contentSource && siteType && activePageCounts.length) {
+      if (
+        contentSource &&
+        siteType &&
+        activePageCounts.length &&
+        checkIfConstantsExist({ id, contentSource, siteType })
+      ) {
         return [...acc, { id, contentSource, siteType, activePageCounts }]
       }
 
@@ -140,14 +145,6 @@ exports.createPages = async ({
   activeBenchmarks.forEach(
     ({ id, contentSource, siteType, activePageCounts }) => {
       activePageCounts.forEach(pageCount => {
-        // prevents creating pages for newly added benchmarks if there is no
-        // coresponding meta constants
-        // the checkIfConstantsExist helper prints console.warn if there is
-        // no coresponding constants
-        if (!checkIfConstantsExist({ id, contentSource, siteType })) {
-          return
-        }
-
         createPage({
           path: formatPath({
             prefix: `details`,
