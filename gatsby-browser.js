@@ -14,6 +14,9 @@ export const onRouteUpdate = loc => {
 
     if (elem) {
       elem.focus()
+      if (typeof state.scrollOffset === "number") {
+        window.scrollTo(0, state.scrollOffset)
+      }
     }
   }
 }

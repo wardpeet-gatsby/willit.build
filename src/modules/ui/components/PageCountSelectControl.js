@@ -33,7 +33,11 @@ const PageCountSelectControl = ({
         setCurrentPageCount(ev.target.value)
 
         navigate(newPath, {
-          state: { refocusId: ev.target.id, disableScrollUpdate: true },
+          state: {
+            refocusId: ev.target.id,
+            disableScrollUpdate: true,
+            scrollOffset: window.scrollY,
+          },
         })
       }}
       footer={footer}
