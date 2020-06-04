@@ -43,30 +43,20 @@ describe("DetailsChart", () => {
   })
 
   it("should hide/show lines on toggle of legend buttons", () => {
-    // in current implementation there is not way to add identifier to the sub svg elements
-    // which existence we will test so we have to rely on this long selector
-    const pathSelector =
-      ".main-chart-area > .recharts-layer > .recharts-layer > .recharts-layer > path"
+    const pathSelector = ".main-chart-area .recharts-area-curve"
+    const NUMBER_OF_CURVES = 3
 
-    // there are always 2 paths per line (one for the true line
-    // there are 3 potential states
-    const INITIAL_NUMBER_OF_PATHS = 2 * 3
-    const UPDATED_NUMBER_OF_PATHS = 2 * 2
-
-    cy.get(pathSelector)
-      .filter(":visible")
+    cy.get(`${pathSelector}[d]`)
       .its("length")
-      .should("be.eq", INITIAL_NUMBER_OF_PATHS)
+      .should("be.eq", NUMBER_OF_CURVES)
 
     cy.get("[data-cy=chart-legend-item]")
       .first()
       .find("input")
       .uncheck({ force: true })
 
-    // after one uncheck there should one line less
-    cy.get(pathSelector)
-      .filter(":visible")
+    cy.get(`${pathSelector}[d]`)
       .its("length")
-      .should("be.eq", UPDATED_NUMBER_OF_PATHS)
+      .should("be.eq", NUMBER_OF_CURVES - 1)
   })
 })
