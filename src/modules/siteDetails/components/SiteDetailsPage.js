@@ -24,6 +24,7 @@ const SiteDetailsPage = ({ data, pageContext }) => {
   const [chartIsMounted, setChartIsMounted] = React.useState(false)
   const { activeBenchmarks } = pageContext
   const [graphData, setGraphData] = React.useState()
+  const [tableData, setTableData] = React.useState()
   const [chartActiveLines, setChartActiveLines] = React.useState({
     DATA_UPDATE: true,
     WARM_START: true,
@@ -66,6 +67,10 @@ const SiteDetailsPage = ({ data, pageContext }) => {
     })
 
     setGraphData(graphData)
+
+    if (!tableData && graphData) {
+      setTableData([...graphData])
+    }
   }, [benchmarks, pageCount, chartActiveLines])
 
   const { displayedAs: contentSourceTitle } = ContentSource[contentSource]
@@ -157,7 +162,7 @@ const SiteDetailsPage = ({ data, pageContext }) => {
         })}
       >
         <DetailsTable
-          data={graphData}
+          data={tableData}
           annotations={graphAnnotations}
           contentSource={contentSource}
         />
