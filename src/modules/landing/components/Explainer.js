@@ -5,7 +5,9 @@ import DatocmsIcon from "@modules/data/assets/icons/DatocmsIcon"
 import WordpressIcon from "@modules/data/assets/icons/WordpressIcon"
 import DrupalIcon from "@modules/data/assets/icons/DrupalIcon"
 import MarkdownIcon from "@modules/data/assets/icons/MarkdownIcon"
+import MdxIcon from "@modules/data/assets/icons/MdxIcon"
 import ContentfulIcon from "@modules/data/assets/icons/ContentfulIcon"
+import SanityIcon from "@modules/data/assets/icons/SanityIcon"
 
 import wordmarkSrc from "@images/wordmark.svg"
 import gatsbyCloudSrc from "@images/gatsby-cloud.svg"
@@ -30,7 +32,9 @@ const Block = ({ children }) => (
   </div>
 )
 
-const Icon = ({ Icon }) => <Icon height="20px" width="20px" />
+const Icon = ({ Icon, width = 20, height = 20 }) => (
+  <Icon width={width} height={height} />
+)
 
 const BlockGrid = ({ children }) => (
   <div
@@ -90,7 +94,7 @@ const Explainer = () => {
       })}
     >
       <Block>
-        <p css={LabelStyles}>Gatsby + 6 different Data Sources</p>
+        <p css={LabelStyles}>Gatsby + 7 different Data Sources</p>
         <BlockGrid>
           <Icon Icon={GatsbyIcon} />{" "}
           <span
@@ -108,9 +112,13 @@ const Explainer = () => {
           <Delimiter />
           <Icon Icon={DatocmsIcon} />
           <Delimiter />
+          <Icon Icon={SanityIcon} />
+          <Delimiter />
           <Icon Icon={WordpressIcon} />
           <Delimiter />
           <Icon Icon={MarkdownIcon} />
+          <Delimiter />
+          <Icon Icon={MdxIcon} height={30} width={36} />
         </BlockGrid>
       </Block>
       <Block>

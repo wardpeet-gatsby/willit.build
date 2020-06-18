@@ -21,13 +21,6 @@ const ContentSource = {
       end: `#B17ACC`,
     },
   },
-  COSMICJS: {
-    displayedAs: `CosmicJS`,
-    gradient: {
-      start: `#29ABE2`,
-      end: `#2DE3DA`,
-    },
-  },
   DATOCMS: {
     displayedAs: `DatoCMS`,
     gradient: {
@@ -63,6 +56,13 @@ const ContentSource = {
     gradient: {
       start: `#21759B`,
       end: `#BC027F`,
+    },
+  },
+  SANITY: {
+    displayedAs: `Sanity`,
+    gradient: {
+      start: `#FB6056`,
+      end: `#D83195`,
     },
   },
 }

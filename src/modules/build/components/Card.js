@@ -59,8 +59,10 @@ const Card = ({
     buildType: BuildType[`WARM_START`].displayedAs,
   })
 
-  const ICON_SIZE_MOBILE = contentSource === `MDX` ? `2.25rem` : `1.5rem`
-  const ICON_SIZE_DESKTOP = contentSource === `MDX` ? `3rem` : `2rem`
+  const isLargeIcon = contentSource === `MDX`
+
+  const ICON_SIZE_MOBILE = isLargeIcon ? `2.25rem` : `1.5rem`
+  const ICON_SIZE_DESKTOP = isLargeIcon ? `3rem` : `2rem`
 
   return (
     <div css={wrapperStyles} data-cy="build-card" {...props}>

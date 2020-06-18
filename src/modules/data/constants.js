@@ -1,9 +1,9 @@
 import ContentfulIcon from "./assets/icons/ContentfulIcon"
-import CosmicjsIcon from "./assets/icons/CosmicjsIcon"
 import DatocmsIcon from "./assets/icons/DatocmsIcon"
 import DrupalIcon from "./assets/icons/DrupalIcon"
 import MarkdownIcon from "./assets/icons/MarkdownIcon"
 import MdxIcon from "./assets/icons/MdxIcon"
+import SanityIcon from "./assets/icons/SanityIcon"
 import WordpressIcon from "./assets/icons/WordpressIcon"
 
 import GatsbyIcon from "./assets/icons/GatsbyIcon"
@@ -23,11 +23,11 @@ export { buildTypeIds } from "../../../base-constants"
 const Icons = {
   BLOG: BlogIcon,
   CONTENTFUL: ContentfulIcon,
-  COSMICJS: CosmicjsIcon,
   DATOCMS: DatocmsIcon,
   DRUPAL: DrupalIcon,
   MDX: MdxIcon,
   MARKDOWN: MarkdownIcon,
+  SANITY: SanityIcon,
   WORDPRESS: WordpressIcon,
   GATSBY_CLOUD: GatsbyIcon,
 }

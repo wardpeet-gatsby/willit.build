@@ -27,6 +27,7 @@ const cmsTwitterMap = {
   DATOCMS: `@datocms`,
   CONTENTFUL: `@contentful`,
   COSMICJS: `@cosmicjs`,
+  SANITYCMS: `@sanity_io`,
   DRUPAL: `@drupal`,
   MDX: `@mdx_js`,
   MARKDOWN: `Markdown`,

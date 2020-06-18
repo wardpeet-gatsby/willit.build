@@ -44,7 +44,7 @@ const BuildCardsGroup = () => {
 
   return (
     <div
-      css={(theme) => ({
+      css={theme => ({
         marginTop: theme.space[8],
         display: `grid`,
         marginLeft: `-${HORIZONTAL_PADDING_MOBILE}`,

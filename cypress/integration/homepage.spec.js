@@ -20,10 +20,7 @@ describe("Homepage", () => {
   })
 
   it("should contain cards for all active benchmarks", () => {
-    const NUMBER_OF_BENCHMARKS = contentSourceIds.filter(
-      // we exclude COSMICJS because for now there is no data for it
-      item => item !== `COSMICJS`
-    ).length
+    const NUMBER_OF_BENCHMARKS = contentSourceIds.length
 
     cy.get("[data-cy=build-card")
       .its("length")
