@@ -1,5 +1,3 @@
-import format from "date-fns/format"
-
 export function formatDataForChart({ benchmarks, chartActiveLines }) {
   const graphDataByCreatedAt = {}
 
@@ -7,7 +5,14 @@ export function formatDataForChart({ benchmarks, chartActiveLines }) {
     // TODO: Maybe we should think of a way to avoid using this array that way
     const metrics = buildTimes[0]
     const { timeInMs, timeInMinutes, humanReadableTime } = metrics
-    const formatedCreatedAt = format(new Date(createdAt), "M/d/yyyy")
+
+    const createdAtDate = new Date(createdAt)
+
+    const year = createdAtDate.getUTCFullYear()
+    const month = createdAtDate.getUTCMonth() + 1 // because values starts with 0
+    const day = createdAtDate.getUTCDate()
+
+    const formatedCreatedAt = `${year}-${month}-${day}`
 
     if (!graphDataByCreatedAt[formatedCreatedAt]) {
       graphDataByCreatedAt[formatedCreatedAt] = {

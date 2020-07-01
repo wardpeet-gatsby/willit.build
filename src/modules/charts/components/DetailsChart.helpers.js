@@ -1,6 +1,7 @@
 import React from "react"
 import formatDuration from "../utils/formatDuration"
 import { DetailsChartDimensions } from "../constants"
+import format from "date-fns/format"
 
 const { ActiveDotRadius } = DetailsChartDimensions
 
@@ -36,7 +37,7 @@ export function filterDataForMobile({ data, scope }) {
 }
 
 export function xAxisTickFormater(value) {
-  return value.slice(0, -5)
+  return format(new Date(value), "M/d")
 }
 
 export function yAxisTickFormater(value) {
