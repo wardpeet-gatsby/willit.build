@@ -6,8 +6,6 @@ export function TipLabel({ label }) {
   return (
     <strong
       css={theme => ({
-        display: `flex`,
-        alignItems: `center`,
         fontSize: theme.fontSizes[1],
         fontWeight: theme.fontWeights.body,
       })}
@@ -16,7 +14,8 @@ export function TipLabel({ label }) {
         css={theme => ({
           color: theme.colors.whiteFade[60],
           marginRight: theme.space[1],
-          transform: `translate(-${theme.space[1]}, 0)`,
+
+          transform: `translate(-${theme.space[1]}, ${theme.space[2]})`,
         })}
       />
       {label}
@@ -40,6 +39,8 @@ export function TipDescription({ description, link, linkText }) {
             textDecoration: `none`,
             color: theme.colors.purple[30],
           })}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           {linkText ? linkText : `Read more`}{" "}
           <GoLinkExternal

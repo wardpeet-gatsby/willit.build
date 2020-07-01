@@ -36,3 +36,13 @@ export function formatDataForChart({ benchmarks, chartActiveLines }) {
 
   return graphData
 }
+
+export function filterAnnotations({ annotations, contentSource }) {
+  return annotations.filter(item => {
+    if (item.contentSource && item.contentSource !== contentSource) {
+      return false
+    }
+
+    return true
+  })
+}

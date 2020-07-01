@@ -1,9 +1,10 @@
 [
   {
-    "date": "3/18/1999",
-    "label": "Example annotation!",
-    "description": "Gatsby v1.2.3 ships with improved compression, bringing its Weissman score up to 2.75.",
-    "link": "http: //gatsbyjs.com",
-    "linkText": "Learn more"
+    "date": "6/20/2020",
+    "label": "gatsby-source-sanity v 6.0.1",
+    "description": "Sanity released a new version of the plugin.",
+    "link": "https://github.com/sanity-io/gatsby-source-sanity/commit/57a5b982de4215bd6ddd2b39a2c2755db2217e5b",
+    "linkText": "",
+    "contentSource": "SANITY"
   }
 ]

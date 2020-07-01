@@ -28,9 +28,19 @@ If the label text is insufficient to describe the change, a `description` field 
 If the description is still insufficient to describe the change, you can supply two additional fields:
 
 - `link` — a URL pointing to a changelog / press release that describes the change in greater detail
-- `linkText` — The anchor's text content. For example, "Read more". Limited to 32 characters.
+- `linkText` — The anchor's text content. Limited to 32 characters. The default value, if not provided a custom one is `Read more`
 
-`link` and `linkText` are inseparable; if one is provided, both must be provided.
+If the annotation is related to a particular CMS use
+
+- `contentSource` property
+
+For example:
+
+```
+    ...
+    "contentSource": "SANITY"
+  }
+```
 
 ## Annotation policies
 

@@ -15,7 +15,10 @@ import MaxWidthWrapper, {
 } from "@modules/ui/components/MaxWidthWrapper"
 import DetailsHeader from "./DetailsHeader"
 import DetailsOverview from "./DetailsOverview"
-import { formatDataForChart } from "./SiteDetailsPage.helpers"
+import {
+  formatDataForChart,
+  filterAnnotations,
+} from "./SiteDetailsPage.helpers"
 import { SEO } from "@modules/seo/components/SEO"
 
 const { YAxisWidth, ChartWithControlsHeight } = DetailsChartDimensions
@@ -36,12 +39,17 @@ const SiteDetailsPage = ({ data, pageContext }) => {
   }, [])
 
   const {
-    allAnnotationsJson: { nodes: graphAnnotations },
+    allAnnotationsJson,
     benchmarkApi: { benchmarkVendor },
   } = data
 
   const { pageCount } = pageContext
   const { latest, contentSource, siteType, benchmarks } = benchmarkVendor
+
+  const graphAnnotations = filterAnnotations({
+    annotations: allAnnotationsJson.nodes,
+    contentSource,
+  })
 
   // TEMP: Stop relying on buildType. We have all the data at once now.
   const buildType = "WARM_START"
@@ -186,6 +194,7 @@ export const query = graphql`
         description
         link
         linkText
+        contentSource
       }
     }
     benchmarkApi {
