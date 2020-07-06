@@ -1,10 +1,10 @@
 const activeEnv =
   process.env.ACTIVE_ENV || process.env.NODE_ENV || `development`
-
 console.info(`Using environment config: '${activeEnv}'`)
 
 if (process.env.LOCAL_DEV) {
   console.info(`Loading dot env config: '${activeEnv}'`)
+
   require(`dotenv`).config({
     path: `.env.${activeEnv}`,
   })
@@ -21,7 +21,6 @@ const contentfulConfig = {
       ? undefined
       : process.env.CONTENTFUL_HOST,
 }
-
 module.exports = {
   siteMetadata: {
     title: `Will It Build?`,
@@ -79,10 +78,18 @@ module.exports = {
       options: {
         trackingId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
       },
-    },
-
-    // this (optional) plugin enables Progressive Web App + Offline functionality
+    }, // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    "gatsby-plugin-route-dictionary",
+    "gatsby-disable-prefetch",
+    {
+      resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
+      options: {
+        analyzerMode: "static",
+        reportFilename: "_bundle.html",
+        openAnalyzer: false,
+      },
+    },
   ],
 }
