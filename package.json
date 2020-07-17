@@ -29,7 +29,7 @@
     "@emotion/styled": "^10.0.27",
     "date-fns": "^2.9.0",
     "formik": "^2.1.4",
-    "gatsby": "2.21.1",
+    "gatsby": "^2.24.4-static-queries-out-of-webpack.32",
     "gatsby-image": "^2.2.41",
     "gatsby-interface": "0.0.149",
     "gatsby-plugin-create-client-paths": "^2.1.22",
